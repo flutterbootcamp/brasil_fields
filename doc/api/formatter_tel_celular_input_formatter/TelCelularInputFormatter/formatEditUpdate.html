@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="API docs for the formatEditUpdate method from the TelCelularInputFormatter class, for the Dart programming language.">
+  <title>formatEditUpdate method - TelCelularInputFormatter class - tel_celular_input_formatter library - Dart API</title>
+  <!-- required because all the links are pseudo-absolute -->
+  <base href="../..">
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link rel="stylesheet" href="static-assets/github.css">
+  <link rel="stylesheet" href="static-assets/styles.css">
+  <link rel="icon" href="static-assets/favicon.png">
+
+</head>
+
+<body>
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="index.html">brasil_fields</a></li>
+    <li><a href="formatter_tel_celular_input_formatter/formatter_tel_celular_input_formatter-library.html">tel_celular_input_formatter</a></li>
+    <li><a href="formatter_tel_celular_input_formatter/TelCelularInputFormatter-class.html">TelCelularInputFormatter</a></li>
+    <li class="self-crumb">formatEditUpdate method</li>
+  </ol>
+  <div class="self-name">formatEditUpdate</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+  <div class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <h5>TelCelularInputFormatter class</h5>
+    <ol>
+      <li class="section-title"><a href="formatter_tel_celular_input_formatter/TelCelularInputFormatter-class.html#constructors">Constructors</a></li>
+      <li><a href="formatter_tel_celular_input_formatter/TelCelularInputFormatter/TelCelularInputFormatter.html">TelCelularInputFormatter</a></li>
+    
+      <li class="section-title">
+        <a href="formatter_tel_celular_input_formatter/TelCelularInputFormatter-class.html#instance-properties">Properties</a>
+      </li>
+      <li><a href="formatter_tel_celular_input_formatter/TelCelularInputFormatter/maxLength.html">maxLength</a></li>
+      <li class="inherited"><a href="formatter_max_length_input_formatter/MaxLengthInputFormatter/hashCode.html">hashCode</a></li>
+      <li class="inherited"><a href="formatter_max_length_input_formatter/MaxLengthInputFormatter/runtimeType.html">runtimeType</a></li>
+    
+      <li class="section-title"><a href="formatter_tel_celular_input_formatter/TelCelularInputFormatter-class.html#instance-methods">Methods</a></li>
+      <li><a href="formatter_tel_celular_input_formatter/TelCelularInputFormatter/formatEditUpdate.html">formatEditUpdate</a></li>
+      <li class="inherited"><a href="formatter_max_length_input_formatter/MaxLengthInputFormatter/noSuchMethod.html">noSuchMethod</a></li>
+      <li class="inherited"><a href="formatter_max_length_input_formatter/MaxLengthInputFormatter/toString.html">toString</a></li>
+      <li class="inherited"><a href="formatter_max_length_input_formatter/MaxLengthInputFormatter/truncateLength.html">truncateLength</a></li>
+    
+      <li class="section-title inherited"><a href="formatter_tel_celular_input_formatter/TelCelularInputFormatter-class.html#operators">Operators</a></li>
+      <li class="inherited"><a href="formatter_max_length_input_formatter/MaxLengthInputFormatter/operator_equals.html">operator ==</a></li>
+    
+    
+    
+    </ol>
+  </div><!--/.sidebar-offcanvas-->
+
+  <div class="col-xs-12 col-sm-9 col-md-8 main-content">
+    <h1>formatEditUpdate method</h1>
+
+    <section class="multi-line-signature">
+      <div>
+        <ol class="annotation-list">
+          <li>@override</li>
+        </ol>
+      </div>
+      <span class="returntype">TextEditingValue</span>
+      <span class="name ">formatEditUpdate</span>
+(<wbr><span class="parameter" id="formatEditUpdate-param-oldValue"><span class="type-annotation">TextEditingValue</span> <span class="parameter-name">oldValue</span>, </span> <span class="parameter" id="formatEditUpdate-param-newValue"><span class="type-annotation">TextEditingValue</span> <span class="parameter-name">newValue</span></span>)
+      
+    </section>
+    <section class="desc markdown">
+      <p>Called when text is being typed or cut/copy/pasted in the <code>EditableText</code>.</p>
+<p>You can override the resulting text based on the previous text value and
+the incoming new text value.</p>
+<p>When formatters are chained, <code>oldValue</code> reflects the initial value of
+<code>TextEditingValue</code> at the beginning of the chain.</p>
+    </section>
+    
+    <section class="summary source-code" id="source">
+      <h2><span>Implementation</span> </h2>
+      <pre class="language-dart"><code class="language-dart">@override
+TextEditingValue formatEditUpdate(
+    TextEditingValue oldValue, TextEditingValue newValue) {
+  final int newTextLength = newValue.text.length;
+  int selectionIndex = newValue.selection.end;
+
+  int usedSubstringIndex = 0;
+  final StringBuffer newText = StringBuffer();
+  if (newTextLength &gt;= 1) {
+    newText.write(&#39;(&#39;);
+    if (newValue.selection.end &gt;= 1) selectionIndex++;
+  }
+
+  if (newTextLength &gt;= 3) {
+    newText.write(newValue.text.substring(0, usedSubstringIndex = 2) + &#39;) &#39;);
+    if (newValue.selection.end &gt;= 2) {
+      selectionIndex += 2;
+    }
+  }
+  if (newTextLength &gt;= 8) {
+    newText.write(newValue.text.substring(2, usedSubstringIndex = 7) + &#39;-&#39;);
+    if (newValue.selection.end &gt;= 7) {
+      selectionIndex++;
+    }
+  }
+  if (newTextLength &gt;= usedSubstringIndex)
+    newText.write(newValue.text.substring(usedSubstringIndex));
+
+  if (maxLength != null &amp;&amp;
+      maxLength &gt; 0 &amp;&amp;
+      newValue.text.runes.length &gt; maxLength) {
+    return truncateLength(maxLength, newValue);
+  }
+  return TextEditingValue(
+    text: newText.toString(),
+    selection: TextSelection.collapsed(offset: selectionIndex),
+  );
+}</code></pre>
+    </section>
+
+  </div> <!-- /.main-content -->
+
+  <div class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    brasil_fields 0.0.1
+  </span>
+
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="static-assets/typeahead.bundle.min.js"></script>
+<script src="static-assets/highlight.pack.js"></script>
+<script src="static-assets/URI.js"></script>
+<script src="static-assets/script.js"></script>
+
+
+</body>
+
+</html>
