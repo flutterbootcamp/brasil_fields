@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="API docs for the MaxLengthInputFormatter class from the max_length_input_formatter library, for the Dart programming language.">
-  <title>MaxLengthInputFormatter class - max_length_input_formatter library - Dart API</title>
+  <meta name="description" content="API docs for the TelefoneInputFormatter class from the telefone_input_formatter library, for the Dart programming language.">
+  <title>TelefoneInputFormatter class - telefone_input_formatter library - Dart API</title>
   <!-- required because all the links are pseudo-absolute -->
   <base href="..">
 
@@ -24,10 +24,10 @@
   <button id="sidenav-left-toggle" type="button">&nbsp;</button>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="index.html">brasil_fields</a></li>
-    <li><a href="formatter_max_length_input_formatter/formatter_max_length_input_formatter-library.html">max_length_input_formatter</a></li>
-    <li class="self-crumb">MaxLengthInputFormatter abstract class</li>
+    <li><a href="formatter_telefone_input_formatter/formatter_telefone_input_formatter-library.html">telefone_input_formatter</a></li>
+    <li class="self-crumb">TelefoneInputFormatter class</li>
   </ol>
-  <div class="self-name">MaxLengthInputFormatter</div>
+  <div class="self-name">TelefoneInputFormatter</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -36,10 +36,10 @@
 <main>
 
   <div class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
-    <h5>max_length_input_formatter library</h5>
+    <h5>telefone_input_formatter library</h5>
     <ol>
-      <li class="section-title"><a href="formatter_max_length_input_formatter/formatter_max_length_input_formatter-library.html#classes">Classes</a></li>
-      <li><a href="formatter_max_length_input_formatter/MaxLengthInputFormatter-class.html">MaxLengthInputFormatter</a></li>
+      <li class="section-title"><a href="formatter_telefone_input_formatter/formatter_telefone_input_formatter-library.html#classes">Classes</a></li>
+      <li><a href="formatter_telefone_input_formatter/TelefoneInputFormatter-class.html">TelefoneInputFormatter</a></li>
     
     
     
@@ -51,25 +51,22 @@
   </div>
 
   <div class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <h1>MaxLengthInputFormatter class </h1>
+      <h1>TelefoneInputFormatter class </h1>
 
     <section class="desc markdown">
-      <p>Limita de cada formatter do package</p>
+      <p>Formata o valor do campo com a mascara ( (61) 9999-9999 )
+<a href="formatter_telefone_input_formatter/TelefoneInputFormatter/digito_9.html">digito_9</a> indica se o campo tera o nono dígito ou não.</p>
     </section>
     
     <section>
       <dl class="dl-horizontal">
 
 
-
-        <dt>Implementers</dt>
+        <dt>Mixed in types</dt>
         <dd><ul class="comma-separated clazz-relationships">
-          <li><a href="formatter_cep_input_formatter/CepInputFormatter-class.html">CepInputFormatter</a></li>
-          <li><a href="formatter_cnpj_input_formatter/CnpjInputFormatter-class.html">CnpjInputFormatter</a></li>
-          <li><a href="formatter_cpf_input_formatter/CpfInputFormatter-class.html">CpfInputFormatter</a></li>
-          <li><a href="formatter_real_input_formatter/RealInputFormatter-class.html">RealInputFormatter</a></li>
-          <li><a href="formatter_telefone_input_formatter/TelefoneInputFormatter-class.html">TelefoneInputFormatter</a></li>
+          <li><a href="formatter_max_length_input_formatter/MaxLengthInputFormatter-class.html">MaxLengthInputFormatter</a></li>
         </ul></dd>
+
 
       </dl>
     </section>
@@ -78,8 +75,8 @@
       <h2>Constructors</h2>
 
       <dl class="constructor-summary-list">
-        <dt id="MaxLengthInputFormatter" class="callable">
-          <span class="name"><a href="formatter_max_length_input_formatter/MaxLengthInputFormatter/MaxLengthInputFormatter.html">MaxLengthInputFormatter</a></span><span class="signature">()</span>
+        <dt id="TelefoneInputFormatter" class="callable">
+          <span class="name"><a href="formatter_telefone_input_formatter/TelefoneInputFormatter/TelefoneInputFormatter.html">TelefoneInputFormatter</a></span><span class="signature">({<span class="parameter" id="-param-digito_9"><span class="type-annotation">bool</span> <span class="parameter-name">digito_9</span>: <span class="default-value">false</span></span> })</span>
         </dt>
         <dd>
           
@@ -87,10 +84,26 @@
       </dl>
     </section>
 
-    <section class="summary offset-anchor inherited" id="instance-properties">
+    <section class="summary offset-anchor" id="instance-properties">
       <h2>Properties</h2>
 
       <dl class="properties">
+        <dt id="digito_9" class="property">
+          <span class="name"><a href="formatter_telefone_input_formatter/TelefoneInputFormatter/digito_9.html">digito_9</a></span>
+          <span class="signature">&#8596; bool</span> 
+        </dt>
+        <dd>
+          
+          <div class="features">read / write</div>
+</dd>
+        <dt id="maxLength" class="property">
+          <span class="name"><a href="formatter_telefone_input_formatter/TelefoneInputFormatter/maxLength.html">maxLength</a></span>
+          <span class="signature">&#8596; int</span> 
+        </dt>
+        <dd>
+          
+          <div class="features">read / write</div>
+</dd>
         <dt id="hashCode" class="property inherited">
           <span class="name"><a href="formatter_max_length_input_formatter/MaxLengthInputFormatter/hashCode.html">hashCode</a></span>
           <span class="signature">&#8594; int</span> 
@@ -113,13 +126,13 @@
     <section class="summary offset-anchor" id="instance-methods">
       <h2>Methods</h2>
       <dl class="callables">
-        <dt id="truncateLength" class="callable">
-          <span class="name"><a href="formatter_max_length_input_formatter/MaxLengthInputFormatter/truncateLength.html">truncateLength</a></span><span class="signature">(<wbr><span class="parameter" id="truncateLength-param-maxLength"><span class="type-annotation">int</span> <span class="parameter-name">maxLength</span>, </span> <span class="parameter" id="truncateLength-param-newValue"><span class="type-annotation">TextEditingValue</span> <span class="parameter-name">newValue</span></span>)
+        <dt id="formatEditUpdate" class="callable">
+          <span class="name"><a href="formatter_telefone_input_formatter/TelefoneInputFormatter/formatEditUpdate.html">formatEditUpdate</a></span><span class="signature">(<wbr><span class="parameter" id="formatEditUpdate-param-oldValue"><span class="type-annotation">TextEditingValue</span> <span class="parameter-name">oldValue</span>, </span> <span class="parameter" id="formatEditUpdate-param-newValue"><span class="type-annotation">TextEditingValue</span> <span class="parameter-name">newValue</span></span>)
             <span class="returntype parameter">&#8594; TextEditingValue</span>
           </span>
           </dt>
         <dd>
-          
+          Called when text is being typed or cut/copy/pasted in the <code>EditableText</code>. <a href="formatter_telefone_input_formatter/TelefoneInputFormatter/formatEditUpdate.html">[...]</a>
           
 </dd>
         <dt id="noSuchMethod" class="callable inherited">
@@ -138,6 +151,15 @@
           </dt>
         <dd class="inherited">
           Returns a string representation of this object.
+          <div class="features">inherited</div>
+</dd>
+        <dt id="truncateLength" class="callable inherited">
+          <span class="name"><a href="formatter_max_length_input_formatter/MaxLengthInputFormatter/truncateLength.html">truncateLength</a></span><span class="signature">(<wbr><span class="parameter" id="truncateLength-param-maxLength"><span class="type-annotation">int</span> <span class="parameter-name">maxLength</span>, </span> <span class="parameter" id="truncateLength-param-newValue"><span class="type-annotation">TextEditingValue</span> <span class="parameter-name">newValue</span></span>)
+            <span class="returntype parameter">&#8594; TextEditingValue</span>
+          </span>
+          </dt>
+        <dd class="inherited">
+          
           <div class="features">inherited</div>
 </dd>
       </dl>
@@ -165,21 +187,24 @@
 
   <div class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
     <ol>
-      <li class="section-title"><a href="formatter_max_length_input_formatter/MaxLengthInputFormatter-class.html#constructors">Constructors</a></li>
-      <li><a href="formatter_max_length_input_formatter/MaxLengthInputFormatter/MaxLengthInputFormatter.html">MaxLengthInputFormatter</a></li>
+      <li class="section-title"><a href="formatter_telefone_input_formatter/TelefoneInputFormatter-class.html#constructors">Constructors</a></li>
+      <li><a href="formatter_telefone_input_formatter/TelefoneInputFormatter/TelefoneInputFormatter.html">TelefoneInputFormatter</a></li>
     
-      <li class="section-title inherited">
-        <a href="formatter_max_length_input_formatter/MaxLengthInputFormatter-class.html#instance-properties">Properties</a>
+      <li class="section-title">
+        <a href="formatter_telefone_input_formatter/TelefoneInputFormatter-class.html#instance-properties">Properties</a>
       </li>
+      <li><a href="formatter_telefone_input_formatter/TelefoneInputFormatter/digito_9.html">digito_9</a></li>
+      <li><a href="formatter_telefone_input_formatter/TelefoneInputFormatter/maxLength.html">maxLength</a></li>
       <li class="inherited"><a href="formatter_max_length_input_formatter/MaxLengthInputFormatter/hashCode.html">hashCode</a></li>
       <li class="inherited"><a href="formatter_max_length_input_formatter/MaxLengthInputFormatter/runtimeType.html">runtimeType</a></li>
     
-      <li class="section-title"><a href="formatter_max_length_input_formatter/MaxLengthInputFormatter-class.html#instance-methods">Methods</a></li>
-      <li><a href="formatter_max_length_input_formatter/MaxLengthInputFormatter/truncateLength.html">truncateLength</a></li>
+      <li class="section-title"><a href="formatter_telefone_input_formatter/TelefoneInputFormatter-class.html#instance-methods">Methods</a></li>
+      <li><a href="formatter_telefone_input_formatter/TelefoneInputFormatter/formatEditUpdate.html">formatEditUpdate</a></li>
       <li class="inherited"><a href="formatter_max_length_input_formatter/MaxLengthInputFormatter/noSuchMethod.html">noSuchMethod</a></li>
       <li class="inherited"><a href="formatter_max_length_input_formatter/MaxLengthInputFormatter/toString.html">toString</a></li>
+      <li class="inherited"><a href="formatter_max_length_input_formatter/MaxLengthInputFormatter/truncateLength.html">truncateLength</a></li>
     
-      <li class="section-title inherited"><a href="formatter_max_length_input_formatter/MaxLengthInputFormatter-class.html#operators">Operators</a></li>
+      <li class="section-title inherited"><a href="formatter_telefone_input_formatter/TelefoneInputFormatter-class.html#operators">Operators</a></li>
       <li class="inherited"><a href="formatter_max_length_input_formatter/MaxLengthInputFormatter/operator_equals.html">operator ==</a></li>
     
     

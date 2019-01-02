@@ -2,6 +2,8 @@ import 'package:brasil_fields/formatter/max_length_input_formatter.dart';
 import 'package:flutter/services.dart';
 
 /// Formata o valor do campo com a mascara ( 9.999.999.999,00 )
+///
+/// [centavos] indica se o campo deve terá centavos ou não.
 class RealInputFormatter extends TextInputFormatter
     with MaxLengthInputFormatter {
   RealInputFormatter({this.centavos = false});
@@ -13,7 +15,6 @@ class RealInputFormatter extends TextInputFormatter
       TextEditingValue oldValue, TextEditingValue newValue) {
     final int newTextLength = newValue.text.length;
     int selectionIndex = newValue.selection.end;
-
     int usedSubstringIndex = 0;
     final StringBuffer newText = StringBuffer();
     if (centavos) {

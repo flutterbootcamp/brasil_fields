@@ -21,7 +21,7 @@
 
 <header id="title">
   <ol class="breadcrumbs gt-separated dark hidden-xs">
-    <li><a href="www.twitter.com/rubensdemelo">brasil_fields package</a></li>
+    <li><a href="https://github.com/rubensdemelo/brasil_fields">brasil_fields package</a></li>
   </ol>
   <div class="self-name">brasil_fields</div>
   <form class="search navbar-right" role="search">
@@ -45,8 +45,7 @@
           <li><a href="formatter_real_input_formatter/formatter_real_input_formatter-library.html">real_input_formatter</a></li>
           <li><a href="modelos_regioes/modelos_regioes-library.html">regioes</a></li>
           <li><a href="modelos_semana/modelos_semana-library.html">semana</a></li>
-          <li><a href="formatter_tel_celular_input_formatter/formatter_tel_celular_input_formatter-library.html">tel_celular_input_formatter</a></li>
-          <li><a href="formatter_tel_fixo_input_formatter/formatter_tel_fixo_input_formatter-library.html">tel_fixo_input_formatter</a></li>
+          <li><a href="formatter_telefone_input_formatter/formatter_telefone_input_formatter-library.html">telefone_input_formatter</a></li>
     </ol>
   </div>
 
@@ -57,9 +56,25 @@
 <h2 id="apresentao">Apresentação</h2>
 <p>Este package facilita o desenvolvimento com a linguagem Dart em projetos que 
 utilizam campos com os padrões e formatos brasileiros.</p>
-<h3 id="formatters">Formatters</h3><ul><li>CPF  </li><li>CNPJ  </li><li>CEP  </li><li>Real (R$)</li><li>Telefones (fixo e celular)</li></ul>
+<h3 id="formatters">Formatters</h3><ul><li>CPF 
+<br> <img src="img/cpf.gif" width="250"></li><li>CNPJ 
+<br> <img src="img/cnpj.gif" width="250"></li><li>CEP -
+<br> <img src="img/cep.gif" width="250"></li><li>Real (R$)
+<br> <img src="img/moeda.gif" width="250"></li><li>Centavos (R$)
+<br> <img src="img/centavos.gif" width="250"></li><li>Telefones (fixo e celular)
+<br> <img src="img/telefone.gif" width="250"></li></ul>
 <h3 id="padres">Padrões</h3><ul><li>Estados  </li><li>Meses</li><li>Regiões</li><li>Semana</li></ul>
-<h4 id="to-do">TO-DO</h4><ul><li>Validações com RegExp</li></ul>
+<h3 id="como-utilizar">Como utilizar:</h3>
+<p>Basta incluir o formatter que você quer que o campo tenha, na lista de <code>inputFormatters</code> :</p>
+<p><strong>Para garantir que o campo aceite apenas valores numéricos, utilize em conjunto com o formatter <code>WhitelistingTextInputFormatter.digitsOnly</code> .</strong></p>
+<pre class="language-dart"><code>TextFormField(
+  inputFormatters: [
+    WhitelistingTextInputFormatter.digitsOnly,
+    CepInputFormatter(),
+  ],
+);
+        
+</code></pre><ul><li><code>CpfInputFormatter()</code></li><li><code>CnpjInputFormatter()</code></li><li><code>CepInputFormatter()</code></li><li><code>RealInputFormatter()</code></li><li><code>TelefoneInputFormatter()</code></li></ul>
       </section>
       
         <section class="summary">
@@ -115,13 +130,8 @@ utilizam campos com os padrões e formatos brasileiros.</p>
             </dt>
             <dd>
               
-            </dd>            <dt id="tel_celular_input_formatter">
-              <span class="name"><a href="formatter_tel_celular_input_formatter/formatter_tel_celular_input_formatter-library.html">tel_celular_input_formatter</a></span> 
-            </dt>
-            <dd>
-              
-            </dd>            <dt id="tel_fixo_input_formatter">
-              <span class="name"><a href="formatter_tel_fixo_input_formatter/formatter_tel_fixo_input_formatter-library.html">tel_fixo_input_formatter</a></span> 
+            </dd>            <dt id="telefone_input_formatter">
+              <span class="name"><a href="formatter_telefone_input_formatter/formatter_telefone_input_formatter-library.html">telefone_input_formatter</a></span> 
             </dt>
             <dd>
               
@@ -134,7 +144,7 @@ utilizam campos com os padrões e formatos brasileiros.</p>
 
 <footer>
   <span class="no-break">
-    brasil_fields 0.0.1
+    brasil_fields 0.0.2
   </span>
 
 </footer>
