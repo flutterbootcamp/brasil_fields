@@ -9,11 +9,16 @@ utilizam campos com os padrões e formatos brasileiros.
 
 ### Formatters 
 
-- CPF  
-- CNPJ  
-- CEP  
-- Real (R$)
-- Telefones (fixo e celular)
+* CPF 
+<br> <img src="img/cpf.gif" width="300" ></img>
+* CNPJ 
+<br> <img src="img/cnpj.gif" width="300" ></img>
+* CEP  
+<br> <img src="img/cep.gif" width="300" ></img>
+* Real (R$)
+<br> <img src="img/moeda.gif" width="300" ></img>
+* Telefones (fixo e celular)
+<br> <img src="img/telefone.gif" width="300" ></img>
 
 ### Padrões 
 - Estados  
