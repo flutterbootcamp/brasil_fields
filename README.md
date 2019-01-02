@@ -23,3 +23,5 @@ utilizam campos com os padrões e formatos brasileiros.
 
 #### TO-DO
 - Validações com RegExp
+- Exemplos
+- Screenshots/GIFs

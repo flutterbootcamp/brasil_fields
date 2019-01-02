@@ -2,14 +2,19 @@ import 'package:brasil_fields/formatter/max_length_input_formatter.dart';
 import 'package:flutter/services.dart';
 
 /// Formata o valor do campo com a mascara ( (61) 9999-9999 )
-class TelFixoInputFormatter extends TextInputFormatter
+class TelefoneInputFormatter extends TextInputFormatter
     with MaxLengthInputFormatter {
-  final int maxLength = 10;
+  TelefoneInputFormatter({this.digito_9 = false});
+  int maxLength = 10;
+  bool digito_9;
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
     final int newTextLength = newValue.text.length;
     int selectionIndex = newValue.selection.end;
+    if (digito_9) {
+      maxLength = 11;
+    }
 
     int usedSubstringIndex = 0;
     final StringBuffer newText = StringBuffer();
@@ -24,12 +29,22 @@ class TelFixoInputFormatter extends TextInputFormatter
         selectionIndex += 2;
       }
     }
-    if (newTextLength >= 7) {
-      newText.write(newValue.text.substring(2, usedSubstringIndex = 6) + '-');
-      if (newValue.selection.end >= 6) {
-        selectionIndex++;
+    if (digito_9) {
+      if (newTextLength >= 8) {
+        newText.write(newValue.text.substring(2, usedSubstringIndex = 7) + '-');
+        if (newValue.selection.end >= 7) {
+          selectionIndex++;
+        }
+      }
+    } else {
+      if (newTextLength >= 7) {
+        newText.write(newValue.text.substring(2, usedSubstringIndex = 6) + '-');
+        if (newValue.selection.end >= 6) {
+          selectionIndex++;
+        }
       }
     }
+
     if (newTextLength >= usedSubstringIndex)
       newText.write(newValue.text.substring(usedSubstringIndex));
 
