@@ -87,7 +87,7 @@ class Formatters extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
-        padding: EdgeInsets.all(16),
+        padding: EdgeInsets.all(12),
         // width: MediaQuery.of(context).size.width / 2.3,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -123,6 +123,13 @@ class Formatters extends StatelessWidget {
             Linha(
               text: 'Centavos',
               formatter: RealInputFormatter(centavos: true),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            Linha(
+              text: 'Data',
+              formatter: DataFormatter(),
             ),
           ],
         ),
@@ -161,6 +168,7 @@ class Linha extends StatelessWidget {
               WhitelistingTextInputFormatter.digitsOnly,
               formatter,
             ],
+            keyboardType: TextInputType.number,
           ),
         ),
       ],

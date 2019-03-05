@@ -11,7 +11,8 @@ dependencies:
   flutter:
     sdk: flutter
   
-  brasil_fields: ^0.0.1
+  brasil_fields: 
+    path: ../
 
 dev_dependencies:
   flutter_test:

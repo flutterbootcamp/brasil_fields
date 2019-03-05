@@ -1,4 +1,5 @@
-## [0.0.2] - Melhoria na documentação e descrição do package.
+## [0.0.2] - Inclusão DataFormatter.
+- Novo formatter para campos do tipo data (01/01/1900) .
 
 ## [0.0.1] - Versão inicial.
 - Formatters para: CEP, CNPJ, CPF, real (moeda), telefone fixo e celular.
