@@ -1,15 +1,17 @@
-import 'package:brasil_fields/formatter/max_length_input_formatter.dart';
 import 'package:flutter/services.dart';
 
 /// Formata o valor do campo com a mascara de CPF ( XXX.XXX.XXX-XX )
-class CpfInputFormatter extends TextInputFormatter
-    with MaxLengthInputFormatter {
+class CpfInputFormatter extends TextInputFormatter {
   final int maxLength = 11;
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
     final int newTextLength = newValue.text.length;
     int selectionIndex = newValue.selection.end;
+
+    if (newTextLength > maxLength) {
+      return oldValue;
+    }
 
     int usedSubstringIndex = 0;
     final StringBuffer newText = StringBuffer();
@@ -28,11 +30,7 @@ class CpfInputFormatter extends TextInputFormatter
     }
     if (newTextLength >= usedSubstringIndex)
       newText.write(newValue.text.substring(usedSubstringIndex));
-    if (maxLength != null &&
-        maxLength > 0 &&
-        newValue.text.runes.length > maxLength) {
-      return truncateLength(maxLength, newValue);
-    }
+
     return TextEditingValue(
       text: newText.toString(),
       selection: TextSelection.collapsed(offset: selectionIndex),

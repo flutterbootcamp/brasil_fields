@@ -1,14 +1,17 @@
-import 'package:brasil_fields/formatter/max_length_input_formatter.dart';
 import 'package:flutter/services.dart';
 
 /// Formata o valor do campo com a mascara de data ( 01/01/1900 )
-class DataFormatter extends TextInputFormatter with MaxLengthInputFormatter {
+class DataFormatter extends TextInputFormatter {
   final int maxLength = 8;
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
     final int newTextLength = newValue.text.length;
     int selectionIndex = newValue.selection.end;
+
+    if (newTextLength > maxLength) {
+      return oldValue;
+    }
 
     int usedSubstringIndex = 0;
     final StringBuffer newText = StringBuffer();
@@ -18,17 +21,13 @@ class DataFormatter extends TextInputFormatter with MaxLengthInputFormatter {
       if (newValue.selection.end >= 2) selectionIndex++;
     }
     if (newTextLength >= 5) {
-      newText.write(newValue.text.substring(4, usedSubstringIndex = 5) + '/');
+      newText.write(newValue.text.substring(3, usedSubstringIndex = 5) + '/');
       if (newValue.selection.end >= 5) selectionIndex++;
     }
 
     if (newTextLength >= usedSubstringIndex)
       newText.write(newValue.text.substring(usedSubstringIndex));
-    if (maxLength != null &&
-        maxLength > 0 &&
-        newValue.text.runes.length > maxLength) {
-      return truncateLength(maxLength, newValue);
-    }
+
     return TextEditingValue(
       text: newText.toString(),
       selection: TextSelection.collapsed(offset: selectionIndex),

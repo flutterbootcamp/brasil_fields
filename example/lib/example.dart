@@ -1,6 +1,6 @@
 import 'package:brasil_fields/brasil_fields.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() => runApp(MyApp());
 
@@ -124,13 +124,13 @@ class Formatters extends StatelessWidget {
               text: 'Centavos',
               formatter: RealInputFormatter(centavos: true),
             ),
-            SizedBox(
-              height: 15,
-            ),
-            Linha(
-              text: 'Data',
-              formatter: DataFormatter(),
-            ),
+            // SizedBox(
+            //   height: 15,
+            // ),
+            // Linha(
+            //   text: 'Data',
+            //   formatter: DataFormatter(),
+            // ),
           ],
         ),
       ),
@@ -143,8 +143,8 @@ class Linha extends StatelessWidget {
   final TextInputFormatter formatter;
   const Linha({
     Key key,
-    this.text,
-    this.formatter,
+    @required this.text,
+    @required this.formatter,
   }) : super(key: key);
 
   @override
