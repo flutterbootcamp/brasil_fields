@@ -152,6 +152,13 @@ class Formatters extends StatelessWidget {
               height: 15,
             ),
             LinhaFormatter(
+              text: 'Telefone',
+              formatter: TelefoneInputFormatter(),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            LinhaFormatter(
               text: 'Data',
               formatter: DataInputFormatter(),
             ),
