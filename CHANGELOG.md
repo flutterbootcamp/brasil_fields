@@ -1,3 +1,9 @@
+## [0.0.3] - Inclusão de modelos para:
+- Estados;
+- Meses;
+- Regioes;
+- Dias da Semana;
+
 ## [0.0.2] - Inclusão DataFormatter.
 - Novo formatter para campos do tipo data (01/01/1900) .
 

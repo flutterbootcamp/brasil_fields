@@ -49,8 +49,9 @@ class TelefoneInputFormatter extends TextInputFormatter {
       }
     }
 
-    if (newTextLength >= usedSubstringIndex)
+    if (newTextLength >= usedSubstringIndex) {
       newText.write(newValue.text.substring(usedSubstringIndex));
+    }
 
     return TextEditingValue(
       text: newText.toString(),

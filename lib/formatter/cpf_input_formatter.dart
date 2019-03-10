@@ -28,8 +28,9 @@ class CpfInputFormatter extends TextInputFormatter {
       newText.write(newValue.text.substring(6, usedSubstringIndex = 9) + '-');
       if (newValue.selection.end >= 9) selectionIndex++;
     }
-    if (newTextLength >= usedSubstringIndex)
+    if (newTextLength >= usedSubstringIndex) {
       newText.write(newValue.text.substring(usedSubstringIndex));
+    }
 
     return TextEditingValue(
       text: newText.toString(),

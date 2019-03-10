@@ -26,6 +26,7 @@ class BrasilFieldsApp extends StatefulWidget {
 
 class BrasilFieldsState extends State<BrasilFieldsApp> {
   int _index = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,13 +61,36 @@ class BrasilFieldsState extends State<BrasilFieldsApp> {
     SingleChildScrollView(
       child: Container(
         padding: EdgeInsets.all(16),
+
         // width: MediaQuery.of(context).size.width / 2.3,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Linha(
-              text: 'CPF',
-              formatter: CpfInputFormatter(),
+            LinhaModelos(
+              text: 'Estados',
+              listaOpcoes: Estados.listaEstados.toList(),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            LinhaModelos(
+              text: 'Meses',
+              listaOpcoes: Meses.listaMeses.toList(),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            LinhaModelos(
+              text: 'Semana',
+              listaOpcoes: Semana.listaDiasSemana.toList(),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            LinhaModelos(
+              text: 'Regioes',
+              listaOpcoes: Regioes.listaRegioes.toList(),
             ),
             SizedBox(
               height: 15,
@@ -92,45 +116,45 @@ class Formatters extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Linha(
+            LinhaFormatter(
               text: 'CPF',
               formatter: CpfInputFormatter(),
             ),
             SizedBox(
               height: 15,
             ),
-            Linha(
+            LinhaFormatter(
               text: 'CNPJ',
               formatter: CnpjInputFormatter(),
             ),
             SizedBox(
               height: 15,
             ),
-            Linha(
+            LinhaFormatter(
               text: 'CEP',
               formatter: CepInputFormatter(),
             ),
             SizedBox(
               height: 15,
             ),
-            Linha(
+            LinhaFormatter(
               text: 'Moeda',
               formatter: RealInputFormatter(),
             ),
             SizedBox(
               height: 15,
             ),
-            Linha(
+            LinhaFormatter(
               text: 'Centavos',
               formatter: RealInputFormatter(centavos: true),
             ),
-            // SizedBox(
-            //   height: 15,
-            // ),
-            // Linha(
-            //   text: 'Data',
-            //   formatter: DataFormatter(),
-            // ),
+            SizedBox(
+              height: 15,
+            ),
+            LinhaFormatter(
+              text: 'Data',
+              formatter: DataInputFormatter(),
+            ),
           ],
         ),
       ),
@@ -138,10 +162,10 @@ class Formatters extends StatelessWidget {
   }
 }
 
-class Linha extends StatelessWidget {
+class LinhaFormatter extends StatelessWidget {
   final String text;
   final TextInputFormatter formatter;
-  const Linha({
+  const LinhaFormatter({
     Key key,
     @required this.text,
     @required this.formatter,
@@ -169,6 +193,47 @@ class Linha extends StatelessWidget {
               formatter,
             ],
             keyboardType: TextInputType.number,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class LinhaModelos extends StatefulWidget {
+  final String text;
+  final List<String> listaOpcoes;
+  const LinhaModelos({Key key, @required this.text, @required this.listaOpcoes})
+      : super(key: key);
+  State createState() => LinhaModelosState();
+}
+
+class LinhaModelosState extends State<LinhaModelos> {
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: <Widget>[
+        Container(
+          width: MediaQuery.of(context).size.width / 4.5,
+          child: Text(
+            widget.text,
+            style: TextStyle(fontSize: 20),
+          ),
+        ),
+        SizedBox(width: 10),
+        Expanded(
+          child: DropdownButton(
+            items: widget.listaOpcoes.map((String opcao) {
+              return DropdownMenuItem<String>(
+                value: opcao,
+                child: Text(opcao),
+              );
+            }).toList(),
+            isExpanded: true,
+            hint: Text(widget.text),
+            onChanged: (selecionado) {
+              print(selecionado);
+            },
           ),
         ),
       ],

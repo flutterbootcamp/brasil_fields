@@ -24,8 +24,9 @@ class CepInputFormatter extends TextInputFormatter {
       newText.write(newValue.text.substring(2, usedSubstringIndex = 5) + '-');
       if (newValue.selection.end >= 5) selectionIndex++;
     }
-    if (newTextLength >= usedSubstringIndex)
+    if (newTextLength >= usedSubstringIndex) {
       newText.write(newValue.text.substring(usedSubstringIndex));
+    }
 
     return TextEditingValue(
       text: newText.toString(),
