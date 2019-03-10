@@ -45,3 +45,4 @@ TextFormField(
 - `CepInputFormatter()`
 - `RealInputFormatter()`
 - `TelefoneInputFormatter()`
+- `DataInputFormatter()`
