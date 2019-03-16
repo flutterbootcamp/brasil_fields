@@ -7,6 +7,12 @@ O jeito mais fácil de utilizar padrões e formatos brasileiros em seu projeto.
 Este package facilita o desenvolvimento com a linguagem Dart em projetos que
 utilizam campos com os padrões e formatos brasileiros.
 
+### Instalação
+```
+dependencies:
+  brasil_fields: ^0.0.3
+```
+
 ### Formatters
 
 - CPF (999.999.99-99)
