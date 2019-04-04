@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the formatEditUpdate method from the CpfInputFormatter class, for the Dart programming language.">
-  <title>formatEditUpdate method - CpfInputFormatter class - cpf_input_formatter library - Dart API</title>
+  <meta name="description" content="API docs for the formatEditUpdate method from the DataInputFormatter class, for the Dart programming language.">
+  <title>formatEditUpdate method - DataInputFormatter class - data_input_formatter library - Dart API</title>
   <!-- required because all the links are pseudo-absolute -->
   <base href="../..">
 
@@ -25,8 +25,8 @@
   <button id="sidenav-left-toggle" type="button">&nbsp;</button>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="index.html">brasil_fields</a></li>
-    <li><a href="formatter_cpf_input_formatter/formatter_cpf_input_formatter-library.html">cpf_input_formatter</a></li>
-    <li><a href="formatter_cpf_input_formatter/CpfInputFormatter-class.html">CpfInputFormatter</a></li>
+    <li><a href="formatter_data_input_formatter/formatter_data_input_formatter-library.html">data_input_formatter</a></li>
+    <li><a href="formatter_data_input_formatter/DataInputFormatter-class.html">DataInputFormatter</a></li>
     <li class="self-crumb">formatEditUpdate method</li>
   </ol>
   <div class="self-name">formatEditUpdate</div>
@@ -46,29 +46,29 @@
     
     <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
       <li><a href="index.html">brasil_fields</a></li>
-      <li><a href="formatter_cpf_input_formatter/formatter_cpf_input_formatter-library.html">cpf_input_formatter</a></li>
-      <li><a href="formatter_cpf_input_formatter/CpfInputFormatter-class.html">CpfInputFormatter</a></li>
+      <li><a href="formatter_data_input_formatter/formatter_data_input_formatter-library.html">data_input_formatter</a></li>
+      <li><a href="formatter_data_input_formatter/DataInputFormatter-class.html">DataInputFormatter</a></li>
       <li class="self-crumb">formatEditUpdate method</li>
     </ol>
     
-    <h5>CpfInputFormatter class</h5>
+    <h5>DataInputFormatter class</h5>
     <ol>
-      <li class="section-title"><a href="formatter_cpf_input_formatter/CpfInputFormatter-class.html#constructors">Constructors</a></li>
-      <li><a href="formatter_cpf_input_formatter/CpfInputFormatter/CpfInputFormatter.html">CpfInputFormatter</a></li>
+      <li class="section-title"><a href="formatter_data_input_formatter/DataInputFormatter-class.html#constructors">Constructors</a></li>
+      <li><a href="formatter_data_input_formatter/DataInputFormatter/DataInputFormatter.html">DataInputFormatter</a></li>
     
       <li class="section-title">
-        <a href="formatter_cpf_input_formatter/CpfInputFormatter-class.html#instance-properties">Properties</a>
+        <a href="formatter_data_input_formatter/DataInputFormatter-class.html#instance-properties">Properties</a>
       </li>
-      <li><a href="formatter_cpf_input_formatter/CpfInputFormatter/maxLength.html">maxLength</a></li>
+      <li><a href="formatter_data_input_formatter/DataInputFormatter/maxLength.html">maxLength</a></li>
       <li class="inherited"><a href="dart-core/Object/hashCode.html">hashCode</a></li>
       <li class="inherited"><a href="dart-core/Object/runtimeType.html">runtimeType</a></li>
     
-      <li class="section-title"><a href="formatter_cpf_input_formatter/CpfInputFormatter-class.html#instance-methods">Methods</a></li>
-      <li><a href="formatter_cpf_input_formatter/CpfInputFormatter/formatEditUpdate.html">formatEditUpdate</a></li>
+      <li class="section-title"><a href="formatter_data_input_formatter/DataInputFormatter-class.html#instance-methods">Methods</a></li>
+      <li><a href="formatter_data_input_formatter/DataInputFormatter/formatEditUpdate.html">formatEditUpdate</a></li>
       <li class="inherited"><a href="dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
       <li class="inherited"><a href="dart-core/Object/toString.html">toString</a></li>
     
-      <li class="section-title inherited"><a href="formatter_cpf_input_formatter/CpfInputFormatter-class.html#operators">Operators</a></li>
+      <li class="section-title inherited"><a href="formatter_data_input_formatter/DataInputFormatter-class.html#operators">Operators</a></li>
       <li class="inherited"><a href="dart-core/Object/operator_equals.html">operator ==</a></li>
     
     
@@ -113,17 +113,13 @@ TextEditingValue formatEditUpdate(
   int usedSubstringIndex = 0;
   final StringBuffer newText = StringBuffer();
 
-  if (newTextLength &gt;= 4) {
-    newText.write(newValue.text.substring(0, usedSubstringIndex = 3) + &#39;.&#39;);
-    if (newValue.selection.end &gt;= 3) selectionIndex++;
+  if (newTextLength &gt;= 3) {
+    newText.write(newValue.text.substring(0, usedSubstringIndex = 2) + &#39;&#47;&#39;);
+    if (newValue.selection.end &gt;= 2) selectionIndex++;
   }
-  if (newTextLength &gt;= 7) {
-    newText.write(newValue.text.substring(3, usedSubstringIndex = 6) + &#39;.&#39;);
-    if (newValue.selection.end &gt;= 6) selectionIndex++;
-  }
-  if (newTextLength &gt;= 10) {
-    newText.write(newValue.text.substring(6, usedSubstringIndex = 9) + &#39;-&#39;);
-    if (newValue.selection.end &gt;= 9) selectionIndex++;
+  if (newTextLength &gt;= 5) {
+    newText.write(newValue.text.substring(2, usedSubstringIndex = 4) + &#39;&#47;&#39;);
+    if (newValue.selection.end &gt;= 4) selectionIndex++;
   }
   if (newTextLength &gt;= usedSubstringIndex) {
     newText.write(newValue.text.substring(usedSubstringIndex));
