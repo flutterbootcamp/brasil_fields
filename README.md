@@ -17,6 +17,7 @@ dependencies:
 ### Formatters
 
 - CPF (999.999.99-99)
+  ![CPF Formatter](https://github.com/rubensdemelo/brasil_fields/blob/master/img/cpf.gif "CPF Formatter")
 - CNPJ (99.999.999/9999-99)
 - CEP (99.999-999)
 - Real (R\$) (20.550)
