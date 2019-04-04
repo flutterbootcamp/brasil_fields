@@ -1,11 +1,15 @@
 import 'package:flutter/services.dart';
 
-/// Formata o valor do campo com a mascara ( 9.999.999.999,00 )
+/// Formata o valor do campo com a mascara ( 9.999.999.999,00 ).
 ///
-/// [centavos] indica se o campo deve ter centavos ou não.
+/// `[centavos]` indica se o campo deve ter centavos ou não.
 class RealInputFormatter extends TextInputFormatter {
   RealInputFormatter({this.centavos = false});
+
+  /// Define o tamanho máximo do campo.
   int maxLength = 12;
+
+  /// [boolean] para indicar se o campo aceita centavos ou não.
   final bool centavos;
 
   @override

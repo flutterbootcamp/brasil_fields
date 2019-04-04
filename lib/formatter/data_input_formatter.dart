@@ -1,8 +1,10 @@
 import 'package:flutter/services.dart';
 
-/// Formata o valor do campo com a mascara de data ( 01/01/1900 )
+/// Formata o valor do campo com a mascara de data ( 01/01/1900 ).
 class DataInputFormatter extends TextInputFormatter {
+  /// Define o tamanho máximo do campo.
   final int maxLength = 8;
+
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {

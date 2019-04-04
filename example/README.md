@@ -1,16 +1,15 @@
 # example
 
-A new Flutter project.
+Exemplo de como utilizar os InputFormatters e as classes de modelo do package brasil_fields.
 
-## Getting Started
+## Como utilizar
 
-This project is a starting point for a Flutter application.
+1. Clone o repositório do projeto: 
+`git clone git@github.com:rubensdemelo/brasil_fields.git `
 
-A few resources to get you started if this is your first Flutter project:
+2. Acesse a pasta **example** 
 
-- [Lab: Write your first Flutter app](https://flutter.io/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.io/docs/cookbook)
+3. Execute o comando `flutter packages get`
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.io/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+4. Execute o comando `flutter run`
+

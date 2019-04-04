@@ -1,8 +1,10 @@
 import 'package:flutter/services.dart';
 
-/// Formata o valor do campo com a mascara de CPF ( XXX.XXX.XXX-XX )
+/// Formata o valor do campo com a mascara de CPF ( XXX.XXX.XXX-XX ).
 class CpfInputFormatter extends TextInputFormatter {
+  /// Define o tamanho máximo do campo.
   final int maxLength = 11;
+
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {

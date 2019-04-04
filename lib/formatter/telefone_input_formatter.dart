@@ -1,10 +1,15 @@
 import 'package:flutter/services.dart';
 
-/// Formata o valor do campo com a mascara ( (99) 9999-9999 )
-/// [digito_9] indica se o campo tera o nono dígito ou não.
+/// Formata o valor do campo com a mascara ( (99) 9999-9999 ).
+///
+/// `[digito_9]` indica se o campo tera o nono dígito ou não.
 class TelefoneInputFormatter extends TextInputFormatter {
   TelefoneInputFormatter({this.digito_9 = false});
+
+  /// Define o tamanho máximo do campo.
   int maxLength = 10;
+
+  /// [boolean] para indicar se o campo aceita o nono dígito ou não.
   bool digito_9;
 
   @override

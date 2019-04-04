@@ -1,3 +1,5 @@
+## [0.0.4] - Melhora documentação no projeto de exemplo.
+
 ## [0.0.3] - Inclusão de modelos para:
 - Estados;
 - Meses;
