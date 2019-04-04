@@ -8,9 +8,10 @@ Este package facilita o desenvolvimento com a linguagem Dart em projetos que
 utilizam campos com os padrões e formatos brasileiros.
 
 ### Instalação
+
 ```
 dependencies:
-  brasil_fields: ^0.0.3
+  brasil_fields: ^0.0.6
 ```
 
 ### Formatters
