@@ -25,10 +25,24 @@ dependencies:
 ![CNPJ Formatter](https://github.com/rubensdemelo/brasil_fields/blob/master/img/cnpj.gif "CNPJ Formatter")
 
 - CEP (99.999-999)
+
+![CEP Formatter](https://github.com/rubensdemelo/brasil_fields/blob/master/img/cep.gif "CEP Formatter")
+
 - Real (R\$) (20.550)
+
+![Real Formatter](https://github.com/rubensdemelo/brasil_fields/blob/master/img/real.gif "Real Formatter")
+
 - Centavos (R\$) (20,90)
+
+![Centavos Formatter](https://github.com/rubensdemelo/brasil_fields/blob/master/img/centavos.gif "Centavos Formatter")
+
 - Telefone ( (99) 9999-9999)
+
+![Telefone Formatter](https://github.com/rubensdemelo/brasil_fields/blob/master/img/telefone.gif "Telefone Formatter")
+
 - Data (01/01/1900)
+
+![Real Formatter](https://github.com/rubensdemelo/brasil_fields/blob/master/img/data.gif "Data Formatter")
 
 ### Padrões
 
