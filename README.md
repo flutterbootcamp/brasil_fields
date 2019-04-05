@@ -42,7 +42,7 @@ dependencies:
 
 - Data (01/01/1900)
 
-![Real Formatter](https://github.com/rubensdemelo/brasil_fields/blob/master/img/data.gif "Data Formatter")
+![Data Formatter](https://github.com/rubensdemelo/brasil_fields/blob/master/img/data.gif "Data Formatter")
 
 ### Padrões
 
