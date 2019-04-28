@@ -1,3 +1,5 @@
+## [0.0.7] - Nova documentação da API.
+
 ## [0.0.6] - Inclui classe UtilData.
 
 ## [0.0.5] - Atualiza README.
