@@ -1,4 +1,4 @@
-# brasil_fields :brazil:
+# :brazil: brasil_fields :brazil:
 
 O jeito mais fácil de utilizar padrões e formatos brasileiros em seu projeto.
 
@@ -24,7 +24,7 @@ dependencies:
 - Telefone ( (99) 9999-9999)
 - Data (01/01/1900)
 
-<img src="https://github.com/rubensdemelo/brasil_fields/blob/master/img/formatters.png" width="450">
+<img src="https://github.com/rubensdemelo/brasil_fields/blob/master/img/formatters.png" width="350">
 
 ### Padrões
 
@@ -33,7 +33,7 @@ dependencies:
 - Regiões
 - Semana
 
-<img src="https://github.com/rubensdemelo/brasil_fields/blob/master/img/padroes.png" width="450">
+<img src="https://github.com/rubensdemelo/brasil_fields/blob/master/img/padroes.png" width="350">
 
 ### Como utilizar :
 
