@@ -1,4 +1,5 @@
 import 'package:brasil_fields/brasil_fields.dart';
+import 'package:brasil_fields/util/util_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -102,10 +103,35 @@ class BrasilFieldsState extends State<BrasilFieldsApp> {
   ];
 }
 
-class Formatters extends StatelessWidget {
+class Formatters extends StatefulWidget {
   const Formatters({
     Key key,
   }) : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() => FormattersState();
+}
+
+class FormattersState extends State<Formatters> {
+  final cpfController = TextEditingController();
+  final cnpjController = TextEditingController();
+  final cepController = TextEditingController();
+  final moedaController = TextEditingController();
+  final centavosController = TextEditingController();
+  final telefoneController = TextEditingController();
+  final dataController = TextEditingController();
+
+  @override
+  void dispose() {
+    cpfController.dispose();
+    cnpjController.dispose();
+    cepController.dispose();
+    moedaController.dispose();
+    centavosController.dispose();
+    telefoneController.dispose();
+    dataController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -119,6 +145,7 @@ class Formatters extends StatelessWidget {
             LinhaFormatter(
               text: 'CPF',
               formatter: CpfInputFormatter(),
+              controller: cpfController,
             ),
             SizedBox(
               height: 15,
@@ -126,6 +153,7 @@ class Formatters extends StatelessWidget {
             LinhaFormatter(
               text: 'CNPJ',
               formatter: CnpjInputFormatter(),
+              controller: cnpjController,
             ),
             SizedBox(
               height: 15,
@@ -133,6 +161,7 @@ class Formatters extends StatelessWidget {
             LinhaFormatter(
               text: 'CEP',
               formatter: CepInputFormatter(),
+              controller: cepController,
             ),
             SizedBox(
               height: 15,
@@ -140,6 +169,7 @@ class Formatters extends StatelessWidget {
             LinhaFormatter(
               text: 'Moeda',
               formatter: RealInputFormatter(),
+              controller: moedaController,
             ),
             SizedBox(
               height: 15,
@@ -147,6 +177,7 @@ class Formatters extends StatelessWidget {
             LinhaFormatter(
               text: 'Centavos',
               formatter: RealInputFormatter(centavos: true),
+              controller: centavosController,
             ),
             SizedBox(
               height: 15,
@@ -154,6 +185,7 @@ class Formatters extends StatelessWidget {
             LinhaFormatter(
               text: 'Telefone',
               formatter: TelefoneInputFormatter(),
+              controller: telefoneController,
             ),
             SizedBox(
               height: 15,
@@ -161,6 +193,19 @@ class Formatters extends StatelessWidget {
             LinhaFormatter(
               text: 'Data',
               formatter: DataInputFormatter(),
+              controller: dataController,
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            RaisedButton(
+              child: Text('ENVIAR'),
+              onPressed: () {
+                print(dataController.text);
+                print(UtilData.removeCaracteres(dataController.text));
+                print(UtilData.dataToUtc(dataController.text));
+                print(UtilData.getAno(dataController.text).toString());
+              },
             ),
           ],
         ),
@@ -172,10 +217,12 @@ class Formatters extends StatelessWidget {
 class LinhaFormatter extends StatelessWidget {
   final String text;
   final TextInputFormatter formatter;
+  final TextEditingController controller;
   const LinhaFormatter({
     Key key,
     @required this.text,
     @required this.formatter,
+    @required this.controller,
   }) : super(key: key);
 
   @override
@@ -192,6 +239,7 @@ class LinhaFormatter extends StatelessWidget {
         SizedBox(width: 10),
         Expanded(
           child: TextField(
+            controller: controller,
             decoration: InputDecoration(
               border: OutlineInputBorder(),
             ),
