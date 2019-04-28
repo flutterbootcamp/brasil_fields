@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="generator" content="made with love by dartdoc 0.28.2">
+  <meta name="generator" content="made with love by dartdoc 0.28.1+2">
   <meta name="description" content="brasil_fields API docs, for the Dart programming language.">
   <title>brasil_fields - Dart API docs</title>
 
@@ -58,6 +58,7 @@
           <li><a href="modelos_regioes/modelos_regioes-library.html">regioes</a></li>
           <li><a href="modelos_semana/modelos_semana-library.html">semana</a></li>
           <li><a href="formatter_telefone_input_formatter/formatter_telefone_input_formatter-library.html">telefone_input_formatter</a></li>
+          <li><a href="util_util_data/util_util_data-library.html">util_data</a></li>
           <li class="section-title">Dart</li>
           <li><a href="dart-ui/dart-ui-library.html">dart:ui</a></li>
           <li class="section-subtitle">Core</li>
@@ -76,28 +77,36 @@
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
       <section class="desc markdown">
-        <h1 id="brasil_fields">brasil_fields</h1>
+        <h1 id="brazil-brasil_fields-brazil">🇧🇷 brasil_fields 🇧🇷</h1>
 <p>O jeito mais fácil de utilizar padrões e formatos brasileiros em seu projeto.</p>
 <h2 id="apresentao">Apresentação</h2>
 <p>Este package facilita o desenvolvimento com a linguagem Dart em projetos que
 utilizam campos com os padrões e formatos brasileiros.</p>
 <h3 id="instalao">Instalação</h3>
 <pre class="language-dart"><code>dependencies:
-  brasil_fields: ^0.0.3
+  brasil_fields: ^0.0.6
 </code></pre>
-<h3 id="formatters">Formatters</h3><ul><li>CPF (999.999.99-99)</li><li>CNPJ (99.999.999/9999-99)</li><li>CEP (99.999-999)</li><li>Real (R$) (20.550)</li><li>Centavos (R$) (20,90)</li><li>Telefone ( (99) 9999-9999)</li><li>Data (01/01/1900)</li></ul>
-<h3 id="padres">Padrões</h3><ul><li>Estados</li><li>Meses</li><li>Regiões</li><li>Semana</li></ul>
-<h3 id="como-utilizar">Como utilizar:</h3>
+<h3 id="formatters">Formatters</h3><ul><li>CPF (999.999.99-99)</li><li>CNPJ (99.999.999/9999-99)</li><li>CEP (99.999-999)</li><li>Real (R$) (20.550)</li><li>Centavos (R$) (20,90)</li><li>Telefone ( (99) 9999-9999)</li><li>Data (01/01/1900)</li></ul><img src="https://github.com/rubensdemelo/brasil_fields/blob/master/img/formatters.png" width="350">
+<h3 id="padres">Padrões</h3><ul><li>Estados</li><li>Meses</li><li>Regiões</li><li>Semana</li></ul><img src="https://github.com/rubensdemelo/brasil_fields/blob/master/img/padroes.png" width="350">
+<h3 id="como-utilizar-">Como utilizar :</h3>
 <p>Basta incluir o formatter que você quer que o campo tenha, na lista de <code>inputFormatters</code> :</p>
 <p><strong>Para garantir que o campo aceite apenas valores numéricos, utilize em conjunto com o formatter <code>WhitelistingTextInputFormatter.digitsOnly</code> .</strong></p>
-<pre class="language-dart"><code>TextFormField(
+<pre class="language-dart"><code class="language-dart">TextFormField(
   inputFormatters: [
     WhitelistingTextInputFormatter.digitsOnly,
     CepInputFormatter(),
   ],
 );
-
 </code></pre><ul><li><code>CpfInputFormatter()</code></li><li><code>CnpjInputFormatter()</code></li><li><code>CepInputFormatter()</code></li><li><code>RealInputFormatter()</code></li><li><code>TelefoneInputFormatter()</code></li><li><code>DataInputFormatter()</code></li></ul>
+<p>Caso precise de um DropdownButton com algumas das classes de padões:</p>
+<pre class="language-dart"><code class="language-dart">DropdownButton(
+  items: Regioes.listaRegioes.map((String opcao) {
+    return DropdownMenuItem&lt;String&gt;(
+    value: opcao,
+    child: Text(opcao),
+  );
+}).toList(),
+</code></pre>
       </section>
       
         <section class="summary">
@@ -155,6 +164,11 @@ utilizam campos com os padrões e formatos brasileiros.</p>
               
             </dd>            <dt id="telefone_input_formatter">
               <span class="name"><a href="formatter_telefone_input_formatter/formatter_telefone_input_formatter-library.html">telefone_input_formatter</a></span>             
+            </dt>
+            <dd>
+              
+            </dd>            <dt id="util_data">
+              <span class="name"><a href="util_util_data/util_util_data-library.html">util_data</a></span>             
             </dt>
             <dd>
               
@@ -234,7 +248,7 @@ communicating only via messages. <a href="dart-isolate/dart-isolate-library.html
 
 <footer>
   <span class="no-break">
-    brasil_fields 0.0.4
+    brasil_fields 0.0.6
   </span>
 
   
