@@ -33,7 +33,7 @@ dependencies:
 - Regiões
 - Semana
 
-![Padrões](https://github.com/rubensdemelo/brasil_fields/blob/master/img/padroes.png "Padrões")
+![Padrões](https://github.com/rubensdemelo/brasil_fields/blob/master/img/padroes.png" | width=150)
 
 ### Como utilizar :
 
@@ -61,10 +61,10 @@ Caso precise de um DropdownButton com algumas das classes de padões:
 
 ```
 DropdownButton(
-items: Regioes.listaRegioes.map((String opcao) {
-return DropdownMenuItem<String>(
-value: opcao,
-child: Text(opcao),
-);
+  items: Regioes.listaRegioes.map((String opcao) {
+    return DropdownMenuItem<String>(
+    value: opcao,
+    child: Text(opcao),
+  );
 }).toList(),
 ```
