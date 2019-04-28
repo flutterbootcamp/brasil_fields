@@ -11,7 +11,7 @@ utilizam campos com os padrões e formatos brasileiros.
 
 ```
 dependencies:
-  brasil_fields: ^0.0.5
+  brasil_fields: ^0.0.6
 ```
 
 ### Formatters
