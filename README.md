@@ -48,7 +48,6 @@ TextFormField(
     CepInputFormatter(),
   ],
 );
-
 ```
 
 - `CpfInputFormatter()`
@@ -58,11 +57,9 @@ TextFormField(
 - `TelefoneInputFormatter()`
 - `DataInputFormatter()`
 
-```
-
 Caso precise de um DropdownButton com algumas das classes de padões:
-```
 
+```
 DropdownButton(
 items: Regioes.listaRegioes.map((String opcao) {
 return DropdownMenuItem<String>(
@@ -70,7 +67,4 @@ value: opcao,
 child: Text(opcao),
 );
 }).toList(),
-
-```
-
 ```
