@@ -1,3 +1,5 @@
+:brazil:
+
 # brasil_fields
 
 O jeito mais fácil de utilizar padrões e formatos brasileiros em seu projeto.
@@ -33,7 +35,9 @@ dependencies:
 - Regiões
 - Semana
 
-![Padrões](https://github.com/rubensdemelo/brasil_fields/blob/master/img/padroes.png" | width=150)
+![Padrões](https://github.com/rubensdemelo/brasil_fields/blob/master/img/padroes.png")
+
+<img src="https://github.com/rubensdemelo/brasil_fields/blob/master/img/padroes.png" width="150">
 
 ### Como utilizar :
 
@@ -41,7 +45,7 @@ Basta incluir o formatter que você quer que o campo tenha, na lista de `inputFo
 
 **Para garantir que o campo aceite apenas valores numéricos, utilize em conjunto com o formatter `WhitelistingTextInputFormatter.digitsOnly` .**
 
-```
+```dart
 TextFormField(
   inputFormatters: [
     WhitelistingTextInputFormatter.digitsOnly,
@@ -59,7 +63,7 @@ TextFormField(
 
 Caso precise de um DropdownButton com algumas das classes de padões:
 
-```
+```dart
 DropdownButton(
   items: Regioes.listaRegioes.map((String opcao) {
     return DropdownMenuItem<String>(
