@@ -20,7 +20,7 @@ class UtilData {
   }
 
   /// Converte o formato brasiliero `DDMMAAAA` para UTC `AAAAMMDD`.
-  static String dataToUtc(String data) {
+  static DateTime dataToUtc(String data) {
     String dataLimpa = removeCaracteres(data);
     if (validarData(dataLimpa)) {
       StringBuffer novaData = StringBuffer();
@@ -35,7 +35,7 @@ class UtilData {
       novaData.write(dataLimpa[0]);
       novaData.write(dataLimpa[1]);
 
-      return novaData.toString();
+      return DateTime.parse(novaData.toString());
     } else {
       throw Exception('Nao foi possível converter a data $data');
     }

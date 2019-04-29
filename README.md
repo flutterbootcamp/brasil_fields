@@ -11,7 +11,7 @@ utilizam campos com os padrões e formatos brasileiros.
 
 ```
 dependencies:
-  brasil_fields: ^0.0.7+1
+  brasil_fields: ^0.0.7+2
 ```
 
 ### Formatters
@@ -25,7 +25,6 @@ dependencies:
 - Data (01/01/1900)
 
 <img src="https://github.com/rubensdemelo/brasil_fields/blob/master/img/formatters.png" width="350px">
-
 
 ### Padrões
 
