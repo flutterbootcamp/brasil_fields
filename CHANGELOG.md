@@ -1,3 +1,5 @@
+## [0.0.7+1] - Corrige export data_util.
+
 ## [0.0.7] - Nova documentação da API.
 
 ## [0.0.6] - Inclui classe UtilData.

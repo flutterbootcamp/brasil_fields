@@ -10,3 +10,4 @@ export 'modelos/estados.dart';
 export 'modelos/meses.dart';
 export 'modelos/regioes.dart';
 export 'modelos/semana.dart';
+export 'util/util_data.dart';
