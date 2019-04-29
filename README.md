@@ -24,7 +24,8 @@ dependencies:
 - Telefone ( (99) 9999-9999)
 - Data (01/01/1900)
 
-<img src="https://github.com/rubensdemelo/brasil_fields/blob/master/img/formatters.png" width="350">
+<img src="https://github.com/rubensdemelo/brasil_fields/blob/master/img/formatters.png" width="350px">
+
 
 ### Padrões
 
@@ -33,7 +34,7 @@ dependencies:
 - Regiões
 - Semana
 
-<img src="https://github.com/rubensdemelo/brasil_fields/blob/master/img/padroes.png" width="350">
+<img src="https://github.com/rubensdemelo/brasil_fields/blob/master/img/padroes.png" width="350px">
 
 ### Como utilizar :
 
