@@ -57,7 +57,7 @@ TextFormField(
 - `TelefoneInputFormatter()`
 - `DataInputFormatter()`
 
-Caso precise de um DropdownButton com algumas das classes de padões:
+Caso precise de um DropdownButton com algumas das classes de padrões:
 
 ```dart
 DropdownButton(
