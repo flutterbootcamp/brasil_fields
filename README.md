@@ -1,4 +1,4 @@
-# :brazil: brasil_fields :brazil:
+# brasil_fields
 
 O jeito mais fácil de utilizar padrões e formatos brasileiros em seu projeto.
 
