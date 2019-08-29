@@ -5,10 +5,16 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Run all Tests",
+            "type": "dart",
+            "request": "launch",
+            "program": "./test/"
+        },
+        {
             "name": "Flutter",
             "type": "dart",
             "request": "launch",
             "program": "example/lib/example.dart",
-        }
+        },
     ]
 }
