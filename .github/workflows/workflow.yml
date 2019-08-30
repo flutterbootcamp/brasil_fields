@@ -12,7 +12,11 @@ jobs:
     
     steps:
     - uses: actions/checkout@v1
-    - name: flutter install dependencies
-      run: flutter pub get
-    - name: flutter run tests
-      run: flutter run test
+    - uses: actions/setup-java@v1
+      with:
+        java-version: '12.x'
+    - uses: subosito/flutter-action@v1
+      with:
+        flutter-version: '1.7.8+hotfix.4'
+    - run: flutter pub get
+    - run: flutter test
