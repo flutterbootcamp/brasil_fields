@@ -1,8 +1,15 @@
-name: testes
-on: [push, pull_request]
+name: Dart CI
 
-runs-on: ubuntu-18.04
+on: [push]
 
-steps:
-- run: flutter pub get
-  
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install dependencies
+      run: flutter pub get
+    - name: Run tests
+      run: flutter run test
