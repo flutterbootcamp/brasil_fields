@@ -16,5 +16,6 @@ jobs:
     - run: ls
     - run: export PATH="$PATH:`pwd`/flutter/bin"
     - run: echo $PATH
+    - run: flutter doctor
     - run: flutter pub get
     - run: flutter test
