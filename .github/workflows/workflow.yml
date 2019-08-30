@@ -13,6 +13,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - run: git clone https://github.com/flutter/flutter.git
+    - run: ls
     - run: export PATH="$PATH:`pwd`/flutter/bin"
     - run: echo $PATH
     - run: flutter pub get
