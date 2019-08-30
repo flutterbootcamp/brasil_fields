@@ -12,10 +12,15 @@ jobs:
     
     steps:
     - uses: actions/checkout@v1
+    - run: cd ..
     - run: git clone https://github.com/flutter/flutter.git
     - run: ls
-    - run: export PATH="$PATH:`pwd`/flutter/bin"
+    - run: cd flutter
+    - run: export PATH="$PATH:`pwd`/bin"
+    - run: cd ..
     - run: echo $PATH
+    - run: flutter doctor
+    - run: cd brasil_fields
     - run: flutter doctor
     - run: flutter pub get
     - run: flutter test
