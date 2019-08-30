@@ -12,9 +12,7 @@ jobs:
     
     steps:
     - uses: actions/checkout@v1
-    - name: Install dependencies
-      with:
-        flutter-version: '1.7.8+hotfix.4'
+    - name: flutter install dependencies
       run: flutter pub get
-    - name: Run tests
-      run: pub run test
+    - name: flutter run tests
+      run: flutter run test
