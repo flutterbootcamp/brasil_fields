@@ -7,20 +7,13 @@ jobs:
 
     runs-on: ubuntu-latest
     
-    container:
-      image:  google/dart:latest
-    
     steps:
     - uses: actions/checkout@v1
-    - run: cd ..
-    - run: git clone https://github.com/flutter/flutter.git
-    - run: ls
-    - run: cd flutter
-    - run: export PATH="$PATH:`pwd`/bin"
-    - run: cd ..
-    - run: echo $PATH
-    - run: flutter doctor
-    - run: cd brasil_fields
-    - run: flutter doctor
+    - uses: actions/setup-java@v1
+      with:
+        java-version: '12.x'
+    - uses: subosito/flutter-action@v1
+      with:
+        flutter-version: '1.7.8+hotfix.4'
     - run: flutter pub get
     - run: flutter test
