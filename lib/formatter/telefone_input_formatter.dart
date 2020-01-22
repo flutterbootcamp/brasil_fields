@@ -1,32 +1,27 @@
 import 'package:flutter/services.dart';
 
-/// Formata o valor do campo com a mascara ( (99) 9999-9999 ).
+/// Formata o valor do campo com a máscara ( (99) 99999-9999 ).
 ///
-/// `[digito_9]` indica se o campo tera o nono dígito ou não.
+/// Nono dígito automático.
 class TelefoneInputFormatter extends TextInputFormatter {
-  TelefoneInputFormatter({this.digito_9 = false});
-
-  /// Define o tamanho máximo do campo.
-  int maxLength = 10;
-
-  /// [boolean] para indicar se o campo aceita o nono dígito ou não.
-  bool digito_9;
+  TelefoneInputFormatter();
 
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
     final int newTextLength = newValue.text.length;
+
     int selectionIndex = newValue.selection.end;
-    // Altera o tamanho máximo do campo baseado em [digito_9]
-    if (digito_9) {
-      maxLength = 11;
-    }
-    if (newTextLength > maxLength) {
+
+    /// Verifica o tamanho máximo do campo.
+    if (newTextLength > 11) {
       return oldValue;
     }
 
     int usedSubstringIndex = 0;
+
     final StringBuffer newText = StringBuffer();
+
     if (newTextLength >= 1) {
       newText.write('(');
       if (newValue.selection.end >= 1) selectionIndex++;
@@ -38,7 +33,8 @@ class TelefoneInputFormatter extends TextInputFormatter {
         selectionIndex += 2;
       }
     }
-    if (digito_9) {
+
+    if (newValue.selection.end == 11) {
       if (newTextLength >= 8) {
         newText.write(newValue.text.substring(2, usedSubstringIndex = 7) + '-');
         if (newValue.selection.end >= 7) {
