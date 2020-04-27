@@ -25,7 +25,7 @@ dependencies:
 - Data (01/01/1900)
 - Hora (23:59)
 
-<img src="https://github.com/rubensdemelo/brasil_fields/blob/master/img/formatters.png" width="350px">
+![Formatters](screenshots/formatters.png)
 
 ### Padrões
 
@@ -34,7 +34,7 @@ dependencies:
 - Regiões
 - Semana
 
-<img src="https://github.com/rubensdemelo/brasil_fields/blob/master/img/padroes.png" width="350px">
+![Formatters](screenshots/padroes.png)
 
 ### Como utilizar :
 
