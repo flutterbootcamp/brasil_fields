@@ -3,17 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
   <meta name="description" content="API docs for the toString method from the Meses class, for the Dart programming language.">
   <title>toString method - Meses class - meses library - Dart API</title>
   <!-- required because all the links are pseudo-absolute -->
   <base href="../..">
 
   <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
-
+  <!-- header placeholder -->
 </head>
 
 <body>
@@ -36,39 +37,55 @@
 
 <main>
 
-  <div class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+      <form class="search-sidebar" role="search">
+        <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+      </form>
+    </header>
+    
+    <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+      <li><a href="index.html">brasil_fields</a></li>
+      <li><a href="modelos_meses/modelos_meses-library.html">meses</a></li>
+      <li><a href="modelos_meses/Meses-class.html">Meses</a></li>
+      <li class="self-crumb">toString method</li>
+    </ol>
+    
     <h5>Meses class</h5>
     <ol>
-      <li class="section-title"><a href="modelos_meses/Meses-class.html#constructors">Constructors</a></li>
-      <li><a href="modelos_meses/Meses/Meses.html">Meses</a></li>
     
-      <li class="section-title inherited">
-        <a href="modelos_meses/Meses-class.html#instance-properties">Properties</a>
-      </li>
-      <li class="inherited"><a href="modelos_meses/Meses/hashCode.html">hashCode</a></li>
-      <li class="inherited"><a href="modelos_meses/Meses/runtimeType.html">runtimeType</a></li>
+        <li class="section-title"><a href="modelos_meses/Meses-class.html#constructors">Constructors</a></li>
+        <li><a href="modelos_meses/Meses/Meses.html">Meses</a></li>
     
-      <li class="section-title inherited"><a href="modelos_meses/Meses-class.html#instance-methods">Methods</a></li>
-      <li class="inherited"><a href="modelos_meses/Meses/noSuchMethod.html">noSuchMethod</a></li>
-      <li class="inherited"><a href="modelos_meses/Meses/toString.html">toString</a></li>
+        <li class="section-title inherited">
+            <a href="modelos_meses/Meses-class.html#instance-properties">Properties</a>
+        </li>
+        <li class="inherited"><a href="modelos_meses/Meses/hashCode.html">hashCode</a></li>
+        <li class="inherited"><a href="modelos_meses/Meses/runtimeType.html">runtimeType</a></li>
     
-      <li class="section-title inherited"><a href="modelos_meses/Meses-class.html#operators">Operators</a></li>
-      <li class="inherited"><a href="modelos_meses/Meses/operator_equals.html">operator ==</a></li>
+        <li class="section-title inherited"><a href="modelos_meses/Meses-class.html#instance-methods">Methods</a></li>
+        <li class="inherited"><a href="modelos_meses/Meses/noSuchMethod.html">noSuchMethod</a></li>
+        <li class="inherited"><a href="modelos_meses/Meses/toString.html">toString</a></li>
     
-      <li class="section-title"><a href="modelos_meses/Meses-class.html#static-properties">Static properties</a></li>
-      <li><a href="modelos_meses/Meses/listaMeses.html">listaMeses</a></li>
-      <li><a href="modelos_meses/Meses/mapaMeses.html">mapaMeses</a></li>
+        <li class="section-title inherited"><a href="modelos_meses/Meses-class.html#operators">Operators</a></li>
+        <li class="inherited"><a href="modelos_meses/Meses/operator_equals.html">operator ==</a></li>
+    
+        <li class="section-title"><a href="modelos_meses/Meses-class.html#static-properties">Static properties</a></li>
+        <li><a href="modelos_meses/Meses/listaMeses.html">listaMeses</a></li>
+        <li><a href="modelos_meses/Meses/mapaMeses.html">mapaMeses</a></li>
+    
+    
     
     
     </ol>
   </div><!--/.sidebar-offcanvas-->
 
-  <div class="col-xs-12 col-sm-9 col-md-8 main-content">
-    <h1>toString method</h1>
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <div><h1><span class="kind-method">toString</span> method</h1></div>
 
     <section class="multi-line-signature">
       <span class="returntype">String</span>
-      <span class="name ">toString</span>
+            <span class="name ">toString</span>
 (<wbr>)
       <div class="features">inherited</div>
     </section>
@@ -77,22 +94,24 @@
     </section>
     
     <section class="summary source-code" id="source">
-      <h2><span>Implementation</span> </h2>
+      <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">external String toString();</code></pre>
     </section>
 
   </div> <!-- /.main-content -->
 
-  <div class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
   </div><!--/.sidebar-offcanvas-->
 
 </main>
 
 <footer>
   <span class="no-break">
-    brasil_fields 0.0.2
+    brasil_fields
+      0.0.8
   </span>
 
+  <!-- footer-text placeholder -->
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -100,7 +119,7 @@
 <script src="static-assets/highlight.pack.js"></script>
 <script src="static-assets/URI.js"></script>
 <script src="static-assets/script.js"></script>
-
+<!-- footer placeholder -->
 
 </body>
 
