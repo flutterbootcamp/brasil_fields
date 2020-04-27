@@ -1,3 +1,5 @@
+## [0.0.8] - Adiciona HoraInputFormatter
+
 ## [0.0.7+2] - Corrige formato data UTC.
 
 ## [0.0.7+1] - Corrige export data_util.

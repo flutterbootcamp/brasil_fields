@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
-  
+  <!-- header placeholder -->
 </head>
 
 <body>
@@ -53,24 +53,25 @@
     
     <h5>TelefoneInputFormatter class</h5>
     <ol>
-      <li class="section-title"><a href="formatter_telefone_input_formatter/TelefoneInputFormatter-class.html#constructors">Constructors</a></li>
-      <li><a href="formatter_telefone_input_formatter/TelefoneInputFormatter/TelefoneInputFormatter.html">TelefoneInputFormatter</a></li>
     
-      <li class="section-title">
-        <a href="formatter_telefone_input_formatter/TelefoneInputFormatter-class.html#instance-properties">Properties</a>
-      </li>
-      <li><a href="formatter_telefone_input_formatter/TelefoneInputFormatter/digito_9.html">digito_9</a></li>
-      <li><a href="formatter_telefone_input_formatter/TelefoneInputFormatter/maxLength.html">maxLength</a></li>
-      <li class="inherited"><a href="dart-core/Object/hashCode.html">hashCode</a></li>
-      <li class="inherited"><a href="dart-core/Object/runtimeType.html">runtimeType</a></li>
+        <li class="section-title"><a href="formatter_telefone_input_formatter/TelefoneInputFormatter-class.html#constructors">Constructors</a></li>
+        <li><a href="formatter_telefone_input_formatter/TelefoneInputFormatter/TelefoneInputFormatter.html">TelefoneInputFormatter</a></li>
     
-      <li class="section-title"><a href="formatter_telefone_input_formatter/TelefoneInputFormatter-class.html#instance-methods">Methods</a></li>
-      <li><a href="formatter_telefone_input_formatter/TelefoneInputFormatter/formatEditUpdate.html">formatEditUpdate</a></li>
-      <li class="inherited"><a href="dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
-      <li class="inherited"><a href="dart-core/Object/toString.html">toString</a></li>
+        <li class="section-title inherited">
+            <a href="formatter_telefone_input_formatter/TelefoneInputFormatter-class.html#instance-properties">Properties</a>
+        </li>
+        <li class="inherited"><a href="dart-core/Object/hashCode.html">hashCode</a></li>
+        <li class="inherited"><a href="dart-core/Object/runtimeType.html">runtimeType</a></li>
     
-      <li class="section-title inherited"><a href="formatter_telefone_input_formatter/TelefoneInputFormatter-class.html#operators">Operators</a></li>
-      <li class="inherited"><a href="dart-core/Object/operator_equals.html">operator ==</a></li>
+        <li class="section-title"><a href="formatter_telefone_input_formatter/TelefoneInputFormatter-class.html#instance-methods">Methods</a></li>
+        <li><a href="formatter_telefone_input_formatter/TelefoneInputFormatter/formatEditUpdate.html">formatEditUpdate</a></li>
+        <li class="inherited"><a href="dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
+        <li class="inherited"><a href="dart-core/Object/toString.html">toString</a></li>
+    
+        <li class="section-title inherited"><a href="formatter_telefone_input_formatter/TelefoneInputFormatter-class.html#operators">Operators</a></li>
+        <li class="inherited"><a href="dart-core/Object/operator_equals.html">operator ==</a></li>
+    
+    
     
     
     
@@ -78,7 +79,7 @@
   </div><!--/.sidebar-offcanvas-->
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1>formatEditUpdate method</h1></div>
+      <div><h1><span class="kind-method">formatEditUpdate</span> method</h1></div>
 
     <section class="multi-line-signature">
       <div>
@@ -88,7 +89,7 @@
       </div>
       <span class="returntype">TextEditingValue</span>
             <span class="name ">formatEditUpdate</span>
-(<wbr><span class="parameter" id="formatEditUpdate-param-oldValue"><span class="type-annotation">TextEditingValue</span> <span class="parameter-name">oldValue</span>, </span> <span class="parameter" id="formatEditUpdate-param-newValue"><span class="type-annotation">TextEditingValue</span> <span class="parameter-name">newValue</span></span>)
+(<wbr><span class="parameter" id="formatEditUpdate-param-oldValue"><span class="type-annotation">TextEditingValue</span> <span class="parameter-name">oldValue</span></span> <span class="parameter" id="formatEditUpdate-param-newValue"><span class="type-annotation">TextEditingValue</span> <span class="parameter-name">newValue</span></span>)
       
     </section>
     <section class="desc markdown">
@@ -105,17 +106,18 @@ the incoming new text value.</p>
 TextEditingValue formatEditUpdate(
     TextEditingValue oldValue, TextEditingValue newValue) {
   final int newTextLength = newValue.text.length;
+
   int selectionIndex = newValue.selection.end;
-  &#47;&#47; Altera o tamanho máximo do campo baseado em [digito_9]
-  if (digito_9) {
-    maxLength = 11;
-  }
-  if (newTextLength &gt; maxLength) {
+
+  &#47;&#47;&#47; Verifica o tamanho máximo do campo.
+  if (newTextLength &gt; 11) {
     return oldValue;
   }
 
   int usedSubstringIndex = 0;
+
   final StringBuffer newText = StringBuffer();
+
   if (newTextLength &gt;= 1) {
     newText.write(&#39;(&#39;);
     if (newValue.selection.end &gt;= 1) selectionIndex++;
@@ -127,7 +129,8 @@ TextEditingValue formatEditUpdate(
       selectionIndex += 2;
     }
   }
-  if (digito_9) {
+
+  if (newValue.text.length == 11) {
     if (newTextLength &gt;= 8) {
       newText.write(newValue.text.substring(2, usedSubstringIndex = 7) + &#39;-&#39;);
       if (newValue.selection.end &gt;= 7) {
@@ -163,10 +166,11 @@ TextEditingValue formatEditUpdate(
 
 <footer>
   <span class="no-break">
-    brasil_fields 0.0.6
+    brasil_fields
+      0.0.8
   </span>
 
-  
+  <!-- footer-text placeholder -->
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -174,7 +178,7 @@ TextEditingValue formatEditUpdate(
 <script src="static-assets/highlight.pack.js"></script>
 <script src="static-assets/URI.js"></script>
 <script src="static-assets/script.js"></script>
-
+<!-- footer placeholder -->
 
 </body>
 

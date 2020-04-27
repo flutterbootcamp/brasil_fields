@@ -34,7 +34,7 @@ class TelefoneInputFormatter extends TextInputFormatter {
       }
     }
 
-    if (newValue.selection.end == 11) {
+    if (newValue.text.length == 11) {
       if (newTextLength >= 8) {
         newText.write(newValue.text.substring(2, usedSubstringIndex = 7) + '-');
         if (newValue.selection.end >= 7) {

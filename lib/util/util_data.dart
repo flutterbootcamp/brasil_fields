@@ -1,11 +1,11 @@
 /// Classe para manipular datas.
 class UtilData {
-  /// Validar se uma data está no formato brasiliro `DDMMAAAA`.
+  /// Validar se uma data está no formato brasileiro `DDMMAAAA`.
   static bool validarData(String data) {
     return removeCaracteres(data).length == 8;
   }
 
-  /// Converte o formato brasiliero `DDMMAAAA` para UTC `AAAAMMDD`.
+  /// Converte o formato brasileiro `DDMMAAAA` para UTC `AAAAMMDD`.
   static String removeCaracteres(String data) {
     StringBuffer novaData = StringBuffer();
 
@@ -19,7 +19,7 @@ class UtilData {
     return novaData.toString();
   }
 
-  /// Converte o formato brasiliero `DDMMAAAA` para UTC `AAAAMMDD`.
+  /// Converte o formato brasileiro `DDMMAAAA` para UTC `AAAAMMDD`.
   static DateTime dataToUtc(String data) {
     String dataLimpa = removeCaracteres(data);
     if (validarData(dataLimpa)) {

@@ -6,6 +6,7 @@ export 'formatter/cpf_input_formatter.dart';
 export 'formatter/data_input_formatter.dart';
 export 'formatter/real_input_formatter.dart';
 export 'formatter/telefone_input_formatter.dart';
+export 'formatter/hora_input_formatter.dart';
 export 'modelos/estados.dart';
 export 'modelos/meses.dart';
 export 'modelos/regioes.dart';

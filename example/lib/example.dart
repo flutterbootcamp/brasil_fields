@@ -120,6 +120,7 @@ class FormattersState extends State<Formatters> {
   final centavosController = TextEditingController();
   final telefoneController = TextEditingController();
   final dataController = TextEditingController();
+  final horaController = TextEditingController();
 
   @override
   void dispose() {
@@ -130,6 +131,7 @@ class FormattersState extends State<Formatters> {
     centavosController.dispose();
     telefoneController.dispose();
     dataController.dispose();
+    horaController.dispose();
     super.dispose();
   }
 
@@ -137,7 +139,7 @@ class FormattersState extends State<Formatters> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
-        padding: EdgeInsets.all(12),
+        padding: EdgeInsets.all(16),
         // width: MediaQuery.of(context).size.width / 2.3,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -147,65 +149,64 @@ class FormattersState extends State<Formatters> {
               formatter: CpfInputFormatter(),
               controller: cpfController,
             ),
-            SizedBox(
-              height: 15,
+            const SizedBox(
+              height: 16,
             ),
             LinhaFormatter(
               text: 'CNPJ',
               formatter: CnpjInputFormatter(),
               controller: cnpjController,
             ),
-            SizedBox(
-              height: 15,
+            const SizedBox(
+              height: 16,
             ),
             LinhaFormatter(
               text: 'CEP',
               formatter: CepInputFormatter(),
               controller: cepController,
             ),
-            SizedBox(
-              height: 15,
+            const SizedBox(
+              height: 16,
             ),
             LinhaFormatter(
               text: 'Moeda',
               formatter: RealInputFormatter(),
               controller: moedaController,
             ),
-            SizedBox(
-              height: 15,
+            const SizedBox(
+              height: 16,
             ),
             LinhaFormatter(
               text: 'Centavos',
               formatter: RealInputFormatter(centavos: true),
               controller: centavosController,
             ),
-            SizedBox(
-              height: 15,
+            const SizedBox(
+              height: 16,
             ),
             LinhaFormatter(
               text: 'Telefone',
               formatter: TelefoneInputFormatter(),
               controller: telefoneController,
             ),
-            SizedBox(
-              height: 15,
+            const SizedBox(
+              height: 16,
             ),
             LinhaFormatter(
               text: 'Data',
               formatter: DataInputFormatter(),
               controller: dataController,
             ),
-            SizedBox(
-              height: 15,
+            const SizedBox(
+              height: 16,
             ),
-            RaisedButton(
-              child: Text('ENVIAR'),
-              onPressed: () {
-                print(dataController.text);
-                print(UtilData.removeCaracteres(dataController.text));
-                print(UtilData.dataToUtc(dataController.text));
-                print(UtilData.getAno(dataController.text).toString());
-              },
+            LinhaFormatter(
+              text: 'Hora',
+              formatter: HoraInputFormatter(),
+              controller: horaController,
+            ),
+            const SizedBox(
+              height: 16,
             ),
           ],
         ),
