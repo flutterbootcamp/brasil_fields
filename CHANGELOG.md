@@ -1,3 +1,8 @@
+## [0.0.9] - Novos formatters:
+
+- CartaoCreditoInputFormatter
+- ValidadeCartaoInputFormatter
+
 ## [0.0.8+1] - Corrige caminho screenshots.
 
 ## [0.0.8] - Adiciona HoraInputFormatter

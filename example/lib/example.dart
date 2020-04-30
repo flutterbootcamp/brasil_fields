@@ -1,4 +1,6 @@
 import 'package:brasil_fields/brasil_fields.dart';
+import 'package:brasil_fields/formatter/cartao_credito_input_formatter.dart';
+import 'package:brasil_fields/formatter/validade_cartao_input_formatter.dart';
 import 'package:brasil_fields/util/util_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -62,8 +64,6 @@ class BrasilFieldsState extends State<BrasilFieldsApp> {
     SingleChildScrollView(
       child: Container(
         padding: EdgeInsets.all(16),
-
-        // width: MediaQuery.of(context).size.width / 2.3,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -121,6 +121,8 @@ class FormattersState extends State<Formatters> {
   final telefoneController = TextEditingController();
   final dataController = TextEditingController();
   final horaController = TextEditingController();
+  final cartaoController = TextEditingController();
+  final validadeController = TextEditingController();
 
   @override
   void dispose() {
@@ -204,6 +206,22 @@ class FormattersState extends State<Formatters> {
               text: 'Hora',
               formatter: HoraInputFormatter(),
               controller: horaController,
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            LinhaFormatter(
+              text: 'Cartão',
+              formatter: CartaoCreditoInputFormatter(),
+              controller: cartaoController,
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            LinhaFormatter(
+              text: 'Validade',
+              formatter: ValidadeCartaoInputFormatter(),
+              controller: validadeController,
             ),
             const SizedBox(
               height: 16,

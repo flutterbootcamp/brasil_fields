@@ -1,6 +1,8 @@
 import 'package:brasil_fields/brasil_fields.dart';
+import 'package:brasil_fields/formatter/cartao_credito_input_formatter.dart';
 import 'package:brasil_fields/formatter/cnpj_input_formatter.dart';
 import 'package:brasil_fields/formatter/hora_input_formatter.dart';
+import 'package:brasil_fields/formatter/validade_cartao_input_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -95,5 +97,22 @@ void main() {
 
     await tester.enterText(find.byType(TextField), '2130');
     expect(textController.text, '21:30');
+  });
+
+  testWidgets('CartaoCredito', (WidgetTester tester) async {
+    final TextEditingController textController = TextEditingController();
+    await tester
+        .pumpWidget(boilerplate(CartaoCreditoInputFormatter(), textController));
+
+    await tester.enterText(find.byType(TextField), '4040121298987373');
+    expect(textController.text, '4040 1212 9898 7373');
+  });
+  testWidgets('ValidadeCartao', (WidgetTester tester) async {
+    final TextEditingController textController = TextEditingController();
+    await tester.pumpWidget(
+        boilerplate(ValidadeCartaoInputFormatter(), textController));
+
+    await tester.enterText(find.byType(TextField), '1223');
+    expect(textController.text, '12/23');
   });
 }
