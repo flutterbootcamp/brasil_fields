@@ -4,7 +4,7 @@ version: 0.0.9
 homepage: https://github.com/rubensdemelo/brasil_fields
 
 environment:
-  sdk: ">=2.0.0 <3.0.0"
+  sdk: ">=2.7.2 <3.0.0"
 
 dependencies:
   flutter:
