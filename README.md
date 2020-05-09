@@ -11,7 +11,7 @@ utilizam campos com os padrões e formatos brasileiros.
 
 ```
 dependencies:
-  brasil_fields: ^0.0.9
+  brasil_fields: ^0.1.0
 ```
 
 ### Formatters
@@ -60,7 +60,7 @@ TextFormField(
 - `TelefoneInputFormatter()`
 - `DataInputFormatter()`
 - `HoraInputFormatter()`
-- `CartaoCreditoInputFormatter()`
+- `CartaoBancarioInputFormatter()`
 - `ValidadeCartaoInputFormatter()`
 
 Caso precise de um DropdownButton com algumas das classes de padrões:

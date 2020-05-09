@@ -9,18 +9,18 @@ class TelefoneInputFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
-    final int newTextLength = newValue.text.length;
+    final newTextLength = newValue.text.length;
 
-    int selectionIndex = newValue.selection.end;
+    var selectionIndex = newValue.selection.end;
 
     /// Verifica o tamanho máximo do campo.
     if (newTextLength > 11) {
       return oldValue;
     }
 
-    int usedSubstringIndex = 0;
+    var usedSubstringIndex = 0;
 
-    final StringBuffer newText = StringBuffer();
+    final newText = StringBuffer();
 
     if (newTextLength >= 1) {
       newText.write('(');

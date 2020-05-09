@@ -1,5 +1,5 @@
 import 'package:brasil_fields/brasil_fields.dart';
-import 'package:brasil_fields/formatter/cartao_credito_input_formatter.dart';
+import 'package:brasil_fields/formatter/cartao_bancario_input_formatter.dart';
 import 'package:brasil_fields/formatter/cnpj_input_formatter.dart';
 import 'package:brasil_fields/formatter/hora_input_formatter.dart';
 import 'package:brasil_fields/formatter/validade_cartao_input_formatter.dart';
@@ -30,7 +30,7 @@ Widget boilerplate(
 
 void main() {
   testWidgets('CpfInputFormatter', (WidgetTester tester) async {
-    final TextEditingController textController = TextEditingController();
+    final textController = TextEditingController();
     await tester.pumpWidget(boilerplate(CpfInputFormatter(), textController));
 
     await tester.enterText(find.byType(TextField), '12345678900');
@@ -38,7 +38,7 @@ void main() {
   });
 
   testWidgets('CnpjInputFormatter', (WidgetTester tester) async {
-    final TextEditingController textController = TextEditingController();
+    final textController = TextEditingController();
     await tester.pumpWidget(boilerplate(CnpjInputFormatter(), textController));
 
     await tester.enterText(find.byType(TextField), '12345678900099');
@@ -46,7 +46,7 @@ void main() {
   });
 
   testWidgets('TelefoneInputFormatter', (WidgetTester tester) async {
-    final TextEditingController textController = TextEditingController();
+    final textController = TextEditingController();
 
     await tester
         .pumpWidget(boilerplate(TelefoneInputFormatter(), textController));
@@ -62,7 +62,7 @@ void main() {
   });
 
   testWidgets('CepInputFormatter', (WidgetTester tester) async {
-    final TextEditingController textController = TextEditingController();
+    final textController = TextEditingController();
     await tester.pumpWidget(boilerplate(CepInputFormatter(), textController));
 
     await tester.enterText(find.byType(TextField), '12345678');
@@ -70,7 +70,7 @@ void main() {
   });
 
   testWidgets('RealInputFormatter', (WidgetTester tester) async {
-    final TextEditingController textController = TextEditingController();
+    final textController = TextEditingController();
     await tester.pumpWidget(boilerplate(RealInputFormatter(), textController));
 
     await tester.enterText(find.byType(TextField), '1234');
@@ -84,7 +84,7 @@ void main() {
   });
 
   testWidgets('DataInputFormatter', (WidgetTester tester) async {
-    final TextEditingController textController = TextEditingController();
+    final textController = TextEditingController();
     await tester.pumpWidget(boilerplate(DataInputFormatter(), textController));
 
     await tester.enterText(find.byType(TextField), '01011900');
@@ -92,7 +92,7 @@ void main() {
   });
 
   testWidgets('HoraInputFormatter', (WidgetTester tester) async {
-    final TextEditingController textController = TextEditingController();
+    final textController = TextEditingController();
     await tester.pumpWidget(boilerplate(HoraInputFormatter(), textController));
 
     await tester.enterText(find.byType(TextField), '2130');
@@ -100,15 +100,15 @@ void main() {
   });
 
   testWidgets('CartaoCredito', (WidgetTester tester) async {
-    final TextEditingController textController = TextEditingController();
-    await tester
-        .pumpWidget(boilerplate(CartaoCreditoInputFormatter(), textController));
+    final textController = TextEditingController();
+    await tester.pumpWidget(
+        boilerplate(CartaoBancarioInputFormatter(), textController));
 
     await tester.enterText(find.byType(TextField), '4040121298987373');
     expect(textController.text, '4040 1212 9898 7373');
   });
   testWidgets('ValidadeCartao', (WidgetTester tester) async {
-    final TextEditingController textController = TextEditingController();
+    final textController = TextEditingController();
     await tester.pumpWidget(
         boilerplate(ValidadeCartaoInputFormatter(), textController));
 

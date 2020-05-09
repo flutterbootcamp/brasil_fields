@@ -15,15 +15,15 @@ class RealInputFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
-    final int newTextLength = newValue.text.length;
-    int selectionIndex = newValue.selection.end;
+    final newTextLength = newValue.text.length;
+    var selectionIndex = newValue.selection.end;
 
     if (newTextLength > maxLength) {
       return oldValue;
     }
 
-    int usedSubstringIndex = 0;
-    final StringBuffer newText = StringBuffer();
+    var usedSubstringIndex = 0;
+    final newText = StringBuffer();
     if (centavos) {
       maxLength = 14;
       switch (newTextLength) {

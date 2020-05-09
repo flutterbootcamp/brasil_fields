@@ -1,3 +1,8 @@
+## [0.1.0] - Adiciona análise estática:
+
+- Adiciona análise estática com o package `pedantic`.
+- Renomeia CartaoCreditoInputFormatter para CartaoBancarioInputFormatter.
+
 ## [0.0.9] - Novos formatters:
 
 - CartaoCreditoInputFormatter

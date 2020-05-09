@@ -7,12 +7,12 @@ class UtilData {
 
   /// Converte o formato brasileiro `DDMMAAAA` para UTC `AAAAMMDD`.
   static String removeCaracteres(String data) {
-    StringBuffer novaData = StringBuffer();
+    final novaData = StringBuffer();
 
     data.runes.forEach((index) {
-      int num = int.tryParse(String.fromCharCode(index));
-      if (num != null) {
-        novaData.write(num);
+      final numero = int.tryParse(String.fromCharCode(index));
+      if (numero != null) {
+        novaData.write(numero);
       }
     });
 
@@ -21,9 +21,9 @@ class UtilData {
 
   /// Converte o formato brasileiro `DDMMAAAA` para UTC `AAAAMMDD`.
   static DateTime dataToUtc(String data) {
-    String dataLimpa = removeCaracteres(data);
+    final dataLimpa = removeCaracteres(data);
     if (validarData(dataLimpa)) {
-      StringBuffer novaData = StringBuffer();
+      final novaData = StringBuffer();
       novaData.write(dataLimpa[4]);
       novaData.write(dataLimpa[5]);
       novaData.write(dataLimpa[6]);
@@ -43,9 +43,9 @@ class UtilData {
 
   /// Retorna o ano da data.
   static int getAno(String data) {
-    String dataLimpa = removeCaracteres(data);
+    final dataLimpa = removeCaracteres(data);
     if (validarData(dataLimpa)) {
-      StringBuffer novaData = StringBuffer();
+      final novaData = StringBuffer();
       novaData.write(dataLimpa[4]);
       novaData.write(dataLimpa[5]);
       novaData.write(dataLimpa[6]);
@@ -59,9 +59,9 @@ class UtilData {
 
   /// Retorna o mes de uma data. Informar data no formato `DDMMAAAA`
   static int getMes(String data) {
-    String dataLimpa = removeCaracteres(data);
+    final dataLimpa = removeCaracteres(data);
     if (validarData(dataLimpa)) {
-      StringBuffer novaData = StringBuffer();
+      final novaData = StringBuffer();
       novaData.write(dataLimpa[2]);
       novaData.write(dataLimpa[3]);
 
@@ -73,9 +73,9 @@ class UtilData {
 
   /// Retorna o mes de uma data. Informar data no formato `DDMMAAAA`
   static int getDia(String data) {
-    String dataLimpa = removeCaracteres(data);
+    final dataLimpa = removeCaracteres(data);
     if (validarData(dataLimpa)) {
-      StringBuffer novaData = StringBuffer();
+      final novaData = StringBuffer();
       novaData.write(dataLimpa[0]);
       novaData.write(dataLimpa[1]);
 

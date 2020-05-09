@@ -1,22 +1,22 @@
 import 'package:flutter/services.dart';
 
 /// Formata o valor do campo com a mascara  0000 1111 2222 3333 .
-class CartaoCreditoInputFormatter extends TextInputFormatter {
+class CartaoBancarioInputFormatter extends TextInputFormatter {
   /// Define o tamanho máximo do campo.
   final int maxLength = 16;
 
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
-    final int newTextLength = newValue.text.length;
-    int selectionIndex = newValue.selection.end;
+    final newTextLength = newValue.text.length;
+    var selectionIndex = newValue.selection.end;
 
     if (newTextLength > maxLength) {
       return oldValue;
     }
 
-    int usedSubstringIndex = 0;
-    final StringBuffer newText = StringBuffer();
+    var usedSubstringIndex = 0;
+    final newText = StringBuffer();
 
     if (newTextLength >= 4) {
       newText.write(newValue.text.substring(0, usedSubstringIndex = 4) + ' ');

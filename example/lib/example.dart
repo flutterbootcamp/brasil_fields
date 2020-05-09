@@ -1,14 +1,13 @@
 import 'package:brasil_fields/brasil_fields.dart';
-import 'package:brasil_fields/formatter/cartao_credito_input_formatter.dart';
+import 'package:brasil_fields/formatter/cartao_bancario_input_formatter.dart';
 import 'package:brasil_fields/formatter/validade_cartao_input_formatter.dart';
-import 'package:brasil_fields/util/util_data.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 void main() => runApp(BrasilFields());
 
 class BrasilFields extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -35,7 +34,7 @@ class BrasilFieldsState extends State<BrasilFieldsApp> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Brasil Fields'),
+        title: const Text('Brasil Fields'),
       ),
       body: _homeWidgets[_index],
       bottomNavigationBar: BottomNavigationBar(
@@ -48,11 +47,11 @@ class BrasilFieldsState extends State<BrasilFieldsApp> {
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.format_shapes),
-            title: Text('Formatters'),
+            title: const Text('Formatters'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.mood),
-            title: Text('Modelos'),
+            title: const Text('Modelos'),
           ),
         ],
       ),
@@ -60,42 +59,25 @@ class BrasilFieldsState extends State<BrasilFieldsApp> {
   }
 
   final List<Widget> _homeWidgets = [
-    Formatters(),
+    const Formatters(),
     SingleChildScrollView(
       child: Container(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             LinhaModelos(
-              text: 'Estados',
-              listaOpcoes: Estados.listaEstados.toList(),
-            ),
-            SizedBox(
-              height: 15,
-            ),
+                text: 'Estados', listaOpcoes: Estados.listaEstados.toList()),
+            const SizedBox(height: 16),
+            LinhaModelos(text: 'Meses', listaOpcoes: Meses.listaMeses.toList()),
+            const SizedBox(height: 16),
             LinhaModelos(
-              text: 'Meses',
-              listaOpcoes: Meses.listaMeses.toList(),
-            ),
-            SizedBox(
-              height: 15,
-            ),
+                text: 'Semana', listaOpcoes: Semana.listaDiasSemana.toList()),
+            const SizedBox(height: 16),
             LinhaModelos(
-              text: 'Semana',
-              listaOpcoes: Semana.listaDiasSemana.toList(),
-            ),
-            SizedBox(
-              height: 15,
-            ),
-            LinhaModelos(
-              text: 'Regioes',
-              listaOpcoes: Regioes.listaRegioes.toList(),
-            ),
-            SizedBox(
-              height: 15,
-            ),
+                text: 'Regioes', listaOpcoes: Regioes.listaRegioes.toList()),
+            const SizedBox(height: 16),
           ],
         ),
       ),
@@ -141,8 +123,7 @@ class FormattersState extends State<Formatters> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
-        padding: EdgeInsets.all(16),
-        // width: MediaQuery.of(context).size.width / 2.3,
+        padding: const EdgeInsets.all(16),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -151,30 +132,23 @@ class FormattersState extends State<Formatters> {
               formatter: CpfInputFormatter(),
               controller: cpfController,
             ),
-            const SizedBox(
-              height: 16,
-            ),
+            const SizedBox(height: 16),
             LinhaFormatter(
               text: 'CNPJ',
               formatter: CnpjInputFormatter(),
               controller: cnpjController,
             ),
-            const SizedBox(
-              height: 16,
-            ),
+            const SizedBox(height: 16),
             LinhaFormatter(
               text: 'CEP',
               formatter: CepInputFormatter(),
               controller: cepController,
             ),
-            const SizedBox(
-              height: 16,
-            ),
+            const SizedBox(height: 16),
             LinhaFormatter(
-              text: 'Moeda',
-              formatter: RealInputFormatter(),
-              controller: moedaController,
-            ),
+                text: 'Moeda',
+                formatter: RealInputFormatter(),
+                controller: moedaController),
             const SizedBox(
               height: 16,
             ),
@@ -183,48 +157,35 @@ class FormattersState extends State<Formatters> {
               formatter: RealInputFormatter(centavos: true),
               controller: centavosController,
             ),
-            const SizedBox(
-              height: 16,
-            ),
+            const SizedBox(height: 16),
             LinhaFormatter(
               text: 'Telefone',
               formatter: TelefoneInputFormatter(),
               controller: telefoneController,
             ),
-            const SizedBox(
-              height: 16,
-            ),
+            const SizedBox(height: 16),
             LinhaFormatter(
               text: 'Data',
               formatter: DataInputFormatter(),
               controller: dataController,
             ),
-            const SizedBox(
-              height: 16,
-            ),
+            const SizedBox(height: 16),
             LinhaFormatter(
               text: 'Hora',
               formatter: HoraInputFormatter(),
               controller: horaController,
             ),
-            const SizedBox(
-              height: 16,
-            ),
+            const SizedBox(height: 16),
             LinhaFormatter(
               text: 'Cartão',
-              formatter: CartaoCreditoInputFormatter(),
+              formatter: CartaoBancarioInputFormatter(),
               controller: cartaoController,
             ),
-            const SizedBox(
-              height: 16,
-            ),
+            const SizedBox(height: 16),
             LinhaFormatter(
               text: 'Validade',
               formatter: ValidadeCartaoInputFormatter(),
               controller: validadeController,
-            ),
-            const SizedBox(
-              height: 16,
             ),
           ],
         ),
@@ -252,15 +213,15 @@ class LinhaFormatter extends StatelessWidget {
           width: MediaQuery.of(context).size.width / 4.5,
           child: Text(
             text,
-            style: TextStyle(fontSize: 20),
+            style: const TextStyle(fontSize: 20),
           ),
         ),
-        SizedBox(width: 10),
+        const SizedBox(width: 16),
         Expanded(
           child: TextField(
             controller: controller,
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
+            decoration: const InputDecoration(
+              border: const OutlineInputBorder(),
             ),
             inputFormatters: [
               WhitelistingTextInputFormatter.digitsOnly,
@@ -291,10 +252,10 @@ class LinhaModelosState extends State<LinhaModelos> {
           width: MediaQuery.of(context).size.width / 4.5,
           child: Text(
             widget.text,
-            style: TextStyle(fontSize: 20),
+            style: const TextStyle(fontSize: 20),
           ),
         ),
-        SizedBox(width: 10),
+        const SizedBox(width: 16),
         Expanded(
           child: DropdownButton(
             items: widget.listaOpcoes.map((String opcao) {
