@@ -79,8 +79,8 @@ void main() {
     await tester.pumpWidget(
         boilerplate(RealInputFormatter(centavos: true), textController));
 
-    await tester.enterText(find.byType(TextField), '1234');
-    expect(textController.text, '12,34');
+    await tester.enterText(find.byType(TextField), '5678');
+    expect(textController.text, '56,78');
   });
 
   testWidgets('DataInputFormatter', (WidgetTester tester) async {

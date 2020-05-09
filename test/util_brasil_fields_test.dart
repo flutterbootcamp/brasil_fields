@@ -42,4 +42,12 @@ void main() {
     final data = '23:59';
     expect(UtilBrasilFields.removeCaracteres(data), '2359');
   });
+  test('Cartao remove caracteres', () {
+    final data = '1111 2222 3333 4444';
+    expect(UtilBrasilFields.removeCaracteres(data), '1111222233334444');
+  });
+  test('Validade cartão remove caracteres', () {
+    final data = '12/23';
+    expect(UtilBrasilFields.removeCaracteres(data), '1223');
+  });
 }
