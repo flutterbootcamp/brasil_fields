@@ -13,6 +13,13 @@ class TelefoneInputFormatter extends TextInputFormatter {
 
     var selectionIndex = newValue.selection.end;
 
+     //verifica se é celular ou telefone fixo
+    if(newTextLength==11){
+      if(newValue.text.toString()[2]!="9"){
+        return oldValue;
+      }
+    }
+    
     /// Verifica o tamanho máximo do campo.
     if (newTextLength > 11) {
       return oldValue;
