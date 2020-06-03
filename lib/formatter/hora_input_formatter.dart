@@ -21,31 +21,23 @@ class HoraInputFormatter extends TextInputFormatter {
     switch (newTextLength) {
       case 1:
         final hora = int.tryParse(newValue.text.substring(0, 1));
-        if (hora >= 3) {
-          return oldValue;
-        }
+        if (hora >= 3) return oldValue;
         break;
       case 2:
         final hora = int.tryParse(newValue.text.substring(0, 2));
-        if (hora >= 24) {
-          return oldValue;
-        }
+        if (hora >= 24) return oldValue;
         break;
       case 3:
         final minuto = int.tryParse(newValue.text.substring(2, 3));
-        if (minuto >= 6) {
-          return oldValue;
-        }
+        if (minuto >= 6) return oldValue;
         newText.write(newValue.text.substring(0, usedSubstringIndex = 2) + ':');
-        if (newValue.selection.end >= 2) selectionIndex += 1;
+        if (newValue.selection.end >= 2) selectionIndex++;
         break;
       case 4:
         final minuto = int.tryParse(newValue.text.substring(2, 4));
-        if (minuto >= 60) {
-          return oldValue;
-        }
+        if (minuto >= 60) return oldValue;
         newText.write(newValue.text.substring(0, usedSubstringIndex = 2) + ':');
-        if (newValue.selection.end >= 2) selectionIndex += 1;
+        if (newValue.selection.end >= 2) selectionIndex++;
         break;
       default:
     }
@@ -53,6 +45,8 @@ class HoraInputFormatter extends TextInputFormatter {
     if (newTextLength >= usedSubstringIndex) {
       newText.write(newValue.text.substring(usedSubstringIndex));
     }
+
+    print(selectionIndex);
 
     return TextEditingValue(
       text: newText.toString(),

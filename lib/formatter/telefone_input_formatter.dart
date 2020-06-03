@@ -13,13 +13,13 @@ class TelefoneInputFormatter extends TextInputFormatter {
 
     var selectionIndex = newValue.selection.end;
 
-     //verifica se é celular ou telefone fixo
-    if(newTextLength==11){
-      if(newValue.text.toString()[2]!="9"){
+    //verifica se é celular ou telefone fixo
+    if (newTextLength == 11) {
+      if (newValue.text.toString()[2] != '9') {
         return oldValue;
       }
     }
-    
+
     /// Verifica o tamanho máximo do campo.
     if (newTextLength > 11) {
       return oldValue;
@@ -36,24 +36,18 @@ class TelefoneInputFormatter extends TextInputFormatter {
 
     if (newTextLength >= 3) {
       newText.write(newValue.text.substring(0, usedSubstringIndex = 2) + ') ');
-      if (newValue.selection.end >= 2) {
-        selectionIndex += 2;
-      }
+      if (newValue.selection.end >= 2) selectionIndex += 2;
     }
 
     if (newValue.text.length == 11) {
       if (newTextLength >= 8) {
         newText.write(newValue.text.substring(2, usedSubstringIndex = 7) + '-');
-        if (newValue.selection.end >= 7) {
-          selectionIndex++;
-        }
+        if (newValue.selection.end >= 7) selectionIndex++;
       }
     } else {
       if (newTextLength >= 7) {
         newText.write(newValue.text.substring(2, usedSubstringIndex = 6) + '-');
-        if (newValue.selection.end >= 6) {
-          selectionIndex++;
-        }
+        if (newValue.selection.end >= 6) selectionIndex++;
       }
     }
 

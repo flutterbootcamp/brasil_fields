@@ -115,4 +115,25 @@ void main() {
     await tester.enterText(find.byType(TextField), '1223');
     expect(textController.text, '12/23');
   });
+
+  testWidgets('Altura', (WidgetTester tester) async {
+    final textController = TextEditingController();
+    await tester
+        .pumpWidget(boilerplate(AlturaInputFormatter(), textController));
+
+    await tester.enterText(find.byType(TextField), '176');
+    expect(textController.text, '1,76');
+  });
+
+  testWidgets('Peso', (WidgetTester tester) async {
+    final textController = TextEditingController();
+
+    await tester.pumpWidget(boilerplate(PesoInputFormatter(), textController));
+    await tester.enterText(find.byType(TextField), '889');
+    expect(textController.text, '88,9');
+
+    await tester.pumpWidget(boilerplate(PesoInputFormatter(), textController));
+    await tester.enterText(find.byType(TextField), '1043');
+    expect(textController.text, '104,3');
+  });
 }

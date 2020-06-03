@@ -11,7 +11,7 @@ utilizam campos com os padrões e formatos brasileiros.
 
 ```
 dependencies:
-  brasil_fields: ^0.1.0
+  brasil_fields: ^0.2.0
 ```
 
 ### Formatters
@@ -26,6 +26,8 @@ dependencies:
 - Hora (23:59)
 - Cartão bancário (0000 1111 2222 3333 4444)
 - Validade de cartão bancário (12/24)
+- Altura (2,22)
+- Peso (111,1)
 
 ![Formatters](screenshots/formatters.png)
 
@@ -62,6 +64,8 @@ TextFormField(
 - `HoraInputFormatter()`
 - `CartaoBancarioInputFormatter()`
 - `ValidadeCartaoInputFormatter()`
+- `AlturaInputFormatter()`
+- `PesoInputFormatter()`
 
 Caso precise de um DropdownButton com algumas das classes de padrões:
 

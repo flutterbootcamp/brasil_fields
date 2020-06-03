@@ -20,7 +20,7 @@ class CepInputFormatter extends TextInputFormatter {
 
     if (newTextLength >= 3) {
       newText.write(newValue.text.substring(0, usedSubstringIndex = 2) + '.');
-      if (newValue.selection.end >= 2) selectionIndex += 1;
+      if (newValue.selection.end >= 2) selectionIndex++;
     }
     if (newTextLength >= 6) {
       newText.write(newValue.text.substring(2, usedSubstringIndex = 5) + '-');

@@ -21,22 +21,16 @@ class ValidadeCartaoInputFormatter extends TextInputFormatter {
     switch (newTextLength) {
       case 1:
         final hora = int.tryParse(newValue.text.substring(0, 1));
-        if (hora >= 2) {
-          return oldValue;
-        }
+        if (hora >= 2) return oldValue;
         break;
       case 2:
         final hora = int.tryParse(newValue.text.substring(0, 2));
-        if (hora >= 13) {
-          return oldValue;
-        }
+        if (hora >= 13) return oldValue;
         break;
       case 3:
       case 4:
         newText.write(newValue.text.substring(0, usedSubstringIndex = 2) + '/');
-        if (newValue.selection.end >= 2) {
-          selectionIndex++;
-        }
+        if (newValue.selection.end >= 2) selectionIndex++;
         break;
     }
 

@@ -1,6 +1,4 @@
 import 'package:brasil_fields/brasil_fields.dart';
-import 'package:brasil_fields/formatter/cartao_bancario_input_formatter.dart';
-import 'package:brasil_fields/formatter/validade_cartao_input_formatter.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -45,11 +43,11 @@ class BrasilFieldsState extends State<BrasilFieldsApp> {
           });
         },
         items: [
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             icon: Icon(Icons.format_shapes),
             title: const Text('Formatters'),
           ),
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             icon: Icon(Icons.mood),
             title: const Text('Modelos'),
           ),
@@ -95,30 +93,6 @@ class Formatters extends StatefulWidget {
 }
 
 class FormattersState extends State<Formatters> {
-  final cpfController = TextEditingController();
-  final cnpjController = TextEditingController();
-  final cepController = TextEditingController();
-  final moedaController = TextEditingController();
-  final centavosController = TextEditingController();
-  final telefoneController = TextEditingController();
-  final dataController = TextEditingController();
-  final horaController = TextEditingController();
-  final cartaoController = TextEditingController();
-  final validadeController = TextEditingController();
-
-  @override
-  void dispose() {
-    cpfController.dispose();
-    cnpjController.dispose();
-    cepController.dispose();
-    moedaController.dispose();
-    centavosController.dispose();
-    telefoneController.dispose();
-    dataController.dispose();
-    horaController.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -130,62 +104,75 @@ class FormattersState extends State<Formatters> {
             LinhaFormatter(
               text: 'CPF',
               formatter: CpfInputFormatter(),
-              controller: cpfController,
+              controller: null,
             ),
             const SizedBox(height: 16),
             LinhaFormatter(
               text: 'CNPJ',
               formatter: CnpjInputFormatter(),
-              controller: cnpjController,
+              controller: null,
             ),
             const SizedBox(height: 16),
             LinhaFormatter(
               text: 'CEP',
               formatter: CepInputFormatter(),
-              controller: cepController,
+              controller: null,
             ),
             const SizedBox(height: 16),
             LinhaFormatter(
-                text: 'Moeda',
-                formatter: RealInputFormatter(),
-                controller: moedaController),
+              text: 'Moeda',
+              formatter: RealInputFormatter(),
+              controller: null,
+            ),
             const SizedBox(
               height: 16,
             ),
             LinhaFormatter(
               text: 'Centavos',
               formatter: RealInputFormatter(centavos: true),
-              controller: centavosController,
+              controller: null,
             ),
             const SizedBox(height: 16),
             LinhaFormatter(
               text: 'Telefone',
               formatter: TelefoneInputFormatter(),
-              controller: telefoneController,
+              controller: null,
             ),
             const SizedBox(height: 16),
             LinhaFormatter(
               text: 'Data',
               formatter: DataInputFormatter(),
-              controller: dataController,
+              controller: null,
             ),
             const SizedBox(height: 16),
             LinhaFormatter(
               text: 'Hora',
               formatter: HoraInputFormatter(),
-              controller: horaController,
+              controller: null,
             ),
             const SizedBox(height: 16),
             LinhaFormatter(
               text: 'Cartão',
               formatter: CartaoBancarioInputFormatter(),
-              controller: cartaoController,
+              controller: null,
             ),
             const SizedBox(height: 16),
             LinhaFormatter(
               text: 'Validade',
               formatter: ValidadeCartaoInputFormatter(),
-              controller: validadeController,
+              controller: null,
+            ),
+            const SizedBox(height: 16),
+            LinhaFormatter(
+              text: 'Altura',
+              formatter: AlturaInputFormatter(),
+              controller: null,
+            ),
+            const SizedBox(height: 16),
+            LinhaFormatter(
+              text: 'Peso',
+              formatter: PesoInputFormatter(),
+              controller: null,
             ),
           ],
         ),

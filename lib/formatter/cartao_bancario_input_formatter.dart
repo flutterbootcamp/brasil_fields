@@ -20,7 +20,7 @@ class CartaoBancarioInputFormatter extends TextInputFormatter {
 
     if (newTextLength >= 4) {
       newText.write(newValue.text.substring(0, usedSubstringIndex = 4) + ' ');
-      if (newValue.selection.end >= 5) selectionIndex += 1;
+      if (newValue.selection.end >= 5) selectionIndex++;
     }
     if (newTextLength >= 8) {
       newText.write(newValue.text.substring(4, usedSubstringIndex = 8) + ' ');

@@ -1,3 +1,8 @@
+## [0.2.0] - Novos formatters:
+
+- PesoInputFormatter
+- AlturaInputFormatter
+
 ## [0.1.0] - Adiciona análise estática:
 
 - Adiciona análise estática com o package `pedantic`.
