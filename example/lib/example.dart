@@ -45,11 +45,11 @@ class BrasilFieldsState extends State<BrasilFieldsApp> {
         items: [
           const BottomNavigationBarItem(
             icon: Icon(Icons.format_shapes),
-            title: const Text('Formatters'),
+            title: Text('Formatters'),
           ),
           const BottomNavigationBarItem(
             icon: Icon(Icons.mood),
-            title: const Text('Modelos'),
+            title: Text('Modelos'),
           ),
         ],
       ),
@@ -208,7 +208,7 @@ class LinhaFormatter extends StatelessWidget {
           child: TextField(
             controller: controller,
             decoration: const InputDecoration(
-              border: const OutlineInputBorder(),
+              border: OutlineInputBorder(),
             ),
             inputFormatters: [
               WhitelistingTextInputFormatter.digitsOnly,
