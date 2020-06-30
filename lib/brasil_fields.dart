@@ -16,3 +16,5 @@ export 'modelos/meses.dart';
 export 'modelos/regioes.dart';
 export 'modelos/semana.dart';
 export 'util/util_data.dart';
+export 'compound_formatters/cpf_to_cpnj_formatter.dart';
+export 'compound_formatters/compound_formatter.dart';

@@ -1,4 +1,5 @@
 import 'package:brasil_fields/brasil_fields.dart';
+import 'package:brasil_fields/compound_formatters/cpf_to_cpnj_formatter.dart';
 import 'package:brasil_fields/formatter/cartao_bancario_input_formatter.dart';
 import 'package:brasil_fields/formatter/cnpj_input_formatter.dart';
 import 'package:brasil_fields/formatter/hora_input_formatter.dart';
@@ -135,5 +136,46 @@ void main() {
     await tester.pumpWidget(boilerplate(PesoInputFormatter(), textController));
     await tester.enterText(find.byType(TextField), '1043');
     expect(textController.text, '104,3');
+  });
+
+  testWidgets('Compound of CPF and CPNJ', (WidgetTester tester) async {
+    final textController = TextEditingController();
+    final formatter = CompoundFormatter([
+      CpfInputFormatter(),
+      CnpjInputFormatter(),
+    ]);
+
+    // Esperamos os resultados no seguinte formato:
+    // '123.456.789-00'      // CPF
+    // '12.345.678/9000-99'  // CPNJ
+
+    await tester.pumpWidget(boilerplate(formatter, textController));
+    await tester.enterText(find.byType(TextField), '12345678900');
+    expect(textController.text, '123.456.789-00');
+    await tester.enterText(find.byType(TextField), '123456789000');
+    expect(textController.text, '12.345.678/9000');
+    await tester.enterText(find.byType(TextField), '1234567890009');
+    expect(textController.text, '12.345.678/9000-9');
+    await tester.enterText(find.byType(TextField), '12345678900099');
+    expect(textController.text, '12.345.678/9000-99');
+  });
+
+  testWidgets('CPFToCPNJFormatter', (WidgetTester tester) async {
+    final textController = TextEditingController();
+    final formatter = CPFToCNPJFormatter();
+
+    // Esperamos os resultados no seguinte formato:
+    // '123.456.789-00'      // CPF
+    // '12.345.678/9000-99'  // CPNJ
+
+    await tester.pumpWidget(boilerplate(formatter, textController));
+    await tester.enterText(find.byType(TextField), '12345678900');
+    expect(textController.text, '123.456.789-00');
+    await tester.enterText(find.byType(TextField), '123456789000');
+    expect(textController.text, '12.345.678/9000');
+    await tester.enterText(find.byType(TextField), '1234567890009');
+    expect(textController.text, '12.345.678/9000-9');
+    await tester.enterText(find.byType(TextField), '12345678900099');
+    expect(textController.text, '12.345.678/9000-99');
   });
 }
