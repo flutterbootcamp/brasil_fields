@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 class CnpjInputFormatter extends TextInputFormatter
     implements CompoundableFormatter {
   /// Define o tamanho máximo do campo.
+  @override
   int get maxLength => 14;
 
   @override

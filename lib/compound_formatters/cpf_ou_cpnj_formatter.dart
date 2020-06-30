@@ -1,7 +1,7 @@
 import 'package:brasil_fields/brasil_fields.dart';
 
-class CPFToCNPJFormatter extends CompoundFormatter {
-  CPFToCNPJFormatter()
+class CpfOuCnpjFormatter extends CompoundFormatter {
+  CpfOuCnpjFormatter()
       : super([
           CpfInputFormatter(),
           CnpjInputFormatter(),

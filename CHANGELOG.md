@@ -1,3 +1,7 @@
+## [0.3.0] - Novos formatters:
+
+- CpfOuCnpjFormatter
+
 ## [0.2.0] - Novos formatters:
 
 - PesoInputFormatter

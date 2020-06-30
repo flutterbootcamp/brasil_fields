@@ -174,9 +174,10 @@ class FormattersState extends State<Formatters> {
               formatter: PesoInputFormatter(),
               controller: null,
             ),
+            const SizedBox(height: 16),
             LinhaFormatter(
               text: 'CPF/CPNJ',
-              formatter: CPFToCNPJFormatter(),
+              formatter: CpfOuCnpjFormatter(),
               controller: null,
             ),
           ],

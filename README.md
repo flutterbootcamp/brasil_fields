@@ -11,7 +11,7 @@ utilizam campos com os padrões e formatos brasileiros.
 
 ```
 dependencies:
-  brasil_fields: ^0.2.0
+  brasil_fields: ^0.3.0
 ```
 
 ### Formatters
@@ -28,6 +28,7 @@ dependencies:
 - Validade de cartão bancário (12/24)
 - Altura (2,22)
 - Peso (111,1)
+- Cpf ou Cnpj (se adapta conforme os números são inseridos)
 
 ![Formatters](screenshots/formatters.png)
 
@@ -66,6 +67,7 @@ TextFormField(
 - `ValidadeCartaoInputFormatter()`
 - `AlturaInputFormatter()`
 - `PesoInputFormatter()`
+- `CpfOuCnpjFormatter()`
 
 Caso precise de um DropdownButton com algumas das classes de padrões:
 

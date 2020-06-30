@@ -1,5 +1,5 @@
 import 'package:brasil_fields/brasil_fields.dart';
-import 'package:brasil_fields/compound_formatters/cpf_to_cpnj_formatter.dart';
+import 'package:brasil_fields/compound_formatters/cpf_ou_cpnj_formatter.dart';
 import 'package:brasil_fields/formatter/cartao_bancario_input_formatter.dart';
 import 'package:brasil_fields/formatter/cnpj_input_formatter.dart';
 import 'package:brasil_fields/formatter/hora_input_formatter.dart';
@@ -162,7 +162,7 @@ void main() {
 
   testWidgets('CPFToCPNJFormatter', (WidgetTester tester) async {
     final textController = TextEditingController();
-    final formatter = CPFToCNPJFormatter();
+    final formatter = CpfOuCnpjFormatter();
 
     // Esperamos os resultados no seguinte formato:
     // '123.456.789-00'      // CPF
