@@ -1,9 +1,9 @@
 import 'package:flutter/services.dart';
 
-/// Defines a Formatter which can be combined with another one
-/// to make the transition from one to another possible
-/// Used in [CompoundableFormatter]
+/// Define um [TextInputFormatter] que pode ser combinado com outros
+/// para que seja possível interpolar de um para outro
+/// Usado em [CompoundableFormatter]
 abstract class CompoundableFormatter extends TextInputFormatter {
-  /// Returns the maximum length from the Formatter
+  /// Tamanho máximo do Formatter
   int get maxLength;
 }

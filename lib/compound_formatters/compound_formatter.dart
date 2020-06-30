@@ -1,11 +1,11 @@
 import 'package:brasil_fields/interfaces/compoundable_formatter.dart';
 import 'package:flutter/services.dart';
 
-/// Combines two or more [Formatter] instances such that
-/// it's possible to interpolate from the actual to the next
+/// Combina dois ous mais instâncias de [Formatter] de forma que
+/// seja possível interpolar de um para outro
 class CompoundFormatter extends TextInputFormatter {
-  /// Stores a series of [CompoundableFormatter] instances which are chained
-  /// in the same order as they are positioned in the List
+  /// Guarda uma lista de [CompoundableFormatter] que são encadeados
+  /// na mesma ordem em que estão posicionados na lista
   final List<CompoundableFormatter> _formatters;
 
   CompoundFormatter(this._formatters)

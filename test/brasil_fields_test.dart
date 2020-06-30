@@ -145,7 +145,7 @@ void main() {
       CnpjInputFormatter(),
     ]);
 
-    // Whe expect the results to be as follows:
+    // Esperamos os resultados no seguinte formato:
     // '123.456.789-00'      // CPF
     // '12.345.678/9000-99'  // CPNJ
 
@@ -164,7 +164,7 @@ void main() {
     final textController = TextEditingController();
     final formatter = CPFToCNPJFormatter();
 
-    // Whe expect the results to be as follows:
+    // Esperamos os resultados no seguinte formato:
     // '123.456.789-00'      // CPF
     // '12.345.678/9000-99'  // CPNJ
 
