@@ -11,7 +11,7 @@ utilizam campos com os padrões e formatos brasileiros.
 
 ```yaml
 dependencies:
-  brasil_fields: ^0.3.2
+  brasil_fields: ^0.4.0
 ```
 
 ### Formatters
@@ -45,12 +45,12 @@ dependencies:
 
 Basta incluir o formatter que você quer que o campo tenha, na lista de `inputFormatters` :
 
-**Para garantir que o campo aceite apenas valores numéricos, utilize em conjunto com o formatter `WhitelistingTextInputFormatter.digitsOnly` .**
+**Para garantir que o campo aceite apenas valores numéricos, utilize em conjunto com o formatter `FilteringTextInputFormatter.digitsOnly` .**
 
 ```dart
 TextFormField(
   inputFormatters: [
-    WhitelistingTextInputFormatter.digitsOnly,
+    FilteringTextInputFormatter.digitsOnly,
     CepInputFormatter(),
   ],
 );
@@ -79,4 +79,21 @@ DropdownButton(
     child: Text(opcao),
   );
 }).toList(),
+```
+
+### Métodos úteis
+
+A classe `UtilData` possui métodos que facilitam obter o valor de um objeto `DateTime` em formato `String` (e no padrão brasileiro).
+
+- `UtilData.obterDataDDMMAAAA` (DD/MM/AAAA)
+- `UtilData.obterDataMMAAAA` (MM/AAAA)
+- `UtilData.obterDataDDMM` (MM/AAAA)
+- `UtilData.obterHoraHHMMSS` (hh:mm:ss)
+- `UtilData.obterHoraHHMM` (hh:mm)
+
+Para inicializar um `TextEditingController` com o texto já formatado, basta escolher o método com o formato desejado e setar no atributo `text`:
+
+```dart
+  final _textController = TextEditingController();
+    _textController.text = UtilData.obterDataDDMMAAAA(DateTime.now());
 ```

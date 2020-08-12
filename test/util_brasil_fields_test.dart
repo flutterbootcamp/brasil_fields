@@ -1,4 +1,5 @@
 import 'package:brasil_fields/util/util_brasil_fields.dart';
+import 'package:brasil_fields/util/util_data.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -49,5 +50,51 @@ void main() {
   test('Validade cartão remove caracteres', () {
     final data = '12/23';
     expect(UtilBrasilFields.removeCaracteres(data), '1223');
+  });
+
+  test('Altura remove caracteres', () {
+    final data = '1,79';
+    expect(UtilBrasilFields.removeCaracteres(data), '179');
+  });
+
+  test('Peso remove caracteres', () {
+    final data = '103,5';
+    expect(UtilBrasilFields.removeCaracteres(data), '1035');
+  });
+
+  test('Obter data no formato DD/MM/AAAA', () {
+    final dataInformada = DateTime(2020, 12, 31);
+    final dataToUtc = UtilData.obterDataDDMMAAAA(dataInformada);
+    expect(dataToUtc, '31/12/2020');
+  });
+
+  test('Obter data no formato MM/AAAA', () {
+    final dataInformada = DateTime(2020, 12, 25);
+    final dataToUtc = UtilData.obterDataMMAAAA(dataInformada);
+    expect(dataToUtc, '12/2020');
+  });
+
+  test('Obter data no formato DD/MM', () {
+    final dataInformada = DateTime(2020, 12, 25);
+    final dataToUtc = UtilData.obterDataDDMM(dataInformada);
+    expect(dataToUtc, '25/12');
+  });
+
+  test('Obter data no formato DD/MM', () {
+    final dataInformada = DateTime(2020, 12, 25);
+    final dataToUtc = UtilData.obterDataMMAAAA(dataInformada);
+    expect(dataToUtc, '12/2020');
+  });
+
+  test('Obter hora no formato HH:mm:ss', () {
+    final dataInformada = DateTime(2020, 12, 31, 12, 33, 01);
+    final dataToUtc = UtilData.obterHoraHHMMSS(dataInformada);
+    expect(dataToUtc, '12:33:01');
+  });
+
+  test('Obter hora no formato HH:mm', () {
+    final dataInformada = DateTime(2020, 12, 31, 12, 33, 01);
+    final dataToUtc = UtilData.obterHoraHHMM(dataInformada);
+    expect(dataToUtc, '12:33');
   });
 }

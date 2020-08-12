@@ -1,5 +1,14 @@
 #
 
+## [0.4.0] - Inclui package intl
+
+- Novos métodos para obter as datas em formato `String` à partir de um objeto `DateTime`:
+  - `UtilData.obterDataDDMMAAAA`
+  - `UtilData.obterDataMMAAAA`
+  - `UtilData.obterDataDDMM`
+  - `UtilData.obterHoraHHMMSS`
+  - `UtilData.obterHoraHHMM`
+
 ## [0.3.2] - Corrige TextSelection.collapsed
 
 ## [0.3.1] - Ajustes para versão 1.20

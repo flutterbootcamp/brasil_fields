@@ -1,3 +1,6 @@
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/intl.dart';
+
 /// Classe para manipular datas.
 class UtilData {
   /// Validar se uma data está no formato brasileiro `DDMMAAAA`.
@@ -19,26 +22,34 @@ class UtilData {
     return novaData.toString();
   }
 
-  /// Converte o formato brasileiro `DDMMAAAA` para UTC `AAAAMMDD`.
-  static DateTime dataToUtc(String data) {
-    final dataLimpa = removeCaracteres(data);
-    if (validarData(dataLimpa)) {
-      final novaData = StringBuffer();
-      novaData.write(dataLimpa[4]);
-      novaData.write(dataLimpa[5]);
-      novaData.write(dataLimpa[6]);
-      novaData.write(dataLimpa[7]);
-      novaData.write('-');
-      novaData.write(dataLimpa[2]);
-      novaData.write(dataLimpa[3]);
-      novaData.write('-');
-      novaData.write(dataLimpa[0]);
-      novaData.write(dataLimpa[1]);
+  /// Retorna a data informada no formato `DD/MM/AAAA`
+  static String obterDataDDMMAAAA(DateTime dateTime) {
+    initializeDateFormatting();
+    return DateFormat.yMd('pt_BR').format(dateTime);
+  }
 
-      return DateTime.parse(novaData.toString());
-    } else {
-      throw Exception('Nao foi possível converter a data $data');
-    }
+  /// Retorna a data informada no formato `MM/AAAA`
+  static String obterDataMMAAAA(DateTime dateTime) {
+    initializeDateFormatting();
+    return DateFormat.yM('pt_BR').format(dateTime);
+  }
+
+  /// Retorna a data informada no formato `DD/MM`
+  static String obterDataDDMM(DateTime dateTime) {
+    initializeDateFormatting();
+    return DateFormat.Md('pt_BR').format(dateTime);
+  }
+
+  /// Retorna a hora informada no formato `hh:mm:ss`
+  static String obterHoraHHMMSS(DateTime dateTime) {
+    initializeDateFormatting();
+    return DateFormat.Hms('pt_BR').format(dateTime);
+  }
+
+  /// Retorna a hora informada no formato `hh:mm`
+  static String obterHoraHHMM(DateTime dateTime) {
+    initializeDateFormatting();
+    return DateFormat.Hm('pt_BR').format(dateTime);
   }
 
   /// Retorna o ano da data.

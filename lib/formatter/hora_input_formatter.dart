@@ -46,8 +46,6 @@ class HoraInputFormatter extends TextInputFormatter {
       newText.write(newValue.text.substring(usedSubstringIndex));
     }
 
-    print(selectionIndex);
-
     return TextEditingValue(
       text: newText.toString(),
       selection: TextSelection.collapsed(offset: selectionIndex),
