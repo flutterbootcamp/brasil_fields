@@ -19,7 +19,7 @@ Widget boilerplate(
           child: TextField(
             controller: textController,
             inputFormatters: [
-              WhitelistingTextInputFormatter.digitsOnly,
+              FilteringTextInputFormatter.digitsOnly,
               inputFormatter,
             ],
           ),

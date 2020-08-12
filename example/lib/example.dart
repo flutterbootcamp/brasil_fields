@@ -217,7 +217,7 @@ class LinhaFormatter extends StatelessWidget {
               border: const OutlineInputBorder(),
             ),
             inputFormatters: [
-              WhitelistingTextInputFormatter.digitsOnly,
+              FilteringTextInputFormatter.digitsOnly,
               formatter,
             ],
             keyboardType: TextInputType.number,

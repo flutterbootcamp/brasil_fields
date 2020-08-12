@@ -9,7 +9,7 @@ utilizam campos com os padrões e formatos brasileiros.
 
 ### Instalação
 
-```
+```yaml
 dependencies:
   brasil_fields: ^0.3.0
 ```
@@ -41,7 +41,7 @@ dependencies:
 
 ![Formatters](screenshots/padroes.png)
 
-### Como utilizar :
+### Como utilizar
 
 Basta incluir o formatter que você quer que o campo tenha, na lista de `inputFormatters` :
 
