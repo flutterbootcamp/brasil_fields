@@ -32,7 +32,7 @@ class CepInputFormatter extends TextInputFormatter {
 
     return TextEditingValue(
       text: newText.toString(),
-      selection: TextSelection.collapsed(int: selectionIndex),
+      selection: TextSelection.collapsed(offset: selectionIndex),
     );
   }
 }

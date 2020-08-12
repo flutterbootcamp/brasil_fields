@@ -11,7 +11,7 @@ utilizam campos com os padrões e formatos brasileiros.
 
 ```yaml
 dependencies:
-  brasil_fields: ^0.3.0
+  brasil_fields: ^0.3.2
 ```
 
 ### Formatters
