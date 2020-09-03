@@ -15,7 +15,7 @@ class TelefoneInputFormatter extends TextInputFormatter {
 
     //verifica se é celular ou telefone fixo
     if (newTextLength == 11) {
-      if (newValue.text.toString()[2] != '9') {
+      if (newValue.text.toString()[2] != '9' && newValue.text.toString()[2] != '8' && newValue.text.toString()[2] != '7') {
         return oldValue;
       }
     }
