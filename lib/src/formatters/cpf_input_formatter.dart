@@ -1,4 +1,4 @@
-import 'package:brasil_fields/interfaces/compoundable_formatter.dart';
+import 'package:brasil_fields/src/interfaces/compoundable_formatter.dart';
 import 'package:flutter/services.dart';
 
 /// Formata o valor do campo com a mascara de CPF ( XXX.XXX.XXX-XX ).
@@ -39,7 +39,8 @@ class CpfInputFormatter extends TextInputFormatter
 
     return TextEditingValue(
       text: newText.toString(),
-      selection: TextSelection.collapsed(offset: selectionIndex),
+      // selection: TextSelection.collapsed(offset: selectionIndex),
+      selection: TextSelection.collapsed(offset: 1),
     );
   }
 }

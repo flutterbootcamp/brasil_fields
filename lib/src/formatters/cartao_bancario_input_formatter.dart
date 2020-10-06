@@ -36,7 +36,7 @@ class CartaoBancarioInputFormatter extends TextInputFormatter {
 
     return TextEditingValue(
       text: newText.toString(),
-      selection: TextSelection.collapsed(offset: selectionIndex),
+      selection: TextSelection.collapsed(),
     );
   }
 }

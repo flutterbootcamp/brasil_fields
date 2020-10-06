@@ -1,4 +1,4 @@
-import 'package:brasil_fields/interfaces/compoundable_formatter.dart';
+import 'package:brasil_fields/src/interfaces/compoundable_formatter.dart';
 import 'package:flutter/services.dart';
 
 /// Combina dois ous mais instâncias de [Formatter] de forma que

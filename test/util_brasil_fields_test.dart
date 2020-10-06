@@ -1,5 +1,5 @@
-import 'package:brasil_fields/util/util_brasil_fields.dart';
-import 'package:brasil_fields/util/util_data.dart';
+import 'package:brasil_fields/src/util/util_brasil_fields.dart';
+import 'package:brasil_fields/src/util/util_data.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

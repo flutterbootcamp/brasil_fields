@@ -1,9 +1,7 @@
 import 'package:brasil_fields/brasil_fields.dart';
-import 'package:brasil_fields/compound_formatters/cpf_ou_cpnj_formatter.dart';
-import 'package:brasil_fields/formatter/cartao_bancario_input_formatter.dart';
-import 'package:brasil_fields/formatter/cnpj_input_formatter.dart';
-import 'package:brasil_fields/formatter/hora_input_formatter.dart';
-import 'package:brasil_fields/formatter/validade_cartao_input_formatter.dart';
+
+import 'package:brasil_fields/src/formatters/compound_formatters/compound_formatter.dart';
+import 'package:brasil_fields/src/formatters/compound_formatters/cpf_ou_cpnj_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -136,6 +134,39 @@ void main() {
     await tester.pumpWidget(boilerplate(PesoInputFormatter(), textController));
     await tester.enterText(find.byType(TextField), '1043');
     expect(textController.text, '104,3');
+  });
+
+  testWidgets('Comprimento', (WidgetTester tester) async {
+    final textController = TextEditingController();
+
+    await tester
+        .pumpWidget(boilerplate(ComprimentoInputFormatter(), textController));
+    await tester.enterText(find.byType(TextField), '120');
+    expect(textController.text, '12,0');
+
+    await tester
+        .pumpWidget(boilerplate(ComprimentoInputFormatter(), textController));
+    await tester.enterText(find.byType(TextField), '1234');
+    expect(textController.text, '12,34');
+    await tester
+        .pumpWidget(boilerplate(ComprimentoInputFormatter(), textController));
+    await tester.enterText(find.byType(TextField), '12345');
+    expect(textController.text, '123,45');
+  });
+
+  testWidgets('KM', (WidgetTester tester) async {
+    final textController = TextEditingController();
+
+    await tester.pumpWidget(boilerplate(KmInputFormatter(), textController));
+    await tester.enterText(find.byType(TextField), '120');
+    expect(textController.text, '12,0');
+
+    await tester.pumpWidget(boilerplate(KmInputFormatter(), textController));
+    await tester.enterText(find.byType(TextField), '1234');
+    expect(textController.text, '12,34');
+    await tester.pumpWidget(boilerplate(KmInputFormatter(), textController));
+    await tester.enterText(find.byType(TextField), '12345');
+    expect(textController.text, '123,45');
   });
 
   testWidgets('Compound of CPF and CPNJ', (WidgetTester tester) async {

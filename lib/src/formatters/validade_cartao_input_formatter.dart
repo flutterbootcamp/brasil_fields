@@ -1,11 +1,9 @@
 import 'package:flutter/services.dart';
 
-/// Formata o valor do campo com a mascara kg,g (ex: 103,8)
-class PesoInputFormatter extends TextInputFormatter {
+/// Formata o valor do campo com a mascara MM/AA
+class ValidadeCartaoInputFormatter extends TextInputFormatter {
   /// Define o tamanho máximo do campo.
   final int maxLength = 4;
-
-  PesoInputFormatter();
 
   @override
   TextEditingValue formatEditUpdate(
@@ -19,14 +17,20 @@ class PesoInputFormatter extends TextInputFormatter {
 
     var usedSubstringIndex = 0;
     final newText = StringBuffer();
+
     switch (newTextLength) {
-      case 3:
-        newText.write(newValue.text.substring(0, usedSubstringIndex = 2) + ',');
-        if (newValue.selection.end >= 3) selectionIndex++;
+      case 1:
+        final hora = int.tryParse(newValue.text.substring(0, 1));
+        if (hora >= 2) return oldValue;
         break;
+      case 2:
+        final hora = int.tryParse(newValue.text.substring(0, 2));
+        if (hora >= 13) return oldValue;
+        break;
+      case 3:
       case 4:
-        newText.write(newValue.text.substring(0, usedSubstringIndex = 3) + ',');
-        if (newValue.selection.end >= 4) selectionIndex++;
+        newText.write(newValue.text.substring(0, usedSubstringIndex = 2) + '/');
+        if (newValue.selection.end >= 2) selectionIndex++;
         break;
     }
 
@@ -36,7 +40,7 @@ class PesoInputFormatter extends TextInputFormatter {
 
     return TextEditingValue(
       text: newText.toString(),
-      selection: TextSelection.collapsed(offset: selectionIndex),
+      selection: TextSelection.collapsed(),
     );
   }
 }

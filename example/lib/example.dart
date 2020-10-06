@@ -45,11 +45,11 @@ class BrasilFieldsState extends State<BrasilFieldsApp> {
         items: [
           const BottomNavigationBarItem(
             icon: Icon(Icons.format_shapes),
-            title: const Text('Formatters'),
+            label: 'Formatters',
           ),
           const BottomNavigationBarItem(
             icon: Icon(Icons.mood),
-            title: const Text('Modelos'),
+            label: 'Modelos',
           ),
         ],
       ),

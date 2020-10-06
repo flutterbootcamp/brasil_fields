@@ -1,4 +1,4 @@
-import 'package:brasil_fields/interfaces/compoundable_formatter.dart';
+import 'package:brasil_fields/src/interfaces/compoundable_formatter.dart';
 import 'package:flutter/services.dart';
 
 /// Formata o valor do campo com a mascara de CNPJ ( 99.999.999/9999-99 ).
@@ -43,7 +43,7 @@ class CnpjInputFormatter extends TextInputFormatter
 
     return TextEditingValue(
       text: newText.toString(),
-      selection: TextSelection.collapsed(offset: selectionIndex),
+      selection: TextSelection.collapsed(),
     );
   }
 }
