@@ -136,37 +136,24 @@ void main() {
     expect(textController.text, '104,3');
   });
 
-  testWidgets('Comprimento', (WidgetTester tester) async {
-    final textController = TextEditingController();
-
-    await tester
-        .pumpWidget(boilerplate(ComprimentoInputFormatter(), textController));
-    await tester.enterText(find.byType(TextField), '120');
-    expect(textController.text, '12,0');
-
-    await tester
-        .pumpWidget(boilerplate(ComprimentoInputFormatter(), textController));
-    await tester.enterText(find.byType(TextField), '1234');
-    expect(textController.text, '12,34');
-    await tester
-        .pumpWidget(boilerplate(ComprimentoInputFormatter(), textController));
-    await tester.enterText(find.byType(TextField), '12345');
-    expect(textController.text, '123,45');
-  });
-
   testWidgets('KM', (WidgetTester tester) async {
     final textController = TextEditingController();
 
     await tester.pumpWidget(boilerplate(KmInputFormatter(), textController));
     await tester.enterText(find.byType(TextField), '120');
-    expect(textController.text, '12,0');
+    expect(textController.text, '120');
 
     await tester.pumpWidget(boilerplate(KmInputFormatter(), textController));
     await tester.enterText(find.byType(TextField), '1234');
-    expect(textController.text, '12,34');
+    expect(textController.text, '1.234');
+
     await tester.pumpWidget(boilerplate(KmInputFormatter(), textController));
     await tester.enterText(find.byType(TextField), '12345');
-    expect(textController.text, '123,45');
+    expect(textController.text, '12.345');
+
+    await tester.pumpWidget(boilerplate(KmInputFormatter(), textController));
+    await tester.enterText(find.byType(TextField), '123456');
+    expect(textController.text, '123.456');
   });
 
   testWidgets('Compound of CPF and CPNJ', (WidgetTester tester) async {

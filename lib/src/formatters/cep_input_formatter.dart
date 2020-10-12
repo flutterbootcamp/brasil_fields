@@ -5,6 +5,9 @@ class CepInputFormatter extends TextInputFormatter {
   /// Define o tamanho máximo do campo.
   final int maxLength = 8;
 
+  /// [ponto] indica se o formato do CEP deve utilizar `.` ou não.
+  final bool ponto = true;
+
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
@@ -32,7 +35,7 @@ class CepInputFormatter extends TextInputFormatter {
 
     return TextEditingValue(
       text: newText.toString(),
-      selection: TextSelection.collapsed(),
+      selection: TextSelection.collapsed(offset: selectionIndex),
     );
   }
 }

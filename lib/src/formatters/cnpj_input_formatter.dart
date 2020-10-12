@@ -43,7 +43,7 @@ class CnpjInputFormatter extends TextInputFormatter
 
     return TextEditingValue(
       text: newText.toString(),
-      selection: TextSelection.collapsed(),
+      selection: TextSelection.collapsed(offset: selectionIndex),
     );
   }
 }

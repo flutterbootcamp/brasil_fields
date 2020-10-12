@@ -9,7 +9,7 @@ class RealInputFormatter extends TextInputFormatter {
   /// Define o tamanho máximo do campo.
   int maxLength = 12;
 
-  /// [boolean] para indicar se o campo aceita centavos ou não.
+  /// [centavos] para indicar se o campo aceita centavos ou não.
   final bool centavos;
 
   @override
@@ -221,7 +221,7 @@ class RealInputFormatter extends TextInputFormatter {
 
     return TextEditingValue(
       text: newText.toString(),
-      selection: TextSelection.collapsed(),
+      selection: TextSelection.collapsed(offset: selectionIndex),
     );
   }
 }

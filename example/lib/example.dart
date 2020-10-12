@@ -180,6 +180,12 @@ class FormattersState extends State<Formatters> {
               formatter: CpfOuCnpjFormatter(),
               controller: null,
             ),
+            const SizedBox(height: 16),
+            LinhaFormatter(
+              text: 'KM',
+              formatter: KmInputFormatter(),
+              controller: null,
+            ),
           ],
         ),
       ),

@@ -39,8 +39,7 @@ class CpfInputFormatter extends TextInputFormatter
 
     return TextEditingValue(
       text: newText.toString(),
-      // selection: TextSelection.collapsed(offset: selectionIndex),
-      selection: TextSelection.collapsed(offset: 1),
+      selection: TextSelection.collapsed(offset: selectionIndex),
     );
   }
 }
