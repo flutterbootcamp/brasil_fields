@@ -14,7 +14,7 @@
       "name": "app",
       "type": "dart",
       "request": "launch",
-      "program": "example/lib/example.dart"
+      "program": "example/lib/main.dart"
     }
   ]
 }

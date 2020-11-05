@@ -1,5 +1,7 @@
 #
 
+## [0.5.0] - Novo aplicativo de exemplo.
+
 ## [0.4.0] - Inclui package intl
 
 - Novos métodos para obter as datas em formato `String` à partir de um objeto `DateTime`:

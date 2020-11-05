@@ -52,22 +52,6 @@ class UtilData {
     return DateFormat.Hm('pt_BR').format(dateTime);
   }
 
-  /// Retorna o ano da data.
-  static int getAno(String data) {
-    final dataLimpa = removeCaracteres(data);
-    if (validarData(dataLimpa)) {
-      final novaData = StringBuffer();
-      novaData.write(dataLimpa[4]);
-      novaData.write(dataLimpa[5]);
-      novaData.write(dataLimpa[6]);
-      novaData.write(dataLimpa[7]);
-
-      return int.tryParse(novaData.toString());
-    } else {
-      throw Exception('Nao foi possível obter o ano da data $data');
-    }
-  }
-
   /// Retorna o mes de uma data. Informar data no formato `DDMMAAAA`
   static int getMes(String data) {
     final dataLimpa = removeCaracteres(data);

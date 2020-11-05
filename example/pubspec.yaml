@@ -1,16 +1,16 @@
 name: example
-description: Exemplo de como utilizar o package brasil_fields.
-author: Rubens de Melo <rubensdemelo@gmail.com>
-homepage: https://github.com/rubensdemelo/brasil_fields
-version: 0.0.4
+description: Exemplo de uso do package brasil_fields
+
+publish_to: 'none'
+
+version: 1.0.0
 
 environment:
-  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+  sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-
   brasil_fields:
     path: ../
 

@@ -4,34 +4,34 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   test('CPF remove caracteres', () {
-    final data = '111.222.333-44';
-    expect(UtilBrasilFields.removeCaracteres(data), '11122233344');
+    final cpf = '111.222.333-44';
+    expect(UtilBrasilFields.removeCaracteres(cpf), '11122233344');
   });
 
   test('CNPJ remove caracteres', () {
-    final data = '11.222.333/4444-55';
-    expect(UtilBrasilFields.removeCaracteres(data), '11222333444455');
+    final cnpj = '11.222.333/4444-55';
+    expect(UtilBrasilFields.removeCaracteres(cnpj), '11222333444455');
   });
 
   test('CEP remove caracteres', () {
-    final data = '11.222-333';
-    expect(UtilBrasilFields.removeCaracteres(data), '11222333');
+    final cep = '11.222-333';
+    expect(UtilBrasilFields.removeCaracteres(cep), '11222333');
   });
 
   test('REAL remove caracteres', () {
-    final data = '11.222';
-    expect(UtilBrasilFields.removeCaracteres(data), '11222');
+    final real = '11.222';
+    expect(UtilBrasilFields.removeCaracteres(real), '11222');
   });
 
   test('CENTAVOS remove caracteres', () {
-    final data = '0,99';
-    expect(UtilBrasilFields.removeCaracteres(data), '099');
+    final centavos = '0,99';
+    expect(UtilBrasilFields.removeCaracteres(centavos), '099');
   });
 
   test('TELEFONE remove caracteres', () {
-    final data = '(99) 88888-7777';
+    final telefone = '(99) 88888-7777';
 
-    expect(UtilBrasilFields.removeCaracteres(data), '99888887777');
+    expect(UtilBrasilFields.removeCaracteres(telefone), '99888887777');
   });
 
   test('DATA remove caracteres', () {
@@ -40,26 +40,26 @@ void main() {
   });
 
   test('Hora remove caracteres', () {
-    final data = '23:59';
-    expect(UtilBrasilFields.removeCaracteres(data), '2359');
+    final hora = '23:59';
+    expect(UtilBrasilFields.removeCaracteres(hora), '2359');
   });
   test('Cartao remove caracteres', () {
-    final data = '1111 2222 3333 4444';
-    expect(UtilBrasilFields.removeCaracteres(data), '1111222233334444');
+    final cartao = '1111 2222 3333 4444';
+    expect(UtilBrasilFields.removeCaracteres(cartao), '1111222233334444');
   });
   test('Validade cartão remove caracteres', () {
-    final data = '12/23';
-    expect(UtilBrasilFields.removeCaracteres(data), '1223');
+    final validade = '12/23';
+    expect(UtilBrasilFields.removeCaracteres(validade), '1223');
   });
 
   test('Altura remove caracteres', () {
-    final data = '1,79';
-    expect(UtilBrasilFields.removeCaracteres(data), '179');
+    final altura = '1,79';
+    expect(UtilBrasilFields.removeCaracteres(altura), '179');
   });
 
   test('Peso remove caracteres', () {
-    final data = '103,5';
-    expect(UtilBrasilFields.removeCaracteres(data), '1035');
+    final peso = '103,5';
+    expect(UtilBrasilFields.removeCaracteres(peso), '1035');
   });
 
   test('Obter data no formato DD/MM/AAAA', () {
@@ -96,5 +96,16 @@ void main() {
     final dataInformada = DateTime(2020, 12, 31, 12, 33, 01);
     final dataToUtc = UtilData.obterHoraHHMM(dataInformada);
     expect(dataToUtc, '12:33');
+  });
+
+  test('Obter CPF formatado', () {
+    expect(UtilBrasilFields.obterCpf('11122233344'), '111.222.333-44');
+  });
+
+  test('Obter CNPJ formatado', () {
+    expect(UtilBrasilFields.obterCnpj('11222333444455'), '11.222.333/4444-55');
+  });
+  test('Obter CEP formatado', () {
+    expect(UtilBrasilFields.obterCep('11222333'), '11.222-333');
   });
 }
