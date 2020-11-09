@@ -3,38 +3,46 @@ import 'package:flutter/services.dart';
 /// Formata o valor do campo com a mascara de CEP ( XX.XXX-XXX ).
 class CepInputFormatter extends TextInputFormatter {
   /// Define o tamanho máximo do campo.
-  final int maxLength = 8;
+  final maxLength = 8;
 
   /// [ponto] indica se o formato do CEP deve utilizar `.` ou não.
-  final bool ponto = true;
+  final bool ponto;
+
+  CepInputFormatter({this.ponto = true});
 
   @override
   TextEditingValue formatEditUpdate(
-      TextEditingValue oldValue, TextEditingValue newValue) {
-    final newTextLength = newValue.text.length;
-    var selectionIndex = newValue.selection.end;
+      TextEditingValue valorAnterior, TextEditingValue novoValor) {
+    final novoValorLength = novoValor.text.length;
+    var selectionIndex = novoValor.selection.end;
 
-    if (newTextLength > maxLength) {
-      return oldValue;
+    if (novoValorLength > maxLength) {
+      return valorAnterior;
+    }
+    var substrInicio = 2;
+    if (!ponto) {
+      substrInicio = 0;
     }
 
-    var usedSubstringIndex = 0;
-    final newText = StringBuffer();
+    var substrIndex = 0;
+    final valorFinal = StringBuffer();
 
-    if (newTextLength >= 3) {
-      newText.write(newValue.text.substring(0, usedSubstringIndex = 2) + '.');
-      if (newValue.selection.end >= 2) selectionIndex++;
+    if (novoValorLength >= 3 && ponto) {
+      valorFinal.write(novoValor.text.substring(0, substrIndex = 2) + '.');
+      if (novoValor.selection.end >= 2) selectionIndex++;
     }
-    if (newTextLength >= 6) {
-      newText.write(newValue.text.substring(2, usedSubstringIndex = 5) + '-');
-      if (newValue.selection.end >= 5) selectionIndex++;
+    if (novoValorLength >= 6) {
+      valorFinal
+          .write(novoValor.text.substring(substrInicio, substrIndex = 5) + '-');
+      if (novoValor.selection.end >= 5) selectionIndex++;
     }
-    if (newTextLength >= usedSubstringIndex) {
-      newText.write(newValue.text.substring(usedSubstringIndex));
+
+    if (novoValorLength >= substrIndex) {
+      valorFinal.write(novoValor.text.substring(substrIndex));
     }
 
     return TextEditingValue(
-      text: newText.toString(),
+      text: valorFinal.toString(),
       selection: TextSelection.collapsed(offset: selectionIndex),
     );
   }

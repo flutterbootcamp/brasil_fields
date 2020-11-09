@@ -64,8 +64,17 @@ void main() {
     final textController = TextEditingController();
     await tester.pumpWidget(boilerplate(CepInputFormatter(), textController));
 
+    await tester.enterText(find.byType(TextField), '123456789');
+    expect(textController.text, '');
+
     await tester.enterText(find.byType(TextField), '12345678');
     expect(textController.text, '12.345-678');
+
+    await tester.pumpWidget(
+        boilerplate(CepInputFormatter(ponto: false), textController));
+
+    await tester.enterText(find.byType(TextField), '12345678');
+    expect(textController.text, '12345-678');
   });
 
   testWidgets('RealInputFormatter', (WidgetTester tester) async {
