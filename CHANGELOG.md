@@ -1,6 +1,9 @@
 #
 
 ## [0.5.0] - Novo aplicativo de exemplo.
+- Inclui `KmInputFormatter`()`;
+- Criação dos métodos `obterCpf()`, `obterCnpj()` e `obterCep()` na classe `UtilBrasilFields`;
+- Parâmetro `ponto` no `CepInputFormatter()`. 
 
 ## [0.4.0] - Inclui package intl
 

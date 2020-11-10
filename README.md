@@ -16,19 +16,20 @@ dependencies:
 
 ### Formatters
 
-- CPF (999.999.99-99)
-- CNPJ (99.999.999/9999-99)
+- Altura (2,22)
+- Cartão bancário (0000 1111 2222 3333 4444)
 - CEP (99.999-999)
-- Real (R\$) (20.550)
-- Centavos (R\$) (20,90)
-- Telefone ( (99) 9999-9999)
+- CNPJ (99.999.999/9999-99)
+- CPF (999.999.99-99)
+- Cpf ou Cnpj (se adapta conforme os números são inseridos)
 - Data (01/01/1900)
 - Hora (23:59)
-- Cartão bancário (0000 1111 2222 3333 4444)
-- Validade de cartão bancário (12/24)
-- Altura (2,22)
+- KM (999.999)
 - Peso (111,1)
-- Cpf ou Cnpj (se adapta conforme os números são inseridos)
+- Real (R\$) (20.550)
+- Telefone ( (99) 9999-9999)
+- Validade de cartão bancário (12/24)
+
 
 ![Formatters](screenshots/formatters.png)
 
@@ -56,18 +57,19 @@ TextFormField(
 );
 ```
 
-- `CpfInputFormatter()`
-- `CnpjInputFormatter()`
+- `AlturaInputFormatter()`
+- `CartaoBancarioInputFormatter()`
 - `CepInputFormatter()`
-- `RealInputFormatter()`
-- `TelefoneInputFormatter()`
+- `CnpjInputFormatter()`
+- `CpfInputFormatter()`
+- `CpfOuCnpjFormatter()`
 - `DataInputFormatter()`
 - `HoraInputFormatter()`
-- `CartaoBancarioInputFormatter()`
-- `ValidadeCartaoInputFormatter()`
-- `AlturaInputFormatter()`
+- `KmInputFormatter()`
 - `PesoInputFormatter()`
-- `CpfOuCnpjFormatter()`
+- `RealInputFormatter()`
+- `TelefoneInputFormatter()`
+- `ValidadeCartaoInputFormatter()`
 
 Caso precise de um DropdownButton com algumas das classes de padrões:
 
@@ -91,9 +93,15 @@ A classe `UtilData` possui métodos que facilitam obter o valor de um objeto `Da
 - `UtilData.obterHoraHHMMSS` (hh:mm:ss)
 - `UtilData.obterHoraHHMM` (hh:mm)
 
+A classe `UtilBrasilFields` possui métodos que facilitam obtert os valores CEP, CPF e CPNJ já formatados:
+
+- `UtilBrasilFields.obterCpf('11122233344')` (111.222.333-44)
+- `UtilBrasilFields.obterCnpj('11222333444455')` (11.222.333/4444-55)
+- `UtilBrasilFields.obterCep('11222333')` (11.222-333)
+
 Para inicializar um `TextEditingController` com o texto já formatado, basta escolher o método com o formato desejado e setar no atributo `text`:
 
 ```dart
-  final _textController = TextEditingController();
-    _textController.text = UtilData.obterDataDDMMAAAA(DateTime.now());
+  final dataController = TextEditingController(text: UtilData.obterDataDDMMAAAA(DateTime(2020, 12, 31)));
+  final cnpjController = TextEditingController(text: UtilBrasilFields.obterCnpj('11222333444455'));
 ```
