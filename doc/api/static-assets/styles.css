@@ -341,6 +341,12 @@ dd p {
   margin-bottom: 0;
 }
 
+/* Enum values do not have their own pages; their full docs are presented on the
+ * enum class's page. */
+dt.constant + dd p {
+  margin-bottom: 1em;
+}
+
 /* indents wrapped lines */
 section.summary dt {
   margin-left: 24px;
@@ -457,6 +463,22 @@ dl dt.callable .name {
 }
 
 h1 .category {
+  vertical-align: middle;
+}
+
+.feature {
+  display: inline-block;
+  background: white;
+  border: 1px solid #0175c2;
+  border-radius: 20px;
+  color: #0175c2;
+
+  font-size: 12px;
+  padding: 1px 6px;
+  margin: 0 8px 0 0;
+}
+
+h1 .feature {
   vertical-align: middle;
 }
 
