@@ -1,4 +1,4 @@
-#
+## [0.5.1] - Nova documentação.
 
 ## [0.5.0] - Novo aplicativo de exemplo.
 - Inclui `KmInputFormatter`()`;
