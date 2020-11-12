@@ -1,3 +1,7 @@
+/// Possui a lista com todos os meses do ano.
+///
+/// `listaMeses` lista com todos os meses.
+/// `mapaMeses` mapa com todos os meses.
 class Meses {
   static final List<String> listaMeses = [
     'Janeiro',

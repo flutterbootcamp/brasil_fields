@@ -1,3 +1,7 @@
+/// Possui a lista com todos os estados do Brasil.
+///
+/// `listaEstados` lista com todos os estados.
+/// `listaEstadosSigla` lista com a sigla de todos os estados.
 class Estados {
   static final List<String> listaEstados = [
     'Acre',
@@ -29,7 +33,7 @@ class Estados {
     'Tocantins',
   ];
 
-  static final List<String> listaEstadosAbrv = [
+  static final List<String> listaEstadosSigla = [
     'AC',
     'AL',
     'AP',

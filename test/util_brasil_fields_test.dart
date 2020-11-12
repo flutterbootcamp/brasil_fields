@@ -107,5 +107,12 @@ void main() {
   });
   test('Obter CEP formatado', () {
     expect(UtilBrasilFields.obterCep('11222333'), '11.222-333');
+    expect(UtilBrasilFields.obterCep('11222333', ponto: false), '11222-333');
+  });
+
+  test('Obter Telefone formatado', () {
+    expect(UtilBrasilFields.obterTelefone('00999998877'), '(00) 99999-8877');
+    expect(
+        UtilBrasilFields.obterTelefone('999998877', ddd: false), '99999-8877');
   });
 }

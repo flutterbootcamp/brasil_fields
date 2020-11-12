@@ -137,6 +137,9 @@ utilizam campos com os padrões e formatos brasileiros.</p>
 <li><code>UtilBrasilFields.obterCpf('11122233344')</code> (111.222.333-44)</li>
 <li><code>UtilBrasilFields.obterCnpj('11222333444455')</code> (11.222.333/4444-55)</li>
 <li><code>UtilBrasilFields.obterCep('11222333')</code> (11.222-333)</li>
+<li><code>UtilBrasilFields.obterCep('11222333', ponto: false)</code> (11222-333)</li>
+<li><code>UtilBrasilFields.obterTelefone('00999998877')</code> ((00) 99999-8877)</li>
+<li><code>UtilBrasilFields.obterTelefone('999998877', ddd: false)</code> (99999-8877)</li>
 </ul>
 <p>Para inicializar um <code>TextEditingController</code> com o texto já formatado, basta escolher o método com o formato desejado e setar no atributo <code>text</code>:</p>
 <pre class="language-dart"><code class="language-dart">  final dataController = TextEditingController(text: UtilData.obterDataDDMMAAAA(DateTime(2020, 12, 31)));
@@ -166,7 +169,7 @@ utilizam campos com os padrões e formatos brasileiros.</p>
 <footer>
   <span class="no-break">
     brasil_fields
-      0.5.0
+      0.6.0
   </span>
 
 </footer>

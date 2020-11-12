@@ -75,6 +75,7 @@
         <li><a href="../../brasil_fields/UtilBrasilFields/obterCep.html">obterCep</a></li>
         <li><a href="../../brasil_fields/UtilBrasilFields/obterCnpj.html">obterCnpj</a></li>
         <li><a href="../../brasil_fields/UtilBrasilFields/obterCpf.html">obterCpf</a></li>
+        <li><a href="../../brasil_fields/UtilBrasilFields/obterTelefone.html">obterTelefone</a></li>
         <li><a href="../../brasil_fields/UtilBrasilFields/removeCaracteres.html">removeCaracteres</a></li>
     
     
@@ -96,7 +97,8 @@
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">static String obterCpf(String cpf) {
-  assert(cpf.length == 11);
+  assert(cpf.length == 11,
+      &#39;CPF com tamanho inválido. Deve conter 11 caracteres&#39;);
   return cpf.substring(0, 3) +
       &#39;.&#39; +
       cpf.substring(3, 6) +
@@ -117,7 +119,7 @@
 <footer>
   <span class="no-break">
     brasil_fields
-      0.5.0
+      0.6.0
   </span>
 
 </footer>

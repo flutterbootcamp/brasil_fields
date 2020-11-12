@@ -10,31 +10,31 @@ class CpfInputFormatter extends TextInputFormatter
 
   @override
   TextEditingValue formatEditUpdate(
-      TextEditingValue oldValue, TextEditingValue newValue) {
-    final newTextLength = newValue.text.length;
-    var selectionIndex = newValue.selection.end;
+      TextEditingValue valorAntigo, TextEditingValue valorNovo) {
+    final novoTextLength = valorNovo.text.length;
+    var selectionIndex = valorNovo.selection.end;
 
-    if (newTextLength > maxLength) {
-      return oldValue;
+    if (novoTextLength > maxLength) {
+      return valorAntigo;
     }
 
     var usedSubstringIndex = 0;
     final newText = StringBuffer();
 
-    if (newTextLength >= 4) {
-      newText.write(newValue.text.substring(0, usedSubstringIndex = 3) + '.');
-      if (newValue.selection.end >= 3) selectionIndex++;
+    if (novoTextLength >= 4) {
+      newText.write(valorNovo.text.substring(0, usedSubstringIndex = 3) + '.');
+      if (valorNovo.selection.end >= 3) selectionIndex++;
     }
-    if (newTextLength >= 7) {
-      newText.write(newValue.text.substring(3, usedSubstringIndex = 6) + '.');
-      if (newValue.selection.end >= 6) selectionIndex++;
+    if (novoTextLength >= 7) {
+      newText.write(valorNovo.text.substring(3, usedSubstringIndex = 6) + '.');
+      if (valorNovo.selection.end >= 6) selectionIndex++;
     }
-    if (newTextLength >= 10) {
-      newText.write(newValue.text.substring(6, usedSubstringIndex = 9) + '-');
-      if (newValue.selection.end >= 9) selectionIndex++;
+    if (novoTextLength >= 10) {
+      newText.write(valorNovo.text.substring(6, usedSubstringIndex = 9) + '-');
+      if (valorNovo.selection.end >= 9) selectionIndex++;
     }
-    if (newTextLength >= usedSubstringIndex) {
-      newText.write(newValue.text.substring(usedSubstringIndex));
+    if (novoTextLength >= usedSubstringIndex) {
+      newText.write(valorNovo.text.substring(usedSubstringIndex));
     }
 
     return TextEditingValue(

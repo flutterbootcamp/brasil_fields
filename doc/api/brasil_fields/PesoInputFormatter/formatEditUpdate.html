@@ -90,8 +90,8 @@
       </div>
       <span class="returntype"><a href="https://api.flutter.dev/flutter/services/TextEditingValue-class.html">TextEditingValue</a></span>
             <span class="name ">formatEditUpdate</span>
-(<wbr><ol class="parameter-list"><li><span class="parameter" id="formatEditUpdate-param-oldValue"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/services/TextEditingValue-class.html">TextEditingValue</a></span> <span class="parameter-name">oldValue</span>, </span></li>
-<li><span class="parameter" id="formatEditUpdate-param-newValue"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/services/TextEditingValue-class.html">TextEditingValue</a></span> <span class="parameter-name">newValue</span></span></li>
+(<wbr><ol class="parameter-list"><li><span class="parameter" id="formatEditUpdate-param-valorAntigo"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/services/TextEditingValue-class.html">TextEditingValue</a></span> <span class="parameter-name">valorAntigo</span>, </span></li>
+<li><span class="parameter" id="formatEditUpdate-param-valorNovo"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/services/TextEditingValue-class.html">TextEditingValue</a></span> <span class="parameter-name">valorNovo</span></span></li>
 </ol>)
       <div class="features">override</div>
     </section>
@@ -107,29 +107,31 @@ the incoming new text value.</p>
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">@override
 TextEditingValue formatEditUpdate(
-    TextEditingValue oldValue, TextEditingValue newValue) {
-  final newTextLength = newValue.text.length;
-  var selectionIndex = newValue.selection.end;
+    TextEditingValue valorAntigo, TextEditingValue valorNovo) {
+  final novoTextLength = valorNovo.text.length;
+  var selectionIndex = valorNovo.selection.end;
 
-  if (newTextLength &gt; maxLength) {
-    return oldValue;
+  if (novoTextLength &gt; maxLength) {
+    return valorAntigo;
   }
 
   var usedSubstringIndex = 0;
   final newText = StringBuffer();
-  switch (newTextLength) {
+  switch (novoTextLength) {
     case 3:
-      newText.write(newValue.text.substring(0, usedSubstringIndex = 2) + &#39;,&#39;);
-      if (newValue.selection.end &gt;= 3) selectionIndex++;
+      newText
+          .write(valorNovo.text.substring(0, usedSubstringIndex = 2) + &#39;,&#39;);
+      if (valorNovo.selection.end &gt;= 3) selectionIndex++;
       break;
     case 4:
-      newText.write(newValue.text.substring(0, usedSubstringIndex = 3) + &#39;,&#39;);
-      if (newValue.selection.end &gt;= 4) selectionIndex++;
+      newText
+          .write(valorNovo.text.substring(0, usedSubstringIndex = 3) + &#39;,&#39;);
+      if (valorNovo.selection.end &gt;= 4) selectionIndex++;
       break;
   }
 
-  if (newTextLength &gt;= usedSubstringIndex) {
-    newText.write(newValue.text.substring(usedSubstringIndex));
+  if (novoTextLength &gt;= usedSubstringIndex) {
+    newText.write(valorNovo.text.substring(usedSubstringIndex));
   }
 
   return TextEditingValue(
@@ -149,7 +151,7 @@ TextEditingValue formatEditUpdate(
 <footer>
   <span class="no-break">
     brasil_fields
-      0.5.0
+      0.6.0
   </span>
 
 </footer>

@@ -7,30 +7,30 @@ class AlturaInputFormatter extends TextInputFormatter {
 
   @override
   TextEditingValue formatEditUpdate(
-      TextEditingValue oldValue, TextEditingValue newValue) {
-    final newTextLength = newValue.text.length;
-    var selectionIndex = newValue.selection.end;
+      TextEditingValue valorAntigo, TextEditingValue valorNovo) {
+    final novoTextLength = valorNovo.text.length;
+    var selectionIndex = valorNovo.selection.end;
 
-    if (newTextLength > maxLength) {
-      return oldValue;
+    if (novoTextLength > maxLength) {
+      return valorAntigo;
     }
 
-    if (newTextLength > 0) {
-      if (int.tryParse(newValue.text.substring(0, 1)) > 2) {
-        return oldValue;
+    if (novoTextLength > 0) {
+      if (int.tryParse(valorNovo.text.substring(0, 1)) > 2) {
+        return valorAntigo;
       }
     }
 
     var usedSubstringIndex = 0;
     final newText = StringBuffer();
 
-    if (newTextLength > 2) {
-      newText.write(newValue.text.substring(0, usedSubstringIndex = 1) + ',');
-      if (newValue.selection.end > 2) selectionIndex++;
+    if (novoTextLength > 2) {
+      newText.write(valorNovo.text.substring(0, usedSubstringIndex = 1) + ',');
+      if (valorNovo.selection.end > 2) selectionIndex++;
     }
 
-    if (newTextLength >= usedSubstringIndex) {
-      newText.write(newValue.text.substring(usedSubstringIndex));
+    if (novoTextLength >= usedSubstringIndex) {
+      newText.write(valorNovo.text.substring(usedSubstringIndex));
     }
 
     return TextEditingValue(

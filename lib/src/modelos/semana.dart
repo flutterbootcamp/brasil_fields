@@ -1,3 +1,12 @@
+/// Possui a lista com os dias da semana.
+///
+/// `listaDiasUteis` lista com os dias úteis (seg à sex).
+/// `mapaDiasUteis` mapa com os dias úteis.
+/// `listaDiasUteisAbvr` lista com os dias úteis abreviados.
+/// `mapaDiasUteisAbvr` lista com os dias úteis abreviados.
+/// `listaDiasSemana` lista com os todos os dias da semana.
+/// `listaDiasSemanaOrdenada` lista com todos os dias da semana (dom à sáb).
+///
 class Semana {
   static final List<String> listaDiasUteis = [
     'Segunda-Feira',
@@ -50,16 +59,6 @@ class Semana {
     'Domingo'
   ];
 
-  static final List<String> listaDiasSemanaOrdenada = [
-    'Domingo',
-    'Segunda-Feira',
-    'Terça-Feira',
-    'Quarta-Feira',
-    'Quinta-Feira',
-    'Sexta-Feira',
-    'Sábado',
-  ];
-
   static final Map<String, int> mapaDiasSemanaOrdenada = const {
     'Domingo': 1,
     'Segunda-Feira': 2,
@@ -70,7 +69,7 @@ class Semana {
     'Sábado': 7,
   };
 
-  static final List<String> listaDiasSemanaOrdenadaAbvr = [
+  static final List<String> listaDiasSemanaOrdenada = [
     'Domingo',
     'Segunda',
     'Terça',

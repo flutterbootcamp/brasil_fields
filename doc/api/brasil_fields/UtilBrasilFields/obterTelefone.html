@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the obterCnpj method from the UtilBrasilFields class, for the Dart programming language.">
-  <title>obterCnpj method - UtilBrasilFields class - brasil_fields library - Dart API</title>
+  <meta name="description" content="API docs for the obterTelefone method from the UtilBrasilFields class, for the Dart programming language.">
+  <title>obterTelefone method - UtilBrasilFields class - brasil_fields library - Dart API</title>
 
   
   <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
@@ -27,9 +27,9 @@
     <li><a href="../../index.html">brasil_fields</a></li>
     <li><a href="../../brasil_fields/brasil_fields-library.html">brasil_fields</a></li>
     <li><a href="../../brasil_fields/UtilBrasilFields-class.html">UtilBrasilFields</a></li>
-    <li class="self-crumb">obterCnpj method</li>
+    <li class="self-crumb">obterTelefone method</li>
   </ol>
-  <div class="self-name">obterCnpj</div>
+  <div class="self-name">obterTelefone</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -48,7 +48,7 @@
       <li><a href="../../index.html">brasil_fields</a></li>
       <li><a href="../../brasil_fields/brasil_fields-library.html">brasil_fields</a></li>
       <li><a href="../../brasil_fields/UtilBrasilFields-class.html">UtilBrasilFields</a></li>
-      <li class="self-crumb">obterCnpj method</li>
+      <li class="self-crumb">obterTelefone method</li>
     </ol>
     
     <h5>UtilBrasilFields class</h5>
@@ -84,30 +84,33 @@
   </div><!--/.sidebar-offcanvas-->
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1><span class="kind-method">obterCnpj</span> method </h1></div>
+      <div><h1><span class="kind-method">obterTelefone</span> method </h1></div>
 
     <section class="multi-line-signature">
       <span class="returntype"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>
-            <span class="name ">obterCnpj</span>
-(<wbr><ol class="parameter-list"><li><span class="parameter" id="obterCnpj-param-cnpj"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">cnpj</span></span></li>
+            <span class="name ">obterTelefone</span>
+(<wbr><ol class="parameter-list"><li><span class="parameter" id="obterTelefone-param-telefone"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">telefone</span>, </span></li>
+<li><span class="parameter" id="obterTelefone-param-ddd">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">ddd</span>: <span class="default-value">true</span>}</span></li>
 </ol>)
       
     </section>
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">static String obterCnpj(String cnpj) {
-  assert(cnpj.length == 14,
-      &#39;CPNJ com tamanho inválido. Deve conter 14 caracteres&#39;);
-  return cnpj.substring(0, 2) +
-      &#39;.&#39; +
-      cnpj.substring(2, 5) +
-      &#39;.&#39; +
-      cnpj.substring(5, 8) +
-      &#39;&#47;&#39; +
-      cnpj.substring(8, 12) +
-      &#39;-&#39; +
-      cnpj.substring(12, 14);
+      <pre class="language-dart"><code class="language-dart">static String obterTelefone(String telefone, {bool ddd = true}) {
+  if (ddd) {
+    assert(telefone.length == 11,
+        &#39;Telefone com tamanho inválido. Deve conter 11 caracteres&#39;);
+    return &#39;(&#39; +
+        telefone.substring(0, 2) +
+        &#39;) &#39; +
+        telefone.substring(2, 7) +
+        &#39;-&#39; +
+        telefone.substring(7, 11);
+  }
+  assert(telefone.length == 9,
+      &#39;Telefone com tamanho inválido. Deve conter 9 caracteres&#39;);
+  return telefone.substring(0, 5) + &#39;-&#39; + telefone.substring(5, 9);
 }</code></pre>
     </section>
 

@@ -98,6 +98,9 @@ A classe `UtilBrasilFields` possui métodos que facilitam obtert os valores CEP,
 - `UtilBrasilFields.obterCpf('11122233344')` (111.222.333-44)
 - `UtilBrasilFields.obterCnpj('11222333444455')` (11.222.333/4444-55)
 - `UtilBrasilFields.obterCep('11222333')` (11.222-333)
+- `UtilBrasilFields.obterCep('11222333', ponto: false)` (11222-333)
+- `UtilBrasilFields.obterTelefone('00999998877')` ((00) 99999-8877)
+- `UtilBrasilFields.obterTelefone('999998877', ddd: false)` (99999-8877)
 
 Para inicializar um `TextEditingController` com o texto já formatado, basta escolher o método com o formato desejado e setar no atributo `text`:
 

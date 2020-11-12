@@ -89,8 +89,8 @@
       </div>
       <span class="returntype"><a href="https://api.flutter.dev/flutter/services/TextEditingValue-class.html">TextEditingValue</a></span>
             <span class="name ">formatEditUpdate</span>
-(<wbr><ol class="parameter-list"><li><span class="parameter" id="formatEditUpdate-param-oldValue"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/services/TextEditingValue-class.html">TextEditingValue</a></span> <span class="parameter-name">oldValue</span>, </span></li>
-<li><span class="parameter" id="formatEditUpdate-param-newValue"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/services/TextEditingValue-class.html">TextEditingValue</a></span> <span class="parameter-name">newValue</span></span></li>
+(<wbr><ol class="parameter-list"><li><span class="parameter" id="formatEditUpdate-param-valorAntigo"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/services/TextEditingValue-class.html">TextEditingValue</a></span> <span class="parameter-name">valorAntigo</span>, </span></li>
+<li><span class="parameter" id="formatEditUpdate-param-valorNovo"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/services/TextEditingValue-class.html">TextEditingValue</a></span> <span class="parameter-name">valorNovo</span></span></li>
 </ol>)
       <div class="features">inherited</div>
     </section>
@@ -106,17 +106,17 @@ the incoming new text value.</p>
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">@override
 TextEditingValue formatEditUpdate(
-  TextEditingValue oldValue,
-  TextEditingValue newValue,
+  TextEditingValue valorAntigo,
+  TextEditingValue valorNovo,
 ) {
   final delegatedFormatter = _formatters.firstWhere((formatter) {
-    final newValueLength = newValue.text.length;
+    final valorNovoLength = valorNovo.text.length;
     final maxLength = formatter.maxLength;
-    return newValueLength &lt;= maxLength;
+    return valorNovoLength &lt;= maxLength;
   }, orElse: () {
     return _formatters.first;
   });
-  return delegatedFormatter.formatEditUpdate(oldValue, newValue);
+  return delegatedFormatter.formatEditUpdate(valorAntigo, valorNovo);
 }</code></pre>
     </section>
 
@@ -130,7 +130,7 @@ TextEditingValue formatEditUpdate(
 <footer>
   <span class="no-break">
     brasil_fields
-      0.5.0
+      0.6.0
   </span>
 
 </footer>

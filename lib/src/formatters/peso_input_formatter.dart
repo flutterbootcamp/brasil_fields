@@ -9,29 +9,31 @@ class PesoInputFormatter extends TextInputFormatter {
 
   @override
   TextEditingValue formatEditUpdate(
-      TextEditingValue oldValue, TextEditingValue newValue) {
-    final newTextLength = newValue.text.length;
-    var selectionIndex = newValue.selection.end;
+      TextEditingValue valorAntigo, TextEditingValue valorNovo) {
+    final novoTextLength = valorNovo.text.length;
+    var selectionIndex = valorNovo.selection.end;
 
-    if (newTextLength > maxLength) {
-      return oldValue;
+    if (novoTextLength > maxLength) {
+      return valorAntigo;
     }
 
     var usedSubstringIndex = 0;
     final newText = StringBuffer();
-    switch (newTextLength) {
+    switch (novoTextLength) {
       case 3:
-        newText.write(newValue.text.substring(0, usedSubstringIndex = 2) + ',');
-        if (newValue.selection.end >= 3) selectionIndex++;
+        newText
+            .write(valorNovo.text.substring(0, usedSubstringIndex = 2) + ',');
+        if (valorNovo.selection.end >= 3) selectionIndex++;
         break;
       case 4:
-        newText.write(newValue.text.substring(0, usedSubstringIndex = 3) + ',');
-        if (newValue.selection.end >= 4) selectionIndex++;
+        newText
+            .write(valorNovo.text.substring(0, usedSubstringIndex = 3) + ',');
+        if (valorNovo.selection.end >= 4) selectionIndex++;
         break;
     }
 
-    if (newTextLength >= usedSubstringIndex) {
-      newText.write(newValue.text.substring(usedSubstringIndex));
+    if (novoTextLength >= usedSubstringIndex) {
+      newText.write(valorNovo.text.substring(usedSubstringIndex));
     }
 
     return TextEditingValue(

@@ -8,50 +8,52 @@ class TelefoneInputFormatter extends TextInputFormatter {
 
   @override
   TextEditingValue formatEditUpdate(
-      TextEditingValue oldValue, TextEditingValue newValue) {
-    final newTextLength = newValue.text.length;
+      TextEditingValue valorAntigo, TextEditingValue valorNovo) {
+    final novoTextLength = valorNovo.text.length;
 
-    var selectionIndex = newValue.selection.end;
+    var selectionIndex = valorNovo.selection.end;
 
-    if (newTextLength == 11) {
-      if (newValue.text.toString()[2] != '9') {
-        return oldValue;
+    if (novoTextLength == 11) {
+      if (valorNovo.text.toString()[2] != '9') {
+        return valorAntigo;
       }
     }
 
     /// Verifica o tamanho máximo do campo.
-    if (newTextLength > 11) {
-      return oldValue;
+    if (novoTextLength > 11) {
+      return valorAntigo;
     }
 
     var usedSubstringIndex = 0;
 
     final newText = StringBuffer();
 
-    if (newTextLength >= 1) {
+    if (novoTextLength >= 1) {
       newText.write('(');
-      if (newValue.selection.end >= 1) selectionIndex++;
+      if (valorNovo.selection.end >= 1) selectionIndex++;
     }
 
-    if (newTextLength >= 3) {
-      newText.write(newValue.text.substring(0, usedSubstringIndex = 2) + ') ');
-      if (newValue.selection.end >= 2) selectionIndex += 2;
+    if (novoTextLength >= 3) {
+      newText.write(valorNovo.text.substring(0, usedSubstringIndex = 2) + ') ');
+      if (valorNovo.selection.end >= 2) selectionIndex += 2;
     }
 
-    if (newValue.text.length == 11) {
-      if (newTextLength >= 8) {
-        newText.write(newValue.text.substring(2, usedSubstringIndex = 7) + '-');
-        if (newValue.selection.end >= 7) selectionIndex++;
+    if (valorNovo.text.length == 11) {
+      if (novoTextLength >= 8) {
+        newText
+            .write(valorNovo.text.substring(2, usedSubstringIndex = 7) + '-');
+        if (valorNovo.selection.end >= 7) selectionIndex++;
       }
     } else {
-      if (newTextLength >= 7) {
-        newText.write(newValue.text.substring(2, usedSubstringIndex = 6) + '-');
-        if (newValue.selection.end >= 6) selectionIndex++;
+      if (novoTextLength >= 7) {
+        newText
+            .write(valorNovo.text.substring(2, usedSubstringIndex = 6) + '-');
+        if (valorNovo.selection.end >= 6) selectionIndex++;
       }
     }
 
-    if (newTextLength >= usedSubstringIndex) {
-      newText.write(newValue.text.substring(usedSubstringIndex));
+    if (novoTextLength >= usedSubstringIndex) {
+      newText.write(valorNovo.text.substring(usedSubstringIndex));
     }
 
     return TextEditingValue(
