@@ -48,17 +48,30 @@ class UtilBrasilFields {
 
   static String obterTelefone(String telefone, {bool ddd = true}) {
     if (ddd) {
-      assert(telefone.length == 11,
-          'Telefone com tamanho inválido. Deve conter 11 caracteres');
-      return '(' +
-          telefone.substring(0, 2) +
-          ') ' +
-          telefone.substring(2, 7) +
-          '-' +
-          telefone.substring(7, 11);
+      assert(!(telefone.length < 10),
+          'Telefone com tamanho inválido. Deve conter mais de 10 caracteres');
+      if (telefone.length == 11) {
+        return '(' +
+            telefone.substring(0, 2) +
+            ') ' +
+            telefone.substring(2, 7) +
+            '-' +
+            telefone.substring(7, 11);
+      } else if (telefone.length == 10) {
+        return '(' +
+            telefone.substring(0, 2) +
+            ') ' +
+            telefone.substring(2, 6) +
+            '-' +
+            telefone.substring(6, 10);
+      }
     }
-    assert(telefone.length == 9,
-        'Telefone com tamanho inválido. Deve conter 9 caracteres');
-    return telefone.substring(0, 5) + '-' + telefone.substring(5, 9);
+    assert(!(telefone.length < 8),
+        'Telefone com tamanho inválido. Deve conter mais de 8 caracteres');
+    if (telefone.length == 8) {
+      return telefone.substring(0, 4) + '-' + telefone.substring(4, 9);
+    } else if (telefone.length == 9) {
+      return telefone.substring(0, 5) + '-' + telefone.substring(5, 9);
+    }
   }
 }
