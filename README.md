@@ -1,17 +1,16 @@
 # brasil_fields
 
-O jeito mais fácil de utilizar padrões e formatos brasileiros em seu projeto.
+O jeito mais fácil de utilizar padrões e formatos brasileiros em seu projeto Dart.
 
 ## Apresentação
 
-Este package facilita o desenvolvimento com a linguagem Dart em projetos que
-utilizam campos com os padrões e formatos brasileiros.
+Este package facilita o desenvolvimento de projetos que utilizam campos com os padrões e formatos brasileiros.
 
 ### Instalação
 
 ```yaml
 dependencies:
-  brasil_fields: ^0.6.0
+  brasil_fields: ^0.6.1
 ```
 
 ### Formatters

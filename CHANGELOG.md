@@ -1,3 +1,6 @@
+## [0.6.1] - Novo método em UtilBrasilFields.
+- Correção do método `obterTelefone()` na classe `UtilBrasilFields`;
+
 ## [0.6.0] - Novo método em UtilBrasilFields.
 - Criação do método `obterTelefone()` na classe `UtilBrasilFields`;
 - Parâmetro `ponto` em `UtilBrasilFields.obterCep()`.
