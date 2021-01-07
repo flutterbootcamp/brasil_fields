@@ -16,7 +16,7 @@ class AlturaInputFormatter extends TextInputFormatter {
     }
 
     if (novoTextLength > 0) {
-      if (int.tryParse(valorNovo.text.substring(0, 1)) > 2) {
+      if (int.tryParse(valorNovo.text.substring(0, 1))! > 2) {
         return valorAntigo;
       }
     }

@@ -60,7 +60,7 @@ class UtilData {
       novaData.write(dataLimpa[2]);
       novaData.write(dataLimpa[3]);
 
-      return int.tryParse(novaData.toString());
+      return int.tryParse(novaData.toString())!;
     } else {
       throw Exception('Nao foi possível obter o mes da data $data');
     }
@@ -74,7 +74,7 @@ class UtilData {
       novaData.write(dataLimpa[0]);
       novaData.write(dataLimpa[1]);
 
-      return int.tryParse(novaData.toString());
+      return int.tryParse(novaData.toString())!;
     } else {
       throw Exception('Nao foi possível obter o dia da data $data');
     }
