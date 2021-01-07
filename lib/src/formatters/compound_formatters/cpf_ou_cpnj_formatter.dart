@@ -3,9 +3,5 @@ import 'package:brasil_fields/src/formatters/compound_formatters/compound_format
 import 'package:brasil_fields/src/formatters/cpf_input_formatter.dart';
 
 class CpfOuCnpjFormatter extends CompoundFormatter {
-  CpfOuCnpjFormatter()
-      : super([
-          CpfInputFormatter(),
-          CnpjInputFormatter(),
-        ]);
+  CpfOuCnpjFormatter() : super([CpfInputFormatter(), CnpjInputFormatter()]);
 }

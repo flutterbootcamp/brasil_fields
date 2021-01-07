@@ -8,8 +8,7 @@ class PlacaVeiculoFormatter extends TextInputFormatter {
   PlacaVeiculoFormatter();
 
   @override
-  TextEditingValue formatEditUpdate(
-      TextEditingValue valorAntigo, TextEditingValue valorNovo) {
+  TextEditingValue formatEditUpdate(TextEditingValue valorAntigo, TextEditingValue valorNovo) {
     final valorNovoLength = valorNovo.text.length;
     var selectionIndex = valorNovo.selection.end;
 

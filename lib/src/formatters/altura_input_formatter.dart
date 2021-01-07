@@ -6,8 +6,7 @@ class AlturaInputFormatter extends TextInputFormatter {
   final int maxLength = 3;
 
   @override
-  TextEditingValue formatEditUpdate(
-      TextEditingValue valorAntigo, TextEditingValue valorNovo) {
+  TextEditingValue formatEditUpdate(TextEditingValue valorAntigo, TextEditingValue valorNovo) {
     final novoTextLength = valorNovo.text.length;
     var selectionIndex = valorNovo.selection.end;
 
@@ -16,8 +15,11 @@ class AlturaInputFormatter extends TextInputFormatter {
     }
 
     if (novoTextLength > 0) {
-      if (int.tryParse(valorNovo.text.substring(0, 1))! > 2) {
-        return valorAntigo;
+      final numNovo = int.tryParse(valorNovo.text.substring(0, 1));
+      if (numNovo != null) {
+        if (numNovo > 2) {
+          return valorAntigo;
+        }
       }
     }
 

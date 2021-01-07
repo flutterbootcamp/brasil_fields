@@ -6,8 +6,7 @@ class DataInputFormatter extends TextInputFormatter {
   final int maxLength = 8;
 
   @override
-  TextEditingValue formatEditUpdate(
-      TextEditingValue valorAntigo, TextEditingValue valorNovo) {
+  TextEditingValue formatEditUpdate(TextEditingValue valorAntigo, TextEditingValue valorNovo) {
     final novoTextLength = valorNovo.text.length;
     var selectionIndex = valorNovo.selection.end;
 

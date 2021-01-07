@@ -2,15 +2,13 @@ import 'package:brasil_fields/src/interfaces/compoundable_formatter.dart';
 import 'package:flutter/services.dart';
 
 /// Formata o valor do campo com a mascara de CPF ( XXX.XXX.XXX-XX ).
-class CpfInputFormatter extends TextInputFormatter
-    implements CompoundableFormatter {
+class CpfInputFormatter extends TextInputFormatter implements CompoundableFormatter {
   /// Define o tamanho máximo do campo.
   @override
   int get maxLength => 11;
 
   @override
-  TextEditingValue formatEditUpdate(
-      TextEditingValue valorAntigo, TextEditingValue valorNovo) {
+  TextEditingValue formatEditUpdate(TextEditingValue valorAntigo, TextEditingValue valorNovo) {
     final novoTextLength = valorNovo.text.length;
     var selectionIndex = valorNovo.selection.end;
 

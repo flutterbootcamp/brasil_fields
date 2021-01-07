@@ -7,8 +7,7 @@ class TelefoneInputFormatter extends TextInputFormatter {
   TelefoneInputFormatter();
 
   @override
-  TextEditingValue formatEditUpdate(
-      TextEditingValue valorAntigo, TextEditingValue valorNovo) {
+  TextEditingValue formatEditUpdate(TextEditingValue valorAntigo, TextEditingValue valorNovo) {
     final novoTextLength = valorNovo.text.length;
 
     var selectionIndex = valorNovo.selection.end;
@@ -40,14 +39,12 @@ class TelefoneInputFormatter extends TextInputFormatter {
 
     if (valorNovo.text.length == 11) {
       if (novoTextLength >= 8) {
-        newText
-            .write(valorNovo.text.substring(2, usedSubstringIndex = 7) + '-');
+        newText.write(valorNovo.text.substring(2, usedSubstringIndex = 7) + '-');
         if (valorNovo.selection.end >= 7) selectionIndex++;
       }
     } else {
       if (novoTextLength >= 7) {
-        newText
-            .write(valorNovo.text.substring(2, usedSubstringIndex = 6) + '-');
+        newText.write(valorNovo.text.substring(2, usedSubstringIndex = 6) + '-');
         if (valorNovo.selection.end >= 6) selectionIndex++;
       }
     }
