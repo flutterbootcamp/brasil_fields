@@ -10,7 +10,7 @@ Este package facilita o desenvolvimento de projetos que utilizam campos com os p
 
 ```yaml
 dependencies:
-  brasil_fields: ^0.6.1
+  brasil_fields: 1.0.0-nullsafety.0
 ```
 
 ### Formatters

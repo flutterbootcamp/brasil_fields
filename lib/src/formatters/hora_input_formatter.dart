@@ -21,22 +21,22 @@ class HoraInputFormatter extends TextInputFormatter {
     switch (novoTextLength) {
       case 1:
         final hora = int.tryParse(valorNovo.text.substring(0, 1));
-        if (hora >= 3) return valorAntigo;
+        if (hora != null && hora >= 3) return valorAntigo;
         break;
       case 2:
         final hora = int.tryParse(valorNovo.text.substring(0, 2));
-        if (hora >= 24) return valorAntigo;
+        if (hora != null && hora >= 24) return valorAntigo;
         break;
       case 3:
         final minuto = int.tryParse(valorNovo.text.substring(2, 3));
-        if (minuto >= 6) return valorAntigo;
+        if (minuto != null && minuto >= 6) return valorAntigo;
         newText
             .write(valorNovo.text.substring(0, usedSubstringIndex = 2) + ':');
         if (valorNovo.selection.end >= 2) selectionIndex++;
         break;
       case 4:
         final minuto = int.tryParse(valorNovo.text.substring(2, 4));
-        if (minuto >= 60) return valorAntigo;
+        if (minuto != null && minuto >= 60) return valorAntigo;
         newText
             .write(valorNovo.text.substring(0, usedSubstringIndex = 2) + ':');
         if (valorNovo.selection.end >= 2) selectionIndex++;

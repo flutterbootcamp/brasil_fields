@@ -21,11 +21,11 @@ class ValidadeCartaoInputFormatter extends TextInputFormatter {
     switch (novoTextLength) {
       case 1:
         final hora = int.tryParse(valorNovo.text.substring(0, 1));
-        if (hora >= 2) return valorAntigo;
+        if (hora != null && hora >= 2) return valorAntigo;
         break;
       case 2:
         final hora = int.tryParse(valorNovo.text.substring(0, 2));
-        if (hora >= 13) return valorAntigo;
+        if (hora != null && hora >= 13) return valorAntigo;
         break;
       case 3:
       case 4:
