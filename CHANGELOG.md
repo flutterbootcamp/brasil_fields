@@ -1,3 +1,5 @@
+## [1.0.0-nullsafety.0] - Migração para nullsafety
+
 ## [0.6.1] - Novo método em UtilBrasilFields.
 - Correção do método `obterTelefone()` na classe `UtilBrasilFields`;
 
