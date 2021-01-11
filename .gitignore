@@ -5,6 +5,7 @@
 .packages
 .pub/
 .idea/
+.fvm/flutter_sdk
 
 
 build/

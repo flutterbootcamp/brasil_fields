@@ -1,6 +1,4 @@
-// ignore: import_of_legacy_library_into_null_safe
 import 'package:intl/date_symbol_data_local.dart';
-// ignore: import_of_legacy_library_into_null_safe
 import 'package:intl/intl.dart';
 
 /// Classe para manipular datas.
@@ -57,12 +55,17 @@ class UtilData {
   /// Retorna o mes de uma data. Informar data no formato `DDMMAAAA`
   static int? getMes(String data) {
     final dataLimpa = removeCaracteres(data);
+
     if (validarData(dataLimpa)) {
       final novaData = StringBuffer();
       novaData.write(dataLimpa[2]);
       novaData.write(dataLimpa[3]);
-
-      return int?.tryParse(novaData.toString());
+      final dataInt = int.tryParse(novaData.toString());
+      if (dataInt != null) {
+        return dataInt;
+      } else {
+        throw Exception('Nao foi possível obter o mes da data $data');
+      }
     } else {
       throw Exception('Nao foi possível obter o mes da data $data');
     }
@@ -76,7 +79,13 @@ class UtilData {
       novaData.write(dataLimpa[0]);
       novaData.write(dataLimpa[1]);
 
-      return int?.tryParse(novaData.toString());
+      final dataInt = int.tryParse(novaData.toString());
+
+      if (dataInt != null) {
+        return dataInt;
+      } else {
+        throw Exception('Nao foi possível obter o dia da data $data');
+      }
     } else {
       throw Exception('Nao foi possível obter o dia da data $data');
     }

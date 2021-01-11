@@ -11,8 +11,7 @@ class CepInputFormatter extends TextInputFormatter {
   CepInputFormatter({this.ponto = true});
 
   @override
-  TextEditingValue formatEditUpdate(
-      TextEditingValue valorAntigo, TextEditingValue valorNovo) {
+  TextEditingValue formatEditUpdate(TextEditingValue valorAntigo, TextEditingValue valorNovo) {
     final valorNovoLength = valorNovo.text.length;
     var selectionIndex = valorNovo.selection.end;
 
@@ -32,8 +31,7 @@ class CepInputFormatter extends TextInputFormatter {
       if (valorNovo.selection.end >= 2) selectionIndex++;
     }
     if (valorNovoLength >= 6) {
-      valorFinal
-          .write(valorNovo.text.substring(substrInicio, substrIndex = 5) + '-');
+      valorFinal.write(valorNovo.text.substring(substrInicio, substrIndex = 5) + '-');
       if (valorNovo.selection.end >= 5) selectionIndex++;
     }
 

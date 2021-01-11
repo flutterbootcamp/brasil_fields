@@ -1,3 +1,4 @@
+// @dart = 2.9
 import 'package:brasil_fields/brasil_fields.dart';
 
 import 'package:brasil_fields/src/formatters/compound_formatters/compound_formatter.dart';

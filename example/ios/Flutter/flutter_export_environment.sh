@@ -1,10 +1,10 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=/Users/rubensmelo/github/flutter"
-export "FLUTTER_APPLICATION_PATH=/Users/rubensmelo/projetos/brasil_fields/example"
-export "FLUTTER_TARGET=lib/main.dart"
+export "FLUTTER_ROOT=C:\Users\thiag\fvm\versions\1.25.0-8.2.pre"
+export "FLUTTER_APPLICATION_PATH=D:\forked_packages\brasil_fields\example"
+export "FLUTTER_TARGET=lib\main.dart"
 export "FLUTTER_BUILD_DIR=build"
-export "SYMROOT=${SOURCE_ROOT}/../build/ios"
+export "SYMROOT=${SOURCE_ROOT}/../build\ios"
 export "FLUTTER_BUILD_NAME=1.0.0"
 export "FLUTTER_BUILD_NUMBER=1.0.0"
 export "DART_OBFUSCATION=false"
