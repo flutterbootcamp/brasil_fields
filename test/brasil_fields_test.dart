@@ -7,8 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-Widget boilerplate(
-    TextInputFormatter inputFormatter, TextEditingController textController) {
+Widget boilerplate(TextInputFormatter inputFormatter, TextEditingController textController) {
   return MaterialApp(
     home: MediaQuery(
       data: const MediaQueryData(size: Size(320, 480)),
@@ -48,14 +47,12 @@ void main() {
   testWidgets('TelefoneInputFormatter', (WidgetTester tester) async {
     final textController = TextEditingController();
 
-    await tester
-        .pumpWidget(boilerplate(TelefoneInputFormatter(), textController));
+    await tester.pumpWidget(boilerplate(TelefoneInputFormatter(), textController));
 
     await tester.enterText(find.byType(TextField), '9912345678');
     expect(textController.text, '(99) 1234-5678');
 
-    await tester
-        .pumpWidget(boilerplate(TelefoneInputFormatter(), textController));
+    await tester.pumpWidget(boilerplate(TelefoneInputFormatter(), textController));
     await tester.enterText(find.byType(TextField), '00987654321');
 
     expect(textController.text, '(00) 98765-4321');
@@ -71,8 +68,7 @@ void main() {
     await tester.enterText(find.byType(TextField), '12345678');
     expect(textController.text, '12.345-678');
 
-    await tester.pumpWidget(
-        boilerplate(CepInputFormatter(ponto: false), textController));
+    await tester.pumpWidget(boilerplate(CepInputFormatter(ponto: false), textController));
 
     await tester.enterText(find.byType(TextField), '12345678');
     expect(textController.text, '12345-678');
@@ -83,13 +79,24 @@ void main() {
     await tester.pumpWidget(boilerplate(RealInputFormatter(), textController));
 
     await tester.enterText(find.byType(TextField), '1234');
-    expect(textController.text, '1.234');
+    expect(textController.text, 'R\$ 1.234');
 
-    await tester.pumpWidget(
-        boilerplate(RealInputFormatter(centavos: true), textController));
+    await tester.pumpWidget(boilerplate(RealInputFormatter(centavos: true), textController));
+
+    await tester.enterText(find.byType(TextField), '125678');
+    expect(textController.text, 'R\$ 1.256,78');
 
     await tester.enterText(find.byType(TextField), '5678');
-    expect(textController.text, '56,78');
+    expect(textController.text, 'R\$ 56,78');
+
+    await tester.enterText(find.byType(TextField), '678');
+    expect(textController.text, 'R\$ 6,78');
+
+    await tester.enterText(find.byType(TextField), '78');
+    expect(textController.text, 'R\$ 0,78');
+
+    await tester.enterText(find.byType(TextField), '8');
+    expect(textController.text, 'R\$ 0,08');
   });
 
   testWidgets('DataInputFormatter', (WidgetTester tester) async {
@@ -110,16 +117,14 @@ void main() {
 
   testWidgets('CartaoCredito', (WidgetTester tester) async {
     final textController = TextEditingController();
-    await tester.pumpWidget(
-        boilerplate(CartaoBancarioInputFormatter(), textController));
+    await tester.pumpWidget(boilerplate(CartaoBancarioInputFormatter(), textController));
 
     await tester.enterText(find.byType(TextField), '4040121298987373');
     expect(textController.text, '4040 1212 9898 7373');
   });
   testWidgets('ValidadeCartao', (WidgetTester tester) async {
     final textController = TextEditingController();
-    await tester.pumpWidget(
-        boilerplate(ValidadeCartaoInputFormatter(), textController));
+    await tester.pumpWidget(boilerplate(ValidadeCartaoInputFormatter(), textController));
 
     await tester.enterText(find.byType(TextField), '1223');
     expect(textController.text, '12/23');
@@ -127,8 +132,7 @@ void main() {
 
   testWidgets('Altura', (WidgetTester tester) async {
     final textController = TextEditingController();
-    await tester
-        .pumpWidget(boilerplate(AlturaInputFormatter(), textController));
+    await tester.pumpWidget(boilerplate(AlturaInputFormatter(), textController));
 
     await tester.enterText(find.byType(TextField), '176');
     expect(textController.text, '1,76');
