@@ -13,11 +13,18 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Brasil Fields'),
         ),
-        body: TextFormField(
-          inputFormatters: [
-            FilteringTextInputFormatter.digitsOnly,
-            DataInputFormatter(),
-          ],
+        body: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Center(
+            child: TextFormField(
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontSize: 50),
+              inputFormatters: [
+                FilteringTextInputFormatter.digitsOnly,
+                RealInputFormatter(centavos: true),
+              ],
+            ),
+          ),
         ),
       ),
     );
