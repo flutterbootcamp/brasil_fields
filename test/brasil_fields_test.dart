@@ -79,9 +79,26 @@ void main() {
     await tester.pumpWidget(boilerplate(RealInputFormatter(), textController));
 
     await tester.enterText(find.byType(TextField), '1234');
-    expect(textController.text, 'R\$ 1.234');
+    expect(textController.text, '1.234');
 
     await tester.pumpWidget(boilerplate(RealInputFormatter(centavos: true), textController));
+
+    await tester.enterText(find.byType(TextField), '125678');
+    expect(textController.text, '1.256,78');
+
+    await tester.enterText(find.byType(TextField), '5678');
+    expect(textController.text, '56,78');
+
+    await tester.enterText(find.byType(TextField), '678');
+    expect(textController.text, '6,78');
+
+    await tester.enterText(find.byType(TextField), '78');
+    expect(textController.text, '0,78');
+
+    await tester.enterText(find.byType(TextField), '8');
+    expect(textController.text, '0,08');
+
+    await tester.pumpWidget(boilerplate(RealInputFormatter(centavos: true, moeda: true), textController));
 
     await tester.enterText(find.byType(TextField), '125678');
     expect(textController.text, 'R\$ 1.256,78');

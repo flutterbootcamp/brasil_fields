@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
               style: const TextStyle(fontSize: 50),
               inputFormatters: [
                 FilteringTextInputFormatter.digitsOnly,
-                RealInputFormatter(centavos: true),
+                RealInputFormatter(centavos: true, moeda: true),
               ],
             ),
           ),
