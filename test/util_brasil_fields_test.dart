@@ -19,14 +19,22 @@ void main() {
       expect(UtilBrasilFields.removeCaracteres(cep), '11222333');
     });
 
-    test('REAL', () {
+    test('Real', () {
       final real = '11.222';
       expect(UtilBrasilFields.removeCaracteres(real), '11222');
     });
+    test('Real sem R\$', () {
+      final real = 'R\$ 11.222';
+      expect(UtilBrasilFields.removeCurrency(real), '11.222');
+    });
 
-    test('CENTAVOS', () {
+    test('Centavos', () {
       final centavos = '0,99';
       expect(UtilBrasilFields.removeCaracteres(centavos), '099');
+    });
+    test('Centavos sem R\$', () {
+      final centavos = 'R\$ 150,99';
+      expect(UtilBrasilFields.removeCurrency(centavos), '150,99');
     });
 
     test('TELEFONE CELULAR', () {
