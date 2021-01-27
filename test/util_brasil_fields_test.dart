@@ -36,6 +36,10 @@ void main() {
       final centavos = 'R\$ 150,99';
       expect(UtilBrasilFields.removeCurrency(centavos), '150,99');
     });
+    test('Converter moeda (R\$) em double', () {
+      final centavos = 'R\$ 11.150,99';
+      expect(UtilBrasilFields.convertCurrencyToDouble(centavos), 11150.99);
+    });
 
     test('TELEFONE CELULAR', () {
       final telefone = '(99) 88888-7777';

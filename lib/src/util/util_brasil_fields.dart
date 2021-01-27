@@ -9,6 +9,12 @@ class UtilBrasilFields {
     return valor.replaceAll('R\$ ', '');
   }
 
+  static double convertCurrencyToDouble(String valor) {
+    assert(valor != null);
+    assert(valor.isNotEmpty);
+    return double.tryParse(valor.replaceAll('R\$ ', '').replaceAll('.', '').replaceAll(',', '.'));
+  }
+
   static String obterCpf(String cpf) {
     assert(cpf.length == 11, 'CPF com tamanho inválido. Deve conter 11 caracteres');
     return '${cpf.substring(0, 3)}.${cpf.substring(3, 6)}.${cpf.substring(6, 9)}-${cpf.substring(9, 11)}';
