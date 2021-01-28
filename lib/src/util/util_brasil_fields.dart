@@ -50,4 +50,25 @@ class UtilBrasilFields {
           : '${telefone.substring(0, 5)}-${telefone.substring(5, 9)}';
     }
   }
+
+  static String extrairTelefone(String telefone, {bool ddd = true}) {
+    assert((telefone.length == 14 || telefone.length == 15),
+        'Telefone com tamanho inválido. Deve conter 14 ou 15 caracteres');
+    if (ddd) {
+      return telefone.length == 14
+          ? '${telefone.substring(1, 3)}${telefone.substring(5, 9)}${telefone.substring(10, 14)}'
+          : '${telefone.substring(1, 3)}${telefone.substring(5, 10)}${telefone.substring(11, 15)}';
+    } else {
+      return (telefone.length == 14)
+          ? '${telefone.substring(5, 9)}${telefone.substring(10, 14)}'
+          : '${telefone.substring(5, 10)}${telefone.substring(11, 15)}';
+    }
+  }
+
+  static String obterDDD(String telefone) {
+    assert((telefone.length == 14 || telefone.length == 15),
+        'Telefone com tamanho inválido. Deve conter 14 ou 15 caracteres');
+
+    return '${telefone.substring(1, 3)}';
+  }
 }

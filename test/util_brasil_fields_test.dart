@@ -40,14 +40,28 @@ void main() {
       final centavos = 'R\$ 11.150,99';
       expect(UtilBrasilFields.convertCurrencyToDouble(centavos), 11150.99);
     });
-
-    test('TELEFONE CELULAR', () {
-      final telefone = '(99) 88888-7777';
-      expect(UtilBrasilFields.removeCaracteres(telefone), '99888887777');
+    group('Extrair Telefone', () {
+      test('Celular com ddd', () {
+        final telefone = '(00) 91122-3344';
+        expect(UtilBrasilFields.extrairTelefone(telefone), '00911223344');
+      });
+      test('Celular sem ddd', () {
+        final telefone = '(00) 91122-3344';
+        expect(UtilBrasilFields.extrairTelefone(telefone, ddd: false), '911223344');
+      });
+      test('Fixo com ddd', () {
+        final telefone = '(00) 8877-6655';
+        expect(UtilBrasilFields.extrairTelefone(telefone), '0088776655');
+      });
+      test('Fixo sem ddd', () {
+        final telefone = '(99) 8877-6655';
+        expect(UtilBrasilFields.extrairTelefone(telefone, ddd: false), '88776655');
+      });
     });
-    test('TELEFONE FIXO', () {
+
+    test('Obter DDD', () {
       final telefone = '(99) 8888-7777';
-      expect(UtilBrasilFields.removeCaracteres(telefone), '9988887777');
+      expect(UtilBrasilFields.obterDDD(telefone), '99');
     });
 
     test('DATA', () {
