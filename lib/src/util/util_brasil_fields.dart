@@ -21,7 +21,7 @@ class UtilBrasilFields {
   }
 
   static String obterCnpj(String cnpj) {
-    assert(cnpj.length == 14, 'CPNJ com tamanho inválido. Deve conter 14 caracteres');
+    assert(cnpj.length == 14, 'CNPJ com tamanho inválido. Deve conter 14 caracteres');
     return '${cnpj.substring(0, 2)}.${cnpj.substring(2, 5)}.${cnpj.substring(5, 8)}/${cnpj.substring(8, 12)}-${cnpj.substring(12, 14)}';
   }
 
