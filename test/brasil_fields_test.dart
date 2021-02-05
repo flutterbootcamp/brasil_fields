@@ -122,7 +122,8 @@ void main() {
 
     await tester.enterText(find.byType(TextField), '01011900');
     expect(textController.text, '01/01/1900');
-  });testWidgets('CompleteDataInputFormatter', (WidgetTester tester) async {
+  });
+  testWidgets('CompleteDataInputFormatter', (WidgetTester tester) async {
     final textController = TextEditingController();
     await tester.pumpWidget(boilerplate(DataInputFormatter(), textController));
 
