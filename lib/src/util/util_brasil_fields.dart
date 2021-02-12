@@ -10,9 +10,10 @@ class UtilBrasilFields {
   }
 
   static double convertCurrencyToDouble(String valor) {
-    assert(valor != null);
     assert(valor.isNotEmpty);
-    return double.tryParse(valor.replaceAll('R\$ ', '').replaceAll('.', '').replaceAll(',', '.'));
+    final value = double.tryParse(valor.replaceAll('R\$ ', '').replaceAll('.', '').replaceAll(',', '.'));
+
+    return value ?? 0;
   }
 
   static String obterCpf(String cpf) {
