@@ -1,3 +1,7 @@
+## [1.0.0-nullsafety.1] - Migração para nullsafety
+- Novos métodos em `UtilData` : `obterMes` e `obterDia`.
+- Novos métodos em `UtilBrasilFields` : `removerSimboloMoeda` e `converterMoedaParaDouble`.
+
 ## [1.0.0-nullsafety.0] - Migração para nullsafety
 
 ## [0.6.1] - Novo método em UtilBrasilFields.
