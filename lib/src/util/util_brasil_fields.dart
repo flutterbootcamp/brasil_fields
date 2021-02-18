@@ -11,7 +11,7 @@ class UtilBrasilFields {
     return valor.replaceAll('R\$ ', '');
   }
 
-  /// Converter o valor de uma String com `R$` para oRemove o símbolo `R$`
+  /// Converter o valor de uma String com `R$`
   static double converterMoedaParaDouble(String valor) {
     assert(valor.isNotEmpty);
     final value = double.tryParse(
