@@ -53,7 +53,7 @@ class UtilData {
   }
 
   /// Retorna o mes de uma data. Informar data no formato `DDMMAAAA`
-  static int? getMes(String data) {
+  static int? obterMes(String data) {
     final dataLimpa = removeCaracteres(data);
 
     if (validarData(dataLimpa)) {
@@ -72,7 +72,7 @@ class UtilData {
   }
 
   /// Retorna o mes de uma data. Informar data no formato `DDMMAAAA`
-  static int? getDia(String data) {
+  static int? obterDia(String data) {
     final dataLimpa = removeCaracteres(data);
     if (validarData(dataLimpa)) {
       final novaData = StringBuffer();

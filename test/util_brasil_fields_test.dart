@@ -26,7 +26,7 @@ void main() {
     });
     test('Real sem R\$', () {
       final real = 'R\$ 11.222';
-      expect(UtilBrasilFields.removeCurrency(real), '11.222');
+      expect(UtilBrasilFields.removerSimboloMoeda(real), '11.222');
     });
 
     test('Centavos', () {
@@ -35,11 +35,11 @@ void main() {
     });
     test('Centavos sem R\$', () {
       final centavos = 'R\$ 150,99';
-      expect(UtilBrasilFields.removeCurrency(centavos), '150,99');
+      expect(UtilBrasilFields.removerSimboloMoeda(centavos), '150,99');
     });
     test('Converter moeda (R\$) em double', () {
       final centavos = 'R\$ 11.150,99';
-      expect(UtilBrasilFields.convertCurrencyToDouble(centavos), 11150.99);
+      expect(UtilBrasilFields.converterMoedaParaDouble(centavos), 11150.99);
     });
     group('Extrair Telefone', () {
       test('Celular com ddd', () {
@@ -48,7 +48,8 @@ void main() {
       });
       test('Celular sem ddd', () {
         final telefone = '(00) 91122-3344';
-        expect(UtilBrasilFields.extrairTelefone(telefone, ddd: false), '911223344');
+        expect(UtilBrasilFields.extrairTelefone(telefone, ddd: false),
+            '911223344');
       });
       test('Fixo com ddd', () {
         final telefone = '(00) 8877-6655';
@@ -56,7 +57,8 @@ void main() {
       });
       test('Fixo sem ddd', () {
         final telefone = '(99) 8877-6655';
-        expect(UtilBrasilFields.extrairTelefone(telefone, ddd: false), '88776655');
+        expect(
+            UtilBrasilFields.extrairTelefone(telefone, ddd: false), '88776655');
       });
     });
 
@@ -148,11 +150,13 @@ void main() {
   group('Obter Telefone', () {
     group('Celular formatado', () {
       test('com DDD', () {
-        expect(UtilBrasilFields.obterTelefone('00999998877'), '(00) 99999-8877');
+        expect(
+            UtilBrasilFields.obterTelefone('00999998877'), '(00) 99999-8877');
       });
 
       test('sem DDD', () {
-        expect(UtilBrasilFields.obterTelefone('999998877', ddd: false), '99999-8877');
+        expect(UtilBrasilFields.obterTelefone('999998877', ddd: false),
+            '99999-8877');
       });
     });
 
@@ -161,7 +165,8 @@ void main() {
         expect(UtilBrasilFields.obterTelefone('0023456789'), '(00) 2345-6789');
       });
       test('sem DDD', () {
-        expect(UtilBrasilFields.obterTelefone('23456789', ddd: false), '2345-6789');
+        expect(UtilBrasilFields.obterTelefone('23456789', ddd: false),
+            '2345-6789');
       });
     });
   });

@@ -1,12 +1,13 @@
 import 'package:flutter/services.dart';
 
-/// Formata o valor do campo com a mascara de hora ( HH:mm ).
+/// Formata o valor do campo com a máscara de hora `HH:mm`
 class HoraInputFormatter extends TextInputFormatter {
   /// Define o tamanho máximo do campo.
   final int maxLength = 4;
 
   @override
-  TextEditingValue formatEditUpdate(TextEditingValue valorAntigo, TextEditingValue valorNovo) {
+  TextEditingValue formatEditUpdate(
+      TextEditingValue valorAntigo, TextEditingValue valorNovo) {
     final novoTextLength = valorNovo.text.length;
     var selectionIndex = valorNovo.selection.end;
 
@@ -35,7 +36,8 @@ class HoraInputFormatter extends TextInputFormatter {
         if (minuto != null) {
           if (minuto >= 6) return valorAntigo;
         }
-        newText.write(valorNovo.text.substring(0, usedSubstringIndex = 2) + ':');
+        newText
+            .write(valorNovo.text.substring(0, usedSubstringIndex = 2) + ':');
         if (valorNovo.selection.end >= 2) selectionIndex++;
         break;
       case 4:
@@ -43,7 +45,8 @@ class HoraInputFormatter extends TextInputFormatter {
         if (minuto != null) {
           if (minuto >= 60) return valorAntigo;
         }
-        newText.write(valorNovo.text.substring(0, usedSubstringIndex = 2) + ':');
+        newText
+            .write(valorNovo.text.substring(0, usedSubstringIndex = 2) + ':');
         if (valorNovo.selection.end >= 2) selectionIndex++;
         break;
       default:
