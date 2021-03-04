@@ -1,3 +1,5 @@
+import '../validators/validators.dart';
+
 class UtilBrasilFields {
   /// Remove caracteres especiais (ex: `/`, `-`, `.`)
   static String removeCaracteres(String valor) {
@@ -14,30 +16,26 @@ class UtilBrasilFields {
   /// Converter o valor de uma String com `R$`
   static double converterMoedaParaDouble(String valor) {
     assert(valor.isNotEmpty);
-    final value = double.tryParse(
-        valor.replaceAll('R\$ ', '').replaceAll('.', '').replaceAll(',', '.'));
+    final value = double.tryParse(valor.replaceAll('R\$ ', '').replaceAll('.', '').replaceAll(',', '.'));
 
     return value ?? 0;
   }
 
-  /// Retorna o CPF utilizando a máscara: `XXX.YYY.ZZZ-NN`
-  static String obterCpf(String cpf) {
-    assert(cpf.length == 11,
-        'CPF com tamanho inválido. Deve conter 11 caracteres');
-    return '${cpf.substring(0, 3)}.${cpf.substring(3, 6)}.${cpf.substring(6, 9)}-${cpf.substring(9, 11)}';
-  }
+  // /// Retorna o CPF utilizando a máscara: `XXX.YYY.ZZZ-NN`
+  // static String obterCpf(String cpf) {
+  //   assert(cpf.length == 11, 'CPF com tamanho inválido. Deve conter 11 caracteres');
+  //   return '${cpf.substring(0, 3)}.${cpf.substring(3, 6)}.${cpf.substring(6, 9)}-${cpf.substring(9, 11)}';
+  // }
 
-  /// Retorna o CNPJ informado, utilizando a máscara: `XX.YYY.ZZZ/NNNN-SS`
-  static String obterCnpj(String cnpj) {
-    assert(cnpj.length == 14,
-        'CNPJ com tamanho inválido. Deve conter 14 caracteres');
-    return '${cnpj.substring(0, 2)}.${cnpj.substring(2, 5)}.${cnpj.substring(5, 8)}/${cnpj.substring(8, 12)}-${cnpj.substring(12, 14)}';
-  }
+  // /// Retorna o CNPJ informado, utilizando a máscara: `XX.YYY.ZZZ/NNNN-SS`
+  // static String obterCnpj(String cnpj) {
+  //   assert(cnpj.length == 14, 'CNPJ com tamanho inválido. Deve conter 14 caracteres');
+  //   return '${cnpj.substring(0, 2)}.${cnpj.substring(2, 5)}.${cnpj.substring(5, 8)}/${cnpj.substring(8, 12)}-${cnpj.substring(12, 14)}';
+  // }
 
   /// Retorna o CEP utilizando a máscara: `XX.YYY-ZZZ`
   static String obterCep(String cep, {bool ponto = true}) {
-    assert(
-        cep.length == 8, 'CEP com tamanho inválido. Deve conter 8 caracteres');
+    assert(cep.length == 8, 'CEP com tamanho inválido. Deve conter 8 caracteres');
 
     return ponto
         ? '${cep.substring(0, 2)}.${cep.substring(2, 5)}-${cep.substring(5, 8)}'
@@ -81,5 +79,29 @@ class UtilBrasilFields {
         'Telefone com tamanho inválido. Deve conter 14 ou 15 caracteres');
 
     return '${telefone.substring(1, 3)}';
+  }
+
+  ///Faz a validação do CPF retornando `[true]` ou `[false]`
+  static bool validCPF(String? cpf) => CPFValidator.isValid(cpf);
+
+  ///Faz a validação do CNPJ retornando `[true]` ou `[false]`
+  static bool validCNPJ(String? cnpj) => CNPJValidator.isValid(cnpj);
+
+  ///Gera um CPF aleatório
+  static String generateCPF({bool useFormat = false}) => CPFValidator.generate(useFormat: useFormat);
+
+  ///Gera um CNPJ aleatório
+  static String generateCNPJ({bool useFormat = false}) => CNPJValidator.generate(useFormat: useFormat);
+
+  ///Retorna o CPF validado e sem máscara
+  static String obterCpf(String? cpf) {
+    assert(validCPF(cpf), 'CPF inválido!');
+    return CPFValidator.strip(cpf);
+  }
+
+  ///Retorna o CNPJ validado e sem máscara
+  static String obterCnpj(String? cnpj) {
+    assert(validCNPJ(cnpj), 'CNPJ inválido!');
+    return CPFValidator.strip(cnpj);
   }
 }

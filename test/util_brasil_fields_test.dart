@@ -1,4 +1,3 @@
-// @dart = 2.9
 import 'package:brasil_fields/src/util/util_brasil_fields.dart';
 import 'package:brasil_fields/src/util/util_data.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -48,8 +47,7 @@ void main() {
       });
       test('Celular sem ddd', () {
         final telefone = '(00) 91122-3344';
-        expect(UtilBrasilFields.extrairTelefone(telefone, ddd: false),
-            '911223344');
+        expect(UtilBrasilFields.extrairTelefone(telefone, ddd: false), '911223344');
       });
       test('Fixo com ddd', () {
         final telefone = '(00) 8877-6655';
@@ -57,8 +55,7 @@ void main() {
       });
       test('Fixo sem ddd', () {
         final telefone = '(99) 8877-6655';
-        expect(
-            UtilBrasilFields.extrairTelefone(telefone, ddd: false), '88776655');
+        expect(UtilBrasilFields.extrairTelefone(telefone, ddd: false), '88776655');
       });
     });
 
@@ -131,11 +128,17 @@ void main() {
   });
 
   test('Obter CPF formatado', () {
-    expect(UtilBrasilFields.obterCpf('11122233344'), '111.222.333-44');
+    ///Gerado por https://www.4devs.com.br/gerador_de_cpf
+    var cpf = '486.202.650-83';
+
+    expect(UtilBrasilFields.obterCpf(cpf), '48620265083');
   });
 
   test('Obter CNPJ formatado', () {
-    expect(UtilBrasilFields.obterCnpj('11222333444455'), '11.222.333/4444-55');
+    ///Gerado por https://www.4devs.com.br/gerador_de_cnpj
+    var cnpj = '77.343.168/0001-24';
+
+    expect(UtilBrasilFields.obterCnpj(cnpj), '77343168000124');
   });
 
   group('Obter CEP formatado', () {
@@ -150,13 +153,11 @@ void main() {
   group('Obter Telefone', () {
     group('Celular formatado', () {
       test('com DDD', () {
-        expect(
-            UtilBrasilFields.obterTelefone('00999998877'), '(00) 99999-8877');
+        expect(UtilBrasilFields.obterTelefone('00999998877'), '(00) 99999-8877');
       });
 
       test('sem DDD', () {
-        expect(UtilBrasilFields.obterTelefone('999998877', ddd: false),
-            '99999-8877');
+        expect(UtilBrasilFields.obterTelefone('999998877', ddd: false), '99999-8877');
       });
     });
 
@@ -165,8 +166,7 @@ void main() {
         expect(UtilBrasilFields.obterTelefone('0023456789'), '(00) 2345-6789');
       });
       test('sem DDD', () {
-        expect(UtilBrasilFields.obterTelefone('23456789', ddd: false),
-            '2345-6789');
+        expect(UtilBrasilFields.obterTelefone('23456789', ddd: false), '2345-6789');
       });
     });
   });
