@@ -91,9 +91,8 @@ A classe `UtilData` possui métodos que facilitam obter o valor de um objeto `Da
 - `UtilData.obterDataDDMM` (MM/AAAA)
 - `UtilData.obterHoraHHMMSS` (hh:mm:ss)
 - `UtilData.obterHoraHHMM` (hh:mm)
-- `UtilData.obterMes` 
+- `UtilData.obterMes`
 - `UtilData.obterDia`
-
 
 A classe `UtilBrasilFields` possui métodos que facilitam obtert os valores CEP, CPF e CPNJ já formatados:
 
@@ -103,10 +102,9 @@ A classe `UtilBrasilFields` possui métodos que facilitam obtert os valores CEP,
 - `UtilBrasilFields.obterCep('11222333', ponto: false)` (11222-333)
 - `UtilBrasilFields.obterTelefone('00999998877')` ((00) 99999-8877)
 - `UtilBrasilFields.obterTelefone('999998877', ddd: false)` (99999-8877)
-- `UtilBrasilFields.obterDDD(00999998877)` (00)
-- `UtilBrasilFields.removerSimboloMoeda`
-- `UtilBrasilFields.converterMoedaParaDouble`
-
+- `UtilBrasilFields.obterDDD('00999998877')` (00)
+- `UtilBrasilFields.removerSimboloMoeda` (remove o R$)
+- `UtilBrasilFields.converterMoedaParaDouble` (remove o R$ e retorna um double)
 
 Para inicializar um `TextEditingController` com o texto já formatado, basta escolher o método com o formato desejado e setar no atributo `text`:
 
