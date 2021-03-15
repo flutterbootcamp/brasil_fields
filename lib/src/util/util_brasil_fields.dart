@@ -70,26 +70,26 @@ class UtilBrasilFields {
   }
 
   ///Faz a validação do CPF retornando `[true]` ou `[false]`
-  static bool validCPF(String? cpf) => CPFValidator.isValid(cpf);
+  static bool isCPFValido(String? cpf) => CPFValidator.isValid(cpf);
 
   ///Faz a validação do CNPJ retornando `[true]` ou `[false]`
-  static bool validCNPJ(String? cnpj) => CNPJValidator.isValid(cnpj);
+  static bool isCNPJValido(String? cnpj) => CNPJValidator.isValid(cnpj);
 
   ///Gera um CPF aleatório
-  static String generateCPF({bool useFormat = false}) => CPFValidator.generate(useFormat: useFormat);
+  static String gerarCPF({bool useFormat = false}) => CPFValidator.generate(useFormat: useFormat);
 
   ///Gera um CNPJ aleatório
-  static String generateCNPJ({bool useFormat = false}) => CNPJValidator.generate(useFormat: useFormat);
+  static String gerarCNPJ({bool useFormat = false}) => CNPJValidator.generate(useFormat: useFormat);
 
   ///Retorna o CPF validado e sem máscara
   static String obterCpf(String? cpf) {
-    assert(validCPF(cpf), 'CPF inválido!');
+    assert(isCPFValido(cpf), 'CPF inválido!');
     return CPFValidator.strip(cpf);
   }
 
   ///Retorna o CNPJ validado e sem máscara
   static String obterCnpj(String? cnpj) {
-    assert(validCNPJ(cnpj), 'CNPJ inválido!');
+    assert(isCNPJValido(cnpj), 'CNPJ inválido!');
     return CPFValidator.strip(cnpj);
   }
 }
