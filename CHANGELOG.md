@@ -1,4 +1,4 @@
-## [1.1.0] - Corrige versão README
+## [1.1.1] - Corrige versão README
 
 ## [1.1.0] - Validação de CPF e CNPJ
 - Na classe `UtilBrasilFields`: `isCPFValido` e `isCNPJValido`. Obrigado [fogaiht](https://github.com/fogaiht).
