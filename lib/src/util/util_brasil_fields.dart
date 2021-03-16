@@ -1,13 +1,13 @@
 import '../validators/validators.dart';
 
 class UtilBrasilFields {
-  /// Remove caracteres especiais (ex: `/`, `-`, `.`)
+  /// Remover caracteres especiais (ex: `/`, `-`, `.`)
   static String removeCaracteres(String valor) {
     assert(valor.isNotEmpty);
     return valor.replaceAll(RegExp('[^0-9a-zA-Z]+'), '');
   }
 
-  /// Remove o símbolo `R$`
+  /// Remover o símbolo `R$`
   static String removerSimboloMoeda(String valor) {
     assert(valor.isNotEmpty);
     return valor.replaceAll('R\$ ', '');
@@ -21,7 +21,6 @@ class UtilBrasilFields {
     return value ?? 0;
   }
   
-  /// Retorna o CEP utilizando a máscara: `XX.YYY-ZZZ`
   static String obterCep(String cep, {bool ponto = true}) {
     assert(cep.length == 8, 'CEP com tamanho inválido. Deve conter 8 caracteres');
 
