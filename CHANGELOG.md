@@ -1,3 +1,5 @@
+## [1.1.0] - Validação de CPF e CNPJ
+- Na classe `UtilBrasilFields`: `isCPFValido` e `isCNPJValido`. Obrigado [fogaiht](https://github.com/fogaiht).
 
 ## [1.0.0] - Publicação final para null safety
 - Novos métodos na classe `UtilBrasilFields`: `removerSimboloMoeda` e `converterMoedaParaDouble`. 

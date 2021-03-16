@@ -10,7 +10,7 @@ Este package facilita o desenvolvimento de projetos que utilizam campos com os p
 
 ```yaml
 dependencies:
-  brasil_fields: 1.0.0
+  brasil_fields: 1.10.0
 ```
 
 ### Formatters
@@ -105,6 +105,8 @@ A classe `UtilBrasilFields` possui métodos que facilitam obtert os valores CEP,
 - `UtilBrasilFields.obterDDD('00999998877')` (00)
 - `UtilBrasilFields.removerSimboloMoeda` (remove o R$)
 - `UtilBrasilFields.converterMoedaParaDouble` (remove o R$ e retorna um double)
+
+A classe `UtilBrasilFields` possui métodos para validar CPF e CNPJ: `isCPFValido` e `isCNPJValido`.
 
 Para inicializar um `TextEditingController` com o texto já formatado, basta escolher o método com o formato desejado e setar no atributo `text`:
 
