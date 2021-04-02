@@ -12,4 +12,5 @@ jobs:
         with:
           channel: "stable"
       - run: flutter pub get
+      - run: flutter analyze --fatal-warnings
       - run: flutter test
