@@ -4,12 +4,13 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="generator" content="made with love by dartdoc 0.32.4">
+  <meta name="generator" content="made with love by dartdoc 0.39.0">
   <meta name="description" content="brasil_fields API docs, for the Dart programming language.">
   <title>brasil_fields - Dart API docs</title>
 
   
-  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
@@ -35,7 +36,7 @@
 
 <main>
 
-  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
     <header id="header-search-sidebar" class="hidden-l">
       <form class="search-sidebar" role="search">
         <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
@@ -53,16 +54,15 @@
     </ol>
   </div>
 
-  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+  <div id="dartdoc-main-content" class="main-content">
       <section class="desc markdown">
         <h1 id="brasil_fields">brasil_fields</h1>
-<p>O jeito mais fácil de utilizar padrões e formatos brasileiros em seu projeto.</p>
+<p>O jeito mais fácil de utilizar padrões e formatos brasileiros em seu projeto Dart.</p>
 <h2 id="apresentao">Apresentação</h2>
-<p>Este package facilita o desenvolvimento com a linguagem Dart em projetos que
-utilizam campos com os padrões e formatos brasileiros.</p>
+<p>Este package facilita o desenvolvimento de projetos que utilizam campos com os padrões e formatos brasileiros.</p>
 <h3 id="instalao">Instalação</h3>
 <pre class="language-yaml"><code class="language-yaml">dependencies:
-  brasil_fields: ^0.5.0
+  brasil_fields: 1.1.2
 </code></pre>
 <h3 id="formatters">Formatters</h3>
 <ul>
@@ -131,6 +131,8 @@ utilizam campos com os padrões e formatos brasileiros.</p>
 <li><code>UtilData.obterDataDDMM</code> (MM/AAAA)</li>
 <li><code>UtilData.obterHoraHHMMSS</code> (hh:mm:ss)</li>
 <li><code>UtilData.obterHoraHHMM</code> (hh:mm)</li>
+<li><code>UtilData.obterMes</code></li>
+<li><code>UtilData.obterDia</code></li>
 </ul>
 <p>A classe <code>UtilBrasilFields</code> possui métodos que facilitam obtert os valores CEP, CPF e CPNJ já formatados:</p>
 <ul>
@@ -140,28 +142,32 @@ utilizam campos com os padrões e formatos brasileiros.</p>
 <li><code>UtilBrasilFields.obterCep('11222333', ponto: false)</code> (11222-333)</li>
 <li><code>UtilBrasilFields.obterTelefone('00999998877')</code> ((00) 99999-8877)</li>
 <li><code>UtilBrasilFields.obterTelefone('999998877', ddd: false)</code> (99999-8877)</li>
+<li><code>UtilBrasilFields.obterDDD('00999998877')</code> (00)</li>
+<li><code>UtilBrasilFields.removerSimboloMoeda</code> (remove o R$)</li>
+<li><code>UtilBrasilFields.converterMoedaParaDouble</code> (remove o R$ e retorna um double)</li>
 </ul>
+<p>A classe <code>UtilBrasilFields</code> possui métodos para validar CPF e CNPJ: <code>isCPFValido</code> e <code>isCNPJValido</code>.</p>
 <p>Para inicializar um <code>TextEditingController</code> com o texto já formatado, basta escolher o método com o formato desejado e setar no atributo <code>text</code>:</p>
 <pre class="language-dart"><code class="language-dart">  final dataController = TextEditingController(text: UtilData.obterDataDDMMAAAA(DateTime(2020, 12, 31)));
   final cnpjController = TextEditingController(text: UtilBrasilFields.obterCnpj('11222333444455'));
 </code></pre>
       </section>
       
-        <section class="summary">
-            <h2>Libraries</h2>
-          <dl>
-            <dt id="brasil_fields">
-              <span class="name"><a href="brasil_fields/brasil_fields-library.html">brasil_fields</a></span>             
-            </dt>
-            <dd>
-               
-            </dd>
-          </dl>
-        </section>
+      <section class="summary">
+          <h2>Libraries</h2>
+        <dl>
+          <dt id="brasil_fields">
+            <span class="name"><a href="brasil_fields/brasil_fields-library.html">brasil_fields</a></span>           
+          </dt>
+          <dd>
+             
+          </dd>
+        </dl>
+      </section>
 
   </div> <!-- /.main-content -->
 
-  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
   </div>
 
 </main>
@@ -169,7 +175,7 @@ utilizam campos com os padrões e formatos brasileiros.</p>
 <footer>
   <span class="no-break">
     brasil_fields
-      0.6.0
+      1.2.0
   </span>
 
 </footer>
@@ -177,7 +183,6 @@ utilizam campos com os padrões e formatos brasileiros.</p>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="static-assets/typeahead.bundle.min.js"></script>
 <script src="static-assets/highlight.pack.js"></script>
-<script src="static-assets/URI.js"></script>
 <script src="static-assets/script.js"></script>
 
 
