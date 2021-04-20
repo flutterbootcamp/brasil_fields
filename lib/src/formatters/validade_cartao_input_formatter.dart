@@ -6,7 +6,8 @@ class ValidadeCartaoInputFormatter extends TextInputFormatter {
   final int maxLength = 4;
 
   @override
-  TextEditingValue formatEditUpdate(TextEditingValue valorAntigo, TextEditingValue valorNovo) {
+  TextEditingValue formatEditUpdate(
+      TextEditingValue valorAntigo, TextEditingValue valorNovo) {
     final novoTextLength = valorNovo.text.length;
     var selectionIndex = valorNovo.selection.end;
 
@@ -32,7 +33,8 @@ class ValidadeCartaoInputFormatter extends TextInputFormatter {
         break;
       case 3:
       case 4:
-        newText.write(valorNovo.text.substring(0, usedSubstringIndex = 2) + '/');
+        newText
+            .write(valorNovo.text.substring(0, usedSubstringIndex = 2) + '/');
         if (valorNovo.selection.end >= 2) selectionIndex++;
         break;
     }

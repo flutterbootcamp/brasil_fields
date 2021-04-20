@@ -14,7 +14,8 @@ class RealInputFormatter extends TextInputFormatter {
   final bool moeda;
 
   @override
-  TextEditingValue formatEditUpdate(TextEditingValue valorAntigo, TextEditingValue valorNovo) {
+  TextEditingValue formatEditUpdate(
+      TextEditingValue valorAntigo, TextEditingValue valorNovo) {
     final novoTextLength = valorNovo.text.length;
     var selectionIndex = valorNovo.selection.end;
 
@@ -49,8 +50,10 @@ class RealInputFormatter extends TextInputFormatter {
             }
             break;
           case 3:
-            newText.write(
-                currency + valorNovo.text.substring(0, 1) + ',' + valorNovo.text.substring(1, usedSubstringIndex = 2));
+            newText.write(currency +
+                valorNovo.text.substring(0, 1) +
+                ',' +
+                valorNovo.text.substring(1, usedSubstringIndex = 2));
             selectionIndex = 7;
             break;
           case 4:
@@ -69,8 +72,10 @@ class RealInputFormatter extends TextInputFormatter {
             }
             break;
           case 5:
-            newText.write(
-                currency + valorNovo.text.substring(0, 3) + ',' + valorNovo.text.substring(3, usedSubstringIndex = 5));
+            newText.write(currency +
+                valorNovo.text.substring(0, 3) +
+                ',' +
+                valorNovo.text.substring(3, usedSubstringIndex = 5));
             selectionIndex = 9;
             break;
           case 6:
@@ -192,18 +197,24 @@ class RealInputFormatter extends TextInputFormatter {
             selectionIndex = 6;
             break;
           case 4:
-            newText.write(
-                currency + valorNovo.text.substring(0, 1) + '.' + valorNovo.text.substring(1, usedSubstringIndex = 3));
+            newText.write(currency +
+                valorNovo.text.substring(0, 1) +
+                '.' +
+                valorNovo.text.substring(1, usedSubstringIndex = 3));
             selectionIndex = 8;
             break;
           case 5:
-            newText.write(
-                currency + valorNovo.text.substring(0, 2) + '.' + valorNovo.text.substring(2, usedSubstringIndex = 3));
+            newText.write(currency +
+                valorNovo.text.substring(0, 2) +
+                '.' +
+                valorNovo.text.substring(2, usedSubstringIndex = 3));
             selectionIndex = 9;
             break;
           case 6:
-            newText.write(
-                currency + valorNovo.text.substring(0, 3) + '.' + valorNovo.text.substring(3, usedSubstringIndex = 3));
+            newText.write(currency +
+                valorNovo.text.substring(0, 3) +
+                '.' +
+                valorNovo.text.substring(3, usedSubstringIndex = 3));
             selectionIndex = 10;
             break;
           case 7:
@@ -279,30 +290,40 @@ class RealInputFormatter extends TextInputFormatter {
             break;
           case 2:
             if (valorNovo.text[0] == '0') {
-              newText
-                  .write('0,0' + valorNovo.text.substring(1, 2) + valorNovo.text.substring(2, usedSubstringIndex = 2));
+              newText.write('0,0' +
+                  valorNovo.text.substring(1, 2) +
+                  valorNovo.text.substring(2, usedSubstringIndex = 2));
               selectionIndex = 4;
             } else {
-              newText
-                  .write('0,' + valorNovo.text.substring(0, 2) + valorNovo.text.substring(2, usedSubstringIndex = 2));
+              newText.write('0,' +
+                  valorNovo.text.substring(0, 2) +
+                  valorNovo.text.substring(2, usedSubstringIndex = 2));
               selectionIndex = 4;
             }
             break;
           case 3:
-            newText.write(valorNovo.text.substring(0, 1) + ',' + valorNovo.text.substring(1, usedSubstringIndex = 2));
+            newText.write(valorNovo.text.substring(0, 1) +
+                ',' +
+                valorNovo.text.substring(1, usedSubstringIndex = 2));
             selectionIndex = 4;
             break;
           case 4:
             if (valorNovo.text[0] == '0') {
-              newText.write(valorNovo.text.substring(1, 2) + ',' + valorNovo.text.substring(2, usedSubstringIndex = 4));
+              newText.write(valorNovo.text.substring(1, 2) +
+                  ',' +
+                  valorNovo.text.substring(2, usedSubstringIndex = 4));
               selectionIndex = 4;
             } else {
-              newText.write(valorNovo.text.substring(0, 2) + ',' + valorNovo.text.substring(2, usedSubstringIndex = 4));
+              newText.write(valorNovo.text.substring(0, 2) +
+                  ',' +
+                  valorNovo.text.substring(2, usedSubstringIndex = 4));
               selectionIndex = 5;
             }
             break;
           case 5:
-            newText.write(valorNovo.text.substring(0, 3) + ',' + valorNovo.text.substring(3, usedSubstringIndex = 5));
+            newText.write(valorNovo.text.substring(0, 3) +
+                ',' +
+                valorNovo.text.substring(3, usedSubstringIndex = 5));
             selectionIndex = 6;
             break;
           case 6:
@@ -399,16 +420,22 @@ class RealInputFormatter extends TextInputFormatter {
       } else {
         switch (novoTextLength) {
           case 4:
-            newText.write(valorNovo.text.substring(0, 1) + '.' + valorNovo.text.substring(1, usedSubstringIndex = 3));
+            newText.write(valorNovo.text.substring(0, 1) +
+                '.' +
+                valorNovo.text.substring(1, usedSubstringIndex = 3));
             selectionIndex = 5;
 
             break;
           case 5:
-            newText.write(valorNovo.text.substring(0, 2) + '.' + valorNovo.text.substring(2, usedSubstringIndex = 3));
+            newText.write(valorNovo.text.substring(0, 2) +
+                '.' +
+                valorNovo.text.substring(2, usedSubstringIndex = 3));
             selectionIndex = 6;
             break;
           case 6:
-            newText.write(valorNovo.text.substring(0, 3) + '.' + valorNovo.text.substring(3, usedSubstringIndex = 3));
+            newText.write(valorNovo.text.substring(0, 3) +
+                '.' +
+                valorNovo.text.substring(3, usedSubstringIndex = 3));
             selectionIndex = 7;
             break;
           case 7:

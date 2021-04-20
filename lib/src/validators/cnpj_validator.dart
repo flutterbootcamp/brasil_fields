@@ -24,7 +24,8 @@ class CNPJValidator {
   static int _verifierDigit(String cnpj) {
     var index = 2;
 
-    var reverse = cnpj.split('').map((s) => int.parse(s)).toList().reversed.toList();
+    var reverse =
+        cnpj.split('').map((s) => int.parse(s)).toList().reversed.toList();
 
     var sum = 0;
 
@@ -41,7 +42,8 @@ class CNPJValidator {
   static String format(String cnpj) {
     var regExp = RegExp(r'^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$');
 
-    return strip(cnpj).replaceAllMapped(regExp, (Match m) => '${m[1]}.${m[2]}.${m[3]}/${m[4]}-${m[5]}');
+    return strip(cnpj).replaceAllMapped(
+        regExp, (Match m) => '${m[1]}.${m[2]}.${m[3]}/${m[4]}-${m[5]}');
   }
 
   static String strip(String? cnpj) {
@@ -75,7 +77,8 @@ class CNPJValidator {
     numbers += _verifierDigit(numbers).toString();
     numbers += _verifierDigit(numbers).toString();
 
-    return numbers.substring(numbers.length - 2) == cnpj.substring(cnpj.length - 2);
+    return numbers.substring(numbers.length - 2) ==
+        cnpj.substring(cnpj.length - 2);
   }
 
   static String generate({bool useFormat = false}) {

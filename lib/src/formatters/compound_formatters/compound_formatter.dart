@@ -13,7 +13,8 @@ class CompoundFormatter extends TextInputFormatter {
         assert(_formatters.length > 1);
 
   @override
-  TextEditingValue formatEditUpdate(TextEditingValue valorAntigo, TextEditingValue valorNovo) {
+  TextEditingValue formatEditUpdate(
+      TextEditingValue valorAntigo, TextEditingValue valorNovo) {
     final delegatedFormatter = _formatters.firstWhere((formatter) {
       final valorNovoLength = valorNovo.text.length;
       final maxLength = formatter.maxLength;

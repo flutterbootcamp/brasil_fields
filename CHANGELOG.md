@@ -1,27 +1,37 @@
+## [1.1.2] - Correção em obter Cpf e Cnpj
+
+Na classe `UtilBrasilFields`, os métodos `obterCpf` e `obterCnpj` foram corrigidos para retornar os valores formatados ( <https://github.com/rubensdemelo/brasil_fields/issues/41> ).
+  
 ## [1.1.1] - Corrige versão README
 
 ## [1.1.0] - Validação de CPF e CNPJ
-- Na classe `UtilBrasilFields`: `isCPFValido` e `isCNPJValido`. Obrigado [fogaiht](https://github.com/fogaiht).
+
+Na classe `UtilBrasilFields`: `isCPFValido` e `isCNPJValido`. Obrigado [fogaiht](https://github.com/fogaiht).
 
 ## [1.0.0] - Publicação final para null safety
-- Novos métodos na classe `UtilBrasilFields`: `removerSimboloMoeda` e `converterMoedaParaDouble`. 
+
+- Novos métodos na classe `UtilBrasilFields`: `removerSimboloMoeda` e `converterMoedaParaDouble`.
 - Novos métodos na classe `UtilData`: `obterMes` e `obterDia`.
 
 ## [1.0.0-nullsafety.0] - Migração para nullsafety
 
-## [0.6.1] - Novo método em UtilBrasilFields.
+## [0.6.1] - Novo método em UtilBrasilFields
+
 - Correção do método `obterTelefone()` na classe `UtilBrasilFields`;
 
-## [0.6.0] - Novo método em UtilBrasilFields.
-- Criação do método `obterTelefone()` na classe `UtilBrasilFields`;
+## [0.6.0] - Novo método em UtilBrasilFields
+
+Criação do método `obterTelefone()` na classe `UtilBrasilFields`;
+
 - Parâmetro `ponto` em `UtilBrasilFields.obterCep()`.
 
-## [0.5.1] - Nova documentação.
+## [0.5.1] - Nova documentação
 
-## [0.5.0] - Novo aplicativo de exemplo.
-- Inclui `KmInputFormatter`()`;
-- Criação dos métodos `obterCpf()`, `obterCnpj()` e `obterCep()` na classe `UtilBrasilFields`;
-- Parâmetro `ponto` no `CepInputFormatter()`. 
+## [0.5.0] - Novo aplicativo de exemplo
+
+Inclui `KmInputFormatter`()`;
+Criação dos métodos`obterCpf()`,`obterCnpj()` e `obterCep()` na classe `UtilBrasilFields`;
+Parâmetro`ponto` no `CepInputFormatter()`.
 
 ## [0.4.0] - Inclui package intl
 

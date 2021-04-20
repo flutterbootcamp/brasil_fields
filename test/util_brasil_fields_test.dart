@@ -40,24 +40,6 @@ void main() {
       final centavos = 'R\$ 11.150,99';
       expect(UtilBrasilFields.converterMoedaParaDouble(centavos), 11150.99);
     });
-    group('Extrair Telefone', () {
-      test('Celular com ddd', () {
-        final telefone = '(00) 91122-3344';
-        expect(UtilBrasilFields.extrairTelefone(telefone), '00911223344');
-      });
-      test('Celular sem ddd', () {
-        final telefone = '(00) 91122-3344';
-        expect(UtilBrasilFields.extrairTelefone(telefone, ddd: false), '911223344');
-      });
-      test('Fixo com ddd', () {
-        final telefone = '(00) 8877-6655';
-        expect(UtilBrasilFields.extrairTelefone(telefone), '0088776655');
-      });
-      test('Fixo sem ddd', () {
-        final telefone = '(99) 8877-6655';
-        expect(UtilBrasilFields.extrairTelefone(telefone, ddd: false), '88776655');
-      });
-    });
 
     test('Obter DDD', () {
       final telefone = '(99) 8888-7777';
@@ -127,46 +109,56 @@ void main() {
     });
   });
 
-  test('Obter CPF formatado', () {
+  test('Obter CPF', () {
     ///Gerado por https://www.4devs.com.br/gerador_de_cpf
-    var cpf = '486.202.650-83';
-
-    expect(UtilBrasilFields.obterCpf(cpf), '48620265083');
+    final cpfSemMascara = '48620265083';
+    final cpfComMascara = '486.202.650-83';
+    expect(UtilBrasilFields.obterCpf(cpfSemMascara), cpfComMascara);
   });
 
-  test('Obter CNPJ formatado', () {
+  test('Obter CNPJ', () {
     ///Gerado por https://www.4devs.com.br/gerador_de_cnpj
-    var cnpj = '77.343.168/0001-24';
-
-    expect(UtilBrasilFields.obterCnpj(cnpj), '77343168000124');
+    final cpnjSemMascara = '77343168000124';
+    final cpnjComMascara = '77.343.168/0001-24';
+    expect(UtilBrasilFields.obterCnpj(cpnjSemMascara), cpnjComMascara);
   });
 
-  group('Obter CEP formatado', () {
+  group('Obter CEP', () {
+    final cepSemPonto = '11222333';
+    final cepComPonto = '11.222-333';
     test('com ponto', () {
-      expect(UtilBrasilFields.obterCep('11222333'), '11.222-333');
+      expect(UtilBrasilFields.obterCep(cepSemPonto), cepComPonto);
     });
     test('sem ponto', () {
-      expect(UtilBrasilFields.obterCep('11222333', ponto: false), '11222-333');
+      expect(UtilBrasilFields.obterCep(cepSemPonto, ponto: false), '11222-333');
     });
   });
 
   group('Obter Telefone', () {
-    group('Celular formatado', () {
-      test('com DDD', () {
-        expect(UtilBrasilFields.obterTelefone('00999998877'), '(00) 99999-8877');
+    group('com DDD', () {
+      test('com mascara', () {
+        expect(
+            UtilBrasilFields.obterTelefone('00999998877'), '(00) 99999-8877');
       });
 
-      test('sem DDD', () {
-        expect(UtilBrasilFields.obterTelefone('999998877', ddd: false), '99999-8877');
+      test('sem mascara', () {
+        expect(
+            UtilBrasilFields.obterTelefone('(00) 99999-8877', mascara: false),
+            '00999998877');
       });
     });
 
-    group('Fixo formatado', () {
-      test('com DDD', () {
-        expect(UtilBrasilFields.obterTelefone('0023456789'), '(00) 2345-6789');
+    group('sem DDD', () {
+      test('com mascara', () {
+        expect(UtilBrasilFields.obterTelefone('999998877', ddd: false),
+            '99999-8877');
       });
-      test('sem DDD', () {
-        expect(UtilBrasilFields.obterTelefone('23456789', ddd: false), '2345-6789');
+
+      test('sem mascara', () {
+        expect(
+            UtilBrasilFields.obterTelefone('99999-8877',
+                ddd: false, mascara: false),
+            '999998877');
       });
     });
   });

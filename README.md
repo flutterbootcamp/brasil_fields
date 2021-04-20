@@ -10,7 +10,7 @@ Este package facilita o desenvolvimento de projetos que utilizam campos com os p
 
 ```yaml
 dependencies:
-  brasil_fields: 1.1.1
+  brasil_fields: 1.1.2
 ```
 
 ### Formatters
@@ -28,7 +28,6 @@ dependencies:
 - Real (R\$) (20.550)
 - Telefone ( (99) 9999-9999)
 - Validade de cartão bancário (12/24)
-
 
 ![Formatters](screenshots/formatters.png)
 

@@ -8,7 +8,8 @@ class PesoInputFormatter extends TextInputFormatter {
   PesoInputFormatter();
 
   @override
-  TextEditingValue formatEditUpdate(TextEditingValue valorAntigo, TextEditingValue valorNovo) {
+  TextEditingValue formatEditUpdate(
+      TextEditingValue valorAntigo, TextEditingValue valorNovo) {
     final novoTextLength = valorNovo.text.length;
     var selectionIndex = valorNovo.selection.end;
 
@@ -20,11 +21,13 @@ class PesoInputFormatter extends TextInputFormatter {
     final newText = StringBuffer();
     switch (novoTextLength) {
       case 3:
-        newText.write(valorNovo.text.substring(0, usedSubstringIndex = 2) + ',');
+        newText
+            .write(valorNovo.text.substring(0, usedSubstringIndex = 2) + ',');
         if (valorNovo.selection.end >= 3) selectionIndex++;
         break;
       case 4:
-        newText.write(valorNovo.text.substring(0, usedSubstringIndex = 3) + ',');
+        newText
+            .write(valorNovo.text.substring(0, usedSubstringIndex = 3) + ',');
         if (valorNovo.selection.end >= 4) selectionIndex++;
         break;
     }
