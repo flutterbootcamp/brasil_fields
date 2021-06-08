@@ -1,3 +1,5 @@
+## [1.1.3] - Corrige exemplo `DropdownButton`
+
 ## [1.1.2] - Correção em obter Cpf e Cnpj
 
 Na classe `UtilBrasilFields`, os métodos `obterCpf` e `obterCnpj` foram corrigidos para retornar os valores formatados ( <https://github.com/rubensdemelo/brasil_fields/issues/41> ).
