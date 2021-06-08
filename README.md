@@ -49,6 +49,7 @@ Basta incluir o formatter que você quer que o campo tenha, na lista de `inputFo
 ```dart
 TextFormField(
   inputFormatters: [
+    // obrigatório
     FilteringTextInputFormatter.digitsOnly,
     CepInputFormatter(),
   ],
@@ -72,13 +73,18 @@ TextFormField(
 Caso precise de um DropdownButton com algumas das classes de padrões:
 
 ```dart
-DropdownButton(
-  items: Regioes.listaRegioes.map((String opcao) {
-    return DropdownMenuItem<String>(
-    value: opcao,
-    child: Text(opcao),
-  );
-}).toList(),
+DropdownButton<String>(
+  hint: Text('Região'),
+  onChanged: (regiaoSelecionada) {
+    print(regiaoSelecionada);
+  },
+  items: Regioes.listaRegioes.map((String regiao) {
+    return DropdownMenuItem(
+      value: regiao,
+      child: Text(regiao),
+    );
+  }).toList(),
+)
 ```
 
 ### Métodos úteis

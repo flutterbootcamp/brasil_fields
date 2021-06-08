@@ -17,15 +17,27 @@ class MyApp extends StatelessWidget {
         body: Container(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Center(
-            child: TextField(
-              controller: _textController,
-              textAlign: TextAlign.center,
-              style: const TextStyle(fontSize: 50),
-              inputFormatters: [
-                FilteringTextInputFormatter.digitsOnly,
-                CpfInputFormatter(),
-              ],
+            child: DropdownButton<String>(
+              hint: Text('Região'),
+              onChanged: (regiaoSelecionada) {
+                print(regiaoSelecionada);
+              },
+              items: Regioes.listaRegioes.map((String regiao) {
+                return DropdownMenuItem(
+                  value: regiao,
+                  child: Text(regiao),
+                );
+              }).toList(),
             ),
+            // child: TextField(
+            //   controller: _textController,
+            //   textAlign: TextAlign.center,
+            //   style: const TextStyle(fontSize: 50),
+            //   inputFormatters: [
+            //     FilteringTextInputFormatter.digitsOnly,
+            //     CpfInputFormatter(),
+            //   ],
+            // ),
           ),
         ),
       ),
