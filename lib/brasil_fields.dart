@@ -20,3 +20,4 @@ export 'src/modelos/regioes.dart';
 export 'src/modelos/semana.dart';
 export 'src/util/util_data.dart';
 export 'src/util/util_brasil_fields.dart';
+export 'src/validators/validators.dart';
