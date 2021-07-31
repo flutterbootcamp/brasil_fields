@@ -1,14 +1,18 @@
-## [1.1.3] - Corrige exemplo `DropdownButton`
+## [1.1.4] - Expõe `validators.dart`
+
+- Pode-se utilizar a validação de CPF e CNPJ diretamente, utilizando as classes: `CPFValidator` e `CNPJValidator`.
+
+## [1.1.4] - Corrige exemplo `DropdownButton`
 
 ## [1.1.2] - Correção em obter Cpf e Cnpj
 
-Na classe `UtilBrasilFields`, os métodos `obterCpf` e `obterCnpj` foram corrigidos para retornar os valores formatados ( <https://github.com/rubensdemelo/brasil_fields/issues/41> ).
+- Na classe `UtilBrasilFields`, os métodos `obterCpf` e `obterCnpj` foram corrigidos para retornar os valores formatados ( <https://github.com/rubensdemelo/brasil_fields/issues/41> ).
   
 ## [1.1.1] - Corrige versão README
 
 ## [1.1.0] - Validação de CPF e CNPJ
 
-Na classe `UtilBrasilFields`: `isCPFValido` e `isCNPJValido`. Obrigado [fogaiht](https://github.com/fogaiht).
+- Na classe `UtilBrasilFields`: `isCPFValido` e `isCNPJValido`. Obrigado [fogaiht](https://github.com/fogaiht).
 
 ## [1.0.0] - Publicação final para null safety
 
