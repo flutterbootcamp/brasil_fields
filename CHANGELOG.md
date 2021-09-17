@@ -1,3 +1,5 @@
+## [1.2.0] - Adiciona package `flutter_lints`.
+
 ## [1.1.4] - Expõe `validators.dart`
 
 - Pode-se utilizar a validação de CPF e CNPJ diretamente, utilizando as classes: `CPFValidator` e `CNPJValidator`.
