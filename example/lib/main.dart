@@ -99,18 +99,8 @@ class MyApp extends StatelessWidget {
                     )
                   ],
                 ),
-                MediaQuery(
-                  data: const MediaQueryData(size: Size(320, 480)),
-                  child: Directionality(
-                    textDirection: TextDirection.ltr,
-                    child: Material(
-                      child: TextField(
-                        inputFormatters: [PlacaVeiculoInputFormatter()],
-                      ),
-                    ),
-                  ),
-                ),
-                const Icon(Icons.directions_transit),
+                const Text('Em breve'),
+                const Text('Em breve'),
               ],
             ),
           ),
