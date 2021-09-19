@@ -12,9 +12,9 @@ jobs:
         with:
           java-version: '12.x'
       - uses: subosito/flutter-action@v1.5.3
-      - uses: bluefireteam/flutter-gh-pages@v7
-        with:
-          workingDir: example
-          baseHref: /brazil-fields/
       - run: flutter pub get
       - run: flutter test
+      - uses: bluefireteam/flutter-gh-pages@v7
+        with:
+          workingDir: example/build/web
+          baseHref: /brazil-fields/
