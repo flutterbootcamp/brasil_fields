@@ -17,4 +17,4 @@ jobs:
       - uses: bluefireteam/flutter-gh-pages@v7
         with:
           workingDir: example
-          # baseHref: /brazil-fields/
+          baseHref: /example/
