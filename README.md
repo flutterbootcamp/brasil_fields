@@ -1,6 +1,8 @@
 # brasil_fields
 
-O jeito mais fácil de utilizar padrões e formatos brasileiros em seu projeto Dart.
+O jeito mais fácil de utilizar padrões e formatos brasileiros em seu projeto Dart. 
+
+[**Testar agora**](https://rubensdemelo.github.io/brasil_fields/#/)
 
 ## Apresentação
 
@@ -30,8 +32,6 @@ dependencies:
 - Telefone ( (99) 9999-9999)
 - Validade de cartão bancário (12/24)
 
-![Formatters](screenshots/formatters.png)
-
 ### Padrões
 
 - Estados
@@ -39,7 +39,6 @@ dependencies:
 - Regiões
 - Semana
 
-![Formatters](screenshots/padroes.png)
 
 ### Como utilizar
 
