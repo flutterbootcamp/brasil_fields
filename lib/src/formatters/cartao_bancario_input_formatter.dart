@@ -7,31 +7,31 @@ class CartaoBancarioInputFormatter extends TextInputFormatter {
 
   @override
   TextEditingValue formatEditUpdate(
-      TextEditingValue valorAntigo, TextEditingValue valorNovo) {
-    final novoTextLength = valorNovo.text.length;
-    var selectionIndex = valorNovo.selection.end;
+      TextEditingValue oldValue, TextEditingValue newValue) {
+    final newValueLength = newValue.text.length;
+    var selectionIndex = newValue.selection.end;
 
-    if (novoTextLength > maxLength) {
-      return valorAntigo;
+    if (newValueLength > maxLength) {
+      return oldValue;
     }
 
-    var usedSubstringIndex = 0;
+    var substrIndex = 0;
     final newText = StringBuffer();
 
-    if (novoTextLength >= 4) {
-      newText.write(valorNovo.text.substring(0, usedSubstringIndex = 4) + ' ');
-      if (valorNovo.selection.end >= 5) selectionIndex++;
+    if (newValueLength >= 4) {
+      newText.write(newValue.text.substring(0, substrIndex = 4) + ' ');
+      if (newValue.selection.end >= 5) selectionIndex++;
     }
-    if (novoTextLength >= 8) {
-      newText.write(valorNovo.text.substring(4, usedSubstringIndex = 8) + ' ');
-      if (valorNovo.selection.end >= 9) selectionIndex++;
+    if (newValueLength >= 8) {
+      newText.write(newValue.text.substring(4, substrIndex = 8) + ' ');
+      if (newValue.selection.end >= 9) selectionIndex++;
     }
-    if (novoTextLength >= 12) {
-      newText.write(valorNovo.text.substring(8, usedSubstringIndex = 12) + ' ');
-      if (valorNovo.selection.end >= 13) selectionIndex++;
+    if (newValueLength >= 12) {
+      newText.write(newValue.text.substring(8, substrIndex = 12) + ' ');
+      if (newValue.selection.end >= 13) selectionIndex++;
     }
-    if (novoTextLength >= usedSubstringIndex) {
-      newText.write(valorNovo.text.substring(usedSubstringIndex));
+    if (newValueLength >= substrIndex) {
+      newText.write(newValue.text.substring(substrIndex));
     }
 
     return TextEditingValue(

@@ -7,27 +7,27 @@ class DataInputFormatter extends TextInputFormatter {
 
   @override
   TextEditingValue formatEditUpdate(
-      TextEditingValue valorAntigo, TextEditingValue valorNovo) {
-    final novoTextLength = valorNovo.text.length;
-    var selectionIndex = valorNovo.selection.end;
+      TextEditingValue oldValue, TextEditingValue newValue) {
+    final newValueLength = newValue.text.length;
+    var selectionIndex = newValue.selection.end;
 
-    if (novoTextLength > maxLength) {
-      return valorAntigo;
+    if (newValueLength > maxLength) {
+      return oldValue;
     }
 
-    var usedSubstringIndex = 0;
+    var substrIndex = 0;
     final newText = StringBuffer();
 
-    if (novoTextLength >= 3) {
-      newText.write(valorNovo.text.substring(0, usedSubstringIndex = 2) + '/');
-      if (valorNovo.selection.end >= 2) selectionIndex++;
+    if (newValueLength >= 3) {
+      newText.write(newValue.text.substring(0, substrIndex = 2) + '/');
+      if (newValue.selection.end >= 2) selectionIndex++;
     }
-    if (novoTextLength >= 5) {
-      newText.write(valorNovo.text.substring(2, usedSubstringIndex = 4) + '/');
-      if (valorNovo.selection.end >= 4) selectionIndex++;
+    if (newValueLength >= 5) {
+      newText.write(newValue.text.substring(2, substrIndex = 4) + '/');
+      if (newValue.selection.end >= 4) selectionIndex++;
     }
-    if (novoTextLength >= usedSubstringIndex) {
-      newText.write(valorNovo.text.substring(usedSubstringIndex));
+    if (newValueLength >= substrIndex) {
+      newText.write(newValue.text.substring(substrIndex));
     }
 
     return TextEditingValue(

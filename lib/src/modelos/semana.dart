@@ -8,7 +8,7 @@
 /// `listaDiasSemanaOrdenada` lista com todos os dias da semana (dom à sáb).
 ///
 class Semana {
-  static final List<String> listaDiasUteis = [
+  static const List<String> listaDiasUteis = [
     'Segunda-Feira',
     'Terça-Feira',
     'Quarta-Feira',
@@ -16,7 +16,7 @@ class Semana {
     'Sexta-Feira',
   ];
 
-  static final Map<String, int> mapaDiasUteis = const {
+  static Map<String, int> mapaDiasUteis = const {
     'Segunda-Feira': 1,
     'Terça-Feira': 2,
     'Quarta-Feira': 3,
@@ -24,7 +24,7 @@ class Semana {
     'Sexta-Feira': 5,
   };
 
-  static final List<String> listaDiasUteisAbvr = [
+  static List<String> listaDiasUteisAbvr = [
     'Segunda',
     'Terça',
     'Quarta',
@@ -32,14 +32,14 @@ class Semana {
     'Sexta',
   ];
 
-  static final Map<String, int> mapaDiasUteisAbvr = const {
+  static Map<String, int> mapaDiasUteisAbvr = const {
     'Segunda': 1,
     'Terça': 2,
     'Quarta': 3,
     'Quinta': 4,
     'Sexta': 5,
   };
-  static final List<String> listaDiasSemana = [
+  static const List<String> listaDiasSemana = [
     'Segunda-Feira',
     'Terça-Feira',
     'Quarta-Feira',
@@ -49,7 +49,7 @@ class Semana {
     'Domingo'
   ];
 
-  static final List<String> listaDiasSemanaAbvr = [
+  static const List<String> listaDiasSemanaAbvr = [
     'Segunda',
     'Terça',
     'Quarta',
@@ -59,7 +59,7 @@ class Semana {
     'Domingo'
   ];
 
-  static final Map<String, int> mapaDiasSemanaOrdenada = const {
+  static Map<String, int> mapaDiasSemanaOrdenada = const {
     'Domingo': 1,
     'Segunda-Feira': 2,
     'Terça-Feira': 3,
@@ -69,7 +69,7 @@ class Semana {
     'Sábado': 7,
   };
 
-  static final List<String> listaDiasSemanaOrdenada = [
+  static List<String> listaDiasSemanaOrdenada = [
     'Domingo',
     'Segunda',
     'Terça',
@@ -79,7 +79,7 @@ class Semana {
     'Sábado',
   ];
 
-  static final Map<String, int> mapaDiasSemanaOrdenadaAbvr = const {
+  static Map<String, int> mapaDiasSemanaOrdenadaAbvr = const {
     'Domingo': 1,
     'Segunda': 2,
     'Terça': 3,

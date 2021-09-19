@@ -3,7 +3,7 @@
 /// `listaMeses` lista com todos os meses.
 /// `mapaMeses` mapa com todos os meses.
 class Meses {
-  static final List<String> listaMeses = [
+  static  List<String> listaMeses = [
     'Janeiro',
     'Fevereiro',
     'Março',
@@ -18,7 +18,7 @@ class Meses {
     'Dezembro',
   ];
 
-  static final Map<String, int> mapaMeses = const {
+  static  Map<String, int> mapaMeses = const {
     'Janeiro': 1,
     'Fevereiro': 2,
     'Março': 3,

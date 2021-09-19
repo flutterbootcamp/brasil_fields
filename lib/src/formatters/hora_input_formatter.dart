@@ -7,53 +7,42 @@ class HoraInputFormatter extends TextInputFormatter {
 
   @override
   TextEditingValue formatEditUpdate(
-      TextEditingValue valorAntigo, TextEditingValue valorNovo) {
-    final novoTextLength = valorNovo.text.length;
-    var selectionIndex = valorNovo.selection.end;
+      TextEditingValue oldValue, TextEditingValue newValue) {
+    final newValueLength = newValue.text.length;
+    var selectionIndex = newValue.selection.end;
 
-    var usedSubstringIndex = 0;
+    var substrIndex = 0;
     final newText = StringBuffer();
 
-    if (novoTextLength > maxLength) {
-      return valorAntigo;
+    if (newValueLength > maxLength) {
+      return oldValue;
     }
 
-    switch (novoTextLength) {
+    switch (newValueLength) {
       case 1:
-        final hora = int.tryParse(valorNovo.text.substring(0, 1));
-        if (hora != null) {
-          if (hora >= 3) return valorAntigo;
-        }
+        final hora = int.parse(newValue.text.substring(0, 1));
+        if (hora >= 3) return oldValue;
         break;
       case 2:
-        final hora = int.tryParse(valorNovo.text.substring(0, 2));
-        if (hora != null) {
-          if (hora >= 24) return valorAntigo;
-        }
+        final hora = int.parse(newValue.text.substring(0, 2));
+        if (hora >= 24) return oldValue;
         break;
       case 3:
-        final minuto = int.tryParse(valorNovo.text.substring(2, 3));
-        if (minuto != null) {
-          if (minuto >= 6) return valorAntigo;
-        }
-        newText
-            .write(valorNovo.text.substring(0, usedSubstringIndex = 2) + ':');
-        if (valorNovo.selection.end >= 2) selectionIndex++;
+        final minuto = int.parse(newValue.text.substring(2, 3));
+        if (minuto >= 6) return oldValue;
+        newText.write(newValue.text.substring(0, substrIndex = 2) + ':');
+        if (newValue.selection.end >= 2) selectionIndex++;
         break;
       case 4:
-        final minuto = int.tryParse(valorNovo.text.substring(2, 4));
-        if (minuto != null) {
-          if (minuto >= 60) return valorAntigo;
-        }
-        newText
-            .write(valorNovo.text.substring(0, usedSubstringIndex = 2) + ':');
-        if (valorNovo.selection.end >= 2) selectionIndex++;
+        final minuto = int.parse(newValue.text.substring(2, 4));
+        if (minuto >= 60) return oldValue;
+        newText.write(newValue.text.substring(0, substrIndex = 2) + ':');
+        if (newValue.selection.end >= 2) selectionIndex++;
         break;
-      default:
     }
 
-    if (novoTextLength >= usedSubstringIndex) {
-      newText.write(valorNovo.text.substring(usedSubstringIndex));
+    if (newValueLength >= substrIndex) {
+      newText.write(newValue.text.substring(substrIndex));
     }
 
     return TextEditingValue(

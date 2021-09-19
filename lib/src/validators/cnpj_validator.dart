@@ -4,7 +4,7 @@
 import 'dart:math';
 
 class CNPJValidator {
-  static const List<String> BLACKLIST = [
+  static const List<String> blockList = [
     '00000000000000',
     '11111111111111',
     '22222222222222',
@@ -17,7 +17,7 @@ class CNPJValidator {
     '99999999999999'
   ];
 
-  static const STRIP_REGEX = r'[^\d]';
+  static const stipRegex = r'[^\d]';
 
   // Compute the Verifier Digit (or 'Dígito Verificador (DV)' in PT-BR).
   // You can learn more about the algorithm on [wikipedia (pt-br)](https://pt.wikipedia.org/wiki/D%C3%ADgito_verificador)
@@ -29,10 +29,10 @@ class CNPJValidator {
 
     var sum = 0;
 
-    reverse.forEach((number) {
+    for (var number in reverse) {
       sum += number * index;
       index = (index == 9 ? 2 : index + 1);
-    });
+    }
 
     var mod = sum % 11;
 
@@ -47,7 +47,7 @@ class CNPJValidator {
   }
 
   static String strip(String? cnpj) {
-    var regex = RegExp(STRIP_REGEX);
+    var regex = RegExp(stipRegex);
     cnpj = cnpj ?? '';
 
     return cnpj.replaceAll(regex, '');
@@ -69,7 +69,7 @@ class CNPJValidator {
     }
 
     // cnpj can't be blacklisted
-    if (BLACKLIST.contains(cnpj)) {
+    if (blockList.contains(cnpj)) {
       return false;
     }
 

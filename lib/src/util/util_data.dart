@@ -12,12 +12,12 @@ class UtilData {
   static String removeCaracteres(String data) {
     final novaData = StringBuffer();
 
-    data.runes.forEach((index) {
+    for (var index in data.runes) {
       final numero = int.tryParse(String.fromCharCode(index));
       if (numero != null) {
         novaData.write(numero);
       }
-    });
+    }
 
     return novaData.toString();
   }

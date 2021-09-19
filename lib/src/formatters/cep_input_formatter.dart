@@ -12,12 +12,12 @@ class CepInputFormatter extends TextInputFormatter {
 
   @override
   TextEditingValue formatEditUpdate(
-      TextEditingValue valorAntigo, TextEditingValue valorNovo) {
-    final valorNovoLength = valorNovo.text.length;
-    var selectionIndex = valorNovo.selection.end;
+      TextEditingValue oldValue, TextEditingValue newValue) {
+    final newValueLength = newValue.text.length;
+    var selectionIndex = newValue.selection.end;
 
-    if (valorNovoLength > maxLength) {
-      return valorAntigo;
+    if (newValueLength > maxLength) {
+      return oldValue;
     }
     var substrInicio = 2;
     if (!ponto) {
@@ -25,24 +25,24 @@ class CepInputFormatter extends TextInputFormatter {
     }
 
     var substrIndex = 0;
-    final valorFinal = StringBuffer();
+    final newText = StringBuffer();
 
-    if (valorNovoLength >= 3 && ponto) {
-      valorFinal.write(valorNovo.text.substring(0, substrIndex = 2) + '.');
-      if (valorNovo.selection.end >= 2) selectionIndex++;
+    if (newValueLength >= 3 && ponto) {
+      newText.write(newValue.text.substring(0, substrIndex = 2) + '.');
+      if (newValue.selection.end >= 2) selectionIndex++;
     }
-    if (valorNovoLength >= 6) {
-      valorFinal
-          .write(valorNovo.text.substring(substrInicio, substrIndex = 5) + '-');
-      if (valorNovo.selection.end >= 5) selectionIndex++;
+    if (newValueLength >= 6) {
+      newText
+          .write(newValue.text.substring(substrInicio, substrIndex = 5) + '-');
+      if (newValue.selection.end >= 5) selectionIndex++;
     }
 
-    if (valorNovoLength >= substrIndex) {
-      valorFinal.write(valorNovo.text.substring(substrIndex));
+    if (newValueLength >= substrIndex) {
+      newText.write(newValue.text.substring(substrIndex));
     }
 
     return TextEditingValue(
-      text: valorFinal.toString(),
+      text: newText.toString(),
       selection: TextSelection.collapsed(offset: selectionIndex),
     );
   }

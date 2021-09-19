@@ -7,15 +7,19 @@
   <meta name="description" content="API docs for the formatEditUpdate method from the RealInputFormatter class, for the Dart programming language.">
   <title>formatEditUpdate method - RealInputFormatter class - brasil_fields library - Dart API</title>
 
+
   
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="../../static-assets/github.css">
-  <link rel="stylesheet" href="../../static-assets/styles.css">
-  <link rel="icon" href="../../static-assets/favicon.png">
+  
+  <link rel="stylesheet" href="../../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../../static-assets/styles.css?v1">
+  <link rel="icon" href="../../static-assets/favicon.png?v1">
 
+  
 </head>
+
 
 <body data-base-href="../../"
       data-using-base-href="false">
@@ -38,20 +42,555 @@
 
 <main>
 
+
+  <div id="dartdoc-main-content" class="main-content">
+      <div>
+<h1><span class="kind-method">formatEditUpdate</span> method 
+    <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
+</h1></div>
+
+    <section class="multi-line-signature">
+      
+<div>
+  <ol class="annotation-list">
+    <li>@<a href="https://api.flutter.dev/flutter/dart-core/override-constant.html">override</a></li>
+  </ol>
+</div>
+
+<span class="returntype"><a href="https://api.flutter.dev/flutter/services/TextEditingValue-class.html">TextEditingValue</a></span>
+<span class="name ">formatEditUpdate</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="formatEditUpdate-param-oldValue"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/services/TextEditingValue-class.html">TextEditingValue</a></span> <span class="parameter-name">oldValue</span>, </span></li>
+<li><span class="parameter" id="formatEditUpdate-param-newValue"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/services/TextEditingValue-class.html">TextEditingValue</a></span> <span class="parameter-name">newValue</span></span></li>
+</ol>)
+
+      <div class="features">override</div>
+
+    </section>
+    
+<section class="desc markdown">
+  <p>Called when text is being typed or cut/copy/pasted in the <a href="https://api.flutter.dev/flutter/widgets/EditableText-class.html">EditableText</a>.</p>
+<p>You can override the resulting text based on the previous text value and
+the incoming new text value.</p>
+<p>When formatters are chained, <code>oldValue</code> reflects the initial value of
+<a href="https://api.flutter.dev/flutter/services/TextEditingValue-class.html">TextEditingValue</a> at the beginning of the chain.</p>
+</section>
+
+
+    
+<section class="summary source-code" id="source">
+  <h2><span>Implementation</span></h2>
+  <pre class="language-dart"><code class="language-dart">@override
+TextEditingValue formatEditUpdate(
+    TextEditingValue oldValue, TextEditingValue newValue) {
+  final newValueLength = newValue.text.length;
+  var selectionIndex = newValue.selection.end;
+
+  if (newValueLength &gt; maxLength) {
+    return oldValue;
+  }
+
+  const currency = &#39;R\$ &#39;;
+  var substrIndex = 0;
+  final newText = StringBuffer();
+  if (moeda) {
+    if (centavos) {
+      maxLength = 14;
+      switch (newValueLength) {
+        case 1:
+          newText.write(currency + &#39;0,0&#39;);
+          selectionIndex = 7;
+          break;
+        case 2:
+          if (newValue.text[0] == &#39;0&#39;) {
+            newText.write(currency +
+                &#39;0,0&#39; +
+                newValue.text.substring(1, 2) +
+                newValue.text.substring(2, substrIndex = 2));
+            selectionIndex = 7;
+          } else {
+            newText.write(currency +
+                &#39;0,&#39; +
+                newValue.text.substring(0, 2) +
+                newValue.text.substring(2, substrIndex = 2));
+            selectionIndex = 7;
+          }
+          break;
+        case 3:
+          newText.write(currency +
+              newValue.text.substring(0, 1) +
+              &#39;,&#39; +
+              newValue.text.substring(1, substrIndex = 2));
+          selectionIndex = 7;
+          break;
+        case 4:
+          if (newValue.text[0] == &#39;0&#39;) {
+            newText.write(currency +
+                newValue.text.substring(1, 2) +
+                &#39;,&#39; +
+                newValue.text.substring(2, substrIndex = 4));
+            selectionIndex = 7;
+          } else {
+            newText.write(currency +
+                newValue.text.substring(0, 2) +
+                &#39;,&#39; +
+                newValue.text.substring(2, substrIndex = 4));
+            selectionIndex = 8;
+          }
+          break;
+        case 5:
+          newText.write(currency +
+              newValue.text.substring(0, 3) +
+              &#39;,&#39; +
+              newValue.text.substring(3, substrIndex = 5));
+          selectionIndex = 9;
+          break;
+        case 6:
+          newText.write(currency +
+              newValue.text.substring(0, 1) +
+              &#39;.&#39; +
+              newValue.text.substring(1, 4) +
+              &#39;,&#39; +
+              newValue.text.substring(4, substrIndex = 5));
+          selectionIndex = 11;
+          break;
+        case 7:
+          newText.write(currency +
+              newValue.text.substring(0, 2) +
+              &#39;.&#39; +
+              newValue.text.substring(2, 5) +
+              &#39;,&#39; +
+              newValue.text.substring(5, substrIndex = 6));
+          selectionIndex = 12;
+          break;
+        case 8:
+          newText.write(currency +
+              newValue.text.substring(0, 3) +
+              &#39;.&#39; +
+              newValue.text.substring(3, 6) +
+              &#39;,&#39; +
+              newValue.text.substring(6, substrIndex = 7));
+          selectionIndex = 13;
+          break;
+        case 9:
+          newText.write(currency +
+              newValue.text.substring(0, 1) +
+              &#39;.&#39; +
+              newValue.text.substring(1, 4) +
+              &#39;.&#39; +
+              newValue.text.substring(4, 7) +
+              &#39;,&#39; +
+              newValue.text.substring(7, substrIndex = 8));
+          selectionIndex = 15;
+          break;
+        case 10:
+          newText.write(currency +
+              newValue.text.substring(0, 2) +
+              &#39;.&#39; +
+              newValue.text.substring(2, 5) +
+              &#39;.&#39; +
+              newValue.text.substring(5, 8) +
+              &#39;,&#39; +
+              newValue.text.substring(8, substrIndex = 9));
+          selectionIndex = 16;
+          break;
+        case 11:
+          newText.write(currency +
+              newValue.text.substring(0, 3) +
+              &#39;.&#39; +
+              newValue.text.substring(3, 6) +
+              &#39;.&#39; +
+              newValue.text.substring(6, 9) +
+              &#39;,&#39; +
+              newValue.text.substring(9, substrIndex = 10));
+          selectionIndex = 17;
+          break;
+        case 12:
+          newText.write(currency +
+              newValue.text.substring(0, 1) +
+              &#39;.&#39; +
+              newValue.text.substring(1, 4) +
+              &#39;.&#39; +
+              newValue.text.substring(4, 7) +
+              &#39;.&#39; +
+              newValue.text.substring(7, 10) +
+              &#39;,&#39; +
+              newValue.text.substring(10, substrIndex = 11));
+          selectionIndex = 19;
+          break;
+        case 13:
+          newText.write(currency +
+              newValue.text.substring(0, 2) +
+              &#39;.&#39; +
+              newValue.text.substring(2, 5) +
+              &#39;.&#39; +
+              newValue.text.substring(5, 8) +
+              &#39;.&#39; +
+              newValue.text.substring(8, 11) +
+              &#39;,&#39; +
+              newValue.text.substring(11, substrIndex = 11));
+          selectionIndex = 20;
+          break;
+        case 14:
+          newText.write(currency +
+              newValue.text.substring(0, 3) +
+              &#39;.&#39; +
+              newValue.text.substring(3, 6) +
+              &#39;.&#39; +
+              newValue.text.substring(6, 9) +
+              &#39;.&#39; +
+              newValue.text.substring(9, 12) +
+              &#39;,&#39; +
+              newValue.text.substring(12, substrIndex = 13));
+          selectionIndex = 21;
+          break;
+      }
+    } else {
+      switch (newValueLength) {
+        case 0:
+          newText.write(currency);
+          selectionIndex = 3;
+          break;
+        case 1:
+          newText.write(currency);
+          selectionIndex = 4;
+          break;
+        case 2:
+          newText.write(currency);
+          selectionIndex = 5;
+          break;
+        case 3:
+          newText.write(currency);
+          selectionIndex = 6;
+          break;
+        case 4:
+          newText.write(currency +
+              newValue.text.substring(0, 1) +
+              &#39;.&#39; +
+              newValue.text.substring(1, substrIndex = 3));
+          selectionIndex = 8;
+          break;
+        case 5:
+          newText.write(currency +
+              newValue.text.substring(0, 2) +
+              &#39;.&#39; +
+              newValue.text.substring(2, substrIndex = 3));
+          selectionIndex = 9;
+          break;
+        case 6:
+          newText.write(currency +
+              newValue.text.substring(0, 3) +
+              &#39;.&#39; +
+              newValue.text.substring(3, substrIndex = 3));
+          selectionIndex = 10;
+          break;
+        case 7:
+          newText.write(currency +
+              newValue.text.substring(0, 1) +
+              &#39;.&#39; +
+              newValue.text.substring(1, 4) +
+              &#39;.&#39; +
+              newValue.text.substring(4, substrIndex = 5));
+
+          selectionIndex = 12;
+          break;
+        case 8:
+          newText.write(currency +
+              newValue.text.substring(0, 2) +
+              &#39;.&#39; +
+              newValue.text.substring(2, 5) +
+              &#39;.&#39; +
+              newValue.text.substring(5, substrIndex = 6));
+          selectionIndex = 13;
+          break;
+        case 9:
+          newText.write(currency +
+              newValue.text.substring(0, 3) +
+              &#39;.&#39; +
+              newValue.text.substring(3, 6) +
+              &#39;.&#39; +
+              newValue.text.substring(6, substrIndex = 7));
+          selectionIndex = 14;
+          break;
+        case 10:
+          newText.write(currency +
+              newValue.text.substring(0, 1) +
+              &#39;.&#39; +
+              newValue.text.substring(1, 4) +
+              &#39;.&#39; +
+              newValue.text.substring(4, 7) +
+              &#39;.&#39; +
+              newValue.text.substring(7, substrIndex = 10));
+          selectionIndex = 16;
+          break;
+        case 11:
+          newText.write(currency +
+              newValue.text.substring(0, 2) +
+              &#39;.&#39; +
+              newValue.text.substring(2, 5) +
+              &#39;.&#39; +
+              newValue.text.substring(5, 8) +
+              &#39;.&#39; +
+              newValue.text.substring(8, substrIndex = 11));
+          selectionIndex = 17;
+          break;
+        case 12:
+          newText.write(currency +
+              newValue.text.substring(0, 3) +
+              &#39;.&#39; +
+              newValue.text.substring(3, 6) +
+              &#39;.&#39; +
+              newValue.text.substring(6, 9) +
+              &#39;.&#39; +
+              newValue.text.substring(9, substrIndex = 12));
+          selectionIndex = 18;
+          break;
+      }
+    }
+  } else {
+    if (centavos) {
+      maxLength = 14;
+      switch (newValueLength) {
+        case 1:
+          newText.write(&#39;0,0&#39;);
+          selectionIndex = 4;
+          break;
+        case 2:
+          if (newValue.text[0] == &#39;0&#39;) {
+            newText.write(&#39;0,0&#39; +
+                newValue.text.substring(1, 2) +
+                newValue.text.substring(2, substrIndex = 2));
+            selectionIndex = 4;
+          } else {
+            newText.write(&#39;0,&#39; +
+                newValue.text.substring(0, 2) +
+                newValue.text.substring(2, substrIndex = 2));
+            selectionIndex = 4;
+          }
+          break;
+        case 3:
+          newText.write(newValue.text.substring(0, 1) +
+              &#39;,&#39; +
+              newValue.text.substring(1, substrIndex = 2));
+          selectionIndex = 4;
+          break;
+        case 4:
+          if (newValue.text[0] == &#39;0&#39;) {
+            newText.write(newValue.text.substring(1, 2) +
+                &#39;,&#39; +
+                newValue.text.substring(2, substrIndex = 4));
+            selectionIndex = 4;
+          } else {
+            newText.write(newValue.text.substring(0, 2) +
+                &#39;,&#39; +
+                newValue.text.substring(2, substrIndex = 4));
+            selectionIndex = 5;
+          }
+          break;
+        case 5:
+          newText.write(newValue.text.substring(0, 3) +
+              &#39;,&#39; +
+              newValue.text.substring(3, substrIndex = 5));
+          selectionIndex = 6;
+          break;
+        case 6:
+          newText.write(newValue.text.substring(0, 1) +
+              &#39;.&#39; +
+              newValue.text.substring(1, 4) +
+              &#39;,&#39; +
+              newValue.text.substring(4, substrIndex = 5));
+          selectionIndex = 8;
+          break;
+        case 7:
+          newText.write(newValue.text.substring(0, 2) +
+              &#39;.&#39; +
+              newValue.text.substring(2, 5) +
+              &#39;,&#39; +
+              newValue.text.substring(5, substrIndex = 6));
+          selectionIndex = 9;
+          break;
+        case 8:
+          newText.write(newValue.text.substring(0, 3) +
+              &#39;.&#39; +
+              newValue.text.substring(3, 6) +
+              &#39;,&#39; +
+              newValue.text.substring(6, substrIndex = 7));
+          selectionIndex = 10;
+          break;
+        case 9:
+          newText.write(newValue.text.substring(0, 1) +
+              &#39;.&#39; +
+              newValue.text.substring(1, 4) +
+              &#39;.&#39; +
+              newValue.text.substring(4, 7) +
+              &#39;,&#39; +
+              newValue.text.substring(7, substrIndex = 8));
+          selectionIndex = 12;
+          break;
+        case 10:
+          newText.write(newValue.text.substring(0, 2) +
+              &#39;.&#39; +
+              newValue.text.substring(2, 5) +
+              &#39;.&#39; +
+              newValue.text.substring(5, 8) +
+              &#39;,&#39; +
+              newValue.text.substring(8, substrIndex = 9));
+          selectionIndex = 13;
+          break;
+        case 11:
+          newText.write(newValue.text.substring(0, 3) +
+              &#39;.&#39; +
+              newValue.text.substring(3, 6) +
+              &#39;.&#39; +
+              newValue.text.substring(6, 9) +
+              &#39;,&#39; +
+              newValue.text.substring(9, substrIndex = 10));
+          selectionIndex = 14;
+          break;
+        case 12:
+          newText.write(newValue.text.substring(0, 1) +
+              &#39;.&#39; +
+              newValue.text.substring(1, 4) +
+              &#39;.&#39; +
+              newValue.text.substring(4, 7) +
+              &#39;.&#39; +
+              newValue.text.substring(7, 10) +
+              &#39;,&#39; +
+              newValue.text.substring(10, substrIndex = 11));
+          selectionIndex = 16;
+          break;
+        case 13:
+          newText.write(newValue.text.substring(0, 2) +
+              &#39;.&#39; +
+              newValue.text.substring(2, 5) +
+              &#39;.&#39; +
+              newValue.text.substring(5, 8) +
+              &#39;.&#39; +
+              newValue.text.substring(8, 11) +
+              &#39;,&#39; +
+              newValue.text.substring(11, substrIndex = 11));
+          selectionIndex = 17;
+          break;
+        case 14:
+          newText.write(newValue.text.substring(0, 3) +
+              &#39;.&#39; +
+              newValue.text.substring(3, 6) +
+              &#39;.&#39; +
+              newValue.text.substring(6, 9) +
+              &#39;.&#39; +
+              newValue.text.substring(9, 12) +
+              &#39;,&#39; +
+              newValue.text.substring(12, substrIndex = 13));
+          selectionIndex = 18;
+          break;
+      }
+    } else {
+      switch (newValueLength) {
+        case 4:
+          newText.write(newValue.text.substring(0, 1) +
+              &#39;.&#39; +
+              newValue.text.substring(1, substrIndex = 3));
+          selectionIndex = 5;
+
+          break;
+        case 5:
+          newText.write(newValue.text.substring(0, 2) +
+              &#39;.&#39; +
+              newValue.text.substring(2, substrIndex = 3));
+          selectionIndex = 6;
+          break;
+        case 6:
+          newText.write(newValue.text.substring(0, 3) +
+              &#39;.&#39; +
+              newValue.text.substring(3, substrIndex = 3));
+          selectionIndex = 7;
+          break;
+        case 7:
+          newText.write(newValue.text.substring(0, 1) +
+              &#39;.&#39; +
+              newValue.text.substring(1, 4) +
+              &#39;.&#39; +
+              newValue.text.substring(4, substrIndex = 5));
+
+          selectionIndex = 9;
+          break;
+        case 8:
+          newText.write(newValue.text.substring(0, 2) +
+              &#39;.&#39; +
+              newValue.text.substring(2, 5) +
+              &#39;.&#39; +
+              newValue.text.substring(5, substrIndex = 6));
+          selectionIndex = 10;
+          break;
+        case 9:
+          newText.write(newValue.text.substring(0, 3) +
+              &#39;.&#39; +
+              newValue.text.substring(3, 6) +
+              &#39;.&#39; +
+              newValue.text.substring(6, substrIndex = 7));
+          selectionIndex = 11;
+          break;
+        case 10:
+          newText.write(newValue.text.substring(0, 1) +
+              &#39;.&#39; +
+              newValue.text.substring(1, 4) +
+              &#39;.&#39; +
+              newValue.text.substring(4, 7) +
+              &#39;.&#39; +
+              newValue.text.substring(7, substrIndex = 10));
+          selectionIndex = 13;
+          break;
+        case 11:
+          newText.write(newValue.text.substring(0, 2) +
+              &#39;.&#39; +
+              newValue.text.substring(2, 5) +
+              &#39;.&#39; +
+              newValue.text.substring(5, 8) +
+              &#39;.&#39; +
+              newValue.text.substring(8, substrIndex = 11));
+          selectionIndex = 14;
+          break;
+        case 12:
+          newText.write(newValue.text.substring(0, 3) +
+              &#39;.&#39; +
+              newValue.text.substring(3, 6) +
+              &#39;.&#39; +
+              newValue.text.substring(6, 9) +
+              &#39;.&#39; +
+              newValue.text.substring(9, substrIndex = 12));
+          selectionIndex = 15;
+          break;
+      }
+    }
+  }
+
+  if (newValueLength &gt;= substrIndex) {
+    newText.write(newValue.text.substring(substrIndex));
+  }
+
+  return TextEditingValue(
+    text: newText.toString(),
+    selection: TextSelection.collapsed(offset: selectionIndex),
+  );
+}</code></pre>
+</section>
+
+
+  </div> <!-- /.main-content -->
+
   <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
     <header id="header-search-sidebar" class="hidden-l">
-      <form class="search-sidebar" role="search">
-        <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
-      </form>
-    </header>
-    
-    <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
-      <li><a href="../../index.html">brasil_fields</a></li>
-      <li><a href="../../brasil_fields/brasil_fields-library.html">brasil_fields</a></li>
-      <li><a href="../../brasil_fields/RealInputFormatter-class.html">RealInputFormatter</a></li>
-      <li class="self-crumb">formatEditUpdate method</li>
-    </ol>
-    
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+  <li><a href="../../index.html">brasil_fields</a></li>
+  <li><a href="../../brasil_fields/brasil_fields-library.html">brasil_fields</a></li>
+  <li><a href="../../brasil_fields/RealInputFormatter-class.html">RealInputFormatter</a></li>
+  <li class="self-crumb">formatEditUpdate method</li>
+</ol>
+
+
     <h5>RealInputFormatter class</h5>
     <ol>
 
@@ -83,530 +622,6 @@
 
   </div><!--/.sidebar-offcanvas-->
 
-  <div id="dartdoc-main-content" class="main-content">
-      <div><h1><span class="kind-method">formatEditUpdate</span> method     <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
-</h1></div>
-
-    <section class="multi-line-signature">
-      <div>
-        <ol class="annotation-list">
-          <li>@<a href="https://api.flutter.dev/flutter/dart-core/override-constant.html">override</a></li>
-        </ol>
-      </div>
-      <span class="returntype"><a href="https://api.flutter.dev/flutter/services/TextEditingValue-class.html">TextEditingValue</a></span>
-            <span class="name ">formatEditUpdate</span>
-(<wbr><ol class="parameter-list"><li><span class="parameter" id="formatEditUpdate-param-valorAntigo"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/services/TextEditingValue-class.html">TextEditingValue</a></span> <span class="parameter-name">valorAntigo</span>, </span></li>
-<li><span class="parameter" id="formatEditUpdate-param-valorNovo"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/services/TextEditingValue-class.html">TextEditingValue</a></span> <span class="parameter-name">valorNovo</span></span></li>
-</ol>)
-      <div class="features">override</div>
-    </section>
-    <section class="desc markdown">
-      <p>Called when text is being typed or cut/copy/pasted in the <a href="https://api.flutter.dev/flutter/widgets/EditableText-class.html">EditableText</a>.</p>
-<p>You can override the resulting text based on the previous text value and
-the incoming new text value.</p>
-<p>When formatters are chained, <code>oldValue</code> reflects the initial value of
-<a href="https://api.flutter.dev/flutter/services/TextEditingValue-class.html">TextEditingValue</a> at the beginning of the chain.</p>
-    </section>
-    
-    <section class="summary source-code" id="source">
-      <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">@override
-TextEditingValue formatEditUpdate(
-    TextEditingValue valorAntigo, TextEditingValue valorNovo) {
-  final novoTextLength = valorNovo.text.length;
-  var selectionIndex = valorNovo.selection.end;
-
-  if (novoTextLength &gt; maxLength) {
-    return valorAntigo;
-  }
-
-  final currency = &#39;R\$ &#39;;
-  var usedSubstringIndex = 0;
-  final newText = StringBuffer();
-  if (moeda) {
-    if (centavos) {
-      maxLength = 14;
-      switch (novoTextLength) {
-        case 1:
-          newText.write(currency + &#39;0,0&#39;);
-          selectionIndex = 7;
-          break;
-        case 2:
-          if (valorNovo.text[0] == &#39;0&#39;) {
-            newText.write(currency +
-                &#39;0,0&#39; +
-                valorNovo.text.substring(1, 2) +
-                valorNovo.text.substring(2, usedSubstringIndex = 2));
-            selectionIndex = 7;
-          } else {
-            newText.write(currency +
-                &#39;0,&#39; +
-                valorNovo.text.substring(0, 2) +
-                valorNovo.text.substring(2, usedSubstringIndex = 2));
-            selectionIndex = 7;
-          }
-          break;
-        case 3:
-          newText.write(currency +
-              valorNovo.text.substring(0, 1) +
-              &#39;,&#39; +
-              valorNovo.text.substring(1, usedSubstringIndex = 2));
-          selectionIndex = 7;
-          break;
-        case 4:
-          if (valorNovo.text[0] == &#39;0&#39;) {
-            newText.write(currency +
-                valorNovo.text.substring(1, 2) +
-                &#39;,&#39; +
-                valorNovo.text.substring(2, usedSubstringIndex = 4));
-            selectionIndex = 7;
-          } else {
-            newText.write(currency +
-                valorNovo.text.substring(0, 2) +
-                &#39;,&#39; +
-                valorNovo.text.substring(2, usedSubstringIndex = 4));
-            selectionIndex = 8;
-          }
-          break;
-        case 5:
-          newText.write(currency +
-              valorNovo.text.substring(0, 3) +
-              &#39;,&#39; +
-              valorNovo.text.substring(3, usedSubstringIndex = 5));
-          selectionIndex = 9;
-          break;
-        case 6:
-          newText.write(currency +
-              valorNovo.text.substring(0, 1) +
-              &#39;.&#39; +
-              valorNovo.text.substring(1, 4) +
-              &#39;,&#39; +
-              valorNovo.text.substring(4, usedSubstringIndex = 5));
-          selectionIndex = 11;
-          break;
-        case 7:
-          newText.write(currency +
-              valorNovo.text.substring(0, 2) +
-              &#39;.&#39; +
-              valorNovo.text.substring(2, 5) +
-              &#39;,&#39; +
-              valorNovo.text.substring(5, usedSubstringIndex = 6));
-          selectionIndex = 12;
-          break;
-        case 8:
-          newText.write(currency +
-              valorNovo.text.substring(0, 3) +
-              &#39;.&#39; +
-              valorNovo.text.substring(3, 6) +
-              &#39;,&#39; +
-              valorNovo.text.substring(6, usedSubstringIndex = 7));
-          selectionIndex = 13;
-          break;
-        case 9:
-          newText.write(currency +
-              valorNovo.text.substring(0, 1) +
-              &#39;.&#39; +
-              valorNovo.text.substring(1, 4) +
-              &#39;.&#39; +
-              valorNovo.text.substring(4, 7) +
-              &#39;,&#39; +
-              valorNovo.text.substring(7, usedSubstringIndex = 8));
-          selectionIndex = 15;
-          break;
-        case 10:
-          newText.write(currency +
-              valorNovo.text.substring(0, 2) +
-              &#39;.&#39; +
-              valorNovo.text.substring(2, 5) +
-              &#39;.&#39; +
-              valorNovo.text.substring(5, 8) +
-              &#39;,&#39; +
-              valorNovo.text.substring(8, usedSubstringIndex = 9));
-          selectionIndex = 16;
-          break;
-        case 11:
-          newText.write(currency +
-              valorNovo.text.substring(0, 3) +
-              &#39;.&#39; +
-              valorNovo.text.substring(3, 6) +
-              &#39;.&#39; +
-              valorNovo.text.substring(6, 9) +
-              &#39;,&#39; +
-              valorNovo.text.substring(9, usedSubstringIndex = 10));
-          selectionIndex = 17;
-          break;
-        case 12:
-          newText.write(currency +
-              valorNovo.text.substring(0, 1) +
-              &#39;.&#39; +
-              valorNovo.text.substring(1, 4) +
-              &#39;.&#39; +
-              valorNovo.text.substring(4, 7) +
-              &#39;.&#39; +
-              valorNovo.text.substring(7, 10) +
-              &#39;,&#39; +
-              valorNovo.text.substring(10, usedSubstringIndex = 11));
-          selectionIndex = 19;
-          break;
-        case 13:
-          newText.write(currency +
-              valorNovo.text.substring(0, 2) +
-              &#39;.&#39; +
-              valorNovo.text.substring(2, 5) +
-              &#39;.&#39; +
-              valorNovo.text.substring(5, 8) +
-              &#39;.&#39; +
-              valorNovo.text.substring(8, 11) +
-              &#39;,&#39; +
-              valorNovo.text.substring(11, usedSubstringIndex = 11));
-          selectionIndex = 20;
-          break;
-        case 14:
-          newText.write(currency +
-              valorNovo.text.substring(0, 3) +
-              &#39;.&#39; +
-              valorNovo.text.substring(3, 6) +
-              &#39;.&#39; +
-              valorNovo.text.substring(6, 9) +
-              &#39;.&#39; +
-              valorNovo.text.substring(9, 12) +
-              &#39;,&#39; +
-              valorNovo.text.substring(12, usedSubstringIndex = 13));
-          selectionIndex = 21;
-          break;
-      }
-    } else {
-      switch (novoTextLength) {
-        case 0:
-          newText.write(currency);
-          selectionIndex = 3;
-          break;
-        case 1:
-          newText.write(currency);
-          selectionIndex = 4;
-          break;
-        case 2:
-          newText.write(currency);
-          selectionIndex = 5;
-          break;
-        case 3:
-          newText.write(currency);
-          selectionIndex = 6;
-          break;
-        case 4:
-          newText.write(currency +
-              valorNovo.text.substring(0, 1) +
-              &#39;.&#39; +
-              valorNovo.text.substring(1, usedSubstringIndex = 3));
-          selectionIndex = 8;
-          break;
-        case 5:
-          newText.write(currency +
-              valorNovo.text.substring(0, 2) +
-              &#39;.&#39; +
-              valorNovo.text.substring(2, usedSubstringIndex = 3));
-          selectionIndex = 9;
-          break;
-        case 6:
-          newText.write(currency +
-              valorNovo.text.substring(0, 3) +
-              &#39;.&#39; +
-              valorNovo.text.substring(3, usedSubstringIndex = 3));
-          selectionIndex = 10;
-          break;
-        case 7:
-          newText.write(currency +
-              valorNovo.text.substring(0, 1) +
-              &#39;.&#39; +
-              valorNovo.text.substring(1, 4) +
-              &#39;.&#39; +
-              valorNovo.text.substring(4, usedSubstringIndex = 5));
-
-          selectionIndex = 12;
-          break;
-        case 8:
-          newText.write(currency +
-              valorNovo.text.substring(0, 2) +
-              &#39;.&#39; +
-              valorNovo.text.substring(2, 5) +
-              &#39;.&#39; +
-              valorNovo.text.substring(5, usedSubstringIndex = 6));
-          selectionIndex = 13;
-          break;
-        case 9:
-          newText.write(currency +
-              valorNovo.text.substring(0, 3) +
-              &#39;.&#39; +
-              valorNovo.text.substring(3, 6) +
-              &#39;.&#39; +
-              valorNovo.text.substring(6, usedSubstringIndex = 7));
-          selectionIndex = 14;
-          break;
-        case 10:
-          newText.write(currency +
-              valorNovo.text.substring(0, 1) +
-              &#39;.&#39; +
-              valorNovo.text.substring(1, 4) +
-              &#39;.&#39; +
-              valorNovo.text.substring(4, 7) +
-              &#39;.&#39; +
-              valorNovo.text.substring(7, usedSubstringIndex = 10));
-          selectionIndex = 16;
-          break;
-        case 11:
-          newText.write(currency +
-              valorNovo.text.substring(0, 2) +
-              &#39;.&#39; +
-              valorNovo.text.substring(2, 5) +
-              &#39;.&#39; +
-              valorNovo.text.substring(5, 8) +
-              &#39;.&#39; +
-              valorNovo.text.substring(8, usedSubstringIndex = 11));
-          selectionIndex = 17;
-          break;
-        case 12:
-          newText.write(currency +
-              valorNovo.text.substring(0, 3) +
-              &#39;.&#39; +
-              valorNovo.text.substring(3, 6) +
-              &#39;.&#39; +
-              valorNovo.text.substring(6, 9) +
-              &#39;.&#39; +
-              valorNovo.text.substring(9, usedSubstringIndex = 12));
-          selectionIndex = 18;
-          break;
-      }
-    }
-  } else {
-    if (centavos) {
-      maxLength = 14;
-      switch (novoTextLength) {
-        case 1:
-          newText.write(&#39;0,0&#39;);
-          selectionIndex = 4;
-          break;
-        case 2:
-          if (valorNovo.text[0] == &#39;0&#39;) {
-            newText.write(&#39;0,0&#39; +
-                valorNovo.text.substring(1, 2) +
-                valorNovo.text.substring(2, usedSubstringIndex = 2));
-            selectionIndex = 4;
-          } else {
-            newText.write(&#39;0,&#39; +
-                valorNovo.text.substring(0, 2) +
-                valorNovo.text.substring(2, usedSubstringIndex = 2));
-            selectionIndex = 4;
-          }
-          break;
-        case 3:
-          newText.write(valorNovo.text.substring(0, 1) +
-              &#39;,&#39; +
-              valorNovo.text.substring(1, usedSubstringIndex = 2));
-          selectionIndex = 4;
-          break;
-        case 4:
-          if (valorNovo.text[0] == &#39;0&#39;) {
-            newText.write(valorNovo.text.substring(1, 2) +
-                &#39;,&#39; +
-                valorNovo.text.substring(2, usedSubstringIndex = 4));
-            selectionIndex = 4;
-          } else {
-            newText.write(valorNovo.text.substring(0, 2) +
-                &#39;,&#39; +
-                valorNovo.text.substring(2, usedSubstringIndex = 4));
-            selectionIndex = 5;
-          }
-          break;
-        case 5:
-          newText.write(valorNovo.text.substring(0, 3) +
-              &#39;,&#39; +
-              valorNovo.text.substring(3, usedSubstringIndex = 5));
-          selectionIndex = 6;
-          break;
-        case 6:
-          newText.write(valorNovo.text.substring(0, 1) +
-              &#39;.&#39; +
-              valorNovo.text.substring(1, 4) +
-              &#39;,&#39; +
-              valorNovo.text.substring(4, usedSubstringIndex = 5));
-          selectionIndex = 8;
-          break;
-        case 7:
-          newText.write(valorNovo.text.substring(0, 2) +
-              &#39;.&#39; +
-              valorNovo.text.substring(2, 5) +
-              &#39;,&#39; +
-              valorNovo.text.substring(5, usedSubstringIndex = 6));
-          selectionIndex = 9;
-          break;
-        case 8:
-          newText.write(valorNovo.text.substring(0, 3) +
-              &#39;.&#39; +
-              valorNovo.text.substring(3, 6) +
-              &#39;,&#39; +
-              valorNovo.text.substring(6, usedSubstringIndex = 7));
-          selectionIndex = 10;
-          break;
-        case 9:
-          newText.write(valorNovo.text.substring(0, 1) +
-              &#39;.&#39; +
-              valorNovo.text.substring(1, 4) +
-              &#39;.&#39; +
-              valorNovo.text.substring(4, 7) +
-              &#39;,&#39; +
-              valorNovo.text.substring(7, usedSubstringIndex = 8));
-          selectionIndex = 12;
-          break;
-        case 10:
-          newText.write(valorNovo.text.substring(0, 2) +
-              &#39;.&#39; +
-              valorNovo.text.substring(2, 5) +
-              &#39;.&#39; +
-              valorNovo.text.substring(5, 8) +
-              &#39;,&#39; +
-              valorNovo.text.substring(8, usedSubstringIndex = 9));
-          selectionIndex = 13;
-          break;
-        case 11:
-          newText.write(valorNovo.text.substring(0, 3) +
-              &#39;.&#39; +
-              valorNovo.text.substring(3, 6) +
-              &#39;.&#39; +
-              valorNovo.text.substring(6, 9) +
-              &#39;,&#39; +
-              valorNovo.text.substring(9, usedSubstringIndex = 10));
-          selectionIndex = 14;
-          break;
-        case 12:
-          newText.write(valorNovo.text.substring(0, 1) +
-              &#39;.&#39; +
-              valorNovo.text.substring(1, 4) +
-              &#39;.&#39; +
-              valorNovo.text.substring(4, 7) +
-              &#39;.&#39; +
-              valorNovo.text.substring(7, 10) +
-              &#39;,&#39; +
-              valorNovo.text.substring(10, usedSubstringIndex = 11));
-          selectionIndex = 16;
-          break;
-        case 13:
-          newText.write(valorNovo.text.substring(0, 2) +
-              &#39;.&#39; +
-              valorNovo.text.substring(2, 5) +
-              &#39;.&#39; +
-              valorNovo.text.substring(5, 8) +
-              &#39;.&#39; +
-              valorNovo.text.substring(8, 11) +
-              &#39;,&#39; +
-              valorNovo.text.substring(11, usedSubstringIndex = 11));
-          selectionIndex = 17;
-          break;
-        case 14:
-          newText.write(valorNovo.text.substring(0, 3) +
-              &#39;.&#39; +
-              valorNovo.text.substring(3, 6) +
-              &#39;.&#39; +
-              valorNovo.text.substring(6, 9) +
-              &#39;.&#39; +
-              valorNovo.text.substring(9, 12) +
-              &#39;,&#39; +
-              valorNovo.text.substring(12, usedSubstringIndex = 13));
-          selectionIndex = 18;
-          break;
-      }
-    } else {
-      switch (novoTextLength) {
-        case 4:
-          newText.write(valorNovo.text.substring(0, 1) +
-              &#39;.&#39; +
-              valorNovo.text.substring(1, usedSubstringIndex = 3));
-          selectionIndex = 5;
-
-          break;
-        case 5:
-          newText.write(valorNovo.text.substring(0, 2) +
-              &#39;.&#39; +
-              valorNovo.text.substring(2, usedSubstringIndex = 3));
-          selectionIndex = 6;
-          break;
-        case 6:
-          newText.write(valorNovo.text.substring(0, 3) +
-              &#39;.&#39; +
-              valorNovo.text.substring(3, usedSubstringIndex = 3));
-          selectionIndex = 7;
-          break;
-        case 7:
-          newText.write(valorNovo.text.substring(0, 1) +
-              &#39;.&#39; +
-              valorNovo.text.substring(1, 4) +
-              &#39;.&#39; +
-              valorNovo.text.substring(4, usedSubstringIndex = 5));
-
-          selectionIndex = 9;
-          break;
-        case 8:
-          newText.write(valorNovo.text.substring(0, 2) +
-              &#39;.&#39; +
-              valorNovo.text.substring(2, 5) +
-              &#39;.&#39; +
-              valorNovo.text.substring(5, usedSubstringIndex = 6));
-          selectionIndex = 10;
-          break;
-        case 9:
-          newText.write(valorNovo.text.substring(0, 3) +
-              &#39;.&#39; +
-              valorNovo.text.substring(3, 6) +
-              &#39;.&#39; +
-              valorNovo.text.substring(6, usedSubstringIndex = 7));
-          selectionIndex = 11;
-          break;
-        case 10:
-          newText.write(valorNovo.text.substring(0, 1) +
-              &#39;.&#39; +
-              valorNovo.text.substring(1, 4) +
-              &#39;.&#39; +
-              valorNovo.text.substring(4, 7) +
-              &#39;.&#39; +
-              valorNovo.text.substring(7, usedSubstringIndex = 10));
-          selectionIndex = 13;
-          break;
-        case 11:
-          newText.write(valorNovo.text.substring(0, 2) +
-              &#39;.&#39; +
-              valorNovo.text.substring(2, 5) +
-              &#39;.&#39; +
-              valorNovo.text.substring(5, 8) +
-              &#39;.&#39; +
-              valorNovo.text.substring(8, usedSubstringIndex = 11));
-          selectionIndex = 14;
-          break;
-        case 12:
-          newText.write(valorNovo.text.substring(0, 3) +
-              &#39;.&#39; +
-              valorNovo.text.substring(3, 6) +
-              &#39;.&#39; +
-              valorNovo.text.substring(6, 9) +
-              &#39;.&#39; +
-              valorNovo.text.substring(9, usedSubstringIndex = 12));
-          selectionIndex = 15;
-          break;
-      }
-    }
-  }
-
-  if (novoTextLength &gt;= usedSubstringIndex) {
-    newText.write(valorNovo.text.substring(usedSubstringIndex));
-  }
-
-  return TextEditingValue(
-    text: newText.toString(),
-    selection: TextSelection.collapsed(offset: selectionIndex),
-  );
-}</code></pre>
-    </section>
-
-  </div> <!-- /.main-content -->
-
   <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
   </div><!--/.sidebar-offcanvas-->
 
@@ -618,14 +633,17 @@ TextEditingValue formatEditUpdate(
       1.2.0
   </span>
 
+  
 </footer>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="../../static-assets/typeahead.bundle.min.js"></script>
-<script src="../../static-assets/highlight.pack.js"></script>
-<script src="../../static-assets/script.js"></script>
+
+
+<script src="../../static-assets/highlight.pack.js?v1"></script>
+<script src="../../static-assets/script.js?v1"></script>
+
 
 
 </body>
 
 </html>
+

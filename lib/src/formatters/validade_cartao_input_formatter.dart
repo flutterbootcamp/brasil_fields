@@ -7,40 +7,39 @@ class ValidadeCartaoInputFormatter extends TextInputFormatter {
 
   @override
   TextEditingValue formatEditUpdate(
-      TextEditingValue valorAntigo, TextEditingValue valorNovo) {
-    final novoTextLength = valorNovo.text.length;
-    var selectionIndex = valorNovo.selection.end;
+      TextEditingValue oldValue, TextEditingValue newValue) {
+    final newValueLength = newValue.text.length;
+    var selectionIndex = newValue.selection.end;
 
-    if (novoTextLength > maxLength) {
-      return valorAntigo;
+    if (newValueLength > maxLength) {
+      return oldValue;
     }
 
-    var usedSubstringIndex = 0;
+    var substrIndex = 0;
     final newText = StringBuffer();
 
-    switch (novoTextLength) {
+    switch (newValueLength) {
       case 1:
-        final hora = int.tryParse(valorNovo.text.substring(0, 1));
+        final hora = int.tryParse(newValue.text.substring(0, 1));
         if (hora != null) {
-          if (hora >= 2) return valorAntigo;
+          if (hora >= 2) return oldValue;
         }
         break;
       case 2:
-        final hora = int.tryParse(valorNovo.text.substring(0, 2));
+        final hora = int.tryParse(newValue.text.substring(0, 2));
         if (hora != null) {
-          if (hora >= 13) return valorAntigo;
+          if (hora >= 13) return oldValue;
         }
         break;
       case 3:
       case 4:
-        newText
-            .write(valorNovo.text.substring(0, usedSubstringIndex = 2) + '/');
-        if (valorNovo.selection.end >= 2) selectionIndex++;
+        newText.write(newValue.text.substring(0, substrIndex = 2) + '/');
+        if (newValue.selection.end >= 2) selectionIndex++;
         break;
     }
 
-    if (novoTextLength >= usedSubstringIndex) {
-      newText.write(valorNovo.text.substring(usedSubstringIndex));
+    if (newValueLength >= substrIndex) {
+      newText.write(newValue.text.substring(substrIndex));
     }
 
     return TextEditingValue(

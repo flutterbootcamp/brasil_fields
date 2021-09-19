@@ -3,7 +3,7 @@
 /// `listaRegioes` lista com todas as regiões.
 
 class Regioes {
-  static final List<String> listaRegioes = [
+  static const List<String> listaRegioes = [
     'Centro-Oeste',
     'Nordeste',
     'Norte',

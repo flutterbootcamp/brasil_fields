@@ -14,14 +14,14 @@ class CompoundFormatter extends TextInputFormatter {
 
   @override
   TextEditingValue formatEditUpdate(
-      TextEditingValue valorAntigo, TextEditingValue valorNovo) {
+      TextEditingValue oldValue, TextEditingValue newValue) {
     final delegatedFormatter = _formatters.firstWhere((formatter) {
-      final valorNovoLength = valorNovo.text.length;
+      final newValueLength = newValue.text.length;
       final maxLength = formatter.maxLength;
-      return valorNovoLength <= maxLength;
+      return newValueLength <= maxLength;
     }, orElse: () {
       return _formatters.first;
     });
-    return delegatedFormatter.formatEditUpdate(valorAntigo, valorNovo);
+    return delegatedFormatter.formatEditUpdate(oldValue, newValue);
   }
 }

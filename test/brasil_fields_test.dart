@@ -27,6 +27,26 @@ Widget boilerplate(
   );
 }
 
+Widget boilerplatePlacaVeiculo(
+    TextInputFormatter inputFormatter, TextEditingController textController) {
+  return MaterialApp(
+    home: MediaQuery(
+      data: const MediaQueryData(size: Size(320, 480)),
+      child: Directionality(
+        textDirection: TextDirection.ltr,
+        child: Material(
+          child: TextField(
+            controller: textController,
+            inputFormatters: [
+              inputFormatter,
+            ],
+          ),
+        ),
+      ),
+    ),
+  );
+}
+
 void main() {
   testWidgets('CpfInputFormatter', (WidgetTester tester) async {
     final textController = TextEditingController();
@@ -128,13 +148,6 @@ void main() {
     await tester.enterText(find.byType(TextField), '01011900');
     expect(textController.text, '01/01/1900');
   });
-  testWidgets('CompleteDataInputFormatter', (WidgetTester tester) async {
-    final textController = TextEditingController();
-    await tester.pumpWidget(boilerplate(DataInputFormatter(), textController));
-
-    await tester.enterText(find.byType(TextField), '01011900');
-    expect(textController.text, '01/01/1900');
-  });
 
   testWidgets('HoraInputFormatter', (WidgetTester tester) async {
     final textController = TextEditingController();
@@ -144,7 +157,7 @@ void main() {
     expect(textController.text, '21:30');
   });
 
-  testWidgets('CartaoCredito', (WidgetTester tester) async {
+  testWidgets('CartaoBancarioInputFormatter', (WidgetTester tester) async {
     final textController = TextEditingController();
     await tester.pumpWidget(
         boilerplate(CartaoBancarioInputFormatter(), textController));
@@ -152,7 +165,7 @@ void main() {
     await tester.enterText(find.byType(TextField), '4040121298987373');
     expect(textController.text, '4040 1212 9898 7373');
   });
-  testWidgets('ValidadeCartao', (WidgetTester tester) async {
+  testWidgets('ValidadeCartaoInputFormatter', (WidgetTester tester) async {
     final textController = TextEditingController();
     await tester.pumpWidget(
         boilerplate(ValidadeCartaoInputFormatter(), textController));
@@ -161,7 +174,7 @@ void main() {
     expect(textController.text, '12/23');
   });
 
-  testWidgets('Altura', (WidgetTester tester) async {
+  testWidgets('AlturaInputFormatter', (WidgetTester tester) async {
     final textController = TextEditingController();
     await tester
         .pumpWidget(boilerplate(AlturaInputFormatter(), textController));
@@ -170,7 +183,7 @@ void main() {
     expect(textController.text, '1,76');
   });
 
-  testWidgets('Peso', (WidgetTester tester) async {
+  testWidgets('PesoInputFormatter', (WidgetTester tester) async {
     final textController = TextEditingController();
 
     await tester.pumpWidget(boilerplate(PesoInputFormatter(), textController));
@@ -182,7 +195,22 @@ void main() {
     expect(textController.text, '104,3');
   });
 
-  testWidgets('KM', (WidgetTester tester) async {
+  testWidgets('PlacaVeiculoFormatter', (WidgetTester tester) async {
+    final textController = TextEditingController();
+
+    // testa toUpperCase
+    await tester.pumpWidget(
+        boilerplatePlacaVeiculo(PlacaVeiculoFormatter(), textController));
+    await tester.enterText(find.byType(TextField), 'abc');
+    expect(textController.text, 'ABC');
+
+    await tester.pumpWidget(
+        boilerplatePlacaVeiculo(PlacaVeiculoFormatter(), textController));
+    await tester.enterText(find.byType(TextField), 'abc-1234');
+    expect(textController.text, 'ABC-1234');
+  });
+
+  testWidgets('KmInputFormatter', (WidgetTester tester) async {
     final textController = TextEditingController();
 
     await tester.pumpWidget(boilerplate(KmInputFormatter(), textController));

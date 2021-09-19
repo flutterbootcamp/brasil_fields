@@ -4,7 +4,7 @@
 import 'dart:math';
 
 class CPFValidator {
-  static const List<String> BLACKLIST = [
+  static const List<String> blockList = [
     '00000000000',
     '11111111111',
     '22222222222',
@@ -18,7 +18,7 @@ class CPFValidator {
     '12345678909'
   ];
 
-  static const STRIP_REGEX = r'[^\d]';
+  static const stipRegex = r'[^\d]';
 
   // Compute the Verifier Digit (or 'Dígito Verificador (DV)' in PT-BR).
   // You can learn more about the algorithm on [wikipedia (pt-br)](https://pt.wikipedia.org/wiki/D%C3%ADgito_verificador)
@@ -47,7 +47,7 @@ class CPFValidator {
   }
 
   static String strip(String? cpf) {
-    var regExp = RegExp(STRIP_REGEX);
+    var regExp = RegExp(stipRegex);
     cpf = cpf ?? '';
 
     return cpf.replaceAll(regExp, '');
@@ -69,7 +69,7 @@ class CPFValidator {
     }
 
     // CPF can't be blacklisted
-    if (BLACKLIST.contains(cpf)) {
+    if (blockList.contains(cpf)) {
       return false;
     }
 

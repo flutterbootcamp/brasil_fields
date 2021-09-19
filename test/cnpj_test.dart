@@ -29,7 +29,9 @@ void main() {
       '99999999999999'
     ];
 
-    blackListed.forEach((cnpj) => expect(CNPJValidator.isValid(cnpj), false));
+    for (var cnpj in blackListed) {
+      expect(CNPJValidator.isValid(cnpj), false);
+    }
   });
 
   test('Test CNPJ generator', () {

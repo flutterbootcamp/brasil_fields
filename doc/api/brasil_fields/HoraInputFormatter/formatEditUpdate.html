@@ -7,15 +7,19 @@
   <meta name="description" content="API docs for the formatEditUpdate method from the HoraInputFormatter class, for the Dart programming language.">
   <title>formatEditUpdate method - HoraInputFormatter class - brasil_fields library - Dart API</title>
 
+
   
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="../../static-assets/github.css">
-  <link rel="stylesheet" href="../../static-assets/styles.css">
-  <link rel="icon" href="../../static-assets/favicon.png">
+  
+  <link rel="stylesheet" href="../../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../../static-assets/styles.css?v1">
+  <link rel="icon" href="../../static-assets/favicon.png?v1">
 
+  
 </head>
+
 
 <body data-base-href="../../"
       data-using-base-href="false">
@@ -38,20 +42,107 @@
 
 <main>
 
+
+  <div id="dartdoc-main-content" class="main-content">
+      <div>
+<h1><span class="kind-method">formatEditUpdate</span> method 
+    <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
+</h1></div>
+
+    <section class="multi-line-signature">
+      
+<div>
+  <ol class="annotation-list">
+    <li>@<a href="https://api.flutter.dev/flutter/dart-core/override-constant.html">override</a></li>
+  </ol>
+</div>
+
+<span class="returntype"><a href="https://api.flutter.dev/flutter/services/TextEditingValue-class.html">TextEditingValue</a></span>
+<span class="name ">formatEditUpdate</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="formatEditUpdate-param-oldValue"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/services/TextEditingValue-class.html">TextEditingValue</a></span> <span class="parameter-name">oldValue</span>, </span></li>
+<li><span class="parameter" id="formatEditUpdate-param-newValue"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/services/TextEditingValue-class.html">TextEditingValue</a></span> <span class="parameter-name">newValue</span></span></li>
+</ol>)
+
+      <div class="features">override</div>
+
+    </section>
+    
+<section class="desc markdown">
+  <p>Called when text is being typed or cut/copy/pasted in the <a href="https://api.flutter.dev/flutter/widgets/EditableText-class.html">EditableText</a>.</p>
+<p>You can override the resulting text based on the previous text value and
+the incoming new text value.</p>
+<p>When formatters are chained, <code>oldValue</code> reflects the initial value of
+<a href="https://api.flutter.dev/flutter/services/TextEditingValue-class.html">TextEditingValue</a> at the beginning of the chain.</p>
+</section>
+
+
+    
+<section class="summary source-code" id="source">
+  <h2><span>Implementation</span></h2>
+  <pre class="language-dart"><code class="language-dart">@override
+TextEditingValue formatEditUpdate(
+    TextEditingValue oldValue, TextEditingValue newValue) {
+  final newValueLength = newValue.text.length;
+  var selectionIndex = newValue.selection.end;
+
+  var substrIndex = 0;
+  final newText = StringBuffer();
+
+  if (newValueLength &gt; maxLength) {
+    return oldValue;
+  }
+
+  switch (newValueLength) {
+    case 1:
+      final hora = int.parse(newValue.text.substring(0, 1));
+      if (hora &gt;= 3) return oldValue;
+      break;
+    case 2:
+      final hora = int.parse(newValue.text.substring(0, 2));
+      if (hora &gt;= 24) return oldValue;
+      break;
+    case 3:
+      final minuto = int.parse(newValue.text.substring(2, 3));
+      if (minuto &gt;= 6) return oldValue;
+      newText.write(newValue.text.substring(0, substrIndex = 2) + &#39;:&#39;);
+      if (newValue.selection.end &gt;= 2) selectionIndex++;
+      break;
+    case 4:
+      final minuto = int.parse(newValue.text.substring(2, 4));
+      if (minuto &gt;= 60) return oldValue;
+      newText.write(newValue.text.substring(0, substrIndex = 2) + &#39;:&#39;);
+      if (newValue.selection.end &gt;= 2) selectionIndex++;
+      break;
+  }
+
+  if (newValueLength &gt;= substrIndex) {
+    newText.write(newValue.text.substring(substrIndex));
+  }
+
+  return TextEditingValue(
+    text: newText.toString(),
+    selection: TextSelection.collapsed(offset: selectionIndex),
+  );
+}</code></pre>
+</section>
+
+
+  </div> <!-- /.main-content -->
+
   <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
     <header id="header-search-sidebar" class="hidden-l">
-      <form class="search-sidebar" role="search">
-        <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
-      </form>
-    </header>
-    
-    <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
-      <li><a href="../../index.html">brasil_fields</a></li>
-      <li><a href="../../brasil_fields/brasil_fields-library.html">brasil_fields</a></li>
-      <li><a href="../../brasil_fields/HoraInputFormatter-class.html">HoraInputFormatter</a></li>
-      <li class="self-crumb">formatEditUpdate method</li>
-    </ol>
-    
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+  <li><a href="../../index.html">brasil_fields</a></li>
+  <li><a href="../../brasil_fields/brasil_fields-library.html">brasil_fields</a></li>
+  <li><a href="../../brasil_fields/HoraInputFormatter-class.html">HoraInputFormatter</a></li>
+  <li class="self-crumb">formatEditUpdate method</li>
+</ol>
+
+
     <h5>HoraInputFormatter class</h5>
     <ol>
 
@@ -81,93 +172,6 @@
 
   </div><!--/.sidebar-offcanvas-->
 
-  <div id="dartdoc-main-content" class="main-content">
-      <div><h1><span class="kind-method">formatEditUpdate</span> method     <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
-</h1></div>
-
-    <section class="multi-line-signature">
-      <div>
-        <ol class="annotation-list">
-          <li>@<a href="https://api.flutter.dev/flutter/dart-core/override-constant.html">override</a></li>
-        </ol>
-      </div>
-      <span class="returntype"><a href="https://api.flutter.dev/flutter/services/TextEditingValue-class.html">TextEditingValue</a></span>
-            <span class="name ">formatEditUpdate</span>
-(<wbr><ol class="parameter-list"><li><span class="parameter" id="formatEditUpdate-param-valorAntigo"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/services/TextEditingValue-class.html">TextEditingValue</a></span> <span class="parameter-name">valorAntigo</span>, </span></li>
-<li><span class="parameter" id="formatEditUpdate-param-valorNovo"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/services/TextEditingValue-class.html">TextEditingValue</a></span> <span class="parameter-name">valorNovo</span></span></li>
-</ol>)
-      <div class="features">override</div>
-    </section>
-    <section class="desc markdown">
-      <p>Called when text is being typed or cut/copy/pasted in the <a href="https://api.flutter.dev/flutter/widgets/EditableText-class.html">EditableText</a>.</p>
-<p>You can override the resulting text based on the previous text value and
-the incoming new text value.</p>
-<p>When formatters are chained, <code>oldValue</code> reflects the initial value of
-<a href="https://api.flutter.dev/flutter/services/TextEditingValue-class.html">TextEditingValue</a> at the beginning of the chain.</p>
-    </section>
-    
-    <section class="summary source-code" id="source">
-      <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">@override
-TextEditingValue formatEditUpdate(
-    TextEditingValue valorAntigo, TextEditingValue valorNovo) {
-  final novoTextLength = valorNovo.text.length;
-  var selectionIndex = valorNovo.selection.end;
-
-  var usedSubstringIndex = 0;
-  final newText = StringBuffer();
-
-  if (novoTextLength &gt; maxLength) {
-    return valorAntigo;
-  }
-
-  switch (novoTextLength) {
-    case 1:
-      final hora = int.tryParse(valorNovo.text.substring(0, 1));
-      if (hora != null) {
-        if (hora &gt;= 3) return valorAntigo;
-      }
-      break;
-    case 2:
-      final hora = int.tryParse(valorNovo.text.substring(0, 2));
-      if (hora != null) {
-        if (hora &gt;= 24) return valorAntigo;
-      }
-      break;
-    case 3:
-      final minuto = int.tryParse(valorNovo.text.substring(2, 3));
-      if (minuto != null) {
-        if (minuto &gt;= 6) return valorAntigo;
-      }
-      newText
-          .write(valorNovo.text.substring(0, usedSubstringIndex = 2) + &#39;:&#39;);
-      if (valorNovo.selection.end &gt;= 2) selectionIndex++;
-      break;
-    case 4:
-      final minuto = int.tryParse(valorNovo.text.substring(2, 4));
-      if (minuto != null) {
-        if (minuto &gt;= 60) return valorAntigo;
-      }
-      newText
-          .write(valorNovo.text.substring(0, usedSubstringIndex = 2) + &#39;:&#39;);
-      if (valorNovo.selection.end &gt;= 2) selectionIndex++;
-      break;
-    default:
-  }
-
-  if (novoTextLength &gt;= usedSubstringIndex) {
-    newText.write(valorNovo.text.substring(usedSubstringIndex));
-  }
-
-  return TextEditingValue(
-    text: newText.toString(),
-    selection: TextSelection.collapsed(offset: selectionIndex),
-  );
-}</code></pre>
-    </section>
-
-  </div> <!-- /.main-content -->
-
   <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
   </div><!--/.sidebar-offcanvas-->
 
@@ -179,14 +183,17 @@ TextEditingValue formatEditUpdate(
       1.2.0
   </span>
 
+  
 </footer>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="../../static-assets/typeahead.bundle.min.js"></script>
-<script src="../../static-assets/highlight.pack.js"></script>
-<script src="../../static-assets/script.js"></script>
+
+
+<script src="../../static-assets/highlight.pack.js?v1"></script>
+<script src="../../static-assets/script.js?v1"></script>
+
 
 
 </body>
 
 </html>
+

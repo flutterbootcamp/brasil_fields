@@ -10,35 +10,35 @@ class CnpjInputFormatter extends TextInputFormatter
 
   @override
   TextEditingValue formatEditUpdate(
-      TextEditingValue valorAntigo, TextEditingValue valorNovo) {
-    final novoTextLength = valorNovo.text.length;
-    var selectionIndex = valorNovo.selection.end;
+      TextEditingValue oldValue, TextEditingValue newValue) {
+    final newValueLength = newValue.text.length;
+    var selectionIndex = newValue.selection.end;
 
-    if (novoTextLength > maxLength) {
-      return valorAntigo;
+    if (newValueLength > maxLength) {
+      return oldValue;
     }
 
-    var usedSubstringIndex = 0;
+    var substrIndex = 0;
     final newText = StringBuffer();
 
-    if (novoTextLength >= 3) {
-      newText.write(valorNovo.text.substring(0, usedSubstringIndex = 2) + '.');
-      if (valorNovo.selection.end >= 2) selectionIndex++;
+    if (newValueLength >= 3) {
+      newText.write(newValue.text.substring(0, substrIndex = 2) + '.');
+      if (newValue.selection.end >= 2) selectionIndex++;
     }
-    if (novoTextLength >= 6) {
-      newText.write(valorNovo.text.substring(2, usedSubstringIndex = 5) + '.');
-      if (valorNovo.selection.end >= 5) selectionIndex++;
+    if (newValueLength >= 6) {
+      newText.write(newValue.text.substring(2, substrIndex = 5) + '.');
+      if (newValue.selection.end >= 5) selectionIndex++;
     }
-    if (novoTextLength >= 9) {
-      newText.write(valorNovo.text.substring(5, usedSubstringIndex = 8) + '/');
-      if (valorNovo.selection.end >= 8) selectionIndex++;
+    if (newValueLength >= 9) {
+      newText.write(newValue.text.substring(5, substrIndex = 8) + '/');
+      if (newValue.selection.end >= 8) selectionIndex++;
     }
-    if (novoTextLength >= 13) {
-      newText.write(valorNovo.text.substring(8, usedSubstringIndex = 12) + '-');
-      if (valorNovo.selection.end >= 12) selectionIndex++;
+    if (newValueLength >= 13) {
+      newText.write(newValue.text.substring(8, substrIndex = 12) + '-');
+      if (newValue.selection.end >= 12) selectionIndex++;
     }
-    if (novoTextLength >= usedSubstringIndex) {
-      newText.write(valorNovo.text.substring(usedSubstringIndex));
+    if (newValueLength >= substrIndex) {
+      newText.write(newValue.text.substring(substrIndex));
     }
 
     return TextEditingValue(

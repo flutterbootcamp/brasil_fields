@@ -66,7 +66,7 @@ class UtilBrasilFields {
     assert((telefone.length == 14 || telefone.length == 15),
         'Telefone com tamanho inválido. Deve conter 14 ou 15 caracteres');
 
-    return '${telefone.substring(1, 3)}';
+    return telefone.substring(1, 3);
   }
 
   ///Faz a validação do CPF retornando `[true]` ou `[false]`

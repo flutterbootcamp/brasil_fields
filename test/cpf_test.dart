@@ -17,7 +17,7 @@ void main() {
         false);
     expect(CPFValidator.isValid('03.3461.67100-2'), false);
 
-    var blackListed = <String>[
+    var blockList = <String>[
       '00000000000',
       '11111111111',
       '22222222222',
@@ -31,7 +31,9 @@ void main() {
       '12345678909'
     ];
 
-    blackListed.forEach((cpf) => expect(CPFValidator.isValid(cpf), false));
+    for (var cpf in blockList) {
+      expect(CPFValidator.isValid(cpf), false);
+    }
   });
 
   test('Test CPF generator', () {

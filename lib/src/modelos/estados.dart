@@ -3,7 +3,7 @@
 /// `listaEstados` lista com todos os estados.
 /// `listaEstadosSigla` lista com a sigla de todos os estados.
 class Estados {
-  static final List<String> listaEstados = [
+  static const List<String> listaEstados = [
     'Acre',
     'Alagoas',
     'Amapá',
@@ -33,7 +33,7 @@ class Estados {
     'Tocantins',
   ];
 
-  static final List<String> listaEstadosSigla = [
+  static const List<String> listaEstadosSigla = [
     'AC',
     'AL',
     'AP',
