@@ -16,5 +16,5 @@ jobs:
       - run: flutter test
       - uses: bluefireteam/flutter-gh-pages@v7
         with:
-          workingDir: example/build/web
-          baseHref: /brazil-fields/
+          workingDir: example
+          # baseHref: /brazil-fields/
