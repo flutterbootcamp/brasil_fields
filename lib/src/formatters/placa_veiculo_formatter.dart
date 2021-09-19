@@ -4,11 +4,11 @@ import 'package:flutter/services.dart';
 ///
 ///Não se deve utilizar o `FilteringTextInputFormatter.digitsOnly` com
 ///este formatter.
-class PlacaVeiculoFormatter extends TextInputFormatter {
+class PlacaVeiculoInputFormatter extends TextInputFormatter {
   /// Define o tamanho máximo do campo.
   final int maxLength = 8;
 
-  PlacaVeiculoFormatter();
+  PlacaVeiculoInputFormatter();
 
   @override
   TextEditingValue formatEditUpdate(

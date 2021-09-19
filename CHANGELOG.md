@@ -1,4 +1,4 @@
-## [1.2.0] - Novo formatter: `PlacaVeiculoFormatter()`. Inclui [`flutter_lints`](https://pub.dev/packages/flutter_lints).
+## [1.2.0] - Novo formatter: `PlacaVeiculoInputFormatter()`. Inclui [`flutter_lints`](https://pub.dev/packages/flutter_lints).
 
 ## [1.1.4] - Expõe `validators.dart`
 

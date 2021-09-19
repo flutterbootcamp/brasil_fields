@@ -95,7 +95,7 @@ class MyApp extends StatelessWidget {
                     TextField(
                       decoration:
                           const InputDecoration(label: Text('Placa Veículo')),
-                      inputFormatters: [PlacaVeiculoFormatter()],
+                      inputFormatters: [PlacaVeiculoInputFormatter()],
                     )
                   ],
                 ),
@@ -105,7 +105,7 @@ class MyApp extends StatelessWidget {
                     textDirection: TextDirection.ltr,
                     child: Material(
                       child: TextField(
-                        inputFormatters: [PlacaVeiculoFormatter()],
+                        inputFormatters: [PlacaVeiculoInputFormatter()],
                       ),
                     ),
                   ),

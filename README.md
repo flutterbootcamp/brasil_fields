@@ -25,6 +25,7 @@ dependencies:
 - Hora (23:59)
 - KM (999.999)
 - Peso (111,1)
+- Placa de veículo (AAA-1234)
 - Real (R\$) (20.550)
 - Telefone ( (99) 9999-9999)
 - Validade de cartão bancário (12/24)
@@ -66,6 +67,7 @@ TextFormField(
 - `HoraInputFormatter()`
 - `KmInputFormatter()`
 - `PesoInputFormatter()`
+- `PlacaVeiculoInputFormatter()` (**atenção**: nao utilizar `FilteringTextInputFormatter.digitsOnly`)
 - `RealInputFormatter()`
 - `TelefoneInputFormatter()`
 - `ValidadeCartaoInputFormatter()`

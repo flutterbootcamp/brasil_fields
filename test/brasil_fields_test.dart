@@ -195,17 +195,17 @@ void main() {
     expect(textController.text, '104,3');
   });
 
-  testWidgets('PlacaVeiculoFormatter', (WidgetTester tester) async {
+  testWidgets('PlacaVeiculoInputFormatter', (WidgetTester tester) async {
     final textController = TextEditingController();
 
     // testa toUpperCase
     await tester.pumpWidget(
-        boilerplatePlacaVeiculo(PlacaVeiculoFormatter(), textController));
+        boilerplatePlacaVeiculo(PlacaVeiculoInputFormatter(), textController));
     await tester.enterText(find.byType(TextField), 'abc');
     expect(textController.text, 'ABC');
 
     await tester.pumpWidget(
-        boilerplatePlacaVeiculo(PlacaVeiculoFormatter(), textController));
+        boilerplatePlacaVeiculo(PlacaVeiculoInputFormatter(), textController));
     await tester.enterText(find.byType(TextField), 'abc-1234');
     expect(textController.text, 'ABC-1234');
   });
