@@ -24,7 +24,6 @@ class PlacaVeiculoInputFormatter extends TextInputFormatter {
 
     if (newValueLength == 4) {
       if (newValue.text.contains("-")) {
-        print('contains');
         newText.write(newValue.text.substring(0, substrIndex = 3));
       } else {
         newText.write(newValue.text.substring(0, substrIndex = 3) +
