@@ -94,7 +94,7 @@ A classe `UtilData` possui métodos que facilitam obter o valor de um objeto `Da
 
 - `UtilData.obterDataDDMMAAAA` (DD/MM/AAAA)
 - `UtilData.obterDataMMAAAA` (MM/AAAA)
-- `UtilData.obterDataDDMM` (MM/AAAA)
+- `UtilData.obterDataDDMM` (DD/MM)
 - `UtilData.obterHoraHHMMSS` (hh:mm:ss)
 - `UtilData.obterHoraHHMM` (hh:mm)
 - `UtilData.obterMes`
