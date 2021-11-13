@@ -28,7 +28,7 @@ class RealInputFormatter extends TextInputFormatter {
       return oldValue;
     }
 
-    const currency = 'R\$ ';
+    const simbolo = 'R\$ ';
     var substrIndex = 0;
     final newText = StringBuffer();
     var centsValue = "";
@@ -40,11 +40,13 @@ class RealInputFormatter extends TextInputFormatter {
           newValue.text.length == 1
               ? quantidadeCasasDecimais + 1
               : quantidadeCasasDecimais,
-          '0');
-      centsValue = textValue.substring(
-          textValue.length - quantidadeCasasDecimais, textValue.length);
-      integerValue =
-          textValue.substring(0, textValue.length - quantidadeCasasDecimais);
+          "");
+      if (textValue.length >= quantidadeCasasDecimais) {
+        centsValue = textValue.substring(
+            textValue.length - quantidadeCasasDecimais, textValue.length);
+        integerValue =
+            textValue.substring(0, textValue.length - quantidadeCasasDecimais);
+      }
     }
     var pointCount = 0;
     for (var i = integerValue.length - 1; i > -1; i--) {
@@ -55,16 +57,39 @@ class RealInputFormatter extends TextInputFormatter {
       }
       integerValueFormated = integerValue[i] + integerValueFormated;
     }
-    if (integerValueFormated.isEmpty) integerValueFormated = "0";
-    var finalValue =
-        integerValueFormated + (centavos ? ("," + centsValue) : "");
-    var textoFinal = (moeda ? currency : "") + finalValue;
-    newText.write(textoFinal);
-    substrIndex = textoFinal.length;
+
+    if (integerValueFormated.isEmpty) {
+      integerValueFormated = "";
+    } else {
+      if (centavos) {
+        var inteiro = int.parse(
+            integerValueFormated.replaceAll(",", "").replaceAll(".", ""));
+
+        if (inteiro < 10 && inteiro > 0 && centsValue.isEmpty) {
+          centsValue = "0" + inteiro.toString();
+          inteiro = 0;
+        }
+
+        integerValueFormated = centsValue.isNotEmpty
+            ? inteiro.toString() + "," + centsValue
+            : inteiro.toString();
+      }
+
+      if (moeda) {
+        integerValueFormated = integerValueFormated.isNotEmpty
+            ? simbolo + integerValueFormated
+            : integerValueFormated;
+      }
+    }
+
+    newText.write(integerValueFormated);
+    substrIndex = integerValueFormated.length;
 
     if (newValueLength >= substrIndex) {
       newText.write(newValue.text.substring(substrIndex));
     }
+
+    selectionIndex = newText.length;
 
     return TextEditingValue(
       text: newText.toString(),
