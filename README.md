@@ -12,13 +12,14 @@ Este package facilita o desenvolvimento de projetos que utilizam campos com os p
 
 ```yaml
 dependencies:
-  brasil_fields: 1.2.0
+  brasil_fields: 1.3.0
 ```
 
 ### Formatters
 
 - Altura (2,22)
 - Cartão bancário (0000 1111 2222 3333 4444)
+- Centavos (R\$) (7,19) (até 3 casas decimais: 7,191)
 - CEP (99.999-999)
 - CNPJ (99.999.999/9999-99)
 - CPF (999.999.99-99)

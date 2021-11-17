@@ -1,3 +1,7 @@
+## [1.3.0] - Novo formatter: `CentavosInputFormatter()`.
+
+- Removido `centavos` de `RealInputFormatter`. Utilizar este novo formatter.
+
 ## [1.2.0] - Novo formatter: `PlacaVeiculoInputFormatter()`. Inclui [`flutter_lints`](https://pub.dev/packages/flutter_lints).
 
 ## [1.1.4] - Expõe `validators.dart`
