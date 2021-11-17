@@ -8,8 +8,6 @@ class PlacaVeiculoInputFormatter extends TextInputFormatter {
   /// Define o tamanho máximo do campo.
   final int maxLength = 8;
 
-  PlacaVeiculoInputFormatter();
-
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {

@@ -5,8 +5,6 @@ class PesoInputFormatter extends TextInputFormatter {
   /// Define o tamanho máximo do campo.
   final int maxLength = 4;
 
-  PesoInputFormatter();
-
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {

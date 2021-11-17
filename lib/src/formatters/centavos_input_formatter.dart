@@ -6,7 +6,9 @@ import 'adiciona_separador.dart';
 ///
 /// `[casasDecimais]` indica a quantidade de casas usadas.
 class CentavosInputFormatter extends TextInputFormatter {
-  CentavosInputFormatter({this.moeda = false, this.casasDecimais = 2});
+  CentavosInputFormatter({this.moeda = false, this.casasDecimais = 2})
+      : assert(casasDecimais == 2 || casasDecimais == 3,
+            'Quantidade de casas decimais deve ser 2 ou 3. Informado: $casasDecimais');
 
   /// Define o tamanho máximo do campo.
   int maxLength = 12;

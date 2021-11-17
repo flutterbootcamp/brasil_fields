@@ -4,8 +4,6 @@ import 'package:flutter/services.dart';
 ///
 /// Nono dígito automático.
 class TelefoneInputFormatter extends TextInputFormatter {
-  TelefoneInputFormatter();
-
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
