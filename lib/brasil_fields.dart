@@ -6,6 +6,7 @@ export 'src/formatters/cep_input_formatter.dart';
 export 'src/formatters/cnpj_input_formatter.dart';
 export 'src/formatters/cpf_input_formatter.dart';
 export 'src/formatters/cartao_bancario_input_formatter.dart';
+export 'src/formatters/centavos_input_formatter.dart';
 export 'src/formatters/data_input_formatter.dart';
 export 'src/formatters/peso_input_formatter.dart';
 export 'src/formatters/placa_veiculo_formatter.dart';

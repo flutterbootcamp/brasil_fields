@@ -103,8 +103,7 @@ void main() {
     await tester.enterText(find.byType(TextField), '1234');
     expect(textController.text, '1.234');
 
-    await tester.pumpWidget(
-        boilerplate(RealInputFormatter(centavos: true), textController));
+    await tester.pumpWidget(boilerplate(RealInputFormatter(), textController));
 
     await tester.enterText(find.byType(TextField), '125678');
     expect(textController.text, '1.256,78');
@@ -121,8 +120,8 @@ void main() {
     await tester.enterText(find.byType(TextField), '8');
     expect(textController.text, '0,08');
 
-    await tester.pumpWidget(boilerplate(
-        RealInputFormatter(centavos: true, moeda: true), textController));
+    await tester.pumpWidget(
+        boilerplate(RealInputFormatter(moeda: true), textController));
 
     await tester.enterText(find.byType(TextField), '125678');
     expect(textController.text, 'R\$ 1.256,78');
@@ -139,9 +138,8 @@ void main() {
     await tester.enterText(find.byType(TextField), '8');
     expect(textController.text, 'R\$ 0,08');
 
-    await tester.pumpWidget(boilerplate(
-        RealInputFormatter(centavos: true, quantidadeCasasDecimais: 3),
-        textController));
+    await tester.pumpWidget(
+        boilerplate(CentavosInputFormatter(casasDecimais: 3), textController));
 
     await tester.enterText(find.byType(TextField), '125678');
     expect(textController.text, '125,678');
@@ -157,11 +155,12 @@ void main() {
 
     await tester.enterText(find.byType(TextField), '8');
     expect(textController.text, '0,008');
+  });
 
+  testWidgets('CentavosInputFormatter', (WidgetTester tester) async {
+    final textController = TextEditingController();
     await tester.pumpWidget(boilerplate(
-        RealInputFormatter(
-            centavos: true, moeda: true, quantidadeCasasDecimais: 3),
-        textController));
+        CentavosInputFormatter(moeda: true, casasDecimais: 3), textController));
 
     await tester.enterText(find.byType(TextField), '125678');
     expect(textController.text, 'R\$ 125,678');
