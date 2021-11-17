@@ -100,43 +100,71 @@ void main() {
     final textController = TextEditingController();
     await tester.pumpWidget(boilerplate(RealInputFormatter(), textController));
 
+    await tester.enterText(find.byType(TextField), '1256780');
+    expect(textController.text, '1.256.780');
+    await tester.enterText(find.byType(TextField), '125678');
+    expect(textController.text, '125.678');
     await tester.enterText(find.byType(TextField), '1234');
     expect(textController.text, '1.234');
 
-    await tester.pumpWidget(boilerplate(RealInputFormatter(), textController));
-
-    await tester.enterText(find.byType(TextField), '125678');
-    expect(textController.text, '1.256,78');
-
     await tester.enterText(find.byType(TextField), '5678');
-    expect(textController.text, '56,78');
+    expect(textController.text, '5.678');
 
     await tester.enterText(find.byType(TextField), '678');
-    expect(textController.text, '6,78');
+    expect(textController.text, '678');
 
     await tester.enterText(find.byType(TextField), '78');
-    expect(textController.text, '0,78');
+    expect(textController.text, '78');
 
     await tester.enterText(find.byType(TextField), '8');
-    expect(textController.text, '0,08');
+    expect(textController.text, '8');
+  });
+
+  testWidgets('RealInputFormatter + moeda', (WidgetTester tester) async {
+    final textController = TextEditingController();
 
     await tester.pumpWidget(
         boilerplate(RealInputFormatter(moeda: true), textController));
 
+    await tester.enterText(find.byType(TextField), '1256780');
+    expect(textController.text, 'R\$ 1.256.780');
+
     await tester.enterText(find.byType(TextField), '125678');
-    expect(textController.text, 'R\$ 1.256,78');
+    expect(textController.text, 'R\$ 125.678');
 
     await tester.enterText(find.byType(TextField), '5678');
-    expect(textController.text, 'R\$ 56,78');
+    expect(textController.text, 'R\$ 5.678');
 
     await tester.enterText(find.byType(TextField), '678');
-    expect(textController.text, 'R\$ 6,78');
+    expect(textController.text, 'R\$ 678');
 
     await tester.enterText(find.byType(TextField), '78');
-    expect(textController.text, 'R\$ 0,78');
+    expect(textController.text, 'R\$ 78');
 
     await tester.enterText(find.byType(TextField), '8');
-    expect(textController.text, 'R\$ 0,08');
+    expect(textController.text, 'R\$ 8');
+  });
+
+  testWidgets('CentavosInputFormatter', (WidgetTester tester) async {
+    final textController = TextEditingController();
+    await tester
+        .pumpWidget(boilerplate(CentavosInputFormatter(), textController));
+
+    await tester.enterText(find.byType(TextField), '12567');
+    expect(textController.text, '125,67');
+
+    await tester.enterText(find.byType(TextField), '567');
+    expect(textController.text, '5,67');
+
+    await tester.enterText(find.byType(TextField), '67');
+    expect(textController.text, '0,67');
+
+    await tester.enterText(find.byType(TextField), '8');
+    expect(textController.text, '0,08');
+  });
+
+  testWidgets('CentavosInputFormatter 3 decimais', (WidgetTester tester) async {
+    final textController = TextEditingController();
 
     await tester.pumpWidget(
         boilerplate(CentavosInputFormatter(casasDecimais: 3), textController));
@@ -155,27 +183,6 @@ void main() {
 
     await tester.enterText(find.byType(TextField), '8');
     expect(textController.text, '0,008');
-  });
-
-  testWidgets('CentavosInputFormatter', (WidgetTester tester) async {
-    final textController = TextEditingController();
-    await tester.pumpWidget(boilerplate(
-        CentavosInputFormatter(moeda: true, casasDecimais: 3), textController));
-
-    await tester.enterText(find.byType(TextField), '125678');
-    expect(textController.text, 'R\$ 125,678');
-
-    await tester.enterText(find.byType(TextField), '5678');
-    expect(textController.text, 'R\$ 5,678');
-
-    await tester.enterText(find.byType(TextField), '678');
-    expect(textController.text, 'R\$ 0,678');
-
-    await tester.enterText(find.byType(TextField), '78');
-    expect(textController.text, 'R\$ 0,078');
-
-    await tester.enterText(find.byType(TextField), '8');
-    expect(textController.text, 'R\$ 0,008');
   });
 
   testWidgets('DataInputFormatter', (WidgetTester tester) async {

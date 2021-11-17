@@ -74,13 +74,13 @@ class MyApp extends StatelessWidget {
                           moeda: true,
                         )),
                     RowFormatters(
-                        label: 'Centavos',
+                        label: 'Combustível',
                         formatter: CentavosInputFormatter(
-                            moeda: true, casasDecimais: 2)),
-                    RowFormatters(
-                        label: 'Real', formatter: RealInputFormatter()),
+                            moeda: true, casasDecimais: 3)),
                     RowFormatters(
                         label: 'Centavos', formatter: CentavosInputFormatter()),
+                    RowFormatters(
+                        label: 'Real', formatter: RealInputFormatter()),
                     RowFormatters(
                       label: 'Peso',
                       formatter: PesoInputFormatter(),

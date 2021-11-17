@@ -64,14 +64,27 @@ class CentavosInputFormatter extends TextInputFormatter {
 
     // formata o número com 0, + centavos
     if (numero > 0 && numero < 9) {
-      centsValue = "0" + numero.toString();
+      if (casasDecimais == 3) {
+        centsValue = "00" + numero.toString();
+      } else {
+        centsValue = "0" + numero.toString();
+      }
+
       numero = 0;
     } else if (numero >= 10 && numero < 100) {
-      centsValue = numero.toString();
+      if (casasDecimais == 3) {
+        centsValue = "0" + numero.toString();
+      } else {
+        centsValue = numero.toString();
+      }
+
       numero = 0;
     } else if (valorFinal.isNotEmpty) {
       numero = int.parse(valorFinal);
     }
+
+    // adiciona
+
     if (numero > 999) {
       valorFinal = adicionarSeparador(numero.toString()) + "," + centsValue;
     } else {
