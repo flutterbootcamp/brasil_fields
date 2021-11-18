@@ -59,6 +59,7 @@ TextFormField(
 
 - `AlturaInputFormatter()`
 - `CartaoBancarioInputFormatter()`
+- `CentavosInputFormatter()`
 - `CepInputFormatter()`
 - `CnpjInputFormatter()`
 - `CpfInputFormatter()`
