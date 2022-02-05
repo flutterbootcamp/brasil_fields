@@ -1,6 +1,6 @@
 name: brasil_fields
 description: O jeito mais fácil de utilizar padrões e formatos brasileiros em seu projeto Dart.
-version: 1.3.0
+version: 1.3.1
 homepage: https://github.com/rubensdemelo/brasil_fields
 
 environment:

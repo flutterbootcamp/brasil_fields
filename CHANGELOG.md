@@ -1,4 +1,7 @@
-## [1.3.0] - Novo formatter: `CentavosInputFormatter()`.
+## [1.3.1] - Corrige `CentavosInputFormatter()`
+- Corrige [input/delete com o numero 9](https://github.com/rubensdemelo/brasil_fields/issues/57)
+
+## [1.3.0] - Novo formatter: `CentavosInputFormatter()`
 
 - Removido `centavos` de `RealInputFormatter`. Utilizar este novo formatter.
 

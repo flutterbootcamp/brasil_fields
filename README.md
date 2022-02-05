@@ -12,7 +12,7 @@ Este package facilita o desenvolvimento de projetos que utilizam campos com os p
 
 ```yaml
 dependencies:
-  brasil_fields: 1.3.0
+  brasil_fields: 1.3.1
 ```
 
 ### Formatters

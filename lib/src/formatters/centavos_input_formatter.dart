@@ -65,7 +65,7 @@ class CentavosInputFormatter extends TextInputFormatter {
     }
 
     // formata o número com 0, + centavos
-    if (numero > 0 && numero < 9) {
+    if (numero > 0 && numero <= 9) {
       if (casasDecimais == 3) {
         centsValue = "00" + numero.toString();
       } else {
