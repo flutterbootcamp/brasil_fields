@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the obterDDD method from the UtilBrasilFields class, for the Dart programming language.">
-  <title>obterDDD method - UtilBrasilFields class - brasil_fields library - Dart API</title>
+  <meta name="description" content="API docs for the obterReal method from the UtilBrasilFields class, for the Dart programming language.">
+  <title>obterReal method - UtilBrasilFields class - brasil_fields library - Dart API</title>
 
 
   
@@ -32,9 +32,9 @@
     <li><a href="../../index.html">brasil_fields</a></li>
     <li><a href="../../brasil_fields/brasil_fields-library.html">brasil_fields</a></li>
     <li><a href="../../brasil_fields/UtilBrasilFields-class.html">UtilBrasilFields</a></li>
-    <li class="self-crumb">obterDDD method</li>
+    <li class="self-crumb">obterReal method</li>
   </ol>
-  <div class="self-name">obterDDD</div>
+  <div class="self-name">obterReal</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -45,7 +45,7 @@
 
   <div id="dartdoc-main-content" class="main-content">
       <div>
-<h1><span class="kind-method">obterDDD</span> method 
+<h1><span class="kind-method">obterReal</span> method 
     <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
 </h1></div>
 
@@ -53,23 +53,35 @@
       
 
 <span class="returntype"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>
-<span class="name ">obterDDD</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="obterDDD-param-telefone"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">telefone</span></span></li>
+<span class="name ">obterReal</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="obterReal-param-value"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span> <span class="parameter-name">value</span>, </span></li>
+<li><span class="parameter" id="obterReal-param-moeda">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">moeda</span> = <span class="default-value">true</span>, </span></li>
+<li><span class="parameter" id="obterReal-param-decimal"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">decimal</span> = <span class="default-value">2</span>}</span></li>
 </ol>)
 
       
 
     </section>
     
+<section class="desc markdown">
+  <p>Retorna o número real informado, utilizando a máscara: <code>R$ 50.000,00</code> ou <code>50.000,00</code></p>
+</section>
 
 
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">static String obterDDD(String telefone) {
-  assert((telefone.length == 14 || telefone.length == 15),
-      &#39;Telefone com tamanho inválido. Deve conter 14 ou 15 caracteres&#39;);
+  <pre class="language-dart"><code class="language-dart">static String obterReal(double value, {bool moeda = true, int decimal = 2}) {
+  String fixed = value.toStringAsFixed(decimal);
+  List&lt;String&gt; separedValues = fixed.split(&quot;.&quot;);
 
-  return telefone.substring(1, 3);
+  separedValues[0] = adicionarSeparador(separedValues[0]);
+  String formatted = separedValues.join(&quot;,&quot;);
+
+  if (moeda) {
+    return r&quot;R$ &quot; + formatted;
+  } else {
+    return formatted;
+  }
 }</code></pre>
 </section>
 
@@ -87,7 +99,7 @@
   <li><a href="../../index.html">brasil_fields</a></li>
   <li><a href="../../brasil_fields/brasil_fields-library.html">brasil_fields</a></li>
   <li><a href="../../brasil_fields/UtilBrasilFields-class.html">UtilBrasilFields</a></li>
-  <li class="self-crumb">obterDDD method</li>
+  <li class="self-crumb">obterReal method</li>
 </ol>
 
 

@@ -92,7 +92,6 @@ TextEditingValue formatEditUpdate(
 
   if (newValueLength == 4) {
     if (newValue.text.contains(&quot;-&quot;)) {
-      print(&#39;contains&#39;);
       newText.write(newValue.text.substring(0, substrIndex = 3));
     } else {
       newText.write(newValue.text.substring(0, substrIndex = 3) +
@@ -168,7 +167,7 @@ TextEditingValue formatEditUpdate(
 <footer>
   <span class="no-break">
     brasil_fields
-      1.2.0
+      1.4.0
   </span>
 
   
