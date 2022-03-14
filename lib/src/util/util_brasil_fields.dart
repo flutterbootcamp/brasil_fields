@@ -1,4 +1,5 @@
 import '../validators/validators.dart';
+import '../formatters/adiciona_separador.dart';
 
 class UtilBrasilFields {
   /// Remover caracteres especiais (ex: `/`, `-`, `.`)
@@ -93,5 +94,20 @@ class UtilBrasilFields {
   static String obterCnpj(String cnpj) {
     assert(isCNPJValido(cnpj), 'CNPJ inválido!');
     return CNPJValidator.format(cnpj);
+  }
+
+  /// Retorna o número real informado, utilizando a máscara: `R$ 50.000,00` ou `50.000,00`
+  static String obterReal(double value, {bool moeda = true, int decimal = 2}) {
+    String fixed = value.toStringAsFixed(decimal);
+    List<String> separedValues = fixed.split(".");
+
+    separedValues[0] = adicionarSeparador(separedValues[0]);
+    String formatted = separedValues.join(",");
+
+    if (moeda) {
+      return r"R$ " + formatted;
+    } else {
+      return formatted;
+    }
   }
 }
