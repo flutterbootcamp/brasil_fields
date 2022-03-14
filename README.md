@@ -1,3 +1,5 @@
+![Brasil Fields](./brasil-fields.svg)
+
 # brasil_fields
 
 O jeito mais fácil de utilizar padrões e formatos brasileiros em seu projeto Dart. 
@@ -12,7 +14,7 @@ Este package facilita o desenvolvimento de projetos que utilizam campos com os p
 
 ```yaml
 dependencies:
-  brasil_fields: 1.3.1
+  brasil_fields: 1.4.0
 ```
 
 ### Formatters
@@ -111,6 +113,9 @@ A classe `UtilBrasilFields` possui métodos que facilitam obtert os valores CEP,
 - `UtilBrasilFields.obterTelefone('00999998877')` ((00) 99999-8877)
 - `UtilBrasilFields.obterTelefone('999998877', ddd: false)` (99999-8877)
 - `UtilBrasilFields.obterDDD('00999998877')` (00)
+- `UtilBrasilFields.obterReal(85437107.04)` (R$ 85.437.107,04)
+- `UtilBrasilFields.obterReal(85437107.04, moeda: false)` (85.437.107,04)
+- `UtilBrasilFields.obterReal(85437107.04, moeda: false, decimal: 0)` (85.437.107)
 - `UtilBrasilFields.removerSimboloMoeda` (remove o R$)
 - `UtilBrasilFields.converterMoedaParaDouble` (remove o R$ e retorna um double)
 

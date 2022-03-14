@@ -123,6 +123,36 @@ void main() {
     expect(UtilBrasilFields.obterCnpj(cpnjSemMascara), cpnjComMascara);
   });
 
+  group('Obter Real', () {
+    test('com moeda (R\$)', () {
+      const real = 85437107.04;
+      const realFormatado = 'R\$ 85.437.107,04';
+
+      expect(UtilBrasilFields.obterReal(real), realFormatado);
+    });
+
+    test('sem moeda', () {
+      const real = 85437107.04;
+      const realFormatado = '85.437.107,04';
+
+      expect(UtilBrasilFields.obterReal(real, moeda: false), realFormatado);
+    });
+    test('decimal: 0', () {
+      const real = 85437107.04;
+      const realFormatado = '85.437.107';
+
+      expect(UtilBrasilFields.obterReal(real, moeda: false, decimal: 0),
+          realFormatado);
+    });
+    test('decimal: 1', () {
+      const real = 85437107.04;
+      const realFormatado = '85.437.107,0';
+
+      expect(UtilBrasilFields.obterReal(real, moeda: false, decimal: 1),
+          realFormatado);
+    });
+  });
+
   group('Obter CEP', () {
     const cepSemPonto = '11222333';
     const cepComPonto = '11.222-333';
