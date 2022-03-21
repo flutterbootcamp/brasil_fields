@@ -1,3 +1,6 @@
+## [1.4.0] - Adiciciona `obterReal` em  `UtilBrasilFields`
+- Funcionalidade adicionada por [gabrielpagotto](https://github.com/gabrielpagotto), via este [PR](https://github.com/flutterbootcamp/brasil_fields/pull/60).
+ 
 ## [1.3.1] - Corrige `CentavosInputFormatter()`
 - Corrige [input/delete com o numero 9](https://github.com/rubensdemelo/brasil_fields/issues/57)
 
