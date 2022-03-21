@@ -162,4 +162,23 @@ void main() {
       });
     });
   });
+
+  group('Obter Real', () {
+    test('com cifrão', () {
+      expect(UtilBrasilFields.obterReal(50000), r'R$ 50.000,00');
+    });
+
+    test('sem cifrão', () {
+      expect(UtilBrasilFields.obterReal(50000, moeda: false), '50.000,00');
+    });
+
+    test('com cifrão e 4 casas decimais', () {
+      expect(UtilBrasilFields.obterReal(50000, decimal: 4), r'R$ 50.000,0000');
+    });
+
+    test('sem cifrão e 4 casas decimais', () {
+      expect(UtilBrasilFields.obterReal(50000, moeda: false, decimal: 4),
+          '50.000,0000');
+    });
+  });
 }
