@@ -14,7 +14,7 @@ Este package facilita o desenvolvimento de projetos que utilizam campos com os p
 
 ```yaml
 dependencies:
-  brasil_fields: 1.4.0
+  brasil_fields: 1.4.1
 ```
 
 ### Formatters
