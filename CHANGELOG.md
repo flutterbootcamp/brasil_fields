@@ -1,3 +1,6 @@
+## [1.4.1] - Documentação e testes de `obterReal` em  `UtilBrasilFields`
+- Documentação e testes de `obterReal` por [gabrielpagotto](https://github.com/gabrielpagotto), via este [PR](https://github.com/flutterbootcamp/brasil_fields/pull/61).
+
 ## [1.4.0] - Adiciciona `obterReal` em  `UtilBrasilFields`
 - Funcionalidade adicionada por [gabrielpagotto](https://github.com/gabrielpagotto), via este [PR](https://github.com/flutterbootcamp/brasil_fields/pull/60).
  
