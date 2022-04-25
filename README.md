@@ -4,7 +4,7 @@
 
 O jeito mais fácil de utilizar padrões e formatos brasileiros em seu projeto Dart. 
 
-[**Testar agora**](https://rubensdemelo.github.io/brasil_fields/#/)
+[**Testar agora**](https://flutterbootcamp.github.io/brasil_fields/#/)
 
 ## Apresentação
 
