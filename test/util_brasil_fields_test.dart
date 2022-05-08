@@ -151,12 +151,35 @@ void main() {
       expect(UtilBrasilFields.obterReal(real, moeda: false, decimal: 1),
           realFormatado);
     });
+  });
 
+  group('Obter Real', () {
     test('negativo com moeda (R\$)', () {
-      const real = -281.04;
-      const realFormatado = 'R\$ -281,04';
+      const real = -287.04;
+      const realFormatado = 'R\$ -287,04';
 
       expect(UtilBrasilFields.obterReal(real), realFormatado);
+    });
+
+    test('negativo sem moeda', () {
+      const real = -287.04;
+      const realFormatado = '-287,04';
+
+      expect(UtilBrasilFields.obterReal(real, moeda: false), realFormatado);
+    });
+    test('negativo decimal: 0', () {
+      const real = -287.04;
+      const realFormatado = '-287';
+
+      expect(UtilBrasilFields.obterReal(real, moeda: false, decimal: 0),
+          realFormatado);
+    });
+    test('negativo decimal: 1', () {
+      const real = -287.04;
+      const realFormatado = '-287,0';
+
+      expect(UtilBrasilFields.obterReal(real, moeda: false, decimal: 1),
+          realFormatado);
     });
   });
 
