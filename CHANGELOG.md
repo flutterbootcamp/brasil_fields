@@ -1,3 +1,6 @@
+## [1.4.3] - Correção de bug em `obterReal`
+- Correção de bug em `obterReal` quando o valor negativo, por [jfelipe72](https://github.com/jfelipe72), via este [PR](https://github.com/flutterbootcamp/brasil_fields/pull/64).
+- 
 ## [1.4.2] - Correção de bug em `ValidadeCartaoInputFormatter`
 - Correção de bug em `ValidadeCartaoInputFormatter` por [jfelipe72](https://github.com/jfelipe72), via este [PR](https://github.com/flutterbootcamp/brasil_fields/pull/63).
 - 
