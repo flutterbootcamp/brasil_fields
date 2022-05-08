@@ -72,10 +72,10 @@
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">static String obterReal(double value, {bool moeda = true, int decimal = 2}) {
   String fixed = value.toStringAsFixed(decimal);
-  List&lt;String&gt; separedValues = fixed.split(&quot;.&quot;);
+  List&lt;String&gt; separatedValuesValues = fixed.split(&quot;.&quot;);
 
-  separedValues[0] = adicionarSeparador(separedValues[0]);
-  String formatted = separedValues.join(&quot;,&quot;);
+  separatedValuesValues[0] = adicionarSeparador(separatedValuesValues[0]);
+  String formatted = separatedValuesValues.join(&quot;,&quot;);
 
   if (moeda) {
     return r&quot;R$ &quot; + formatted;

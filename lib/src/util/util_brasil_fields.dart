@@ -98,11 +98,22 @@ class UtilBrasilFields {
 
   /// Retorna o número real informado, utilizando a máscara: `R$ 50.000,00` ou `50.000,00`
   static String obterReal(double value, {bool moeda = true, int decimal = 2}) {
-    String fixed = value.toStringAsFixed(decimal);
-    List<String> separedValues = fixed.split(".");
+    bool isNegative = false;
 
-    separedValues[0] = adicionarSeparador(separedValues[0]);
-    String formatted = separedValues.join(",");
+    if (value.isNegative) {
+      isNegative = true;
+      value = value * (-1);
+    }
+
+    String fixed = value.toStringAsFixed(decimal);
+    List<String> separatedValues = fixed.split(".");
+
+    separatedValues[0] = adicionarSeparador(separatedValues[0]);
+    String formatted = separatedValues.join(",");
+
+    if (isNegative) {
+      formatted = "-" + formatted;
+    }
 
     if (moeda) {
       return r"R$ " + formatted;

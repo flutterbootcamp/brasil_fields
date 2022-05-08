@@ -151,6 +151,13 @@ void main() {
       expect(UtilBrasilFields.obterReal(real, moeda: false, decimal: 1),
           realFormatado);
     });
+
+    test('negativo com moeda (R\$)', () {
+      const real = -281.04;
+      const realFormatado = 'R\$ -281,04';
+
+      expect(UtilBrasilFields.obterReal(real), realFormatado);
+    });
   });
 
   group('Obter CEP', () {
