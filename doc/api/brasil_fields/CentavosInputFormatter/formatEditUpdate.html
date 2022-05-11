@@ -105,7 +105,7 @@ TextEditingValue formatEditUpdate(
   }
 
   &#47;&#47; apaga o campo quando os valores foram zero.
-  if (numero == 0 &amp;&amp; int.parse(centsValue) == 0) {
+  if (numero == 0 &amp;&amp; int.tryParse(centsValue) == 0) {
     return const TextEditingValue(
       text: &quot;&quot;,
       selection: TextSelection.collapsed(offset: 0),
@@ -224,7 +224,7 @@ TextEditingValue formatEditUpdate(
 <footer>
   <span class="no-break">
     brasil_fields
-      1.4.0
+      1.4.4
   </span>
 
   

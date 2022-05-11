@@ -91,24 +91,9 @@ TextEditingValue formatEditUpdate(
   var substrIndex = 0;
   final newText = StringBuffer();
 
-  switch (newValueLength) {
-    case 1:
-      final hora = int.tryParse(newValue.text.substring(0, 1));
-      if (hora != null) {
-        if (hora &gt;= 2) return oldValue;
-      }
-      break;
-    case 2:
-      final hora = int.tryParse(newValue.text.substring(0, 2));
-      if (hora != null) {
-        if (hora &gt;= 13) return oldValue;
-      }
-      break;
-    case 3:
-    case 4:
-      newText.write(newValue.text.substring(0, substrIndex = 2) + &#39;&#47;&#39;);
-      if (newValue.selection.end &gt;= 2) selectionIndex++;
-      break;
+  if (newValueLength &gt;= 3) {
+    newText.write(newValue.text.substring(0, substrIndex = 2) + &#39;&#47;&#39;);
+    if (newValue.selection.end &gt;= 2) selectionIndex++;
   }
 
   if (newValueLength &gt;= substrIndex) {
@@ -177,7 +162,7 @@ TextEditingValue formatEditUpdate(
 <footer>
   <span class="no-break">
     brasil_fields
-      1.4.0
+      1.4.4
   </span>
 
   
