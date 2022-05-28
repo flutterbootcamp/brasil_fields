@@ -104,18 +104,21 @@ A classe `UtilData` possui métodos que facilitam obter o valor de um objeto `Da
 - `UtilData.obterMes`
 - `UtilData.obterDia`
 
-A classe `UtilBrasilFields` possui métodos que facilitam obtert os valores CEP, CPF e CPNJ já formatados:
+A classe `UtilBrasilFields` possui métodos que facilitam obter os valores CEP, CPF e CPNJ já formatados:
 
 - `UtilBrasilFields.obterCpf('11122233344')` (111.222.333-44)
 - `UtilBrasilFields.obterCnpj('11222333444455')` (11.222.333/4444-55)
 - `UtilBrasilFields.obterCep('11222333')` (11.222-333)
 - `UtilBrasilFields.obterCep('11222333', ponto: false)` (11222-333)
 - `UtilBrasilFields.obterTelefone('00999998877')` ((00) 99999-8877)
+- `UtilBrasilFields.obterTelefone('(00) 99999-8877', mascara: false)` (00999998877)
 - `UtilBrasilFields.obterTelefone('999998877', ddd: false)` (99999-8877)
+- `UtilBrasilFields.obterTelefone('99999-8877', ddd: false, mascara: false)` (999998877)
 - `UtilBrasilFields.obterDDD('00999998877')` (00)
 - `UtilBrasilFields.obterReal(85437107.04)` (R$ 85.437.107,04)
 - `UtilBrasilFields.obterReal(85437107.04, moeda: false)` (85.437.107,04)
 - `UtilBrasilFields.obterReal(85437107.04, moeda: false, decimal: 0)` (85.437.107)
+- `UtilBrasilFields.removeCaracteres` (remove caracteres especiais)
 - `UtilBrasilFields.removerSimboloMoeda` (remove o R$)
 - `UtilBrasilFields.converterMoedaParaDouble` (remove o R$ e retorna um double)
 - `UtilBrasilFields.obterReal` (R$ 50.000,00 ou 50.000,00)
