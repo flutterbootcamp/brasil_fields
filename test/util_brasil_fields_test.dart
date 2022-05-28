@@ -46,7 +46,7 @@ void main() {
       expect(UtilBrasilFields.obterDDD(telefone), '99');
     });
 
-    test('DATA', () {
+    test('Data', () {
       const data = '01/01/1900';
       expect(UtilBrasilFields.removeCaracteres(data), '01011900');
     });
@@ -55,7 +55,7 @@ void main() {
       const hora = '23:59';
       expect(UtilBrasilFields.removeCaracteres(hora), '2359');
     });
-    test('Cartao', () {
+    test('Cartão', () {
       const cartao = '1111 2222 3333 4444';
       expect(UtilBrasilFields.removeCaracteres(cartao), '1111222233334444');
     });
