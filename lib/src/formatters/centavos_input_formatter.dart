@@ -43,7 +43,7 @@ class CentavosInputFormatter extends TextInputFormatter {
     }
 
     // apaga o campo quando os valores foram zero.
-    if (numero == 0 && int.parse(centsValue) == 0) {
+    if (numero == 0 && int.tryParse(centsValue) == 0) {
       return const TextEditingValue(
         text: "",
         selection: TextSelection.collapsed(offset: 0),
