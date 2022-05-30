@@ -1,3 +1,6 @@
+## [1.4.5] - Correções ortográticas e atualização README
+- Por [jfelipe72](https://github.com/jfelipe72), via este [PR](https://github.com/flutterbootcamp/brasil_fields/pull/67).
+- 
 ## [1.4.4] - Correção de bug em `CentavosInputFormatter`
 - Correção de bug em `CentavosInputFormatter` quando valor negativo. Corrige [issue #65](https://github.com/flutterbootcamp/brasil_fields/issues/65). 
 - 
