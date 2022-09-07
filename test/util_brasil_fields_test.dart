@@ -109,6 +109,14 @@ void main() {
     });
   });
 
+  group('Obter DateTime', () {
+    test('31/12/2022', () {
+      const data = '31/12/2022';
+      var dateTime = UtilData.obterDateTime(data);
+      expect(dateTime, DateTime(2022, 12, 31));
+    });
+  });
+
   test('Obter CPF', () {
     ///Gerado por https://www.4devs.com.br/gerador_de_cpf
     const cpfSemMascara = '48620265083';

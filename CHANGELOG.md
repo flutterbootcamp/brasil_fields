@@ -1,3 +1,5 @@
+## [1.5.0] - Adiciona `obterDateTime`
+
 ## [1.4.5] - Correções ortográticas e atualização README
 - Por [jfelipe72](https://github.com/jfelipe72), via este [PR](https://github.com/flutterbootcamp/brasil_fields/pull/67).
 - 

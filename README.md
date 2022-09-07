@@ -14,7 +14,7 @@ Este package facilita o desenvolvimento de projetos que utilizam campos com os p
 
 ```yaml
 dependencies:
-  brasil_fields: 1.4.5
+  brasil_fields: 1.5.0
 ```
 
 ### Formatters
@@ -103,6 +103,7 @@ A classe `UtilData` possui métodos que facilitam obter o valor de um objeto `Da
 - `UtilData.obterHoraHHMM` (hh:mm)
 - `UtilData.obterMes`
 - `UtilData.obterDia`
+- `UtilData.obterDateTime`
 
 A classe `UtilBrasilFields` possui métodos que facilitam obter os valores CEP, CPF e CPNJ já formatados:
 

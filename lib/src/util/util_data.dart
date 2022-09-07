@@ -90,4 +90,19 @@ class UtilData {
       throw Exception('Nao foi possível obter o dia da data $data');
     }
   }
+
+  /// Retorna um objeto [DateTime] de acordo com a data informada.
+  ///
+  /// Informar a String `data` no formato `DD/MM/AAAA`
+  static DateTime obterDateTime(String data) {
+    final dataLimpa = removeCaracteres(data);
+    if (validarData(dataLimpa)) {
+      final dia = dataLimpa.substring(0, 2);
+      final mes = dataLimpa.substring(2, 4);
+      final ano = dataLimpa.substring(4, 8);
+      return DateTime(int.parse(ano), int.parse(mes), int.parse(dia));
+    } else {
+      throw Exception('Nao foi possível obter o dia da data $data');
+    }
+  }
 }
