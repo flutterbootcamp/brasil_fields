@@ -1,3 +1,4 @@
+import 'package:brasil_fields/src/util/extensores.dart';
 import 'package:brasil_fields/src/util/util_brasil_fields.dart';
 import 'package:brasil_fields/src/util/util_data.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -40,7 +41,86 @@ void main() {
       const centavos = 'R\$ 11.150,99';
       expect(UtilBrasilFields.converterMoedaParaDouble(centavos), 11150.99);
     });
-
+    test('Obter centavos de um double', () {
+      double valor = 1590.9;
+      String valorConvertido = valor.paraCentavos;
+      expect(valorConvertido, 'R\$ 159090');
+    });
+    test('Obter centavos de um double sem o símbolo de real', () {
+      double valor = 1590.9;
+      String valorConvertido = valor.paraCentavosSemSimbolo;
+      expect(valorConvertido, '159090');
+    });
+    test('Obter centavos de um double sem o símbolo de real onde o valor é menor que 1', () {
+      double valor = 0.1;
+      String valorConvertido = valor.paraCentavosSemSimbolo;
+      expect(valorConvertido, '10');
+    });
+    test('Obter centavos de um double sem o símbolo de real onde o valor é negativos', () {
+      double valor = -10.5;
+      String valorConvertido = valor.paraCentavosSemSimbolo;
+      expect(valorConvertido, '-1050');
+    });
+    test('Obter centavos de um double com o símbolo de real onde o valor é negativos', () {
+      double valor = -10.5;
+      String valorConvertido = valor.paraCentavos;
+      expect(valorConvertido, '-R\$ 1050');
+    });
+    test('Obter real de um double', () {
+      double valor = 1590.9;
+      String valorConvertido = valor.paraReal();
+      expect(valorConvertido, 'R\$${String.fromCharCode(160)}1.590,90');
+    });
+    test('Obter real de um double onde o valor é menor que 100', () {
+      double valor = 60.0;
+      String valorConvertido = valor.paraReal();
+      expect(valorConvertido, 'R\$${String.fromCharCode(160)}60,00');
+    });
+    test('Obter real sem símbolo de um double onde o valor é menor que 100', () {
+      double valor = 60.0;
+      String valorConvertido = valor.paraRealSemSimbolo();
+      expect(valorConvertido, '60,00');
+    });
+    test('Obter real com tres casas decimais sem símbolo, proveniente de um double', () {
+      double valor = 2563.55;
+      String valorConvertido = valor.paraRealSemSimbolo(3);
+      expect(valorConvertido, '2.563,550');
+    });
+    test('Obter real com tres casas decimais de um double', () {
+      double valor = 560.9;
+      String valorConvertido = valor.paraReal(3);
+      expect(valorConvertido, 'R\$${String.fromCharCode(160)}560,900');
+    });
+    test('Obter real com tres casas decimais e valor negativo de um double', () {
+      double valor = -560.9;
+      String valorConvertido = valor.paraReal(3);
+      expect(valorConvertido, '-R\$${String.fromCharCode(160)}560,900');
+    });
+    test('Obter real com duas casas decimais de um inteiro', () {
+      int valor = 350000;
+      String valorConvertido = valor.paraReal(2);
+      expect(valorConvertido, 'R\$${String.fromCharCode(160)}350.000,00');
+    });
+    test('Obter real com tres casas decimais de um inteiro', () {
+      int valor = 560;
+      String valorConvertido = valor.paraReal(3);
+      expect(valorConvertido, 'R\$${String.fromCharCode(160)}560,000');
+    });
+    test('Obter centavos com tres casas decimais e sem símbolo de real de um inteiro', () {
+      int valor = 560;
+      String valorConvertido = valor.paraCentavosSemSimbolo;
+      expect(valorConvertido, '56000');
+    });
+    test('Obter centavos de um inteiro negativo sem símbolo de real', () {
+      int valor = -105;
+      String valorConvertido = valor.paraCentavosSemSimbolo;
+      expect(valorConvertido, '-10500');
+    });
+    test('Obter real de um inteiro negativo sem símbolo de real', () {
+      int valor = -10900;
+      String valorConvertido = valor.paraRealSemSimbolo(3);
+      expect(valorConvertido, '-10.900,000');
+    });
     test('Obter DDD', () {
       const telefone = '(99) 8888-7777';
       expect(UtilBrasilFields.obterDDD(telefone), '99');
@@ -149,15 +229,13 @@ void main() {
       const real = 85437107.04;
       const realFormatado = '85.437.107';
 
-      expect(UtilBrasilFields.obterReal(real, moeda: false, decimal: 0),
-          realFormatado);
+      expect(UtilBrasilFields.obterReal(real, moeda: false, decimal: 0), realFormatado);
     });
     test('decimal: 1', () {
       const real = 85437107.04;
       const realFormatado = '85.437.107,0';
 
-      expect(UtilBrasilFields.obterReal(real, moeda: false, decimal: 1),
-          realFormatado);
+      expect(UtilBrasilFields.obterReal(real, moeda: false, decimal: 1), realFormatado);
     });
   });
 
@@ -179,15 +257,13 @@ void main() {
       const real = -287.04;
       const realFormatado = '-287';
 
-      expect(UtilBrasilFields.obterReal(real, moeda: false, decimal: 0),
-          realFormatado);
+      expect(UtilBrasilFields.obterReal(real, moeda: false, decimal: 0), realFormatado);
     });
     test('negativo decimal: 1', () {
       const real = -287.04;
       const realFormatado = '-287,0';
 
-      expect(UtilBrasilFields.obterReal(real, moeda: false, decimal: 1),
-          realFormatado);
+      expect(UtilBrasilFields.obterReal(real, moeda: false, decimal: 1), realFormatado);
     });
   });
 
@@ -205,28 +281,21 @@ void main() {
   group('Obter Telefone', () {
     group('com DDD', () {
       test('com mascara', () {
-        expect(
-            UtilBrasilFields.obterTelefone('00999998877'), '(00) 99999-8877');
+        expect(UtilBrasilFields.obterTelefone('00999998877'), '(00) 99999-8877');
       });
 
       test('sem mascara', () {
-        expect(
-            UtilBrasilFields.obterTelefone('(00) 99999-8877', mascara: false),
-            '00999998877');
+        expect(UtilBrasilFields.obterTelefone('(00) 99999-8877', mascara: false), '00999998877');
       });
     });
 
     group('sem DDD', () {
       test('com mascara', () {
-        expect(UtilBrasilFields.obterTelefone('999998877', ddd: false),
-            '99999-8877');
+        expect(UtilBrasilFields.obterTelefone('999998877', ddd: false), '99999-8877');
       });
 
       test('sem mascara', () {
-        expect(
-            UtilBrasilFields.obterTelefone('99999-8877',
-                ddd: false, mascara: false),
-            '999998877');
+        expect(UtilBrasilFields.obterTelefone('99999-8877', ddd: false, mascara: false), '999998877');
       });
     });
   });
@@ -245,8 +314,7 @@ void main() {
     });
 
     test('sem cifrão e 4 casas decimais', () {
-      expect(UtilBrasilFields.obterReal(50000, moeda: false, decimal: 4),
-          '50.000,0000');
+      expect(UtilBrasilFields.obterReal(50000, moeda: false, decimal: 4), '50.000,0000');
     });
   });
 }
