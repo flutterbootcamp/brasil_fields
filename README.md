@@ -1,8 +1,8 @@
-![Brasil Fields](./brasil-fields.svg)
-
 # brasil_fields
 
-O jeito mais fácil de utilizar padrões e formatos brasileiros em seu projeto Dart. 
+![Brasil Fields](./brasil-fields.svg)
+
+O jeito mais fácil de utilizar padrões e formatos brasileiros em seu projeto Dart.
 
 [**Testar agora**](https://flutterbootcamp.github.io/brasil_fields/#/)
 
@@ -12,10 +12,26 @@ Este package facilita o desenvolvimento de projetos que utilizam campos com os p
 
 ### Instalação
 
+#### Dependência
+
+Insira a dependência do pacote, executando o comando: `$ flutter pub add brasil_fields`
+
+A opção acima é a recomendada, pois cria dependência dentro no formato adequado, e em seguida executa o comando para baixar o pacote automaticamente.
+
+Se preferir 'fazer na mão', adicione a linha a seguir no seu arquivo pubspec.yaml
+
 ```yaml
 dependencies:
   brasil_fields: 1.5.0
 ```
+
+Em seguida, execute o comando `flutter pub get` manualmente para baixar o pacote.
+
+#### Importação
+
+No seu código Dart, faça a importação usando no cabeçalho a diretriz:
+
+`import 'package:brasil_fields/brasil_fields.dart';`
 
 ### Formatters
 
@@ -42,12 +58,11 @@ dependencies:
 - Regiões
 - Semana
 
-
 ### Como utilizar
 
 Basta incluir o formatter que você quer que o campo tenha, na lista de `inputFormatters` :
 
-**Para garantir que o campo aceite apenas valores numéricos, utilize em conjunto com o formatter `FilteringTextInputFormatter.digitsOnly` .**
+**Para garantir que o campo aceite apenas valores numéricos, utilize em conjunto com o formatter `FilteringTextInputFormatter.digitsOnly`.**
 
 ```dart
 TextFormField(
