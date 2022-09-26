@@ -6,7 +6,8 @@ class ValidadeCartaoInputFormatter extends TextInputFormatter {
   final int maxLength;
 
   ValidadeCartaoInputFormatter({this.maxLength = 4})
-      : assert(maxLength == 4 || maxLength == 6, 'Tamanho do campo deve ser 4 ou 6. Informado: $maxLength');
+      : assert(maxLength == 4 || maxLength == 6,
+            'Tamanho do campo deve ser 4 ou 6. Informado: $maxLength');
 
   @override
   TextEditingValue formatEditUpdate(
