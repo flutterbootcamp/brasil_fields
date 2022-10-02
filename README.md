@@ -50,6 +50,7 @@ No seu código Dart, faça a importação usando no cabeçalho a diretriz:
 - Real (R\$) (20.550)
 - Telefone ( (99) 9999-9999)
 - Validade de cartão bancário (12/24)
+- Temperatura (27,1)
 
 ### Padrões
 
