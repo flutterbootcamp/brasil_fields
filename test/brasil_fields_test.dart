@@ -1,5 +1,4 @@
 import 'package:brasil_fields/brasil_fields.dart';
-
 import 'package:brasil_fields/src/formatters/compound_formatters/compound_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -225,6 +224,15 @@ void main() {
 
     await tester.enterText(find.byType(TextField), '176');
     expect(textController.text, '1,76');
+  });
+
+  testWidgets('TemperaturaInputFormatter', (WidgetTester tester) async {
+    final textController = TextEditingController();
+    await tester
+        .pumpWidget(boilerplate(TemperaturaInputFormatter(), textController));
+
+    await tester.enterText(find.byType(TextField), '176');
+    expect(textController.text, '17,6');
   });
 
   testWidgets('PesoInputFormatter', (WidgetTester tester) async {

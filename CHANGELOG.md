@@ -1,3 +1,7 @@
+## 1.6.0
+- Adiciona `TemperaturaInputFormatter`
+- Por [ClodoaldoRibeiro](https://github.com/ClodoaldoRibeiro), via este [PR](https://github.com/flutterbootcamp/brasil_fields/pull/75).
+
 ## 1.5.0
 - Adiciona `obterDateTime`
 

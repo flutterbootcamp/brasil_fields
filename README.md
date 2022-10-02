@@ -14,7 +14,9 @@ Este package facilita o desenvolvimento de projetos que utilizam campos com os p
 
 #### Dependência
 
-Insira a dependência do pacote, executando o comando: `$ flutter pub add brasil_fields`
+Insira a dependência do pacote, executando o comando: 
+
+`flutter pub add brasil_fields`
 
 A opção acima é a recomendada, pois cria dependência dentro no formato adequado, e em seguida executa o comando para baixar o pacote automaticamente.
 
@@ -22,7 +24,7 @@ Se preferir 'fazer na mão', adicione a linha a seguir no seu arquivo pubspec.ya
 
 ```yaml
 dependencies:
-  brasil_fields: 1.5.0
+  brasil_fields: 1.6.0
 ```
 
 Em seguida, execute o comando `flutter pub get` manualmente para baixar o pacote.
