@@ -249,4 +249,15 @@ void main() {
           '50.000,0000');
     });
   });
+
+  test('obterKM', () {
+    expect(UtilBrasilFields.obterKM(999), '999');
+    expect(UtilBrasilFields.obterKM(1000), '1.000');
+    expect(UtilBrasilFields.obterKM(10000), '10.000');
+    expect(UtilBrasilFields.obterKM(100000), '100.000');
+    expect(UtilBrasilFields.obterKM(999999), '999.999');
+    expect(() {
+      UtilBrasilFields.obterKM(9999999);
+    }, throwsAssertionError);
+  });
 }
