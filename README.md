@@ -141,7 +141,7 @@ A classe `UtilBrasilFields` possui métodos que facilitam obter os valores CEP, 
 - `UtilBrasilFields.removerSimboloMoeda` (remove o R$)
 - `UtilBrasilFields.converterMoedaParaDouble` (remove o R$ e retorna um double)
 - `UtilBrasilFields.obterReal` (R$ 50.000,00 ou 50.000,00)
-- `UtilBrasilFields.obterKM(999999)` ('999.999')
+- `UtilBrasilFields.obterKM(999999)` (999.999)
 
 A classe `UtilBrasilFields` possui métodos para validar CPF e CNPJ: `isCPFValido` e `isCNPJValido`.
 
