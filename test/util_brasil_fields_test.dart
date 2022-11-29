@@ -43,82 +43,82 @@ void main() {
     });
     test('Obter centavos de um double', () {
       double valor = 1590.9;
-      String valorConvertido = valor.paraCentavos;
+      String valorConvertido = valor.obterCentavos;
       expect(valorConvertido, 'R\$ 159090');
     });
     test('Obter centavos de um double sem o símbolo de real', () {
       double valor = 1590.9;
-      String valorConvertido = valor.paraCentavosSemSimbolo;
+      String valorConvertido = valor.obterCentavosSemSimbolo;
       expect(valorConvertido, '159090');
     });
     test('Obter centavos de um double sem o símbolo de real onde o valor é menor que 1', () {
       double valor = 0.1;
-      String valorConvertido = valor.paraCentavosSemSimbolo;
+      String valorConvertido = valor.obterCentavosSemSimbolo;
       expect(valorConvertido, '10');
     });
     test('Obter centavos de um double sem o símbolo de real onde o valor é negativos', () {
       double valor = -10.5;
-      String valorConvertido = valor.paraCentavosSemSimbolo;
+      String valorConvertido = valor.obterCentavosSemSimbolo;
       expect(valorConvertido, '-1050');
     });
     test('Obter centavos de um double com o símbolo de real onde o valor é negativos', () {
       double valor = -10.5;
-      String valorConvertido = valor.paraCentavos;
+      String valorConvertido = valor.obterCentavos;
       expect(valorConvertido, '-R\$ 1050');
     });
     test('Obter real de um double', () {
       double valor = 1590.9;
-      String valorConvertido = valor.paraReal();
+      String valorConvertido = valor.obterReal();
       expect(valorConvertido, 'R\$${String.fromCharCode(160)}1.590,90');
     });
     test('Obter real de um double onde o valor é menor que 100', () {
       double valor = 60.0;
-      String valorConvertido = valor.paraReal();
+      String valorConvertido = valor.obterReal();
       expect(valorConvertido, 'R\$${String.fromCharCode(160)}60,00');
     });
     test('Obter real sem símbolo de um double onde o valor é menor que 100', () {
       double valor = 60.0;
-      String valorConvertido = valor.paraRealSemSimbolo();
+      String valorConvertido = valor.obterRealSemSimbolo();
       expect(valorConvertido, '60,00');
     });
     test('Obter real com tres casas decimais sem símbolo, proveniente de um double', () {
       double valor = 2563.55;
-      String valorConvertido = valor.paraRealSemSimbolo(3);
+      String valorConvertido = valor.obterRealSemSimbolo(3);
       expect(valorConvertido, '2.563,550');
     });
     test('Obter real com tres casas decimais de um double', () {
       double valor = 560.9;
-      String valorConvertido = valor.paraReal(3);
+      String valorConvertido = valor.obterReal(3);
       expect(valorConvertido, 'R\$${String.fromCharCode(160)}560,900');
     });
     test('Obter real com tres casas decimais e valor negativo de um double', () {
       double valor = -560.9;
-      String valorConvertido = valor.paraReal(3);
+      String valorConvertido = valor.obterReal(3);
       expect(valorConvertido, '-R\$${String.fromCharCode(160)}560,900');
     });
     test('Obter real com duas casas decimais de um inteiro', () {
       int valor = 350000;
-      String valorConvertido = valor.paraReal(2);
+      String valorConvertido = valor.obterReal(2);
       expect(valorConvertido, 'R\$${String.fromCharCode(160)}350.000,00');
     });
     test('Obter real com tres casas decimais de um inteiro', () {
       int valor = 560;
-      String valorConvertido = valor.paraReal(3);
+      String valorConvertido = valor.obterReal(3);
       expect(valorConvertido, 'R\$${String.fromCharCode(160)}560,000');
     });
     test('Obter centavos com tres casas decimais e sem símbolo de real de um inteiro', () {
       int valor = 560;
-      String valorConvertido = valor.paraCentavosSemSimbolo;
+      String valorConvertido = valor.obterCentavosSemSimbolo;
       expect(valorConvertido, '56000');
     });
     test('Obter centavos de um inteiro negativo sem símbolo de real', () {
       int valor = -105;
-      String valorConvertido = valor.paraCentavosSemSimbolo;
+      String valorConvertido = valor.obterCentavosSemSimbolo;
       expect(valorConvertido, '-10500');
     });
     test('Obter real de um inteiro negativo sem símbolo de real', () {
       int valor = -10900;
-      String valorConvertido = valor.paraRealSemSimbolo(3);
+      String valorConvertido = valor.obterRealSemSimbolo(3);
       expect(valorConvertido, '-10.900,000');
     });
     test('Obter DDD', () {
