@@ -1,5 +1,8 @@
+## 1.8.0
+- Cria extension `BrasiLFields` para int e double. Por [jradelmo](https://github.com/jradelmo), via este [PR](https://github.com/flutterbootcamp/brasil_fields/pull/69).
+
 ## 1.7.0
-- Adiciona `obterKM` em em  `UtilBrasilFields`
+- Adiciona `obterKM` em  `UtilBrasilFields`
 
 ## 1.6.0
 - Adiciona `TemperaturaInputFormatter`

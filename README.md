@@ -24,7 +24,7 @@ Se preferir 'fazer na mão', adicione a linha a seguir no seu arquivo pubspec.ya
 
 ```yaml
 dependencies:
-  brasil_fields: 1.7.0
+  brasil_fields: 1.8.0
 ```
 
 Em seguida, execute o comando `flutter pub get` manualmente para baixar o pacote.
