@@ -110,7 +110,11 @@ class MyApp extends StatelessWidget {
                       decoration:
                           const InputDecoration(label: Text('Placa Veículo')),
                       inputFormatters: [PlacaVeiculoInputFormatter()],
-                    )
+                    ),
+                    RowFormatters(
+                      label: 'Temperatura',
+                      formatter: TemperaturaInputFormatter(),
+                    ),
                   ],
                 ),
                 const Text('Em breve'),

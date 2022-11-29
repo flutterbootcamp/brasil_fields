@@ -1,8 +1,8 @@
-![Brasil Fields](./brasil-fields.svg)
-
 # brasil_fields
 
-O jeito mais fácil de utilizar padrões e formatos brasileiros em seu projeto Dart. 
+![Brasil Fields](./brasil-fields.svg)
+
+O jeito mais fácil de utilizar padrões e formatos brasileiros em seu projeto Dart.
 
 [**Testar agora**](https://flutterbootcamp.github.io/brasil_fields/#/)
 
@@ -12,10 +12,28 @@ Este package facilita o desenvolvimento de projetos que utilizam campos com os p
 
 ### Instalação
 
+#### Dependência
+
+Insira a dependência do pacote, executando o comando: 
+
+`flutter pub add brasil_fields`
+
+A opção acima é a recomendada, pois cria dependência dentro no formato adequado, e em seguida executa o comando para baixar o pacote automaticamente.
+
+Se preferir 'fazer na mão', adicione a linha a seguir no seu arquivo pubspec.yaml
+
 ```yaml
 dependencies:
-  brasil_fields: 1.5.0
+  brasil_fields: 1.7.0
 ```
+
+Em seguida, execute o comando `flutter pub get` manualmente para baixar o pacote.
+
+#### Importação
+
+No seu código Dart, faça a importação usando no cabeçalho a diretriz:
+
+`import 'package:brasil_fields/brasil_fields.dart';`
 
 ### Formatters
 
@@ -34,6 +52,7 @@ dependencies:
 - Real (R\$) (20.550)
 - Telefone ( (99) 9999-9999)
 - Validade de cartão bancário (12/24)
+- Temperatura (27,1)
 
 ### Padrões
 
@@ -42,12 +61,11 @@ dependencies:
 - Regiões
 - Semana
 
-
 ### Como utilizar
 
 Basta incluir o formatter que você quer que o campo tenha, na lista de `inputFormatters` :
 
-**Para garantir que o campo aceite apenas valores numéricos, utilize em conjunto com o formatter `FilteringTextInputFormatter.digitsOnly` .**
+**Para garantir que o campo aceite apenas valores numéricos, utilize em conjunto com o formatter `FilteringTextInputFormatter.digitsOnly`.**
 
 ```dart
 TextFormField(
@@ -105,7 +123,7 @@ A classe `UtilData` possui métodos que facilitam obter o valor de um objeto `Da
 - `UtilData.obterDia`
 - `UtilData.obterDateTime`
 
-A classe `UtilBrasilFields` possui métodos que facilitam obter os valores CEP, CPF e CPNJ já formatados:
+A classe `UtilBrasilFields` possui métodos que facilitam obter os valores CEP, KM, CPF e CPNJ já formatados:
 
 - `UtilBrasilFields.obterCpf('11122233344')` (111.222.333-44)
 - `UtilBrasilFields.obterCnpj('11222333444455')` (11.222.333/4444-55)
@@ -123,6 +141,7 @@ A classe `UtilBrasilFields` possui métodos que facilitam obter os valores CEP, 
 - `UtilBrasilFields.removerSimboloMoeda` (remove o R$)
 - `UtilBrasilFields.converterMoedaParaDouble` (remove o R$ e retorna um double)
 - `UtilBrasilFields.obterReal` (R$ 50.000,00 ou 50.000,00)
+- `UtilBrasilFields.obterKM(999999)` (999.999)
 
 A classe `UtilBrasilFields` possui métodos para validar CPF e CNPJ: `isCPFValido` e `isCNPJValido`.
 

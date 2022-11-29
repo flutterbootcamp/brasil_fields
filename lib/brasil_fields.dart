@@ -15,6 +15,7 @@ export 'src/formatters/real_input_formatter.dart';
 export 'src/formatters/telefone_input_formatter.dart';
 export 'src/formatters/hora_input_formatter.dart';
 export 'src/formatters/validade_cartao_input_formatter.dart';
+export 'src/formatters/temperatura_input_formatter.dart';
 export 'src/formatters/compound_formatters/cpf_ou_cpnj_formatter.dart';
 export 'src/modelos/estados.dart';
 export 'src/modelos/meses.dart';
