@@ -1,5 +1,5 @@
-import '../validators/validators.dart';
 import '../formatters/adiciona_separador.dart';
+import '../validators/validators.dart';
 
 class UtilBrasilFields {
   /// Remover caracteres especiais (ex: `/`, `-`, `.`)
@@ -119,6 +119,34 @@ class UtilBrasilFields {
       return r"R$ " + formatted;
     } else {
       return formatted;
+    }
+  }
+
+  /// Retorna o KM informado, utilizando a máscara: `XXX.XXX`
+  static String obterKM(int km) {
+    assert(
+        km <= 999999, 'KM informado inválido. Valor máximo permitido é 999999');
+    final kmString = km.toString();
+    switch (kmString.length) {
+      case 4:
+        return kmString[0] + "." + kmString[1] + kmString[2] + kmString[3];
+      case 5:
+        return kmString[0] +
+            kmString[1] +
+            "." +
+            kmString[2] +
+            kmString[3] +
+            kmString[4];
+      case 6:
+        return kmString[0] +
+            kmString[1] +
+            kmString[2] +
+            "." +
+            kmString[3] +
+            kmString[4] +
+            kmString[5];
+      default:
+        return km.toString();
     }
   }
 }
