@@ -7,15 +7,37 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2.5.0
+      - uses: actions/checkout@v3
       - uses: actions/setup-java@v3.7.0
         with:
           distribution: 'temurin'
           java-version: '17'
       - uses: subosito/flutter-action@v2.8.0
       - run: flutter pub get
-      - run: flutter test
-      - uses: codecov/codecov-action@v3.1.1
+      
+      # Uncomment this step to verify the use of 'dart format' on each commit.
+      # - name: Verify formatting
+      #   run: dart format --output=none --set-exit-if-changed .
+
+      # Consider passing '--fatal-infos' for slightly stricter analysis.
+      - name: Analyze project source
+        run: dart analyze
+
+      # Run Dart tests and output them at directory `./coverage`:
+      - name: Run tests
+        run: flutter test --coverage=./coverage
+        
+      # Activate package `coverage`  
+      - name: Activate package coverage
+        run: dart pub global activate coverage
+        
+      # Format collected coverage to LCOV
+      - name: Format collected coverage to LCOV
+        run: dart pub global run coverage:format_coverage --packages=.dart_tool/package_config.json --report-on=lib --lcov -o ./coverage/lcov.info -i ./coverage
+        
+      # Run Codecov
+      - name: Codecov
+        uses: codecov/codecov-action@v3.1.1
       - uses: bluefireteam/flutter-gh-pages@v7
         with:
           workingDir: example
