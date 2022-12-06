@@ -21,7 +21,7 @@ jobs:
 
       # Run Dart tests and output them at directory `./coverage`:
       - name: Run tests
-        run: flutter test
+        run: flutter test --coverage
         
       # Activate package `coverage`  
       - name: Activate package coverage
