@@ -6,6 +6,8 @@ O jeito mais fácil de utilizar padrões e formatos brasileiros em seu projeto D
 
 [**Testar agora**](https://flutterbootcamp.github.io/brasil_fields/#/)
 
+[![codecov](https://codecov.io/github/flutterbootcamp/brasil_fields/branch/master/graph/badge.svg?token=5NZXJGPM3K)](https://codecov.io/github/flutterbootcamp/brasil_fields)
+
 ## Apresentação
 
 Este package facilita o desenvolvimento de projetos que utilizam campos com os padrões e formatos brasileiros.
