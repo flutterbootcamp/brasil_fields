@@ -12,31 +12,6 @@ O jeito mais fácil de utilizar padrões e formatos brasileiros em seu projeto D
 
 Este package facilita o desenvolvimento de projetos que utilizam campos com os padrões e formatos brasileiros.
 
-### Instalação
-
-#### Dependência
-
-Insira a dependência do pacote, executando o comando: 
-
-`flutter pub add brasil_fields`
-
-A opção acima é a recomendada, pois cria dependência dentro no formato adequado, e em seguida executa o comando para baixar o pacote automaticamente.
-
-Se preferir 'fazer na mão', adicione a linha a seguir no seu arquivo pubspec.yaml
-
-```yaml
-dependencies:
-  brasil_fields: 1.8.0
-```
-
-Em seguida, execute o comando `flutter pub get` manualmente para baixar o pacote.
-
-#### Importação
-
-No seu código Dart, faça a importação usando no cabeçalho a diretriz:
-
-`import 'package:brasil_fields/brasil_fields.dart';`
-
 ### Formatters
 
 - Altura (2,22)

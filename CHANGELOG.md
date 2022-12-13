@@ -1,3 +1,6 @@
+## 1.8.1
+- Atualiza README e `pubspec.yaml`.
+
 ## 1.8.0
 - Cria extension `BrasiLFields` para int e double. Por [jradelmo](https://github.com/jradelmo), via este [PR](https://github.com/flutterbootcamp/brasil_fields/pull/69).
 
