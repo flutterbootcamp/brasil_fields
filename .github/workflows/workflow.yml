@@ -11,17 +11,14 @@ jobs:
       - uses: subosito/flutter-action@v2.8.0
       - run: flutter pub get
       
-      # Uncomment this step to verify the use of 'dart format' on each commit.
+      # Uncomment this step to verify the use of 'flutter format' on each commit.
       - name: Verify formatting
-        run: dart format --output=none --set-exit-if-changed .
+        run: flutter format --output=none --set-exit-if-changed .
 
       # Consider passing '--fatal-infos' for slightly stricter analysis.
       - name: Analyze project source
         run: dart analyze
         
-      - name: Formatting code
-        run: dart format
-
       # Run Dart tests and output them at directory `./coverage`:
       - name: Run tests
         run: flutter test --coverage
@@ -37,6 +34,7 @@ jobs:
       # Run Codecov
       - name: Codecov
         uses: codecov/codecov-action@v3.1.1
+        
       - uses: bluefireteam/flutter-gh-pages@v7
         with:
           workingDir: example
