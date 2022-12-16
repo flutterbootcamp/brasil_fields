@@ -1,3 +1,7 @@
+## 1.9.0
+- Novos métodos em `UtilData`: obterDateTimeHora e obterDateTimeHoraMinuto.
+- Ajustes no worflow.yml
+
 ## 1.8.1
 - Atualiza README e `pubspec.yaml`.
 

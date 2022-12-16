@@ -20,8 +20,7 @@ jobs:
       - name: test
         run: flutter test --coverage
 
-      # Run Codecov
-      - name: Codecov
+      - name: codecov
         uses: codecov/codecov-action@v3.1.1
         
       - uses: bluefireteam/flutter-gh-pages@v7

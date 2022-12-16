@@ -215,7 +215,7 @@ void main() {
 
     test('31/12/2022 23:41:06', () {
       const data = '23:41';
-      var dateTime = UtilData.obterHoraMinuto(data);
+      var dateTime = UtilData.obterDateTimeHoraMinuto(data);
       expect(dateTime, DateTime(1970, 01, 01, 23, 41, 00));
     });
   });

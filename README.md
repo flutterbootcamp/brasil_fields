@@ -99,6 +99,8 @@ A classe `UtilData` possui métodos que facilitam obter o valor de um objeto `Da
 - `UtilData.obterMes`
 - `UtilData.obterDia`
 - `UtilData.obterDateTime`
+- `UtilData.obterDateTimeHora`
+- `UtilData.obterDateTimeHoraMinuto`
 
 A classe `UtilBrasilFields` possui métodos que facilitam obter os valores CEP, KM, CPF e CPNJ já formatados:
 

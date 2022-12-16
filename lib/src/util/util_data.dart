@@ -93,7 +93,7 @@ class UtilData {
 
   /// Retorna um objeto [DateTime] de acordo com a data informada.
   ///
-  /// Informar a String `data` no formato `DD/MM/AAAA`
+  /// Informar a string `data` no formato `DD/MM/AAAA`
   static DateTime obterDateTime(String data) {
     initializeDateFormatting();
     return DateFormat.yMd("pt_BR").parse(data);
@@ -101,7 +101,7 @@ class UtilData {
 
   /// Retorna um objeto [DateTime] de acordo com a data informada.
   ///
-  /// Informar a String `data` no formato `DD/MM/AAAA HH:MM`
+  /// Informar a string `data` no formato `DD/MM/AAAA HH:MM`
   static DateTime obterDateTimeHora(String data) {
     initializeDateFormatting();
     return DateFormat.yMd("pt_BR").add_jm().parse(data);
@@ -109,8 +109,8 @@ class UtilData {
 
   /// Retorna um objeto [DateTime] de acordo com a data informada.
   ///
-  /// Informar a String `data` no formato `HH:MM`
-  static DateTime obterHoraMinuto(String data) {
+  /// Informar a string `data` no formato `HH:MM`
+  static DateTime obterDateTimeHoraMinuto(String data) {
     initializeDateFormatting();
     return DateFormat.jm("pt_BR").parse(data);
   }
