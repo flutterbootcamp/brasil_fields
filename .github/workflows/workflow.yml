@@ -18,6 +18,9 @@ jobs:
       # Consider passing '--fatal-infos' for slightly stricter analysis.
       - name: Analyze project source
         run: dart analyze
+        
+      - name: Formatting code
+        run: dart format
 
       # Run Dart tests and output them at directory `./coverage`:
       - name: Run tests
