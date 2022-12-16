@@ -95,14 +95,23 @@ class UtilData {
   ///
   /// Informar a String `data` no formato `DD/MM/AAAA`
   static DateTime obterDateTime(String data) {
-    final dataLimpa = removeCaracteres(data);
-    if (validarData(dataLimpa)) {
-      final dia = dataLimpa.substring(0, 2);
-      final mes = dataLimpa.substring(2, 4);
-      final ano = dataLimpa.substring(4, 8);
-      return DateTime(int.parse(ano), int.parse(mes), int.parse(dia));
-    } else {
-      throw Exception('Nao foi possível obter o dia da data $data');
-    }
+    initializeDateFormatting();
+    return DateFormat.yMd("pt_BR").parse(data);
+  }
+
+  /// Retorna um objeto [DateTime] de acordo com a data informada.
+  ///
+  /// Informar a String `data` no formato `DD/MM/AAAA HH:MM`
+  static DateTime obterDateTimeHora(String data) {
+    initializeDateFormatting();
+    return DateFormat.yMd("pt_BR").add_jm().parse(data);
+  }
+
+  /// Retorna um objeto [DateTime] de acordo com a data informada.
+  ///
+  /// Informar a String `data` no formato `HH:MM`
+  static DateTime obterHoraMinuto(String data) {
+    initializeDateFormatting();
+    return DateFormat.jm("pt_BR").parse(data);
   }
 }

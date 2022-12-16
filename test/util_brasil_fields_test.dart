@@ -51,17 +51,23 @@ void main() {
       String valorConvertido = valor.obterCentavosSemSimbolo;
       expect(valorConvertido, '159090');
     });
-    test('Obter centavos de um double sem o símbolo de real onde o valor é menor que 1', () {
+    test(
+        'Obter centavos de um double sem o símbolo de real onde o valor é menor que 1',
+        () {
       double valor = 0.1;
       String valorConvertido = valor.obterCentavosSemSimbolo;
       expect(valorConvertido, '10');
     });
-    test('Obter centavos de um double sem o símbolo de real onde o valor é negativos', () {
+    test(
+        'Obter centavos de um double sem o símbolo de real onde o valor é negativos',
+        () {
       double valor = -10.5;
       String valorConvertido = valor.obterCentavosSemSimbolo;
       expect(valorConvertido, '-1050');
     });
-    test('Obter centavos de um double com o símbolo de real onde o valor é negativos', () {
+    test(
+        'Obter centavos de um double com o símbolo de real onde o valor é negativos',
+        () {
       double valor = -10.5;
       String valorConvertido = valor.obterCentavos;
       expect(valorConvertido, '-R\$ 1050');
@@ -76,12 +82,15 @@ void main() {
       String valorConvertido = valor.obterReal();
       expect(valorConvertido, 'R\$${String.fromCharCode(160)}60,00');
     });
-    test('Obter real sem símbolo de um double onde o valor é menor que 100', () {
+    test('Obter real sem símbolo de um double onde o valor é menor que 100',
+        () {
       double valor = 60.0;
       String valorConvertido = valor.obterRealSemSimbolo();
       expect(valorConvertido, '60,00');
     });
-    test('Obter real com tres casas decimais sem símbolo, proveniente de um double', () {
+    test(
+        'Obter real com tres casas decimais sem símbolo, proveniente de um double',
+        () {
       double valor = 2563.55;
       String valorConvertido = valor.obterRealSemSimbolo(3);
       expect(valorConvertido, '2.563,550');
@@ -91,7 +100,8 @@ void main() {
       String valorConvertido = valor.obterReal(3);
       expect(valorConvertido, 'R\$${String.fromCharCode(160)}560,900');
     });
-    test('Obter real com tres casas decimais e valor negativo de um double', () {
+    test('Obter real com tres casas decimais e valor negativo de um double',
+        () {
       double valor = -560.9;
       String valorConvertido = valor.obterReal(3);
       expect(valorConvertido, '-R\$${String.fromCharCode(160)}560,900');
@@ -106,7 +116,9 @@ void main() {
       String valorConvertido = valor.obterReal(3);
       expect(valorConvertido, 'R\$${String.fromCharCode(160)}560,000');
     });
-    test('Obter centavos com tres casas decimais e sem símbolo de real de um inteiro', () {
+    test(
+        'Obter centavos com tres casas decimais e sem símbolo de real de um inteiro',
+        () {
       int valor = 560;
       String valorConvertido = valor.obterCentavosSemSimbolo;
       expect(valorConvertido, '56000');
@@ -195,6 +207,17 @@ void main() {
       var dateTime = UtilData.obterDateTime(data);
       expect(dateTime, DateTime(2022, 12, 31));
     });
+    test('31/12/2022 23:41:06', () {
+      const data = '31/12/2022 23:41';
+      var dateTime = UtilData.obterDateTimeHora(data);
+      expect(dateTime, DateTime(2022, 12, 31, 23, 41, 00));
+    });
+
+    test('31/12/2022 23:41:06', () {
+      const data = '23:41';
+      var dateTime = UtilData.obterHoraMinuto(data);
+      expect(dateTime, DateTime(1970, 01, 01, 23, 41, 00));
+    });
   });
 
   test('Obter CPF', () {
@@ -229,13 +252,15 @@ void main() {
       const real = 85437107.04;
       const realFormatado = '85.437.107';
 
-      expect(UtilBrasilFields.obterReal(real, moeda: false, decimal: 0), realFormatado);
+      expect(UtilBrasilFields.obterReal(real, moeda: false, decimal: 0),
+          realFormatado);
     });
     test('decimal: 1', () {
       const real = 85437107.04;
       const realFormatado = '85.437.107,0';
 
-      expect(UtilBrasilFields.obterReal(real, moeda: false, decimal: 1), realFormatado);
+      expect(UtilBrasilFields.obterReal(real, moeda: false, decimal: 1),
+          realFormatado);
     });
   });
 
@@ -257,13 +282,15 @@ void main() {
       const real = -287.04;
       const realFormatado = '-287';
 
-      expect(UtilBrasilFields.obterReal(real, moeda: false, decimal: 0), realFormatado);
+      expect(UtilBrasilFields.obterReal(real, moeda: false, decimal: 0),
+          realFormatado);
     });
     test('negativo decimal: 1', () {
       const real = -287.04;
       const realFormatado = '-287,0';
 
-      expect(UtilBrasilFields.obterReal(real, moeda: false, decimal: 1), realFormatado);
+      expect(UtilBrasilFields.obterReal(real, moeda: false, decimal: 1),
+          realFormatado);
     });
   });
 
@@ -281,21 +308,28 @@ void main() {
   group('Obter Telefone', () {
     group('com DDD', () {
       test('com mascara', () {
-        expect(UtilBrasilFields.obterTelefone('00999998877'), '(00) 99999-8877');
+        expect(
+            UtilBrasilFields.obterTelefone('00999998877'), '(00) 99999-8877');
       });
 
       test('sem mascara', () {
-        expect(UtilBrasilFields.obterTelefone('(00) 99999-8877', mascara: false), '00999998877');
+        expect(
+            UtilBrasilFields.obterTelefone('(00) 99999-8877', mascara: false),
+            '00999998877');
       });
     });
 
     group('sem DDD', () {
       test('com mascara', () {
-        expect(UtilBrasilFields.obterTelefone('999998877', ddd: false), '99999-8877');
+        expect(UtilBrasilFields.obterTelefone('999998877', ddd: false),
+            '99999-8877');
       });
 
       test('sem mascara', () {
-        expect(UtilBrasilFields.obterTelefone('99999-8877', ddd: false, mascara: false), '999998877');
+        expect(
+            UtilBrasilFields.obterTelefone('99999-8877',
+                ddd: false, mascara: false),
+            '999998877');
       });
     });
   });
@@ -314,7 +348,8 @@ void main() {
     });
 
     test('sem cifrão e 4 casas decimais', () {
-      expect(UtilBrasilFields.obterReal(50000, moeda: false, decimal: 4), '50.000,0000');
+      expect(UtilBrasilFields.obterReal(50000, moeda: false, decimal: 4),
+          '50.000,0000');
     });
   });
 
