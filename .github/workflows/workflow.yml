@@ -11,26 +11,15 @@ jobs:
       - uses: subosito/flutter-action@v2.8.0
       - run: flutter pub get
       
-      # Uncomment this step to verify the use of 'flutter format' on each commit.
-      - name: Verify formatting
+      - name: format
         run: flutter format --output=none --set-exit-if-changed .
 
-      # Consider passing '--fatal-infos' for slightly stricter analysis.
-      - name: Analyze project source
-        run: dart analyze
+      - name: analyze
+        run: flutter analyze
         
-      # Run Dart tests and output them at directory `./coverage`:
-      - name: Run tests
+      - name: test
         run: flutter test --coverage
-        
-      # Activate package `coverage`  
-#       - name: Activate package coverage
-#         run: dart pub global activate coverage
-        
-      # Format collected coverage to LCOV
-#       - name: Format collected coverage to LCOV
-#         run: dart pub global run coverage:format_coverage --packages=.dart_tool/package_config.json --report-on=lib --lcov -o ./coverage/lcov.info -i ./coverage
-        
+
       # Run Codecov
       - name: Codecov
         uses: codecov/codecov-action@v3.1.1
