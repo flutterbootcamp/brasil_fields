@@ -1,22 +1,20 @@
 import 'package:flutter/services.dart';
 
-/// Formata o valor do campo com a mascara de hora ( 000.000 ).
+/// Formata o valor do campo com a máscara de `000.000`.
 class KmInputFormatter extends TextInputFormatter {
-  /// Define o tamanho máximo do campo.
-  final int maxLength = 6;
-
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
     final newValueLength = newValue.text.length;
-    var selectionIndex = newValue.selection.end;
 
-    if (newValueLength > maxLength) {
+    // Verifica o tamanho máximo do campo.
+    if (newValueLength > 6) {
       return oldValue;
     }
-
+    var selectionIndex = newValue.selection.end;
     var substrIndex = 0;
     final newText = StringBuffer();
+
     switch (newValueLength) {
       case 4:
         newText.write(newValue.text.substring(0, substrIndex = 1) +

@@ -1,17 +1,14 @@
 import 'package:flutter/services.dart';
 
-/// Formata o valor do campo com a mascara m,cm. `1,82`
+/// Formata o valor do campo com a máscara m,cm. (`1,82`)
 class AlturaInputFormatter extends TextInputFormatter {
-  /// Define o tamanho máximo do campo.
-  final int maxLength = 3;
-
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
     final newValueLength = newValue.text.length;
-    var selectionIndex = newValue.selection.end;
 
-    if (newValueLength > maxLength) {
+    // Verifica o tamanho máximo do campo.
+    if (newValueLength > 3) {
       return oldValue;
     }
 
@@ -24,6 +21,7 @@ class AlturaInputFormatter extends TextInputFormatter {
       }
     }
 
+    var selectionIndex = newValue.selection.end;
     var substrIndex = 0;
     final newText = StringBuffer();
 

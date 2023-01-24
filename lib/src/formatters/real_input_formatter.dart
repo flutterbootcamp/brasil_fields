@@ -2,12 +2,10 @@ import 'package:flutter/services.dart';
 
 import 'adiciona_separador.dart';
 
-/// Formata o valor do campo com a mascara ( 9.999.999.999 ).
+/// Formata o valor do campo com a máscara `999.999.999.999`.
+
 class RealInputFormatter extends TextInputFormatter {
   RealInputFormatter({this.moeda = false});
-
-  /// Define o tamanho máximo do campo.
-  int maxLength = 12;
 
   final bool moeda;
 
@@ -16,11 +14,13 @@ class RealInputFormatter extends TextInputFormatter {
       TextEditingValue oldValue, TextEditingValue newValue) {
     final newValueLength = newValue.text.length;
 
+    // Verifica o tamanho máximo do campo.
+    if (newValueLength > 12) {
+      return oldValue;
+    }
+
     if (newValueLength == 0) {
       return newValue;
-    }
-    if (newValueLength > maxLength) {
-      return oldValue;
     }
 
     final newText = StringBuffer();

@@ -1,6 +1,6 @@
 name: brasil_fields
 description: O jeito mais fácil de utilizar padrões e formatos brasileiros em seu projeto Dart.
-version: 1.9.0
+version: 1.9.1
 homepage: https://github.com/flutterbootcamp/brasil_fields
 repository: https://github.com/flutterbootcamp/brasil_fields
 issue_tracker: https://github.com/flutterbootcamp/brasil_fields/issues

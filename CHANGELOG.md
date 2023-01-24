@@ -1,3 +1,6 @@
+## 1.9.1
+- Ajustes nos comentários. Remoção de variáveis alocadas desnecessáriamente.
+
 ## 1.9.0
 - Novos métodos em `UtilData`: obterDateTimeHora e obterDateTimeHoraMinuto.
 - Ajustes no worflow.yml

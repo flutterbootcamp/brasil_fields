@@ -2,16 +2,13 @@ import 'package:flutter/services.dart';
 
 import 'adiciona_separador.dart';
 
-/// Formata o valor do campo com a mascara ( 9.999.999.999,00 ).
+/// Formata o valor do campo com a máscara `9.999.999.999,00`.
 ///
-/// `[casasDecimais]` indica a quantidade de casas usadas.
+/// `casasDecimais` indica a quantidade de casas usadas.
 class CentavosInputFormatter extends TextInputFormatter {
   CentavosInputFormatter({this.moeda = false, this.casasDecimais = 2})
       : assert(casasDecimais == 2 || casasDecimais == 3,
             'Quantidade de casas decimais deve ser 2 ou 3. Informado: $casasDecimais');
-
-  /// Define o tamanho máximo do campo.
-  int maxLength = 12;
 
   final bool moeda;
   final int casasDecimais;
@@ -21,11 +18,13 @@ class CentavosInputFormatter extends TextInputFormatter {
       TextEditingValue oldValue, TextEditingValue newValue) {
     final newValueLength = newValue.text.length;
 
+    // Verifica o tamanho máximo do campo.
+    if (newValueLength > 12) {
+      return oldValue;
+    }
+
     if (newValueLength == 0) {
       return newValue;
-    }
-    if (newValueLength > maxLength) {
-      return oldValue;
     }
 
     const simbolo = 'R\$ ';

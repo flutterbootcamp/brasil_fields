@@ -1,27 +1,28 @@
 import 'package:flutter/services.dart';
 
-/// Formata o valor do campo com a máscara ( (99) 99999-9999 ).
+/// Formata o valor do campo com a máscara `(99) 99999-9999`.
 ///
-/// Nono dígito automático.
+/// _Nono dígito automático_.
 class TelefoneInputFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
     final newValueLength = newValue.text.length;
-    var selectionIndex = newValue.selection.end;
-    var substrIndex = 0;
-    final newText = StringBuffer();
 
+    // Verifica o tamanho máximo do campo.
+    if (newValueLength > 11) {
+      return oldValue;
+    }
     if (newValueLength == 11) {
       if (newValue.text.toString()[2] != '9') {
         return oldValue;
       }
     }
 
-    /// Verifica o tamanho máximo do campo.
-    if (newValueLength > 11) {
-      return oldValue;
-    }
+    var selectionIndex = newValue.selection.end;
+    var substrIndex = 0;
+    final newText = StringBuffer();
+
     if (newValueLength >= 1) {
       newText.write('(');
       if (newValue.selection.end >= 1) selectionIndex++;

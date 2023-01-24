@@ -1,24 +1,21 @@
 import 'package:flutter/services.dart';
 
-/// Formata o valor do campo com a mascara °C (ex: 10,8)
+/// Formata o valor do campo com a mascara °C (ex: `10,8`).
 class TemperaturaInputFormatter extends TextInputFormatter {
-  /// Define o tamanho máximo do campo.
-  final int maxLength = 3;
-
   @override
   TextEditingValue formatEditUpdate(
     TextEditingValue oldValue,
     TextEditingValue newValue,
   ) {
     final newTextLength = newValue.text.length;
-    var selectionIndex = newValue.selection.end;
-
-    if (newTextLength > maxLength) {
+    // Verifica o tamanho máximo do campo.
+    if (newTextLength > 3) {
       return oldValue;
     }
-
+    var selectionIndex = newValue.selection.end;
     var usedSubstringIndex = 0;
     final newText = StringBuffer();
+
     switch (newTextLength) {
       case 2:
         newText.write(newValue.text.substring(0, usedSubstringIndex = 1) + ',');

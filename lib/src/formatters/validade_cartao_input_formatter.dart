@@ -1,8 +1,11 @@
 import 'package:flutter/services.dart';
 
-/// Formata o valor do campo com a máscara MM/AA
+/// Formata o valor do campo com a máscara `MM/AA` ou `MM/AAAA`.
+///
+///  `maxLength = 4` MM/AA (default)
+///
+/// `maxLength = 6` MM/AAAAA.
 class ValidadeCartaoInputFormatter extends TextInputFormatter {
-  /// [maxLength] Define o tamanho máximo do campo e indica se o formato da máscara deve utilizar o ano com 2 ou 4 dígitos.
   final int maxLength;
 
   ValidadeCartaoInputFormatter({this.maxLength = 4})
@@ -13,12 +16,12 @@ class ValidadeCartaoInputFormatter extends TextInputFormatter {
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
     final newValueLength = newValue.text.length;
-    var selectionIndex = newValue.selection.end;
 
     if (newValueLength > maxLength) {
       return oldValue;
     }
 
+    var selectionIndex = newValue.selection.end;
     var substrIndex = 0;
     final newText = StringBuffer();
 

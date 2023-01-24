@@ -28,7 +28,7 @@ Este package facilita o desenvolvimento de projetos que utilizam campos com os p
 - Placa de veículo (AAA-1234)
 - Real (R\$) (20.550)
 - Telefone ( (99) 9999-9999)
-- Validade de cartão bancário (12/24)
+- Validade de cartão bancário (12/24 ou 12/2024)
 - Temperatura (27,1)
 
 ### Padrões

@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,12 +19,12 @@ class MyApp extends StatelessWidget {
             bottom: const TabBar(
               tabs: [
                 Tab(
-                  child: Text('Formatters'),
                   icon: Icon(Icons.keyboard),
+                  child: Text('Formatters'),
                 ),
                 Tab(
-                  child: Text('Datas'),
                   icon: Icon(Icons.calendar_today),
+                  child: Text('Datas'),
                 ),
                 Tab(
                   icon: Icon(Icons.smart_display),
@@ -68,11 +68,6 @@ class MyApp extends StatelessWidget {
                       label: 'Hora',
                       formatter: HoraInputFormatter(),
                     ),
-                    RowFormatters(
-                        label: 'Real',
-                        formatter: RealInputFormatter(
-                          moeda: true,
-                        )),
                     RowFormatters(
                         label: 'Centavos', formatter: CentavosInputFormatter()),
                     RowFormatters(
@@ -131,11 +126,9 @@ class MyApp extends StatelessWidget {
 class RowFormatters extends StatelessWidget {
   final String label;
   final TextInputFormatter formatter;
-  const RowFormatters({
-    Key key,
-    this.label,
-    this.formatter,
-  }) : super(key: key);
+
+  const RowFormatters(
+      {super.key, required this.label, required this.formatter});
 
   @override
   Widget build(BuildContext context) {

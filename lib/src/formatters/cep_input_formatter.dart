@@ -1,11 +1,9 @@
 import 'package:flutter/services.dart';
 
 /// Formata o valor do campo com a mascara de CEP `XX.XXX-XXX`
+///
+/// `ponto` indica se o formato do CEP deve utilizar `.` ou não.
 class CepInputFormatter extends TextInputFormatter {
-  /// Define o tamanho máximo do campo.
-  final maxLength = 8;
-
-  /// [ponto] indica se o formato do CEP deve utilizar `.` ou não.
   final bool ponto;
 
   CepInputFormatter({this.ponto = true});
@@ -14,9 +12,9 @@ class CepInputFormatter extends TextInputFormatter {
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
     final newValueLength = newValue.text.length;
-    var selectionIndex = newValue.selection.end;
 
-    if (newValueLength > maxLength) {
+    // Define o tamanho máximo do campo.
+    if (newValueLength > 8) {
       return oldValue;
     }
     var substrInicio = 2;
@@ -24,6 +22,7 @@ class CepInputFormatter extends TextInputFormatter {
       substrInicio = 0;
     }
 
+    var selectionIndex = newValue.selection.end;
     var substrIndex = 0;
     final newText = StringBuffer();
 

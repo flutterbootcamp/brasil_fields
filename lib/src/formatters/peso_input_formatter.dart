@@ -1,21 +1,20 @@
 import 'package:flutter/services.dart';
 
-/// Formata o valor do campo com a mascara kg,g (ex: 103,8)
+/// Formata o valor do campo com a mascara kg,g (ex: `103,8`)
 class PesoInputFormatter extends TextInputFormatter {
-  /// Define o tamanho máximo do campo.
-  final int maxLength = 4;
-
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
     final newTextLength = newValue.text.length;
+
+    // Verifica o tamanho máximo do campo.
+    if (newTextLength > 4) {
+      return oldValue;
+    }
+
     var selectionIndex = newValue.selection.end;
     var substrIndex = 0;
     final newText = StringBuffer();
-
-    if (newTextLength > maxLength) {
-      return oldValue;
-    }
 
     switch (newTextLength) {
       case 3:

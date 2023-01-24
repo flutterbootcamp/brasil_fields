@@ -1,6 +1,6 @@
 import 'package:intl/intl.dart';
 
-extension BrasiLFields on double {
+extension BrasilFieldsDouble on double {
   /// Converte um valor double para centavos com o símbolo de real brasileiro
   String get obterCentavos =>
       '${this < 0 ? '-' : ''}R\$ ${(abs() * 100).toInt().toString()}';
@@ -23,7 +23,7 @@ extension BrasiLFields on double {
       obterReal(fracaoDigitos).replaceAll('R\$ ', '');
 }
 
-extension BrasilFields on int {
+extension BrasilFieldsInt on int {
   /// Converte um valor inteiro para centavos com o símbolo de real brasileiro
   String get obterCentavos =>
       '${this < 0 ? '-' : ''}R\$ ${(abs() * 100).toInt().toString()}';
