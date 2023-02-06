@@ -1,3 +1,6 @@
+## 1.10.0
+- Atualiza `intl`.
+
 ## 1.9.1
 - Ajustes nos comentários. Remoção de variáveis alocadas desnecessáriamente.
 
