@@ -1,6 +1,5 @@
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:brasil_fields/src/formatters/compound_formatters/compound_formatter.dart';
-import 'package:brasil_fields/src/formatters/iof_input_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
