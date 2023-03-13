@@ -1,5 +1,6 @@
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:brasil_fields/src/formatters/compound_formatters/compound_formatter.dart';
+import 'package:brasil_fields/src/formatters/iof_input_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -321,5 +322,25 @@ void main() {
     expect(textController.text, '12.345.678/9000-9');
     await tester.enterText(find.byType(TextField), '12345678900099');
     expect(textController.text, '12.345.678/9000-99');
+  });
+
+  testWidgets('IOFInputFormatter', (WidgetTester tester) async {
+    final textController = TextEditingController();
+
+    await tester.pumpWidget(boilerplate(IOFInputFormatter(), textController));
+    await tester.enterText(find.byType(TextField), '12345');
+    expect(textController.text, '1,2345');
+
+    await tester.pumpWidget(boilerplate(IOFInputFormatter(), textController));
+    await tester.enterText(find.byType(TextField), '123456');
+    expect(textController.text, '1,23456');
+
+    await tester.pumpWidget(boilerplate(IOFInputFormatter(), textController));
+    await tester.enterText(find.byType(TextField), '1234567');
+    expect(textController.text, '1,234567');
+
+    await tester.pumpWidget(boilerplate(IOFInputFormatter(), textController));
+    await tester.enterText(find.byType(TextField), '12345678');
+    expect(textController.text, '1,234567');
   });
 }
