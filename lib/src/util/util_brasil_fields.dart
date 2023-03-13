@@ -112,7 +112,7 @@ class UtilBrasilFields {
     String formatted = separatedValues.join(",");
 
     if (isNegative) {
-      formatted = "-" + formatted;
+      formatted = "-$formatted";
     }
 
     if (moeda) {
@@ -129,22 +129,11 @@ class UtilBrasilFields {
     final kmString = km.toString();
     switch (kmString.length) {
       case 4:
-        return kmString[0] + "." + kmString[1] + kmString[2] + kmString[3];
+        return "${kmString[0]}.${kmString[1]}${kmString[2]}${kmString[3]}";
       case 5:
-        return kmString[0] +
-            kmString[1] +
-            "." +
-            kmString[2] +
-            kmString[3] +
-            kmString[4];
+        return "${kmString[0]}${kmString[1]}.${kmString[2]}${kmString[3]}${kmString[4]}";
       case 6:
-        return kmString[0] +
-            kmString[1] +
-            kmString[2] +
-            "." +
-            kmString[3] +
-            kmString[4] +
-            kmString[5];
+        return "${kmString[0]}${kmString[1]}${kmString[2]}.${kmString[3]}${kmString[4]}${kmString[5]}";
       default:
         return km.toString();
     }

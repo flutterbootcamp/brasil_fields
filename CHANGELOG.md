@@ -1,3 +1,6 @@
+## 1.10.0
+- Novo formatter: `IOFInputFormatter()`
+
 ## 1.9.1
 - Ajustes nos comentários. Remoção de variáveis alocadas desnecessáriamente.
 

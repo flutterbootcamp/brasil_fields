@@ -27,12 +27,12 @@ class CepInputFormatter extends TextInputFormatter {
     final newText = StringBuffer();
 
     if (newValueLength >= 3 && ponto) {
-      newText.write(newValue.text.substring(0, substrIndex = 2) + '.');
+      newText.write('${newValue.text.substring(0, substrIndex = 2)}.');
       if (newValue.selection.end >= 2) selectionIndex++;
     }
     if (newValueLength >= 6) {
       newText
-          .write(newValue.text.substring(substrInicio, substrIndex = 5) + '-');
+          .write('${newValue.text.substring(substrInicio, substrIndex = 5)}-');
       if (newValue.selection.end >= 5) selectionIndex++;
     }
 

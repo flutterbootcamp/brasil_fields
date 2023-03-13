@@ -30,6 +30,7 @@ Este package facilita o desenvolvimento de projetos que utilizam campos com os p
 - Telefone ( (99) 9999-9999)
 - Validade de cartão bancário (12/24 ou 12/2024)
 - Temperatura (27,1)
+- IOF (1,234567)
 
 ### Padrões
 
@@ -69,6 +70,7 @@ TextFormField(
 - `RealInputFormatter()`
 - `TelefoneInputFormatter()`
 - `ValidadeCartaoInputFormatter()`
+- `IOFInputFormatter()`
 
 Caso precise de um DropdownButton com algumas das classes de padrões:
 

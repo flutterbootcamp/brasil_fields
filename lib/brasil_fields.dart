@@ -9,6 +9,7 @@ export 'src/formatters/compound_formatters/cpf_ou_cpnj_formatter.dart';
 export 'src/formatters/cpf_input_formatter.dart';
 export 'src/formatters/data_input_formatter.dart';
 export 'src/formatters/hora_input_formatter.dart';
+export 'src/formatters/iof_input_formatter.dart';
 export 'src/formatters/km_input_formatter.dart';
 export 'src/formatters/peso_input_formatter.dart';
 export 'src/formatters/placa_veiculo_formatter.dart';

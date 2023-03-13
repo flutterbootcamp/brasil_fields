@@ -28,13 +28,13 @@ class HoraInputFormatter extends TextInputFormatter {
       case 3:
         final minuto = int.parse(newValue.text.substring(2, 3));
         if (minuto >= 6) return oldValue;
-        newText.write(newValue.text.substring(0, substrIndex = 2) + ':');
+        newText.write('${newValue.text.substring(0, substrIndex = 2)}:');
         if (newValue.selection.end >= 2) selectionIndex++;
         break;
       case 4:
         final minuto = int.parse(newValue.text.substring(2, 4));
         if (minuto >= 60) return oldValue;
-        newText.write(newValue.text.substring(0, substrIndex = 2) + ':');
+        newText.write('${newValue.text.substring(0, substrIndex = 2)}:');
         if (newValue.selection.end >= 2) selectionIndex++;
         break;
     }

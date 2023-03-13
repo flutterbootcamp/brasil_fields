@@ -18,11 +18,11 @@ class PesoInputFormatter extends TextInputFormatter {
 
     switch (newTextLength) {
       case 3:
-        newText.write(newValue.text.substring(0, substrIndex = 2) + ',');
+        newText.write('${newValue.text.substring(0, substrIndex = 2)},');
         if (newValue.selection.end >= 3) selectionIndex++;
         break;
       case 4:
-        newText.write(newValue.text.substring(0, substrIndex = 3) + ',');
+        newText.write('${newValue.text.substring(0, substrIndex = 3)},');
         if (newValue.selection.end >= 4) selectionIndex++;
         break;
     }

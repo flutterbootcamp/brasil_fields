@@ -27,7 +27,7 @@ class RealInputFormatter extends TextInputFormatter {
     var valorFinal = newValue.text;
 
     if (moeda) {
-      newText.write('R\$ ' + adicionarSeparador(valorFinal));
+      newText.write('R\$ ${adicionarSeparador(valorFinal)}');
     } else {
       newText.write(adicionarSeparador(valorFinal));
     }

@@ -17,21 +17,18 @@ class KmInputFormatter extends TextInputFormatter {
 
     switch (newValueLength) {
       case 4:
-        newText.write(newValue.text.substring(0, substrIndex = 1) +
-            '.' +
-            newValue.text.substring(1, substrIndex = 3));
+        newText.write(
+            '${newValue.text.substring(0, substrIndex = 1)}.${newValue.text.substring(1, substrIndex = 3)}');
         selectionIndex += 1;
         break;
       case 5:
-        newText.write(newValue.text.substring(0, substrIndex = 2) +
-            '.' +
-            newValue.text.substring(2, substrIndex = 4));
+        newText.write(
+            '${newValue.text.substring(0, substrIndex = 2)}.${newValue.text.substring(2, substrIndex = 4)}');
         selectionIndex += 1;
         break;
       case 6:
-        newText.write(newValue.text.substring(0, substrIndex = 3) +
-            '.' +
-            newValue.text.substring(3, substrIndex = 5));
+        newText.write(
+            '${newValue.text.substring(0, substrIndex = 3)}.${newValue.text.substring(3, substrIndex = 5)}');
         selectionIndex += 1;
         break;
       default:

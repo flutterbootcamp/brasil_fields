@@ -22,9 +22,8 @@ class PlacaVeiculoInputFormatter extends TextInputFormatter {
       if (newValue.text.contains("-")) {
         newText.write(newValue.text.substring(0, substrIndex = 3));
       } else {
-        newText.write(newValue.text.substring(0, substrIndex = 3) +
-            '-' +
-            newValue.text.substring(3, substrIndex = newValueLength));
+        newText.write(
+            '${newValue.text.substring(0, substrIndex = 3)}-${newValue.text.substring(3, substrIndex = newValueLength)}');
         selectionIndex++;
       }
     }

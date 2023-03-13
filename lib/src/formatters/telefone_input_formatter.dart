@@ -29,18 +29,18 @@ class TelefoneInputFormatter extends TextInputFormatter {
     }
 
     if (newValueLength >= 3) {
-      newText.write(newValue.text.substring(0, substrIndex = 2) + ') ');
+      newText.write('${newValue.text.substring(0, substrIndex = 2)}) ');
       if (newValue.selection.end >= 2) selectionIndex += 2;
     }
 
     if (newValue.text.length == 11) {
       if (newValueLength >= 8) {
-        newText.write(newValue.text.substring(2, substrIndex = 7) + '-');
+        newText.write('${newValue.text.substring(2, substrIndex = 7)}-');
         if (newValue.selection.end >= 7) selectionIndex++;
       }
     } else {
       if (newValueLength >= 7) {
-        newText.write(newValue.text.substring(2, substrIndex = 6) + '-');
+        newText.write('${newValue.text.substring(2, substrIndex = 6)}-');
         if (newValue.selection.end >= 6) selectionIndex++;
       }
     }

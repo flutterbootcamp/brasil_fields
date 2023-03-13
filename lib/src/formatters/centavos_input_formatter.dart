@@ -51,7 +51,7 @@ class CentavosInputFormatter extends TextInputFormatter {
 
     // retorna apenas o valor decimal, após o 0
     if (textValue.length == casasDecimais) {
-      valorFinal = "0," + centsValue;
+      valorFinal = "0,$centsValue";
       if (moeda) {
         valorFinal = simbolo + valorFinal;
       }
@@ -66,15 +66,15 @@ class CentavosInputFormatter extends TextInputFormatter {
     // formata o número com 0, + centavos
     if (numero > 0 && numero <= 9) {
       if (casasDecimais == 3) {
-        centsValue = "00" + numero.toString();
+        centsValue = "00$numero";
       } else {
-        centsValue = "0" + numero.toString();
+        centsValue = "0$numero";
       }
 
       numero = 0;
     } else if (numero >= 10 && numero < 100) {
       if (casasDecimais == 3) {
-        centsValue = "0" + numero.toString();
+        centsValue = "0$numero";
       } else {
         centsValue = numero.toString();
       }
@@ -87,9 +87,9 @@ class CentavosInputFormatter extends TextInputFormatter {
     // adiciona
 
     if (numero > 999) {
-      valorFinal = adicionarSeparador(numero.toString()) + "," + centsValue;
+      valorFinal = "${adicionarSeparador(numero.toString())},$centsValue";
     } else {
-      valorFinal = numero.toString() + "," + centsValue;
+      valorFinal = "$numero,$centsValue";
     }
 
     if (moeda) {

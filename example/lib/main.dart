@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
             title: const Text('Brasil Fields'),
           ),
           body: Padding(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
             child: TabBarView(
               children: [
                 ListView(
@@ -109,6 +109,10 @@ class MyApp extends StatelessWidget {
                     RowFormatters(
                       label: 'Temperatura',
                       formatter: TemperaturaInputFormatter(),
+                    ),
+                    RowFormatters(
+                      label: 'IOF',
+                      formatter: IOFInputFormatter(),
                     ),
                   ],
                 ),

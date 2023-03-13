@@ -18,11 +18,11 @@ class TemperaturaInputFormatter extends TextInputFormatter {
 
     switch (newTextLength) {
       case 2:
-        newText.write(newValue.text.substring(0, usedSubstringIndex = 1) + ',');
+        newText.write('${newValue.text.substring(0, usedSubstringIndex = 1)},');
         if (newValue.selection.end >= 2) selectionIndex++;
         break;
       case 3:
-        newText.write(newValue.text.substring(0, usedSubstringIndex = 2) + ',');
+        newText.write('${newValue.text.substring(0, usedSubstringIndex = 2)},');
         if (newValue.selection.end >= 3) selectionIndex++;
         break;
     }

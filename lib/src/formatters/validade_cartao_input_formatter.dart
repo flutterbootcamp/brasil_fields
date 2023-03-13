@@ -26,7 +26,7 @@ class ValidadeCartaoInputFormatter extends TextInputFormatter {
     final newText = StringBuffer();
 
     if (newValueLength >= 3) {
-      newText.write(newValue.text.substring(0, substrIndex = 2) + '/');
+      newText.write('${newValue.text.substring(0, substrIndex = 2)}/');
       if (newValue.selection.end >= 2) selectionIndex++;
     }
 

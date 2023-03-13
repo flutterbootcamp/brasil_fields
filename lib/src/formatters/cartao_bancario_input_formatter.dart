@@ -17,15 +17,15 @@ class CartaoBancarioInputFormatter extends TextInputFormatter {
     final newText = StringBuffer();
 
     if (newValueLength >= 4) {
-      newText.write(newValue.text.substring(0, substrIndex = 4) + ' ');
+      newText.write('${newValue.text.substring(0, substrIndex = 4)} ');
       if (newValue.selection.end >= 5) selectionIndex++;
     }
     if (newValueLength >= 8) {
-      newText.write(newValue.text.substring(4, substrIndex = 8) + ' ');
+      newText.write('${newValue.text.substring(4, substrIndex = 8)} ');
       if (newValue.selection.end >= 9) selectionIndex++;
     }
     if (newValueLength >= 12) {
-      newText.write(newValue.text.substring(8, substrIndex = 12) + ' ');
+      newText.write('${newValue.text.substring(8, substrIndex = 12)} ');
       if (newValue.selection.end >= 13) selectionIndex++;
     }
     if (newValueLength >= substrIndex) {
