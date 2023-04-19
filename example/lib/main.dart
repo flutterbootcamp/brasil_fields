@@ -114,6 +114,14 @@ class MyApp extends StatelessWidget {
                       label: 'IOF',
                       formatter: IOFInputFormatter(),
                     ),
+                    RowFormatters(
+                      label: 'NCM',
+                      formatter: NCMInputFormatter(),
+                    ),
+                    RowFormatters(
+                      label: 'CEST',
+                      formatter: CESTInputFormatter(),
+                    ),
                   ],
                 ),
                 const Text('Em breve'),

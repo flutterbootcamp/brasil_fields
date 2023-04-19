@@ -1,3 +1,6 @@
+## 1.12.0
+- Novos formatters: `CESTInputFormatter()` e `NCMInputFormatter()`, por [juliogyn](https://github.com/juliogyn).
+
 ## 1.11.0
 - Novo formatter: `IOFInputFormatter()`.
 

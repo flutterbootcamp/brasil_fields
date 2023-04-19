@@ -342,4 +342,20 @@ void main() {
     await tester.enterText(find.byType(TextField), '12345678');
     expect(textController.text, '1,234567');
   });
+
+  testWidgets('NCMInputFormatter', (WidgetTester tester) async {
+    final textController = TextEditingController();
+
+    await tester.pumpWidget(boilerplate(NCMInputFormatter(), textController));
+    await tester.enterText(find.byType(TextField), '03099000');
+    expect(textController.text, '0309.90.00');
+  });
+
+  testWidgets('CESTInputFormatter', (WidgetTester tester) async {
+    final textController = TextEditingController();
+
+    await tester.pumpWidget(boilerplate(CESTInputFormatter(), textController));
+    await tester.enterText(find.byType(TextField), '0101800');
+    expect(textController.text, '01.018.00');
+  });
 }

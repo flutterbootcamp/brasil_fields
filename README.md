@@ -132,3 +132,11 @@ Para inicializar um `TextEditingController` com o texto já formatado, basta esc
   final dataController = TextEditingController(text: UtilData.obterDataDDMMAAAA(DateTime(2020, 12, 31)));
   final cnpjController = TextEditingController(text: UtilBrasilFields.obterCnpj('11222333444455'));
 ```
+
+---
+
+<a href="https://github.com/flutterbootcamp/brasil_fields/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=flutterbootcamp/brasil_fields" />
+</a>
+
+Made with [contrib.rocks](https://contrib.rocks).
