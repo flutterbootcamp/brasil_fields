@@ -1,3 +1,6 @@
+## 1.13.0
+- sdk: ">=3.0.0" e intl: 0.18.1.
+
 ## 1.12.0
 - Novos formatters: `CESTInputFormatter()` e `NCMInputFormatter()`, por [juliogyn](https://github.com/juliogyn).
 
