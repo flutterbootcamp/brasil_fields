@@ -18,19 +18,22 @@ Este package facilita o desenvolvimento de projetos que utilizam campos com os p
 - Cartão bancário (0000 1111 2222 3333 4444)
 - Centavos (R\$) (7,19) (até 3 casas decimais: 7,191)
 - CEP (99.999-999)
-- CNPJ (99.999.999/9999-99)
 - CPF (999.999.99-99)
+- CNPJ (99.999.999/9999-99)
 - Cpf ou Cnpj (se adapta conforme os números são inseridos)
+- CNS (111 2222 3333 4444)
+- CEST (12.345.67)
 - Data (01/01/1900)
 - Hora (23:59)
+- IOF (1,234567)
 - KM (999.999)
+- NCM (1234.56.78)
 - Peso (111,1)
 - Placa de veículo (AAA-1234)
 - Real (R\$) (20.550)
 - Telefone ( (99) 9999-9999)
 - Validade de cartão bancário (12/24 ou 12/2024)
 - Temperatura (27,1)
-- IOF (1,234567)
 
 ### Padrões
 
@@ -59,18 +62,21 @@ TextFormField(
 - `CartaoBancarioInputFormatter()`
 - `CentavosInputFormatter()`
 - `CepInputFormatter()`
-- `CnpjInputFormatter()`
 - `CpfInputFormatter()`
+- `CnpjInputFormatter()`
 - `CpfOuCnpjFormatter()`
+- `CESTInputFormatter()`
+- `CNSInputFormatter()`
 - `DataInputFormatter()`
 - `HoraInputFormatter()`
+- `IOFInputFormatter()`
 - `KmInputFormatter()`
+- `NCMInputFormatter()`
 - `PesoInputFormatter()`
 - `PlacaVeiculoInputFormatter()` (**atenção**: nao utilizar `FilteringTextInputFormatter.digitsOnly`)
 - `RealInputFormatter()`
 - `TelefoneInputFormatter()`
 - `ValidadeCartaoInputFormatter()`
-- `IOFInputFormatter()`
 
 Caso precise de um DropdownButton com algumas das classes de padrões:
 

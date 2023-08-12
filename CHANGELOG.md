@@ -1,3 +1,6 @@
+## 1.14.0
+- Novo formatter: `CNSInputFormatter()`
+
 ## 1.13.1
 - intl: 0.18.0.
 

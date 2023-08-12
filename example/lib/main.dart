@@ -122,6 +122,10 @@ class MyApp extends StatelessWidget {
                       label: 'CEST',
                       formatter: CESTInputFormatter(),
                     ),
+                    RowFormatters(
+                      label: 'CNS',
+                      formatter: CNSInputFormatter(),
+                    ),
                   ],
                 ),
                 const Text('Em breve'),

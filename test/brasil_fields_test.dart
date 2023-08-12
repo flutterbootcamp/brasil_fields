@@ -358,4 +358,12 @@ void main() {
     await tester.enterText(find.byType(TextField), '0101800');
     expect(textController.text, '01.018.00');
   });
+
+  testWidgets('CNSInputFormatter', (WidgetTester tester) async {
+    final textController = TextEditingController();
+
+    await tester.pumpWidget(boilerplate(CNSInputFormatter(), textController));
+    await tester.enterText(find.byType(TextField), '404012129898737');
+    expect(textController.text, '404 0121 2989 8737');
+  });
 }
