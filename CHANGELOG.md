@@ -1,3 +1,7 @@
+## 1.14.1
+- Correção de bug em `CentavosInputFormatter` quando o centavo está apagando até a vírgula. [issue #90](https://github.com/flutterbootcamp/brasil_fields/issues/90). 
+- Por [ClodoaldoRibeiro](https://github.com/ClodoaldoRibeiro), via este [PR](https://github.com/flutterbootcamp/brasil_fields/pull/xx).
+
 ## 1.14.0
 - Novo formatter: `CNSInputFormatter()`
 

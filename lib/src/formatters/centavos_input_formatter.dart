@@ -6,8 +6,10 @@ import 'adiciona_separador.dart';
 ///
 /// `casasDecimais` indica a quantidade de casas usadas.
 class CentavosInputFormatter extends TextInputFormatter {
-  CentavosInputFormatter({this.moeda = false, this.casasDecimais = 2})
-      : assert(casasDecimais == 2 || casasDecimais == 3,
+  CentavosInputFormatter({
+    this.moeda = false,
+    this.casasDecimais = 2,
+  }) : assert(casasDecimais == 2 || casasDecimais == 3,
             'Quantidade de casas decimais deve ser 2 ou 3. Informado: $casasDecimais');
 
   final bool moeda;
@@ -15,7 +17,9 @@ class CentavosInputFormatter extends TextInputFormatter {
 
   @override
   TextEditingValue formatEditUpdate(
-      TextEditingValue oldValue, TextEditingValue newValue) {
+    TextEditingValue oldValue,
+    TextEditingValue newValue,
+  ) {
     final newValueLength = newValue.text.length;
 
     // Verifica o tamanho máximo do campo.
@@ -42,7 +46,8 @@ class CentavosInputFormatter extends TextInputFormatter {
     }
 
     // apaga o campo quando os valores foram zero.
-    if (numero == 0 && int.tryParse(centsValue) == 0) {
+    final int? newValueCentavos = int.tryParse(centsValue);
+    if (numero == 0 && (newValueCentavos == 0 || newValueCentavos == null)) {
       return const TextEditingValue(
         text: "",
         selection: TextSelection.collapsed(offset: 0),
