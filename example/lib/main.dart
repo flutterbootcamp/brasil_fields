@@ -69,6 +69,10 @@ class MyApp extends StatelessWidget {
                       formatter: HoraInputFormatter(),
                     ),
                     RowFormatters(
+                      label: 'KM',
+                      formatter: KmInputFormatter(),
+                    ),
+                    RowFormatters(
                         label: 'Centavos', formatter: CentavosInputFormatter()),
                     RowFormatters(
                         label: 'Centavos + moeda',

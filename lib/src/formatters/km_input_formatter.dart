@@ -5,42 +5,39 @@ class KmInputFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
-    final newValueLength = newValue.text.length;
+    // verifica o tamanho máximo do campo
+    if (newValue.text.length > 6) return oldValue;
 
-    // Verifica o tamanho máximo do campo.
-    if (newValueLength > 6) {
-      return oldValue;
-    }
-    var selectionIndex = newValue.selection.end;
+    var posicaoCursor = newValue.selection.end;
     var substrIndex = 0;
-    final newText = StringBuffer();
+    final valorFinal = StringBuffer();
 
-    switch (newValueLength) {
+    switch (newValue.text.length) {
       case 4:
-        newText.write(
+        valorFinal.write(
             '${newValue.text.substring(0, substrIndex = 1)}.${newValue.text.substring(1, substrIndex = 3)}');
-        selectionIndex += 1;
+        posicaoCursor += 1;
         break;
       case 5:
-        newText.write(
+        valorFinal.write(
             '${newValue.text.substring(0, substrIndex = 2)}.${newValue.text.substring(2, substrIndex = 4)}');
-        selectionIndex += 1;
+        posicaoCursor += 1;
         break;
       case 6:
-        newText.write(
+        valorFinal.write(
             '${newValue.text.substring(0, substrIndex = 3)}.${newValue.text.substring(3, substrIndex = 5)}');
-        selectionIndex += 1;
+        posicaoCursor += 1;
         break;
       default:
     }
 
-    if (newValueLength >= substrIndex) {
-      newText.write(newValue.text.substring(substrIndex));
+    if (newValue.text.length >= substrIndex) {
+      valorFinal.write(newValue.text.substring(substrIndex));
     }
 
     return TextEditingValue(
-      text: newText.toString(),
-      selection: TextSelection.collapsed(offset: selectionIndex),
+      text: valorFinal.toString(),
+      selection: TextSelection.collapsed(offset: posicaoCursor),
     );
   }
 }

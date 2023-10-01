@@ -11,38 +11,27 @@ class CepInputFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
-    final newValueLength = newValue.text.length;
+    // verifica o tamanho máximo do campo
+    if (newValue.text.length > 8) return oldValue;
 
-    // Define o tamanho máximo do campo.
-    if (newValueLength > 8) {
-      return oldValue;
-    }
-    var substrInicio = 2;
-    if (!ponto) {
-      substrInicio = 0;
-    }
+    final valorFinal = StringBuffer();
+    int posicaoCursor = newValue.selection.end;
 
-    var selectionIndex = newValue.selection.end;
-    var substrIndex = 0;
-    final newText = StringBuffer();
-
-    if (newValueLength >= 3 && ponto) {
-      newText.write('${newValue.text.substring(0, substrIndex = 2)}.');
-      if (newValue.selection.end >= 2) selectionIndex++;
-    }
-    if (newValueLength >= 6) {
-      newText
-          .write('${newValue.text.substring(substrInicio, substrIndex = 5)}-');
-      if (newValue.selection.end >= 5) selectionIndex++;
-    }
-
-    if (newValueLength >= substrIndex) {
-      newText.write(newValue.text.substring(substrIndex));
+    for (int i = 0; i < newValue.text.length; i++) {
+      if (i == 2 && ponto) {
+        valorFinal.write('.');
+        if (posicaoCursor > i) posicaoCursor++;
+      }
+      if (i == 5) {
+        valorFinal.write('-');
+        if (posicaoCursor > i) posicaoCursor++;
+      }
+      valorFinal.write(newValue.text[i]);
     }
 
     return TextEditingValue(
-      text: newText.toString(),
-      selection: TextSelection.collapsed(offset: selectionIndex),
+      text: valorFinal.toString(),
+      selection: TextSelection.collapsed(offset: posicaoCursor),
     );
   }
 }

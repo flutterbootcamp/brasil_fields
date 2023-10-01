@@ -1,41 +1,33 @@
-import 'package:brasil_fields/src/interfaces/compoundable_formatter.dart';
 import 'package:flutter/services.dart';
 
 /// Formata o valor do campo com a máscara de NCM: `XXXX.XX.XX`
-class NCMInputFormatter extends TextInputFormatter
-    implements CompoundableFormatter {
-  @override
-  int get maxLength => 8;
-
+class NCMInputFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
-    final newValueLength = newValue.text.length;
+    // verifica o tamanho máximo do campo
+    if (newValue.text.length > 8) return oldValue;
 
-    if (newValueLength > maxLength) {
-      return oldValue;
-    }
-
-    var selectionIndex = newValue.selection.end;
+    var posicaoCursor = newValue.selection.end;
     var substrIndex = 0;
-    final newText = StringBuffer();
+    final valorFinal = StringBuffer();
 
-    if (newValueLength >= 5) {
-      newText.write('${newValue.text.substring(0, substrIndex = 4)}.');
-      if (newValue.selection.end >= 4) selectionIndex++;
+    if (newValue.text.length >= 5) {
+      valorFinal.write('${newValue.text.substring(0, substrIndex = 4)}.');
+      if (newValue.selection.end >= 4) posicaoCursor++;
     }
-    if (newValueLength >= 7) {
-      newText.write('${newValue.text.substring(4, substrIndex = 6)}.');
-      if (newValue.selection.end >= 6) selectionIndex++;
+    if (newValue.text.length >= 7) {
+      valorFinal.write('${newValue.text.substring(4, substrIndex = 6)}.');
+      if (newValue.selection.end >= 6) posicaoCursor++;
     }
 
-    if (newValueLength >= substrIndex) {
-      newText.write(newValue.text.substring(substrIndex));
+    if (newValue.text.length >= substrIndex) {
+      valorFinal.write(newValue.text.substring(substrIndex));
     }
 
     return TextEditingValue(
-      text: newText.toString(),
-      selection: TextSelection.collapsed(offset: selectionIndex),
+      text: valorFinal.toString(),
+      selection: TextSelection.collapsed(offset: posicaoCursor),
     );
   }
 }

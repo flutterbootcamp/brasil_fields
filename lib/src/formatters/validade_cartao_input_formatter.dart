@@ -17,26 +17,24 @@ class ValidadeCartaoInputFormatter extends TextInputFormatter {
       TextEditingValue oldValue, TextEditingValue newValue) {
     final newValueLength = newValue.text.length;
 
-    if (newValueLength > maxLength) {
-      return oldValue;
-    }
+    if (newValueLength > maxLength) return oldValue;
 
-    var selectionIndex = newValue.selection.end;
+    var posicaoCursor = newValue.selection.end;
     var substrIndex = 0;
-    final newText = StringBuffer();
+    final valorFinal = StringBuffer();
 
     if (newValueLength >= 3) {
-      newText.write('${newValue.text.substring(0, substrIndex = 2)}/');
-      if (newValue.selection.end >= 2) selectionIndex++;
+      valorFinal.write('${newValue.text.substring(0, substrIndex = 2)}/');
+      if (newValue.selection.end >= 2) posicaoCursor++;
     }
 
     if (newValueLength >= substrIndex) {
-      newText.write(newValue.text.substring(substrIndex));
+      valorFinal.write(newValue.text.substring(substrIndex));
     }
 
     return TextEditingValue(
-      text: newText.toString(),
-      selection: TextSelection.collapsed(offset: selectionIndex),
+      text: valorFinal.toString(),
+      selection: TextSelection.collapsed(offset: posicaoCursor),
     );
   }
 }

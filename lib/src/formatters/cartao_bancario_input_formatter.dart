@@ -5,36 +5,25 @@ class CartaoBancarioInputFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
-    final newValueLength = newValue.text.length;
+    // verifica o tamanho máximo do campo
+    if (newValue.text.length > 16) return oldValue;
 
-    // Verifica o tamanho máximo do campo.
-    if (newValueLength > 16) {
-      return oldValue;
-    }
+    int posicaoCursor = newValue.selection.end;
+    final valorFinal = StringBuffer();
+    for (int i = 0; i < newValue.text.length; i++) {
+      // adiciona espaco em branco a cada 4 digitos
+      if (i % 4 == 0 && i != 0) {
+        valorFinal.write(' ');
+        // incrementa a posicao do cursor
+        if (posicaoCursor >= i) posicaoCursor++;
+      }
 
-    var selectionIndex = newValue.selection.end;
-    var substrIndex = 0;
-    final newText = StringBuffer();
-
-    if (newValueLength >= 4) {
-      newText.write('${newValue.text.substring(0, substrIndex = 4)} ');
-      if (newValue.selection.end >= 5) selectionIndex++;
-    }
-    if (newValueLength >= 8) {
-      newText.write('${newValue.text.substring(4, substrIndex = 8)} ');
-      if (newValue.selection.end >= 9) selectionIndex++;
-    }
-    if (newValueLength >= 12) {
-      newText.write('${newValue.text.substring(8, substrIndex = 12)} ');
-      if (newValue.selection.end >= 13) selectionIndex++;
-    }
-    if (newValueLength >= substrIndex) {
-      newText.write(newValue.text.substring(substrIndex));
+      valorFinal.write(newValue.text[i]);
     }
 
     return TextEditingValue(
-      text: newText.toString(),
-      selection: TextSelection.collapsed(offset: selectionIndex),
+      text: valorFinal.toString(),
+      selection: TextSelection.collapsed(offset: posicaoCursor),
     );
   }
 }

@@ -13,9 +13,7 @@ class CnpjInputFormatter extends TextInputFormatter
       TextEditingValue oldValue, TextEditingValue newValue) {
     final newValueLength = newValue.text.length;
 
-    if (newValueLength > maxLength) {
-      return oldValue;
-    }
+    if (newValueLength > maxLength) return oldValue;
 
     var selectionIndex = newValue.selection.end;
     var substrIndex = 0;

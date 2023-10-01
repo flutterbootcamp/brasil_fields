@@ -16,46 +16,37 @@ class CentavosInputFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
-    final newValueLength = newValue.text.length;
+    if (newValue.text.isEmpty || newValue.text.length > 12) return oldValue;
 
-    // Verifica o tamanho máximo do campo.
-    if (newValueLength > 12) {
-      return oldValue;
-    }
-
-    if (newValueLength == 0) {
-      return newValue;
-    }
-
-    const simbolo = 'R\$ ';
     final newText = StringBuffer();
-    var centsValue = "";
-    var valorFinal = newValue.text;
-    var numero = int.parse(newValue.text);
+    var centavos = "";
+    var textoFinal = newValue.text;
+    var reais = int.parse(newValue.text);
 
     var textValue = newValue.text.padLeft(
         newValue.text.length == 1 ? casasDecimais + 1 : casasDecimais, "");
     if (textValue.length >= casasDecimais) {
-      centsValue = textValue.substring(
+      centavos = textValue.substring(
           textValue.length - casasDecimais, textValue.length);
-      valorFinal = textValue.substring(0, textValue.length - casasDecimais);
+      textoFinal = textValue.substring(0, textValue.length - casasDecimais);
+    }
+    // apaga o campo quando os valores forem zero (inteiro e decimais).
+    if (reais == 0 && int.tryParse(centavos) == 0) {
+      return TextEditingValue.empty;
     }
 
-    // apaga o campo quando os valores foram zero.
-    if (numero == 0 && int.tryParse(centsValue) == 0) {
-      return const TextEditingValue(
-        text: "",
-        selection: TextSelection.collapsed(offset: 0),
-      );
+    // apaga o campo quando novo valor for 0 e o valor anterior tambem era 0.
+    if (reais == 0 && (oldValue.text == '0,' || oldValue.text == 'R\$ 0,')) {
+      return TextEditingValue.empty;
     }
 
     // retorna apenas o valor decimal, após o 0
     if (textValue.length == casasDecimais) {
-      valorFinal = "0,$centsValue";
+      textoFinal = "0,$centavos";
       if (moeda) {
-        valorFinal = simbolo + valorFinal;
+        textoFinal = 'R\$ $textoFinal';
       }
-      newText.write(valorFinal);
+      newText.write(textoFinal);
 
       return TextEditingValue(
         text: newText.toString(),
@@ -64,38 +55,38 @@ class CentavosInputFormatter extends TextInputFormatter {
     }
 
     // formata o número com 0, + centavos
-    if (numero > 0 && numero <= 9) {
+    if (reais > 0 && reais <= 9) {
       if (casasDecimais == 3) {
-        centsValue = "00$numero";
+        centavos = "00$reais";
       } else {
-        centsValue = "0$numero";
+        centavos = "0$reais";
       }
 
-      numero = 0;
-    } else if (numero >= 10 && numero < 100) {
+      reais = 0;
+    } else if (reais >= 10 && reais < 100) {
       if (casasDecimais == 3) {
-        centsValue = "0$numero";
+        centavos = "0$reais";
       } else {
-        centsValue = numero.toString();
+        centavos = reais.toString();
       }
 
-      numero = 0;
-    } else if (valorFinal.isNotEmpty) {
-      numero = int.parse(valorFinal);
+      reais = 0;
+    } else if (textoFinal.isNotEmpty) {
+      reais = int.parse(textoFinal);
     }
 
     // adiciona
 
-    if (numero > 999) {
-      valorFinal = "${adicionarSeparador(numero.toString())},$centsValue";
+    if (reais > 999) {
+      textoFinal = "${adicionarSeparador(reais.toString())},$centavos";
     } else {
-      valorFinal = "$numero,$centsValue";
+      textoFinal = "$reais,$centavos";
     }
 
     if (moeda) {
-      valorFinal = simbolo + valorFinal;
+      textoFinal = 'R\$ $textoFinal';
     }
-    newText.write(valorFinal);
+    newText.write(textoFinal);
 
     return TextEditingValue(
       text: newText.toString(),

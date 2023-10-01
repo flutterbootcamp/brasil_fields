@@ -4,26 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-Widget boilerplate(
-    TextInputFormatter inputFormatter, TextEditingController textController) {
-  return MaterialApp(
-    home: MediaQuery(
-      data: const MediaQueryData(size: Size(320, 480)),
-      child: Directionality(
-        textDirection: TextDirection.ltr,
-        child: Material(
-          child: TextField(
-            controller: textController,
-            inputFormatters: [
-              FilteringTextInputFormatter.digitsOnly,
-              inputFormatter,
-            ],
-          ),
-        ),
-      ),
-    ),
-  );
-}
+import 'boilerplate.dart';
 
 Widget boilerplatePlacaVeiculo(
     TextInputFormatter inputFormatter, TextEditingController textController) {
@@ -215,15 +196,6 @@ void main() {
 
     await tester.enterText(find.byType(TextField), '1223');
     expect(textController.text, '12/23');
-  });
-
-  testWidgets('AlturaInputFormatter', (WidgetTester tester) async {
-    final textController = TextEditingController();
-    await tester
-        .pumpWidget(boilerplate(AlturaInputFormatter(), textController));
-
-    await tester.enterText(find.byType(TextField), '176');
-    expect(textController.text, '1,76');
   });
 
   testWidgets('TemperaturaInputFormatter', (WidgetTester tester) async {

@@ -4,36 +4,32 @@ import 'package:flutter/services.dart';
 class TemperaturaInputFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
-    TextEditingValue oldValue,
-    TextEditingValue newValue,
-  ) {
-    final newTextLength = newValue.text.length;
-    // Verifica o tamanho máximo do campo.
-    if (newTextLength > 3) {
-      return oldValue;
-    }
-    var selectionIndex = newValue.selection.end;
-    var usedSubstringIndex = 0;
-    final newText = StringBuffer();
+      TextEditingValue oldValue, TextEditingValue newValue) {
+    // verifica o tamanho máximo do campo
+    if (newValue.text.length > 3) return oldValue;
 
-    switch (newTextLength) {
+    var posicaoCursor = newValue.selection.end;
+    var substrIndex = 0;
+    final valorFinal = StringBuffer();
+
+    switch (newValue.text.length) {
       case 2:
-        newText.write('${newValue.text.substring(0, usedSubstringIndex = 1)},');
-        if (newValue.selection.end >= 2) selectionIndex++;
+        valorFinal.write('${newValue.text.substring(0, substrIndex = 1)},');
+        if (newValue.selection.end >= 2) posicaoCursor++;
         break;
       case 3:
-        newText.write('${newValue.text.substring(0, usedSubstringIndex = 2)},');
-        if (newValue.selection.end >= 3) selectionIndex++;
+        valorFinal.write('${newValue.text.substring(0, substrIndex = 2)},');
+        if (newValue.selection.end >= 3) posicaoCursor++;
         break;
     }
 
-    if (newTextLength >= usedSubstringIndex) {
-      newText.write(newValue.text.substring(usedSubstringIndex));
+    if (newValue.text.length >= substrIndex) {
+      valorFinal.write(newValue.text.substring(substrIndex));
     }
 
     return TextEditingValue(
-      text: newText.toString(),
-      selection: TextSelection.collapsed(offset: selectionIndex),
+      text: valorFinal.toString(),
+      selection: TextSelection.collapsed(offset: posicaoCursor),
     );
   }
 }

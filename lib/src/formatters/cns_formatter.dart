@@ -5,36 +5,32 @@ class CNSInputFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
-    final newValueLength = newValue.text.length;
+    // verifica o tamanho máximo do campo.
+    if (newValue.text.length > 15) return oldValue;
 
-    // Verifica o tamanho máximo do campo.
-    if (newValueLength > 15) {
-      return oldValue;
-    }
-
-    var selectionIndex = newValue.selection.end;
+    var posicaoCursor = newValue.selection.end;
     var substrIndex = 0;
-    final newText = StringBuffer();
+    final valorFinal = StringBuffer();
 
-    if (newValueLength >= 3) {
-      newText.write('${newValue.text.substring(0, substrIndex = 3)} ');
-      if (newValue.selection.end >= 4) selectionIndex++;
+    if (newValue.text.length >= 3) {
+      valorFinal.write('${newValue.text.substring(0, substrIndex = 3)} ');
+      if (newValue.selection.end >= 4) posicaoCursor++;
     }
-    if (newValueLength >= 7) {
-      newText.write('${newValue.text.substring(3, substrIndex = 7)} ');
-      if (newValue.selection.end >= 8) selectionIndex++;
+    if (newValue.text.length >= 7) {
+      valorFinal.write('${newValue.text.substring(3, substrIndex = 7)} ');
+      if (newValue.selection.end >= 8) posicaoCursor++;
     }
-    if (newValueLength >= 11) {
-      newText.write('${newValue.text.substring(7, substrIndex = 11)} ');
-      if (newValue.selection.end >= 12) selectionIndex++;
+    if (newValue.text.length >= 11) {
+      valorFinal.write('${newValue.text.substring(7, substrIndex = 11)} ');
+      if (newValue.selection.end >= 12) posicaoCursor++;
     }
-    if (newValueLength >= substrIndex) {
-      newText.write(newValue.text.substring(substrIndex));
+    if (newValue.text.length >= substrIndex) {
+      valorFinal.write(newValue.text.substring(substrIndex));
     }
 
     return TextEditingValue(
-      text: newText.toString(),
-      selection: TextSelection.collapsed(offset: selectionIndex),
+      text: valorFinal.toString(),
+      selection: TextSelection.collapsed(offset: posicaoCursor),
     );
   }
 }

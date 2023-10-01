@@ -8,27 +8,25 @@ class PlacaVeiculoInputFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
-    final newValueLength = newValue.text.length;
-    // Verifica o tamanho máximo do campo.
-    if (newValueLength > 8) {
-      return oldValue;
-    }
+    // verifica o tamanho máximo do campo
+    // TODO remover replace
+    if (newValue.text.replaceAll('-', '').length > 7) return oldValue;
 
     var selectionIndex = newValue.selection.end;
     var substrIndex = 0;
     final newText = StringBuffer();
 
-    if (newValueLength == 4) {
+    if (newValue.text.length > 3) {
       if (newValue.text.contains("-")) {
         newText.write(newValue.text.substring(0, substrIndex = 3));
       } else {
         newText.write(
-            '${newValue.text.substring(0, substrIndex = 3)}-${newValue.text.substring(3, substrIndex = newValueLength)}');
+            '${newValue.text.substring(0, substrIndex = 3)}-${newValue.text.substring(3, substrIndex = newValue.text.length)}');
         selectionIndex++;
       }
     }
 
-    if (newValueLength >= substrIndex) {
+    if (newValue.text.length >= substrIndex) {
       newText.write(newValue.text.substring(substrIndex));
     }
 

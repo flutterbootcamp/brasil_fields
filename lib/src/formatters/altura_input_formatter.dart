@@ -5,38 +5,29 @@ class AlturaInputFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
-    final newValueLength = newValue.text.length;
+    // verifica o tamanho máximo do campo
+    if (newValue.text.length > 3) return oldValue;
 
-    // Verifica o tamanho máximo do campo.
-    if (newValueLength > 3) {
-      return oldValue;
-    }
-
-    if (newValueLength > 0) {
-      final numNovo = int.tryParse(newValue.text.substring(0, 1));
-      if (numNovo != null) {
-        if (numNovo > 2) {
-          return oldValue;
-        }
+    // evita que o primeiro digito seja > 2
+    if (newValue.text.isNotEmpty) {
+      final primeiroDigito = int.tryParse(newValue.text[0]);
+      if (primeiroDigito == null || primeiroDigito > 2) {
+        return oldValue;
       }
     }
 
-    var selectionIndex = newValue.selection.end;
-    var substrIndex = 0;
-    final newText = StringBuffer();
+    String valorFinal = newValue.text;
 
-    if (newValueLength > 2) {
-      newText.write('${newValue.text.substring(0, substrIndex = 1)},');
-      if (newValue.selection.end > 2) selectionIndex++;
-    }
-
-    if (newValueLength >= substrIndex) {
-      newText.write(newValue.text.substring(substrIndex));
+    // adiciona ","
+    if (newValue.text.length == 3) {
+      valorFinal = '${newValue.text[0]},${newValue.text[1]}${newValue.text[2]}';
+    } else if (newValue.text.length == 2) {
+      valorFinal = '${newValue.text[0]},${newValue.text[1]}';
     }
 
     return TextEditingValue(
-      text: newText.toString(),
-      selection: TextSelection.collapsed(offset: selectionIndex),
+      text: valorFinal.toString(),
+      selection: TextSelection.collapsed(offset: valorFinal.length),
     );
   }
 }

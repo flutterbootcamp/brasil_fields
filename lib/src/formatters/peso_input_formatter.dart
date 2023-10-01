@@ -5,35 +5,31 @@ class PesoInputFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
-    final newTextLength = newValue.text.length;
+    // verifica o tamanho máximo do campo
+    if (newValue.text.length > 4) return oldValue;
 
-    // Verifica o tamanho máximo do campo.
-    if (newTextLength > 4) {
-      return oldValue;
-    }
-
-    var selectionIndex = newValue.selection.end;
+    var posicaoCursor = newValue.selection.end;
     var substrIndex = 0;
-    final newText = StringBuffer();
+    final valorFinal = StringBuffer();
 
-    switch (newTextLength) {
+    switch (newValue.text.length) {
       case 3:
-        newText.write('${newValue.text.substring(0, substrIndex = 2)},');
-        if (newValue.selection.end >= 3) selectionIndex++;
+        valorFinal.write('${newValue.text.substring(0, substrIndex = 2)},');
+        if (newValue.selection.end >= 3) posicaoCursor++;
         break;
       case 4:
-        newText.write('${newValue.text.substring(0, substrIndex = 3)},');
-        if (newValue.selection.end >= 4) selectionIndex++;
+        valorFinal.write('${newValue.text.substring(0, substrIndex = 3)},');
+        if (newValue.selection.end >= 4) posicaoCursor++;
         break;
     }
 
-    if (newTextLength >= substrIndex) {
-      newText.write(newValue.text.substring(substrIndex));
+    if (newValue.text.length >= substrIndex) {
+      valorFinal.write(newValue.text.substring(substrIndex));
     }
 
     return TextEditingValue(
-      text: newText.toString(),
-      selection: TextSelection.collapsed(offset: selectionIndex),
+      text: valorFinal.toString(),
+      selection: TextSelection.collapsed(offset: posicaoCursor),
     );
   }
 }

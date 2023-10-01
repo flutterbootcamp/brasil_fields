@@ -12,29 +12,22 @@ class RealInputFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
-    final newValueLength = newValue.text.length;
+    // verifica o tamanho máximo do campo
+    if (newValue.text.length > 12) return oldValue;
 
-    // Verifica o tamanho máximo do campo.
-    if (newValueLength > 12) {
-      return oldValue;
-    }
+    if (newValue.text.isEmpty) return newValue;
 
-    if (newValueLength == 0) {
-      return newValue;
-    }
-
-    final newText = StringBuffer();
-    var valorFinal = newValue.text;
+    final valorFinal = StringBuffer();
 
     if (moeda) {
-      newText.write('R\$ ${adicionarSeparador(valorFinal)}');
+      valorFinal.write('R\$ ${adicionarSeparador(newValue.text)}');
     } else {
-      newText.write(adicionarSeparador(valorFinal));
+      valorFinal.write(adicionarSeparador(newValue.text));
     }
 
     return TextEditingValue(
-      text: newText.toString(),
-      selection: TextSelection.collapsed(offset: newText.length),
+      text: valorFinal.toString(),
+      selection: TextSelection.collapsed(offset: valorFinal.length),
     );
   }
 }
