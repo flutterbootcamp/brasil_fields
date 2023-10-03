@@ -6,14 +6,14 @@ import 'adiciona_separador.dart';
 ///
 /// `casasDecimais` indica a quantidade de casas usadas.
 class CentavosInputFormatter extends TextInputFormatter {
-  CentavosInputFormatter({
+  final bool moeda;
+  final int casasDecimais;
+
+  const CentavosInputFormatter({
     this.moeda = false,
     this.casasDecimais = 2,
   }) : assert(casasDecimais == 2 || casasDecimais == 3,
             'Quantidade de casas decimais deve ser 2 ou 3. Informado: $casasDecimais');
-
-  final bool moeda;
-  final int casasDecimais;
 
   @override
   TextEditingValue formatEditUpdate(
@@ -32,25 +32,45 @@ class CentavosInputFormatter extends TextInputFormatter {
     }
 
     const simbolo = 'R\$ ';
-    final newText = StringBuffer();
+    final formattedvalue = StringBuffer();
     var centsValue = "";
     var valorFinal = newValue.text;
     var numero = int.parse(newValue.text);
 
     var textValue = newValue.text.padLeft(
-        newValue.text.length == 1 ? casasDecimais + 1 : casasDecimais, "");
+      newValue.text.length == 1 ? casasDecimais + 1 : casasDecimais,
+      "",
+    );
+
     if (textValue.length >= casasDecimais) {
       centsValue = textValue.substring(
-          textValue.length - casasDecimais, textValue.length);
-      valorFinal = textValue.substring(0, textValue.length - casasDecimais);
+        textValue.length - casasDecimais,
+        textValue.length,
+      );
+
+      valorFinal = textValue.substring(
+        0,
+        textValue.length - casasDecimais,
+      );
     }
 
     // apaga o campo quando os valores foram zero.
     final int? newValueCentavos = int.tryParse(centsValue);
     if (numero == 0 && (newValueCentavos == 0 || newValueCentavos == null)) {
-      return const TextEditingValue(
-        text: "",
-        selection: TextSelection.collapsed(offset: 0),
+      String textValueZero = "0,0".padRight(
+        casasDecimais + 2,
+        "0",
+      );
+
+      if (moeda) {
+        textValueZero = simbolo + textValueZero;
+      }
+
+      return TextEditingValue(
+        text: textValueZero,
+        selection: TextSelection.collapsed(
+          offset: textValueZero.length,
+        ),
       );
     }
 
@@ -60,11 +80,11 @@ class CentavosInputFormatter extends TextInputFormatter {
       if (moeda) {
         valorFinal = simbolo + valorFinal;
       }
-      newText.write(valorFinal);
+      formattedvalue.write(valorFinal);
 
       return TextEditingValue(
-        text: newText.toString(),
-        selection: TextSelection.collapsed(offset: newText.length),
+        text: formattedvalue.toString(),
+        selection: TextSelection.collapsed(offset: formattedvalue.length),
       );
     }
 
@@ -100,11 +120,11 @@ class CentavosInputFormatter extends TextInputFormatter {
     if (moeda) {
       valorFinal = simbolo + valorFinal;
     }
-    newText.write(valorFinal);
+    formattedvalue.write(valorFinal);
 
     return TextEditingValue(
-      text: newText.toString(),
-      selection: TextSelection.collapsed(offset: newText.length),
+      text: formattedvalue.toString(),
+      selection: TextSelection.collapsed(offset: formattedvalue.length),
     );
   }
 }

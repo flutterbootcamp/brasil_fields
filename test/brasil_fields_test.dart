@@ -5,7 +5,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 Widget boilerplate(
-    TextInputFormatter inputFormatter, TextEditingController textController) {
+  TextInputFormatter inputFormatter,
+  TextEditingController textController,
+) {
   return MaterialApp(
     home: MediaQuery(
       data: const MediaQueryData(size: Size(320, 480)),
@@ -26,7 +28,9 @@ Widget boilerplate(
 }
 
 Widget boilerplatePlacaVeiculo(
-    TextInputFormatter inputFormatter, TextEditingController textController) {
+  TextInputFormatter inputFormatter,
+  TextEditingController textController,
+) {
   return MaterialApp(
     home: MediaQuery(
       data: const MediaQueryData(size: Size(320, 480)),
@@ -146,8 +150,10 @@ void main() {
 
   testWidgets('CentavosInputFormatter', (WidgetTester tester) async {
     final textController = TextEditingController();
-    await tester
-        .pumpWidget(boilerplate(CentavosInputFormatter(), textController));
+    await tester.pumpWidget(boilerplate(
+      const CentavosInputFormatter(),
+      textController,
+    ));
 
     await tester.enterText(find.byType(TextField), '12567');
     expect(textController.text, '125,67');
@@ -160,13 +166,19 @@ void main() {
 
     await tester.enterText(find.byType(TextField), '8');
     expect(textController.text, '0,08');
+
+    await tester.enterText(find.byType(TextField), '000');
+    expect(textController.text, '0,00');
   });
 
-  testWidgets('CentavosInputFormatter 3 decimais', (WidgetTester tester) async {
+  testWidgets('CentavosInputFormatter 3 decimais e sem o símbolo de moeda',
+      (WidgetTester tester) async {
     final textController = TextEditingController();
 
-    await tester.pumpWidget(
-        boilerplate(CentavosInputFormatter(casasDecimais: 3), textController));
+    await tester.pumpWidget(boilerplate(
+      const CentavosInputFormatter(casasDecimais: 3),
+      textController,
+    ));
 
     await tester.enterText(find.byType(TextField), '125678');
     expect(textController.text, '125,678');
@@ -182,6 +194,9 @@ void main() {
 
     await tester.enterText(find.byType(TextField), '8');
     expect(textController.text, '0,008');
+
+    await tester.enterText(find.byType(TextField), '0');
+    expect(textController.text, '0,000');
   });
 
   testWidgets('DataInputFormatter', (WidgetTester tester) async {
