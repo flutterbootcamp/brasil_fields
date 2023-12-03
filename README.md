@@ -112,8 +112,10 @@ A classe `UtilData` possui métodos que facilitam obter o valor de um objeto `Da
 
 A classe `UtilBrasilFields` possui métodos que facilitam obter os valores CEP, KM, CPF e CPNJ já formatados:
 
-- `UtilBrasilFields.gerarCPF(bool? useFormat)` (Gera um CPF aleatório com ou sem formatação)
-- `UtilBrasilFields.gerarCNPJ(bool? useFormat)` (Gera um CNPJ aleatório com ou sem formatação)
+- `UtilBrasilFields.gerarCPF()` (XXX.XXX.XXX-XX)
+- `UtilBrasilFields.gerarCPF(false)` (XXXXXXXXXXX)
+- `UtilBrasilFields.gerarCNPJ()` (XX.YYY.ZZZ/NNNN-SS)
+- `UtilBrasilFields.gerarCNPJ(false)` (XXYYYZZZNNNNSS)
 - `UtilBrasilFields.obterCpf('11122233344')` (111.222.333-44)
 - `UtilBrasilFields.obterCnpj('11222333444455')` (11.222.333/4444-55)
 - `UtilBrasilFields.obterCep('11222333')` (11.222-333)

@@ -76,11 +76,23 @@ class UtilBrasilFields {
   ///Faz a validação do CNPJ retornando `[true]` ou `[false]`
   static bool isCNPJValido(String? cnpj) => CNPJValidator.isValid(cnpj);
 
-  ///Gera um CPF aleatório
+  /// Gera um CPF aleatório
+  ///
+  /// Formatado ou não formatado, baseado no parâmetro `useFormat`:
+  ///
+  /// `true`: CPF gerado terá o formato `XXX.XXX.XXX-XX`
+  ///
+  /// `false`: CPF gerado terá o formato `XXXXXXXXXXX`
   static String gerarCPF({bool useFormat = false}) =>
       CPFValidator.generate(useFormat: useFormat);
 
-  ///Gera um CNPJ aleatório
+  /// Gera um CNPJ aleatório
+  ///
+  /// Formatado ou não formatado, baseado no parâmetro `useFormat`:
+  ///
+  /// `true`: CNPJ gerado terá o formato `XX.YYY.ZZZ/NNNN-SS`
+  ///
+  /// `false`: CNPJ gerado terá o formato `XXYYYZZZNNNNSS`
   static String gerarCNPJ({bool useFormat = false}) =>
       CNPJValidator.generate(useFormat: useFormat);
 

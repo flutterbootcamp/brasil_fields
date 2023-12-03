@@ -1,3 +1,6 @@
+## 1.14.1
+- Atualiza README com `gerarCPF` e `gerarCNPJ`, por [adilsonjuniordev](https://github.com/adilsonjuniordev).
+
 ## 1.14.0
 - Novo formatter: `CNSInputFormatter()`
 
