@@ -1,3 +1,6 @@
+## 1.14.2
+- intl: `^0.19.0`
+
 ## 1.14.1
 - Atualiza README com `gerarCPF` e `gerarCNPJ`, por [adilsonjuniordev](https://github.com/adilsonjuniordev).
 
