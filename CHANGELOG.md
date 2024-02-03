@@ -1,3 +1,6 @@
+## 1.14.3
+- Melhorias README
+
 ## 1.14.2
 - intl: `^0.19.0`
 
