@@ -1,7 +1,5 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:flutter/services.dart';
-
 import 'package:brasil_fields/src/interfaces/compoundable_formatter.dart';
+import 'package:flutter/services.dart';
 
 /// Formata o valor do campo com a mascara de CPF: `XXX.XXX.XXX-XX`
 class CpfInputFormatter extends TextInputFormatter implements CompoundableFormatter {
@@ -13,7 +11,8 @@ class CpfInputFormatter extends TextInputFormatter implements CompoundableFormat
   int get maxLength => 14;
 
   @override
-  TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
+  TextEditingValue formatEditUpdate(
+    TextEditingValue oldValue, TextEditingValue newValue) {
     // verifica o tamanho máximo do campo
     if (newValue.text.length > maxLength) return oldValue;
 
