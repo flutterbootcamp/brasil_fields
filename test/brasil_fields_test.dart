@@ -47,12 +47,14 @@ void main() {
   testWidgets('TelefoneInputFormatter', (WidgetTester tester) async {
     final textController = TextEditingController();
 
-    await tester.pumpWidget(boilerplate(TelefoneInputFormatter(), textController));
+    await tester
+        .pumpWidget(boilerplate(TelefoneInputFormatter(), textController));
 
     await tester.enterText(find.byType(TextField), '9912345678');
     expect(textController.text, '(99) 1234-5678');
 
-    await tester.pumpWidget(boilerplate(TelefoneInputFormatter(), textController));
+    await tester
+        .pumpWidget(boilerplate(TelefoneInputFormatter(), textController));
     await tester.enterText(find.byType(TextField), '00987654321');
 
     expect(textController.text, '(00) 98765-4321');
@@ -68,7 +70,8 @@ void main() {
     await tester.enterText(find.byType(TextField), '12345678');
     expect(textController.text, '12.345-678');
 
-    await tester.pumpWidget(boilerplate(CepInputFormatter(ponto: false), textController));
+    await tester.pumpWidget(
+        boilerplate(CepInputFormatter(ponto: false), textController));
 
     await tester.enterText(find.byType(TextField), '12345678');
     expect(textController.text, '12345-678');
@@ -101,7 +104,8 @@ void main() {
   testWidgets('RealInputFormatter + moeda', (WidgetTester tester) async {
     final textController = TextEditingController();
 
-    await tester.pumpWidget(boilerplate(RealInputFormatter(moeda: true), textController));
+    await tester.pumpWidget(
+        boilerplate(RealInputFormatter(moeda: true), textController));
 
     await tester.enterText(find.byType(TextField), '1256780');
     expect(textController.text, 'R\$ 1.256.780');
@@ -124,7 +128,8 @@ void main() {
 
   testWidgets('CentavosInputFormatter', (WidgetTester tester) async {
     final textController = TextEditingController();
-    await tester.pumpWidget(boilerplate(CentavosInputFormatter(), textController));
+    await tester
+        .pumpWidget(boilerplate(CentavosInputFormatter(), textController));
 
     await tester.enterText(find.byType(TextField), '12567');
     expect(textController.text, '125,67');
@@ -142,7 +147,8 @@ void main() {
   testWidgets('CentavosInputFormatter 3 decimais', (WidgetTester tester) async {
     final textController = TextEditingController();
 
-    await tester.pumpWidget(boilerplate(CentavosInputFormatter(casasDecimais: 3), textController));
+    await tester.pumpWidget(
+        boilerplate(CentavosInputFormatter(casasDecimais: 3), textController));
 
     await tester.enterText(find.byType(TextField), '125678');
     expect(textController.text, '125,678');
@@ -175,7 +181,7 @@ void main() {
     await tester.enterText(find.byType(TextField), '11111122334444566666777888888899');
     expect(textController.text, '111111 22 33 4444 5 66666 777 8888888 99');
   });
-
+    
   testWidgets('HoraInputFormatter', (WidgetTester tester) async {
     final textController = TextEditingController();
     await tester.pumpWidget(boilerplate(HoraInputFormatter(), textController));
@@ -186,14 +192,16 @@ void main() {
 
   testWidgets('CartaoBancarioInputFormatter', (WidgetTester tester) async {
     final textController = TextEditingController();
-    await tester.pumpWidget(boilerplate(CartaoBancarioInputFormatter(), textController));
+    await tester.pumpWidget(
+        boilerplate(CartaoBancarioInputFormatter(), textController));
 
     await tester.enterText(find.byType(TextField), '4040121298987373');
     expect(textController.text, '4040 1212 9898 7373');
   });
   testWidgets('ValidadeCartaoInputFormatter', (WidgetTester tester) async {
     final textController = TextEditingController();
-    await tester.pumpWidget(boilerplate(ValidadeCartaoInputFormatter(), textController));
+    await tester.pumpWidget(
+        boilerplate(ValidadeCartaoInputFormatter(), textController));
 
     await tester.enterText(find.byType(TextField), '1223');
     expect(textController.text, '12/23');
@@ -201,7 +209,8 @@ void main() {
 
   testWidgets('TemperaturaInputFormatter', (WidgetTester tester) async {
     final textController = TextEditingController();
-    await tester.pumpWidget(boilerplate(TemperaturaInputFormatter(), textController));
+    await tester
+        .pumpWidget(boilerplate(TemperaturaInputFormatter(), textController));
 
     await tester.enterText(find.byType(TextField), '176');
     expect(textController.text, '17,6');
@@ -223,11 +232,13 @@ void main() {
     final textController = TextEditingController();
 
     // testa toUpperCase
-    await tester.pumpWidget(boilerplatePlacaVeiculo(PlacaVeiculoInputFormatter(), textController));
+    await tester.pumpWidget(
+        boilerplatePlacaVeiculo(PlacaVeiculoInputFormatter(), textController));
     await tester.enterText(find.byType(TextField), 'abc');
     expect(textController.text, 'ABC');
 
-    await tester.pumpWidget(boilerplatePlacaVeiculo(PlacaVeiculoInputFormatter(), textController));
+    await tester.pumpWidget(
+        boilerplatePlacaVeiculo(PlacaVeiculoInputFormatter(), textController));
     await tester.enterText(find.byType(TextField), 'abc-1234');
     expect(textController.text, 'ABC-1234');
   });
