@@ -1,5 +1,4 @@
 import 'package:brasil_fields/brasil_fields.dart';
-import 'package:brasil_fields/src/formatters/cert_nascimento_input_formatter.dart';
 import 'package:brasil_fields/src/formatters/compound_formatters/compound_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
