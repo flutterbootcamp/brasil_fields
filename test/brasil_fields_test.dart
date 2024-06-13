@@ -173,6 +173,14 @@ void main() {
     expect(textController.text, '01/01/1900');
   });
 
+  testWidgets('CertNascimentoFormatter', (WidgetTester tester) async {
+    final textController = TextEditingController();
+    await tester.pumpWidget(boilerplate(CertNascimentoInputFormatter(), textController));
+
+    await tester.enterText(find.byType(TextField), '11111122334444566666777888888899');
+    expect(textController.text, '111111 22 33 4444 5 66666 777 8888888 99');
+  });
+    
   testWidgets('HoraInputFormatter', (WidgetTester tester) async {
     final textController = TextEditingController();
     await tester.pumpWidget(boilerplate(HoraInputFormatter(), textController));
