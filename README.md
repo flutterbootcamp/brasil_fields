@@ -45,6 +45,7 @@ TextFormField(
 | Hora              | HoraInputFormatter()           | 23:59
 | IOF               | HoraInputFormatter()           | 1,234567
 | KM                | KmInputFormatter()             | 999.999
+| Cert. nascimento  | CertNascimentoInputFormatter() | 000000 11 22 3333 4 55555 666 7777777 88
 | NCM               | NCMInputFormatter()            | 1234.56.78
 | Peso              | PesoInputFormatter()           | 111,1
 | Placa             | PlacaVeiculoInputFormatter()   | AAA-1234 (**não** utilizar `FilteringTextInputFormatter.digitsOnly`)

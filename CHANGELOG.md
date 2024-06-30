@@ -1,3 +1,6 @@
+## 1.15.0
+- Novo formatters: `CertNascimentoInputFormatter()`, por [lucas-marianno](https://github.com/lucas-marianno).
+
 ## 1.14.3
 - Melhorias README
 
