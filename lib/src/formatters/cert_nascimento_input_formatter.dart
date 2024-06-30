@@ -3,7 +3,8 @@ import 'package:flutter/services.dart';
 /// Formata o valor do campo com a mascara de Certidão de Nascimento: `XXXXXX XX XX XXXX X XXXXX XXX XXXXXXX XX`
 class CertNascimentoInputFormatter extends TextInputFormatter {
   @override
-  TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
+  TextEditingValue formatEditUpdate(
+      TextEditingValue oldValue, TextEditingValue newValue) {
     // verifica o tamanho máximo do campo
     if (newValue.text.length > 32) return oldValue;
 
