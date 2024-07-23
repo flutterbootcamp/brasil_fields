@@ -110,8 +110,8 @@ Métodos que facilitam manipular valores:
 - `UtilBrasilFields.removeCaracteres` (remove caracteres especiais)
 - `UtilBrasilFields.removerSimboloMoeda` (remove o R$)
 - `UtilBrasilFields.converterMoedaParaDouble` (remove o R$ e retorna um double)
-- `UtilBrasilFields.isCPFValido` (remove o R$ e retorna um double)
-- `UtilBrasilFields.isCNPJValido` (remove o R$ e retorna um double)
+- `UtilBrasilFields.isCPFValido` (retorna `true` se o CPF for válido, caso contrário, retorna `false`)
+- `UtilBrasilFields.isCNPJValido` (retorna `true` se o CNPJ for válido, caso contrário, retorna `false`)
 
 Para inicializar um `TextEditingController` com o texto já formatado, basta escolher o método com o formato desejado e setar no atributo `text`:
 
