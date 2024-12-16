@@ -108,6 +108,37 @@ class UtilBrasilFields {
     return CNPJValidator.format(cnpj);
   }
 
+  /// Retorna os dígitos da inscrição do [cnpj] informado.
+  ///
+  /// Formatado ou não formatado, baseado no parâmetro `useFormat`:
+  ///
+  /// `true`: inscrição terá o formato `XX.YYY.ZZZ`
+  ///
+  /// `false`: inscrição terá o formato `XXYYYZZZ`
+  static String obterInscricaoCnpj(String cnpj, {bool useFormat = false}) {
+    assert(isCNPJValido(cnpj), 'CNPJ inválido!');
+    return useFormat
+        ? CNPJValidator.format(cnpj).substring(0, 10)
+        : CNPJValidator.strip(cnpj).substring(0, 8);
+  }
+
+  /// Retorna os dígitos da ordem do [cnpj] informado.
+  ///
+  /// A ordem do CNPJ são os 4 dígitos após a barra. Essa parte representa se o
+  /// estabelecimento é matriz ou filial (0001 = matriz, 0002 = filial).
+  static String obterOrdemCnpj(String cnpj) {
+    assert(isCNPJValido(cnpj), 'CNPJ inválido!');
+    return CNPJValidator.strip(cnpj).substring(8, 12);
+  }
+
+  /// Retorna os dígitos verificadores do [cnpj] informado.
+  ///
+  /// Os dígitos verificadores são os dois últimos números do CNPJ.
+  static String obterDivCnpj(String cnpj) {
+    assert(isCNPJValido(cnpj), 'CNPJ inválido!');
+    return CNPJValidator.strip(cnpj).substring(12);
+  }
+
   /// Retorna o número real informado, utilizando a máscara: `R$ 50.000,00` ou `50.000,00`
   static String obterReal(double value, {bool moeda = true, int decimal = 2}) {
     bool isNegative = false;
