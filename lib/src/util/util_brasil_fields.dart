@@ -115,7 +115,7 @@ class UtilBrasilFields {
   /// `true`: inscrição terá o formato `XX.YYY.ZZZ`
   ///
   /// `false`: inscrição terá o formato `XXYYYZZZ`
-  static String obterInscricaoCnpj(String cnpj, {bool useFormat = false}) {
+  static String obterCnpjInscricao(String cnpj, {bool useFormat = false}) {
     assert(isCNPJValido(cnpj), 'CNPJ inválido!');
     return useFormat
         ? CNPJValidator.format(cnpj).substring(0, 10)
@@ -126,7 +126,7 @@ class UtilBrasilFields {
   ///
   /// A ordem do CNPJ são os 4 dígitos após a barra. Essa parte representa se o
   /// estabelecimento é matriz ou filial (0001 = matriz, 0002 = filial).
-  static String obterOrdemCnpj(String cnpj) {
+  static String obterCnpjOrdem(String cnpj) {
     assert(isCNPJValido(cnpj), 'CNPJ inválido!');
     return CNPJValidator.strip(cnpj).substring(8, 12);
   }
@@ -134,7 +134,7 @@ class UtilBrasilFields {
   /// Retorna os dígitos verificadores do [cnpj] informado.
   ///
   /// Os dígitos verificadores são os dois últimos números do CNPJ.
-  static String obterDivCnpj(String cnpj) {
+  static String obterCnpjDiv(String cnpj) {
     assert(isCNPJValido(cnpj), 'CNPJ inválido!');
     return CNPJValidator.strip(cnpj).substring(12);
   }
