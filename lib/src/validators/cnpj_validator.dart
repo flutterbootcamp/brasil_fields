@@ -17,9 +17,10 @@ class CNPJValidator {
     '99999999999999'
   ];
 
-  /// All algarisms and uppercase letters: [0, 1, 2, 3, ... , 'X', 'Y', 'Z']
-  static final List<String> allDigits = List.generate(10, (index) => '$index') +
-      List.generate(26, (index) => String.fromCharCode(index + 65));
+  /// All algarisms and uppercase letters: ['0', '1', '2', ..., 'X', 'Y', 'Z']
+  static final List<String> validDigits =
+      List.generate(10, (index) => '$index') +
+          List.generate(26, (index) => String.fromCharCode(index + 65));
 
   static const stipRegex = r'[^A-Z\d]';
 
@@ -91,8 +92,7 @@ class CNPJValidator {
     var cnpj = '';
 
     for (var i = 0; i < 12; i += 1) {
-      final randomDigit = allDigits[Random().nextInt(allDigits.length)];
-      cnpj += randomDigit.toString();
+      cnpj += validDigits[Random().nextInt(validDigits.length)];
     }
 
     cnpj += _verifierDigit(cnpj).toString();
