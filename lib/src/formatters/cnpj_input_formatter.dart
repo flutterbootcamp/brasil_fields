@@ -19,24 +19,26 @@ class CnpjInputFormatter extends TextInputFormatter
     var substrIndex = 0;
     final newText = StringBuffer();
 
+    final newValueText = newValue.text.toUpperCase();
+
     if (newValueLength >= 3) {
-      newText.write('${newValue.text.substring(0, substrIndex = 2)}.');
+      newText.write('${newValueText.substring(0, substrIndex = 2)}.');
       if (newValue.selection.end >= 2) selectionIndex++;
     }
     if (newValueLength >= 6) {
-      newText.write('${newValue.text.substring(2, substrIndex = 5)}.');
+      newText.write('${newValueText.substring(2, substrIndex = 5)}.');
       if (newValue.selection.end >= 5) selectionIndex++;
     }
     if (newValueLength >= 9) {
-      newText.write('${newValue.text.substring(5, substrIndex = 8)}/');
+      newText.write('${newValueText.substring(5, substrIndex = 8)}/');
       if (newValue.selection.end >= 8) selectionIndex++;
     }
     if (newValueLength >= 13) {
-      newText.write('${newValue.text.substring(8, substrIndex = 12)}-');
+      newText.write('${newValueText.substring(8, substrIndex = 12)}-');
       if (newValue.selection.end >= 12) selectionIndex++;
     }
     if (newValueLength >= substrIndex) {
-      newText.write(newValue.text.substring(substrIndex));
+      newText.write(newValueText.substring(substrIndex));
     }
 
     return TextEditingValue(
