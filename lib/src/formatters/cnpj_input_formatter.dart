@@ -1,7 +1,10 @@
 import 'package:brasil_fields/src/interfaces/compoundable_formatter.dart';
 import 'package:flutter/services.dart';
 
-/// Formata o valor do campo com a mascara de CNPJ `99.999.999/9999-99`
+/// Formata o valor do campo com a mascara de CNPJ `XX.XXX.XXX/XXXX-XX`
+///
+/// Deve ser usado num TextInput que recebe letras e números:
+/// `FilteringTextInputFormatter.allow(RegExp('[0-9a-zA-Z]'))`
 class CnpjInputFormatter extends TextInputFormatter
     implements CompoundableFormatter {
   // Define o tamanho máximo do campo.
@@ -19,30 +22,28 @@ class CnpjInputFormatter extends TextInputFormatter
     var substrIndex = 0;
     final newText = StringBuffer();
 
-    final newValueText = newValue.text.toUpperCase();
-
     if (newValueLength >= 3) {
-      newText.write('${newValueText.substring(0, substrIndex = 2)}.');
+      newText.write('${newValue.text.substring(0, substrIndex = 2)}.');
       if (newValue.selection.end >= 2) selectionIndex++;
     }
     if (newValueLength >= 6) {
-      newText.write('${newValueText.substring(2, substrIndex = 5)}.');
+      newText.write('${newValue.text.substring(2, substrIndex = 5)}.');
       if (newValue.selection.end >= 5) selectionIndex++;
     }
     if (newValueLength >= 9) {
-      newText.write('${newValueText.substring(5, substrIndex = 8)}/');
+      newText.write('${newValue.text.substring(5, substrIndex = 8)}/');
       if (newValue.selection.end >= 8) selectionIndex++;
     }
     if (newValueLength >= 13) {
-      newText.write('${newValueText.substring(8, substrIndex = 12)}-');
+      newText.write('${newValue.text.substring(8, substrIndex = 12)}-');
       if (newValue.selection.end >= 12) selectionIndex++;
     }
     if (newValueLength >= substrIndex) {
-      newText.write(newValueText.substring(substrIndex));
+      newText.write(newValue.text.substring(substrIndex));
     }
 
     return TextEditingValue(
-      text: newText.toString(),
+      text: newText.toString().toUpperCase(),
       selection: TextSelection.collapsed(offset: selectionIndex),
     );
   }
