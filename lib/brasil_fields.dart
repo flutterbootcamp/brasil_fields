@@ -1,11 +1,11 @@
-library brasil_fields;
+library;
 
 export 'src/formatters/altura_input_formatter.dart';
 export 'src/formatters/cartao_bancario_input_formatter.dart';
 export 'src/formatters/centavos_input_formatter.dart';
 export 'src/formatters/cep_input_formatter.dart';
-export 'src/formatters/cest_input_formatter.dart';
 export 'src/formatters/cert_nascimento_input_formatter.dart';
+export 'src/formatters/cest_input_formatter.dart';
 export 'src/formatters/cnpj_input_formatter.dart';
 export 'src/formatters/cns_formatter.dart';
 export 'src/formatters/compound_formatters/cpf_ou_cpnj_formatter.dart';

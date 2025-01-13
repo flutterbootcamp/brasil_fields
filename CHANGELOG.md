@@ -1,3 +1,6 @@
+## 1.16.0
+- Atualiza `intl` e `flutter_lints`.
+
 ## 1.15.0
 - Novo formatters: `CertNascimentoInputFormatter()`, por [lucas-marianno](https://github.com/lucas-marianno).
 
