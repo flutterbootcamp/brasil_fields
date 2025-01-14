@@ -1,4 +1,5 @@
 import '../formatters/adiciona_separador.dart';
+import '../validators/nup_validator.dart';
 import '../validators/validators.dart';
 
 class UtilBrasilFields {
@@ -76,6 +77,9 @@ class UtilBrasilFields {
   ///Faz a validação do CNPJ retornando `[true]` ou `[false]`
   static bool isCNPJValido(String? cnpj) => CNPJValidator.isValid(cnpj);
 
+  ///Faz a validação do NUP retornando `[true]` ou `[false]`
+  static bool isNUPValido(String? nup) => NUPValidator.isValid(nup);
+
   /// Gera um CPF aleatório
   ///
   /// Formatado ou não formatado, baseado no parâmetro `useFormat`:
@@ -137,6 +141,12 @@ class UtilBrasilFields {
   static String obterCnpjDiv(String cnpj) {
     assert(isCNPJValido(cnpj), 'CNPJ inválido!');
     return CNPJValidator.strip(cnpj).substring(12);
+  }
+
+  /// Retorna o NUP informado, utilizando a máscara: `NNNNNNN-DD.AAAA.J.TR.OOOO`
+  static String obterNUP(String nup) {
+    assert(isNUPValido(nup), 'Número de Processo inválido!');
+    return NUPValidator.format(nup);
   }
 
   /// Retorna o número real informado, utilizando a máscara: `R$ 50.000,00` ou `50.000,00`

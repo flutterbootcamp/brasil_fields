@@ -15,6 +15,7 @@ export 'src/formatters/hora_input_formatter.dart';
 export 'src/formatters/iof_input_formatter.dart';
 export 'src/formatters/km_input_formatter.dart';
 export 'src/formatters/ncm_input_formatter.dart';
+export 'src/formatters/nup_input_formatter.dart';
 export 'src/formatters/peso_input_formatter.dart';
 export 'src/formatters/placa_veiculo_formatter.dart';
 export 'src/formatters/real_input_formatter.dart';
