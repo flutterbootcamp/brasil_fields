@@ -1,5 +1,6 @@
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:brasil_fields/src/formatters/compound_formatters/compound_formatter.dart';
+import 'package:brasil_fields/src/formatters/nup_input_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -331,6 +332,14 @@ void main() {
     await tester.pumpWidget(boilerplate(NCMInputFormatter(), textController));
     await tester.enterText(find.byType(TextField), '03099000');
     expect(textController.text, '0309.90.00');
+  });
+
+  testWidgets('NUPInputFormatter', (WidgetTester tester) async {
+    final textController = TextEditingController();
+
+    await tester.pumpWidget(boilerplate(NUPInputFormatter(), textController));
+    await tester.enterText(find.byType(TextField), '12345678901234567890');
+    expect(textController.text, '1234567-89.0123.4.56.7890');
   });
 
   testWidgets('CESTInputFormatter', (WidgetTester tester) async {
