@@ -1,8 +1,11 @@
+## 1.17.0
+- Novo formatter: `NUPInputFormatter()`, por [lucas-lucamenor](https://github.com/lucamenor).
+
 ## 1.16.0
 - Atualiza `intl` e `flutter_lints`.
 
 ## 1.15.0
-- Novo formatters: `CertNascimentoInputFormatter()`, por [lucas-marianno](https://github.com/lucas-marianno).
+- Novo formatter: `CertNascimentoInputFormatter()`, por [lucas-marianno](https://github.com/lucas-marianno).
 
 ## 1.14.3
 - Melhorias README
