@@ -12,8 +12,12 @@ void main() {
   }
 
   group('NUPInputFormatter', () {
-    test('padrao', () => expect(evaluate('', '12345678901234567890'), '1234567-89.0123.4.56.7890'));
-    test('limite 20 digitos', () => expect(evaluate('', '123456789012345678901'), ''));
+    test(
+        'padrao',
+        () => expect(
+            evaluate('', '12345678901234567890'), '1234567-89.0123.4.56.7890'));
+    test('limite 20 digitos',
+        () => expect(evaluate('', '123456789012345678901'), ''));
     test('backspace', () {
       expect(evaluate('', '12345678901234567890'), '1234567-89.0123.4.56.7890');
       expect(evaluate('', '1234567890123456789'), '1234567-89.0123.4.56.789');

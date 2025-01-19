@@ -19,10 +19,12 @@ void main() {
   });
 
   test('Test NUP formatter', () {
-    expect(NUPValidator.format('06010642120226000000'), '0601064-21.2022.6.00.0000');
+    expect(NUPValidator.format('06010642120226000000'),
+        '0601064-21.2022.6.00.0000');
   });
 
   test('Test NUP strip', () {
-    expect(NUPValidator.strip('0601064-21.2022.6.00.0000'), '06010642120226000000');
+    expect(NUPValidator.strip('0601064-21.2022.6.00.0000'),
+        '06010642120226000000');
   });
 }
