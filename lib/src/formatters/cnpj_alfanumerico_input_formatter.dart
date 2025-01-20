@@ -1,8 +1,11 @@
 import 'package:brasil_fields/src/interfaces/compoundable_formatter.dart';
 import 'package:flutter/services.dart';
 
-/// Formata o valor do campo com a mascara de CNPJ `99.999.999/9999-99`
-class CnpjInputFormatter extends TextInputFormatter
+/// Formata o valor do campo com a mascara de CNPJ `XX.XXX.XXX/XXXX-XX`
+///
+/// Deve ser usado num TextInput que recebe letras e números:
+/// `FilteringTextInputFormatter.allow(RegExp('[0-9a-zA-Z]'))`
+class CnpjAlfanumericoInputFormatter extends TextInputFormatter
     implements CompoundableFormatter {
   // Define o tamanho máximo do campo.
   @override
@@ -40,7 +43,7 @@ class CnpjInputFormatter extends TextInputFormatter
     }
 
     return TextEditingValue(
-      text: newText.toString(),
+      text: newText.toString().toUpperCase(),
       selection: TextSelection.collapsed(offset: selectionIndex),
     );
   }
