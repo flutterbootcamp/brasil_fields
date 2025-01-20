@@ -19,10 +19,6 @@ void main() {
     );
     expect(CNPJValidator.isValid('17942159000127'), false);
     expect(CNPJValidator.isValid('017942159000128'), false);
-    expect(CNPJValidator.isValid('14.890.N2J/709Y-05'), true);
-    expect(CNPJValidator.isValid('HW487OK5W20A70'), true);
-    expect(CNPJValidator.isValid('14.890.N2J/709Y-00'), false);
-    expect(CNPJValidator.isValid('HW487OK5W20A00'), false);
 
     var blackListed = <String>[
       '00000000000000',
@@ -55,13 +51,9 @@ void main() {
 
   test('Test CNPJ formatter', () {
     expect(CNPJValidator.format('85137090000110'), '85.137.090/0001-10');
-    expect(CNPJValidator.format('75C6BSBV34PT38'), '75.C6B.SBV/34PT-38');
-    expect(CNPJValidator.format('HI33314I4Y0066'), 'HI.333.14I/4Y00-66');
   });
 
   test('Test CNPJ strip', () {
     expect(CNPJValidator.strip('85.137.090/0001-10'), '85137090000110');
-    expect(CNPJValidator.strip('8H.31X.0XY/0494-59'), '8H31X0XY049459');
-    expect(CNPJValidator.strip('15.MHL.1E9/A4XS-19'), '15MHL1E9A4XS19');
   });
 }

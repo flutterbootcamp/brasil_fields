@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   evaluate(String oldValue, String newValue) {
-    return CnpjInputFormatter()
+    return CnpjAlfanumericoInputFormatter()
         .formatEditUpdate(
           TextEditingValue(text: oldValue),
           TextEditingValue(text: newValue),
