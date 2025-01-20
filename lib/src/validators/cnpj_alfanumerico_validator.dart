@@ -3,7 +3,7 @@
 
 import 'dart:math';
 
-class CNPJValidator {
+class CnpjAlfanumericoValidator {
   static const List<String> blockList = [
     '00000000000000',
     '11111111111111',
@@ -17,15 +17,20 @@ class CNPJValidator {
     '99999999999999'
   ];
 
-  static const stipRegex = r'[^\d]';
+  /// All algarisms and uppercase letters: ['0', '1', '2', ..., 'X', 'Y', 'Z']
+  static final List<String> validDigits =
+      List.generate(10, (index) => '$index') +
+          List.generate(26, (index) => String.fromCharCode(index + 65));
 
-  // Compute the Verifier Digit (or 'Dígito Verificador (DV)' in PT-BR).
-  // You can learn more about the algorithm on [wikipedia (pt-br)](https://pt.wikipedia.org/wiki/D%C3%ADgito_verificador)
+  static const stipRegex = r'[^A-Z\d]';
+
+  /// Compute the Verifier Digit (or 'Dígito Verificador (DV)' in PT-BR).
+  /// You can learn more about the algorithm on [wikipedia (pt-br)](https://pt.wikipedia.org/wiki/D%C3%ADgito_verificador)
   static int _verifierDigit(String cnpj) {
     var index = 2;
 
-    var reverse =
-        cnpj.split('').map((s) => int.parse(s)).toList().reversed.toList();
+    final reverse =
+        cnpj.split('').map((s) => s.codeUnits.first - 48).toList().reversed;
 
     var sum = 0;
 
@@ -34,13 +39,15 @@ class CNPJValidator {
       index = (index == 9 ? 2 : index + 1);
     }
 
-    var mod = sum % 11;
+    final mod = sum % 11;
 
     return (mod < 2 ? 0 : 11 - mod);
   }
 
   static String format(String cnpj) {
-    var regExp = RegExp(r'^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$');
+    var regExp = RegExp(
+      r'^([A-Z\d]{2})([A-Z\d]{3})([A-Z\d]{3})([A-Z\d]{4})(\d{2})$',
+    );
 
     return strip(cnpj).replaceAllMapped(
         regExp, (Match m) => '${m[1]}.${m[2]}.${m[3]}/${m[4]}-${m[5]}');
@@ -73,24 +80,24 @@ class CNPJValidator {
       return false;
     }
 
-    var numbers = cnpj.substring(0, 12);
-    numbers += _verifierDigit(numbers).toString();
-    numbers += _verifierDigit(numbers).toString();
+    var digits = cnpj.substring(0, 12);
+    digits += _verifierDigit(digits).toString();
+    digits += _verifierDigit(digits).toString();
 
-    return numbers.substring(numbers.length - 2) ==
+    return digits.substring(digits.length - 2) ==
         cnpj.substring(cnpj.length - 2);
   }
 
   static String generate({bool useFormat = false}) {
-    var numbers = '';
+    var cnpj = '';
 
     for (var i = 0; i < 12; i += 1) {
-      numbers += Random().nextInt(9).toString();
+      cnpj += validDigits[Random().nextInt(validDigits.length)];
     }
 
-    numbers += _verifierDigit(numbers).toString();
-    numbers += _verifierDigit(numbers).toString();
+    cnpj += _verifierDigit(cnpj).toString();
+    cnpj += _verifierDigit(cnpj).toString();
 
-    return (useFormat ? format(numbers) : numbers);
+    return (useFormat ? format(cnpj) : cnpj);
   }
 }
