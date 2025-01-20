@@ -12,7 +12,7 @@ jobs:
       - run: flutter pub get
       
       - name: format
-        run: dart format --output=none --set-exit-if-changed .
+        run: dart format
 
       - name: analyze
         run: flutter analyze

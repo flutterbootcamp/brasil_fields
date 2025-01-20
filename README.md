@@ -30,29 +30,30 @@ TextFormField(
 
 ### Formatters
 
-| Padrão            |  Formatter                     |  Formato        
-|:------------------|:-------------------------------|:----------------
-| Altura            | AlturaInputFormatter()         | 2,22 
-| Cartão            | CartaoBancarioInputFormatter() | 0000 1111 2222 3333 4444
-| Centavos          | CentavosInputFormatter()       | 7,194
-| CEP               | CepInputFormatter()            | 99.999-999
-| CPF               | CpfInputFormatter()            | 999.999.99-99
-| CNPJ              | CnpjInputFormatter()           | 99.999.999/9999-99
-| CPF /  CNPJ       | CpfOuCnpjFormatter()           | se adapta conforme os números são inseridos
-| CEST              | CESTInputFormatter()           | 12.345.67
-| CNS               | CNSInputFormatter()            | 111 2222 3333 4444
-| Data              | DataInputFormatter()           | 01/01/1900
-| Hora              | HoraInputFormatter()           | 23:59
-| IOF               | HoraInputFormatter()           | 1,234567
-| KM                | KmInputFormatter()             | 999.999
-| Cert. nascimento  | CertNascimentoInputFormatter() | 000000 11 22 3333 4 55555 666 7777777 88
-| NCM               | NCMInputFormatter()            | 1234.56.78
-| Peso              | PesoInputFormatter()           | 111,1
-| Placa             | PlacaVeiculoInputFormatter()   | AAA-1234 (**não** utilizar `FilteringTextInputFormatter.digitsOnly`)
-| Real              | RealInputFormatter()           | 20.550
-| Telefone          | TelefoneInputFormatter()       | (99) 9999-9999
-| Validade cartão   | ValidadeCartaoInputFormatter() | 12/24 ou 12/2024
-| Temperatura       | TemperaturaInputFormatter()    |27,1
+| Padrão           | Formatter                      | Formato                                                              |
+|:-----------------|:-------------------------------|:---------------------------------------------------------------------|
+| Altura           | AlturaInputFormatter()         | 2,22                                                                 |
+| Cartão           | CartaoBancarioInputFormatter() | 0000 1111 2222 3333 4444                                             |
+| Centavos         | CentavosInputFormatter()       | 7,194                                                                |
+| CEP              | CepInputFormatter()            | 99.999-999                                                           |
+| CPF              | CpfInputFormatter()            | 999.999.99-99                                                        |
+| CNPJ             | CnpjInputFormatter()           | 99.999.999/9999-99                                                   |
+| CPF /  CNPJ      | CpfOuCnpjFormatter()           | se adapta conforme os números são inseridos                          |
+| CEST             | CESTInputFormatter()           | 12.345.67                                                            |
+| CNS              | CNSInputFormatter()            | 111 2222 3333 4444                                                   |
+| Data             | DataInputFormatter()           | 01/01/1900                                                           |
+| Hora             | HoraInputFormatter()           | 23:59                                                                |
+| IOF              | HoraInputFormatter()           | 1,234567                                                             |
+| KM               | KmInputFormatter()             | 999.999                                                              |
+| Cert. nascimento | CertNascimentoInputFormatter() | 000000 11 22 3333 4 55555 666 7777777 88                             |
+| NCM              | NCMInputFormatter()            | 1234.56.78                                                           |
+| NUP              | NUPInputFormatter()            | 1234567-89.0123.4.56.7890                                            |
+| Peso             | PesoInputFormatter()           | 111,1                                                                |
+| Placa            | PlacaVeiculoInputFormatter()   | AAA-1234 (**não** utilizar `FilteringTextInputFormatter.digitsOnly`) |
+| Real             | RealInputFormatter()           | 20.550                                                               |
+| Telefone         | TelefoneInputFormatter()       | (99) 9999-9999                                                       |
+| Validade cartão  | ValidadeCartaoInputFormatter() | 12/24 ou 12/2024                                                     |
+| Temperatura      | TemperaturaInputFormatter()    | 27,1                                                                 |
 
 ### Modelos
 
@@ -97,6 +98,7 @@ Métodos que facilitam manipular valores:
 - `UtilBrasilFields.obterCnpj('11222333444455')` (11.222.333/4444-55)
 - `UtilBrasilFields.obterCep('11222333')` (11.222-333)
 - `UtilBrasilFields.obterCep('11222333', ponto: false)` (11222-333)
+- `UtilBrasilFields.obterNUP('06010642120226000000')` (0601064-21.2022.6.00.0000)
 - `UtilBrasilFields.obterTelefone('00999998877')` ((00) 99999-8877)
 - `UtilBrasilFields.obterTelefone('(00) 99999-8877', mascara: false)` (00999998877)
 - `UtilBrasilFields.obterTelefone('999998877', ddd: false)` (99999-8877)
@@ -112,6 +114,7 @@ Métodos que facilitam manipular valores:
 - `UtilBrasilFields.converterMoedaParaDouble` (remove o R$ e retorna um double)
 - `UtilBrasilFields.isCPFValido` (retorna `true` se o CPF for válido, caso contrário, retorna `false`)
 - `UtilBrasilFields.isCNPJValido` (retorna `true` se o CNPJ for válido, caso contrário, retorna `false`)
+- `UtilBrasilFields.isNUPValido` (retorna `true` se o NUP for válido, caso contrário, retorna `false`)
 
 Para inicializar um `TextEditingController` com o texto já formatado, basta escolher o método com o formato desejado e setar no atributo `text`:
 

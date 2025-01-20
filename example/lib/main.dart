@@ -123,6 +123,10 @@ class MyApp extends StatelessWidget {
                       formatter: NCMInputFormatter(),
                     ),
                     RowFormatters(
+                      label: 'NUP',
+                      formatter: NUPInputFormatter(),
+                    ),
+                    RowFormatters(
                       label: 'CEST',
                       formatter: CESTInputFormatter(),
                     ),

@@ -22,6 +22,11 @@ void main() {
       expect(UtilBrasilFields.removeCaracteres(cep), '11222333');
     });
 
+    test('NUP', () {
+      const nup = '0601064-21.2022.6.00.0000';
+      expect(UtilBrasilFields.removeCaracteres(nup), '06010642120226000000');
+    });
+
     test('Real', () {
       const real = '11.222';
       expect(UtilBrasilFields.removeCaracteres(real), '11222');
@@ -298,6 +303,12 @@ void main() {
     const cpnjComMascara = 'S6.53N.179/3ADL-37';
     expect(UtilBrasilFields.obterCnpjDiv(cpnjSemMascara), '37');
     expect(UtilBrasilFields.obterCnpjDiv(cpnjComMascara), '37');
+  });
+
+  test('Obter NUP', () {
+    const nupSemMascara = '06010642120226000000';
+    const nupComMascara = '0601064-21.2022.6.00.0000';
+    expect(UtilBrasilFields.obterNUP(nupSemMascara), nupComMascara);
   });
 
   group('Obter Real', () {
