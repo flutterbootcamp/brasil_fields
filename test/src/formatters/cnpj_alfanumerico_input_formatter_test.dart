@@ -11,14 +11,14 @@ void main() {
         .text;
   }
 
-  group('CnpjInputFormatter', () {
+  group('CnpjInputAlfanumericoFormatter', () {
     test(
       'padrao alfanumérico',
       () => expect(evaluate('', 'AAAAAAAAAAAA99'), 'AA.AAA.AAA/AAAA-99'),
     );
 
     test(
-      'limite 14 digitos alfanumérico',
+      'limite 14 digitos alfanuméricos',
       () => expect(evaluate('', 'ABBBBBBBBBBBB99'), ''),
     );
 

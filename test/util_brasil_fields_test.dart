@@ -440,4 +440,31 @@ void main() {
       UtilBrasilFields.obterKM(9999999);
     }, throwsAssertionError);
   });
+
+  group('Gerar CNPJ', () {
+    test('formatado', () {
+      final cnpj = UtilBrasilFields.gerarCNPJ(useFormat: true);
+      expect(cnpj, matches(RegExp(r'\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2}')));
+    });
+
+    test('não formatado', () {
+      final cnpj = UtilBrasilFields.gerarCNPJ(useFormat: false);
+      expect(cnpj, matches(RegExp(r'\d{14}')));
+    });
+
+    test('formatado alfanumérico', () {
+      final cnpj = UtilBrasilFields.gerarCNPJ(
+        useFormat: true,
+        isAlphanumeric: true,
+      );
+      expect(cnpj, matches(RegExp(r'\w{2}\.\w{3}\.\w{3}/\w{4}-\w{2}')));
+    });
+
+    test('não formatado alfanumérico', () {
+      final cnpj = UtilBrasilFields.gerarCNPJ(
+        useFormat: false,
+      );
+      expect(cnpj, matches(RegExp(r'\w{14}')));
+    });
+  });
 }
