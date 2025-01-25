@@ -40,97 +40,104 @@ class MyApp extends StatelessWidget {
               children: [
                 ListView(
                   children: [
-                    RowFormatters(
+                    DigitsOnlyTextField(
                       label: 'CEP',
                       formatter: CepInputFormatter(),
                     ),
-                    RowFormatters(
+                    DigitsOnlyTextField(
                       label: 'CPF',
                       formatter: CpfInputFormatter(),
                     ),
-                    RowFormatters(
+                    DigitsOnlyTextField(
                       label: 'CNPJ',
                       formatter: CnpjInputFormatter(),
                     ),
-                    RowFormatters(
+                    AlphanumericTextField(
+                      label: 'Novo CNPJ',
+                      formatter: CnpjAlfanumericoInputFormatter(),
+                    ),
+                    DigitsOnlyTextField(
                       label: 'CPF/CNPJ',
                       formatter: CpfOuCnpjFormatter(),
                     ),
-                    RowFormatters(
+                    AlphanumericTextField(
+                      label: 'CPF/Novo CNPJ',
+                      formatter: CpfOuCnpjAlfanumericoFormatter(),
+                    ),
+                    DigitsOnlyTextField(
                       label: 'Telefone',
                       formatter: TelefoneInputFormatter(),
                     ),
-                    RowFormatters(
+                    DigitsOnlyTextField(
                       label: 'Data',
                       formatter: DataInputFormatter(),
                     ),
-                    RowFormatters(
+                    DigitsOnlyTextField(
                       label: 'Hora',
                       formatter: HoraInputFormatter(),
                     ),
-                    RowFormatters(
+                    DigitsOnlyTextField(
                       label: 'KM',
                       formatter: KmInputFormatter(),
                     ),
-                    RowFormatters(
+                    DigitsOnlyTextField(
                         label: 'Centavos', formatter: CentavosInputFormatter()),
-                    RowFormatters(
+                    DigitsOnlyTextField(
                         label: 'Centavos + moeda',
                         formatter: CentavosInputFormatter(moeda: true)),
-                    RowFormatters(
+                    DigitsOnlyTextField(
                         label: 'Centavos + 3 decimais',
                         formatter: CentavosInputFormatter(casasDecimais: 3)),
-                    RowFormatters(
+                    DigitsOnlyTextField(
                         label: 'Centavos + 3 decimais + moeda',
                         formatter: CentavosInputFormatter(
                             casasDecimais: 3, moeda: true)),
-                    RowFormatters(
+                    DigitsOnlyTextField(
                         label: 'Real', formatter: RealInputFormatter()),
-                    RowFormatters(
+                    DigitsOnlyTextField(
                         label: 'Real + moeda',
                         formatter: RealInputFormatter(moeda: true)),
-                    RowFormatters(
+                    DigitsOnlyTextField(
                       label: 'Peso',
                       formatter: PesoInputFormatter(),
                     ),
-                    RowFormatters(
+                    DigitsOnlyTextField(
                       label: 'Altura',
                       formatter: AlturaInputFormatter(),
                     ),
-                    RowFormatters(
+                    DigitsOnlyTextField(
                       label: 'Cartão Bancário',
                       formatter: CartaoBancarioInputFormatter(),
                     ),
-                    RowFormatters(
+                    DigitsOnlyTextField(
                       label: 'Validade Cartão Bancário',
                       formatter: ValidadeCartaoInputFormatter(),
                     ),
-                    TextField(
-                      decoration:
-                          const InputDecoration(label: Text('Placa Veículo')),
-                      inputFormatters: [PlacaVeiculoInputFormatter()],
+                    AlphanumericTextField(
+                      label: 'Placa Veículo',
+                      formatter: PlacaVeiculoInputFormatter(),
                     ),
-                    RowFormatters(
+                    DigitsOnlyTextField(
                       label: 'Temperatura',
                       formatter: TemperaturaInputFormatter(),
                     ),
-                    RowFormatters(
+                    DigitsOnlyTextField(
                       label: 'IOF',
                       formatter: IOFInputFormatter(),
                     ),
-                    RowFormatters(
+                    DigitsOnlyTextField(
                       label: 'NCM',
                       formatter: NCMInputFormatter(),
                     ),
-                    RowFormatters(
+                    DigitsOnlyTextField(
                       label: 'NUP',
                       formatter: NUPInputFormatter(),
                     ),
-                    RowFormatters(
+                    DigitsOnlyTextField(
                       label: 'CEST',
                       formatter: CESTInputFormatter(),
                     ),
-                    RowFormatters(
+                    DigitsOnlyTextField(
                       label: 'CNS',
                       formatter: CNSInputFormatter(),
                     ),
@@ -147,12 +154,15 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class RowFormatters extends StatelessWidget {
+class DigitsOnlyTextField extends StatelessWidget {
   final String label;
   final TextInputFormatter formatter;
 
-  const RowFormatters(
-      {super.key, required this.label, required this.formatter});
+  const DigitsOnlyTextField({
+    super.key,
+    required this.label,
+    required this.formatter,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -160,6 +170,28 @@ class RowFormatters extends StatelessWidget {
       decoration: InputDecoration(label: Text(label)),
       inputFormatters: [
         FilteringTextInputFormatter.digitsOnly,
+        formatter,
+      ],
+    );
+  }
+}
+
+class AlphanumericTextField extends StatelessWidget {
+  final String label;
+  final TextInputFormatter formatter;
+
+  const AlphanumericTextField({
+    super.key,
+    required this.label,
+    required this.formatter,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      decoration: InputDecoration(label: Text(label)),
+      inputFormatters: [
+        FilteringTextInputFormatter.allow(RegExp('[0-9a-zA-Z]')),
         formatter,
       ],
     );
