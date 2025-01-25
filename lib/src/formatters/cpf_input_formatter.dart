@@ -35,7 +35,7 @@ class CpfInputFormatter extends TextInputFormatter
     }
 
     return TextEditingValue(
-      text: valorFinal.toString(),
+      text: valorFinal.toString().toUpperCase(),
       selection: TextSelection.collapsed(offset: posicaoCursor),
     );
   }

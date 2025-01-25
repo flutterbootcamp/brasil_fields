@@ -1,4 +1,5 @@
 import '../formatters/adiciona_separador.dart';
+import '../validators/cnpj_alfanumerico_validator.dart';
 import '../validators/nup_validator.dart';
 import '../validators/validators.dart';
 
@@ -74,8 +75,15 @@ class UtilBrasilFields {
   ///Faz a validação do CPF retornando `[true]` ou `[false]`
   static bool isCPFValido(String? cpf) => CPFValidator.isValid(cpf);
 
-  ///Faz a validação do CNPJ retornando `[true]` ou `[false]`
-  static bool isCNPJValido(String? cnpj) => CNPJValidator.isValid(cnpj);
+  /// Faz a validação do CNPJ retornando `[true]` ou `[false]`
+  ///
+  /// Considera o novo padrão alfanumérico baseado no parâmetro [isAlphanumeric]
+  ///
+  /// [isAlphanumeric] por padrão é `[false]`
+  static bool isCNPJValido(String? cnpj, {bool isAlphanumeric = false}) =>
+      isAlphanumeric
+          ? CnpjAlfanumericoValidator.isValid(cnpj)
+          : CNPJValidator.isValid(cnpj);
 
   ///Faz a validação do NUP retornando `[true]` ou `[false]`
   static bool isNUPValido(String? nup) => NUPValidator.isValid(nup);
@@ -92,13 +100,20 @@ class UtilBrasilFields {
 
   /// Gera um CNPJ aleatório
   ///
-  /// Formatado ou não formatado, baseado no parâmetro `useFormat`:
+  /// Formatado ou não formatado, baseado no parâmetro [useFormat]:
+  /// - `true`: CNPJ gerado terá o formato `XX.YYY.ZZZ/NNNN-SS`
+  /// - `false`: CNPJ gerado terá o formato `XXYYYZZZNNNNSS`
   ///
-  /// `true`: CNPJ gerado terá o formato `XX.YYY.ZZZ/NNNN-SS`
-  ///
-  /// `false`: CNPJ gerado terá o formato `XXYYYZZZNNNNSS`
-  static String gerarCNPJ({bool useFormat = false}) =>
-      CNPJValidator.generate(useFormat: useFormat);
+  /// Considera novo formato alfanumérico, baseado no parâmetro [isAlphanumeric]:
+  /// - `true`: CNPJ gerado terá letras e números
+  /// - `false`: CNPJ gerado terá somente números
+  static String gerarCNPJ({
+    bool useFormat = false,
+    bool isAlphanumeric = false,
+  }) =>
+      isAlphanumeric
+          ? CnpjAlfanumericoValidator.generate(useFormat: useFormat)
+          : CNPJValidator.generate(useFormat: useFormat);
 
   /// Retorna o CPF utilizando a máscara: `XXX.YYY.ZZZ-NN`
   static String obterCpf(String cpf) {
@@ -108,8 +123,8 @@ class UtilBrasilFields {
 
   /// Retorna o CNPJ informado, utilizando a máscara: `XX.YYY.ZZZ/NNNN-SS`
   static String obterCnpj(String cnpj) {
-    assert(isCNPJValido(cnpj), 'CNPJ inválido!');
-    return CNPJValidator.format(cnpj);
+    assert(isCNPJValido(cnpj, isAlphanumeric: true), 'CNPJ inválido!');
+    return CnpjAlfanumericoValidator.format(cnpj);
   }
 
   /// Retorna os dígitos da inscrição do [cnpj] informado.
@@ -120,10 +135,10 @@ class UtilBrasilFields {
   ///
   /// `false`: inscrição terá o formato `XXYYYZZZ`
   static String obterCnpjInscricao(String cnpj, {bool useFormat = false}) {
-    assert(isCNPJValido(cnpj), 'CNPJ inválido!');
+    assert(isCNPJValido(cnpj, isAlphanumeric: true), 'CNPJ inválido!');
     return useFormat
-        ? CNPJValidator.format(cnpj).substring(0, 10)
-        : CNPJValidator.strip(cnpj).substring(0, 8);
+        ? CnpjAlfanumericoValidator.format(cnpj).substring(0, 10)
+        : CnpjAlfanumericoValidator.strip(cnpj).substring(0, 8);
   }
 
   /// Retorna os dígitos da ordem do [cnpj] informado.
@@ -131,16 +146,16 @@ class UtilBrasilFields {
   /// A ordem do CNPJ são os 4 dígitos após a barra. Essa parte representa se o
   /// estabelecimento é matriz ou filial (0001 = matriz, 0002 = filial).
   static String obterCnpjOrdem(String cnpj) {
-    assert(isCNPJValido(cnpj), 'CNPJ inválido!');
-    return CNPJValidator.strip(cnpj).substring(8, 12);
+    assert(isCNPJValido(cnpj, isAlphanumeric: true), 'CNPJ inválido!');
+    return CnpjAlfanumericoValidator.strip(cnpj).substring(8, 12);
   }
 
   /// Retorna os dígitos verificadores do [cnpj] informado.
   ///
   /// Os dígitos verificadores são os dois últimos números do CNPJ.
   static String obterCnpjDiv(String cnpj) {
-    assert(isCNPJValido(cnpj), 'CNPJ inválido!');
-    return CNPJValidator.strip(cnpj).substring(12);
+    assert(isCNPJValido(cnpj, isAlphanumeric: true), 'CNPJ inválido!');
+    return CnpjAlfanumericoValidator.strip(cnpj).substring(12);
   }
 
   /// Retorna o NUP informado, utilizando a máscara: `NNNNNNN-DD.AAAA.J.TR.OOOO`

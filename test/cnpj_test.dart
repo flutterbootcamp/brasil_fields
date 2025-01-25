@@ -7,12 +7,16 @@ void main() {
     expect(CNPJValidator.isValid('12.175.094/0001-18'), false);
     expect(CNPJValidator.isValid('17942159000128'), true);
     expect(
-        CNPJValidator.isValid('17942159000128@mail.com',
-            stripBeforeValidation: false),
-        false);
+      CNPJValidator.isValid(
+        '17942159000128@mail.com',
+        stripBeforeValidation: false,
+      ),
+      false,
+    );
     expect(
-        CNPJValidator.isValid('17942159000128', stripBeforeValidation: false),
-        true);
+      CNPJValidator.isValid('17942159000128', stripBeforeValidation: false),
+      true,
+    );
     expect(CNPJValidator.isValid('17942159000127'), false);
     expect(CNPJValidator.isValid('017942159000128'), false);
 
