@@ -1,30 +1,10 @@
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:brasil_fields/src/formatters/compound_formatters/compound_formatter.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'boilerplate.dart';
-
-Widget boilerplatePlacaVeiculo(
-    TextInputFormatter inputFormatter, TextEditingController textController) {
-  return MaterialApp(
-    home: MediaQuery(
-      data: const MediaQueryData(size: Size(320, 480)),
-      child: Directionality(
-        textDirection: TextDirection.ltr,
-        child: Material(
-          child: TextField(
-            controller: textController,
-            inputFormatters: [
-              inputFormatter,
-            ],
-          ),
-        ),
-      ),
-    ),
-  );
-}
+import 'boilerplate_alphanumeric.dart';
 
 void main() {
   testWidgets('CpfInputFormatter', (WidgetTester tester) async {
@@ -41,6 +21,15 @@ void main() {
 
     await tester.enterText(find.byType(TextField), '12345678900099');
     expect(textController.text, '12.345.678/9000-99');
+  });
+
+  testWidgets('CnpjAlfanumericoInputFormatter', (WidgetTester tester) async {
+    final textController = TextEditingController();
+    await tester.pumpWidget(boilerplateAlphaNumeric(
+        CnpjAlfanumericoInputFormatter(), textController));
+
+    await tester.enterText(find.byType(TextField), 'A2B4C6D8E0F099');
+    expect(textController.text, 'A2.B4C.6D8/E0F0-99');
   });
 
   testWidgets('TelefoneInputFormatter', (WidgetTester tester) async {
@@ -234,12 +223,12 @@ void main() {
 
     // testa toUpperCase
     await tester.pumpWidget(
-        boilerplatePlacaVeiculo(PlacaVeiculoInputFormatter(), textController));
+        boilerplateAlphaNumeric(PlacaVeiculoInputFormatter(), textController));
     await tester.enterText(find.byType(TextField), 'abc');
     expect(textController.text, 'ABC');
 
     await tester.pumpWidget(
-        boilerplatePlacaVeiculo(PlacaVeiculoInputFormatter(), textController));
+        boilerplateAlphaNumeric(PlacaVeiculoInputFormatter(), textController));
     await tester.enterText(find.byType(TextField), 'abc-1234');
     expect(textController.text, 'ABC-1234');
   });
@@ -303,6 +292,25 @@ void main() {
     expect(textController.text, '12.345.678/9000-9');
     await tester.enterText(find.byType(TextField), '12345678900099');
     expect(textController.text, '12.345.678/9000-99');
+  });
+
+  testWidgets('CpfOuCnpjAlfanumericoFormatter', (WidgetTester tester) async {
+    final textController = TextEditingController();
+    final formatter = CpfOuCnpjAlfanumericoFormatter();
+
+    // Esperamos os resultados no seguinte formato:
+    // '123.456.789-00'      // CPF
+    // '12.345.678/900A-99'  // CPNJ
+
+    await tester.pumpWidget(boilerplateAlphaNumeric(formatter, textController));
+    await tester.enterText(find.byType(TextField), '12345678900');
+    expect(textController.text, '123.456.789-00');
+    await tester.enterText(find.byType(TextField), '12345678900A');
+    expect(textController.text, '12.345.678/900A');
+    await tester.enterText(find.byType(TextField), '12345678900A9');
+    expect(textController.text, '12.345.678/900A-9');
+    await tester.enterText(find.byType(TextField), '12345678900A99');
+    expect(textController.text, '12.345.678/900A-99');
   });
 
   testWidgets('IOFInputFormatter', (WidgetTester tester) async {

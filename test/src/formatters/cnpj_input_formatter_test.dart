@@ -12,10 +12,16 @@ void main() {
   }
 
   group('CnpjInputFormatter', () {
-    test('padrao',
-        () => expect(evaluate('', '99999999999999'), '99.999.999/9999-99'));
     test(
-        'limite 14 digitos', () => expect(evaluate('', '199999999999999'), ''));
+      'padrao',
+      () => expect(evaluate('', '99999999999999'), '99.999.999/9999-99'),
+    );
+
+    test(
+      'limite 14 digitos',
+      () => expect(evaluate('', '199999999999999'), ''),
+    );
+
     test('backspace', () {
       expect(
           evaluate('99.999.999/9999-99', '9999999999999'), '99.999.999/9999-9');

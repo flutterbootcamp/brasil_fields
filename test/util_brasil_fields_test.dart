@@ -12,7 +12,9 @@ void main() {
 
     test('CNPJ', () {
       const cnpj = '11.222.333/4444-55';
+      const cnpj2 = 'U7.YHQ.1HJ/1MQY-56';
       expect(UtilBrasilFields.removeCaracteres(cnpj), '11222333444455');
+      expect(UtilBrasilFields.removeCaracteres(cnpj2), 'U7YHQ1HJ1MQY56');
     });
 
     test('CEP', () {
@@ -239,6 +241,12 @@ void main() {
     expect(UtilBrasilFields.obterCnpj(cpnjSemMascara), cpnjComMascara);
   });
 
+  test('Obter CNPJ Alfanumérico', () {
+    const cpnjSemMascara = 'E2X05ZR982XN04';
+    const cpnjComMascara = 'E2.X05.ZR9/82XN-04';
+    expect(UtilBrasilFields.obterCnpj(cpnjSemMascara), cpnjComMascara);
+  });
+
   test('Obter inscrição CNPJ', () {
     const cpnjSemMascara = '34318733000190';
     const cpnjComMascara = '34.318.733/0001-90';
@@ -254,6 +262,21 @@ void main() {
     );
   });
 
+  test('Obter inscrição CNPJ Alfanumérico', () {
+    const cpnjSemMascara = 'BIK52V87H70I33';
+    const cpnjComMascara = 'BI.K52.V87/H70I-33';
+    expect(UtilBrasilFields.obterCnpjInscricao(cpnjSemMascara), 'BIK52V87');
+    expect(UtilBrasilFields.obterCnpjInscricao(cpnjComMascara), 'BIK52V87');
+    expect(
+      UtilBrasilFields.obterCnpjInscricao(cpnjSemMascara, useFormat: true),
+      'BI.K52.V87',
+    );
+    expect(
+      UtilBrasilFields.obterCnpjInscricao(cpnjComMascara, useFormat: true),
+      'BI.K52.V87',
+    );
+  });
+
   test('Obter Ordem do CNPJ', () {
     const cpnjSemMascara = '34318733000190';
     const cpnjComMascara = '34.318.733/0001-90';
@@ -261,11 +284,25 @@ void main() {
     expect(UtilBrasilFields.obterCnpjOrdem(cpnjComMascara), '0001');
   });
 
+  test('Obter Ordem do CNPJ Alfanumérico', () {
+    const cpnjSemMascara = 'X5QK1398N10862';
+    const cpnjComMascara = 'X5.QK1.398/N108-62';
+    expect(UtilBrasilFields.obterCnpjOrdem(cpnjSemMascara), 'N108');
+    expect(UtilBrasilFields.obterCnpjOrdem(cpnjComMascara), 'N108');
+  });
+
   test('Obter dígitos verificadores do CNPJ', () {
     const cpnjSemMascara = '34318733000190';
     const cpnjComMascara = '34.318.733/0001-90';
     expect(UtilBrasilFields.obterCnpjDiv(cpnjSemMascara), '90');
     expect(UtilBrasilFields.obterCnpjDiv(cpnjComMascara), '90');
+  });
+
+  test('Obter dígitos verificadores do CNPJ Alfanumérico', () {
+    const cpnjSemMascara = 'S653N1793ADL37';
+    const cpnjComMascara = 'S6.53N.179/3ADL-37';
+    expect(UtilBrasilFields.obterCnpjDiv(cpnjSemMascara), '37');
+    expect(UtilBrasilFields.obterCnpjDiv(cpnjComMascara), '37');
   });
 
   test('Obter NUP', () {
@@ -402,5 +439,32 @@ void main() {
     expect(() {
       UtilBrasilFields.obterKM(9999999);
     }, throwsAssertionError);
+  });
+
+  group('Gerar CNPJ', () {
+    test('formatado', () {
+      final cnpj = UtilBrasilFields.gerarCNPJ(useFormat: true);
+      expect(cnpj, matches(RegExp(r'\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2}')));
+    });
+
+    test('não formatado', () {
+      final cnpj = UtilBrasilFields.gerarCNPJ(useFormat: false);
+      expect(cnpj, matches(RegExp(r'\d{14}')));
+    });
+
+    test('formatado alfanumérico', () {
+      final cnpj = UtilBrasilFields.gerarCNPJ(
+        useFormat: true,
+        isAlphanumeric: true,
+      );
+      expect(cnpj, matches(RegExp(r'\w{2}\.\w{3}\.\w{3}/\w{4}-\w{2}')));
+    });
+
+    test('não formatado alfanumérico', () {
+      final cnpj = UtilBrasilFields.gerarCNPJ(
+        useFormat: false,
+      );
+      expect(cnpj, matches(RegExp(r'\w{14}')));
+    });
   });
 }
