@@ -1,3 +1,6 @@
+## 1.18.0
+- Novo formatter: `CnpjAlfanumericoInputFormatter()`, por [victorers1](https://github.com/victorers1).
+
 ## 1.17.0
 - Novo formatter: `NUPInputFormatter()`, por [lucas-lucamenor](https://github.com/lucamenor).
 

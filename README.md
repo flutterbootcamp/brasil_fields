@@ -28,32 +28,39 @@ TextFormField(
 );
 ```
 
+#### EXCEÇÃO: CNPJ 2026 E Placa de veículos
+
+`CnpjAlfanumericoInputFormatter` e `PlacaVeiculoInputFormatter` são formatters alfanuméricos, sendo assim, o `FilteringTextInputFormatter.digitsOnly` não deve ser informado.
+
 ### Formatters
 
-| Padrão           | Formatter                      | Formato                                                              |
-|:-----------------|:-------------------------------|:---------------------------------------------------------------------|
-| Altura           | AlturaInputFormatter()         | 2,22                                                                 |
-| Cartão           | CartaoBancarioInputFormatter() | 0000 1111 2222 3333 4444                                             |
-| Centavos         | CentavosInputFormatter()       | 7,194                                                                |
-| CEP              | CepInputFormatter()            | 99.999-999                                                           |
-| CPF              | CpfInputFormatter()            | 999.999.99-99                                                        |
-| CNPJ             | CnpjInputFormatter()           | 99.999.999/9999-99                                                   |
-| CPF /  CNPJ      | CpfOuCnpjFormatter()           | se adapta conforme os números são inseridos                          |
-| CEST             | CESTInputFormatter()           | 12.345.67                                                            |
-| CNS              | CNSInputFormatter()            | 111 2222 3333 4444                                                   |
-| Data             | DataInputFormatter()           | 01/01/1900                                                           |
-| Hora             | HoraInputFormatter()           | 23:59                                                                |
-| IOF              | HoraInputFormatter()           | 1,234567                                                             |
-| KM               | KmInputFormatter()             | 999.999                                                              |
-| Cert. nascimento | CertNascimentoInputFormatter() | 000000 11 22 3333 4 55555 666 7777777 88                             |
-| NCM              | NCMInputFormatter()            | 1234.56.78                                                           |
-| NUP              | NUPInputFormatter()            | 1234567-89.0123.4.56.7890                                            |
-| Peso             | PesoInputFormatter()           | 111,1                                                                |
-| Placa            | PlacaVeiculoInputFormatter()   | AAA-1234 (**não** utilizar `FilteringTextInputFormatter.digitsOnly`) |
-| Real             | RealInputFormatter()           | 20.550                                                               |
-| Telefone         | TelefoneInputFormatter()       | (99) 9999-9999                                                       |
-| Validade cartão  | ValidadeCartaoInputFormatter() | 12/24 ou 12/2024                                                     |
-| Temperatura      | TemperaturaInputFormatter()    | 27,1                                                                 |
+| Padrão           | Formatter                       | Formato                                      |
+|:-----------------|:--------------------------------|:---------------------------------------------|
+| Altura           | AlturaInputFormatter()          | 2,22                                         |
+| Cartão           | CartaoBancarioInputFormatter()  | 0000 1111 2222 3333 4444                     |
+| Centavos         | CentavosInputFormatter()        | 7,194                                        |
+| CEP              | CepInputFormatter()             | 99.999-999                                   |
+| CPF              | CpfInputFormatter()             | 999.999.99-99                                |
+| CNPJ             | CnpjInputFormatter()            | 99.999.999/9999-99                           |
+| CNPJ (2026)      | CnpjAlfanumericoInputFormatter()| 99.999.999/9999-99 ou A1.B2C.3D4/E5F6-99 (*) |
+| CPF /  CNPJ      | CpfOuCnpjFormatter()            | Se adapta conforme os números são inseridos  |
+| CEST             | CESTInputFormatter()            | 12.345.67                                    |
+| CNS              | CNSInputFormatter()             | 111 2222 3333 4444                           |
+| Data             | DataInputFormatter()            | 01/01/1900                                   |
+| Hora             | HoraInputFormatter()            | 23:59                                        |
+| IOF              | HoraInputFormatter()            | 1,234567                                     |
+| KM               | KmInputFormatter()              | 999.999                                      |
+| Cert. nascimento | CertNascimentoInputFormatter()  | 000000 11 22 3333 4 55555 666 7777777 88     |
+| NCM              | NCMInputFormatter()             | 1234.56.78                                   |
+| NUP              | NUPInputFormatter()             | 1234567-89.0123.4.56.7890                    |
+| Peso             | PesoInputFormatter()            | 111,1                                        |
+| Placa            | PlacaVeiculoInputFormatter()    | AAA-1234 (*)                                 |
+| Real             | RealInputFormatter()            | 20.550                                       |
+| Telefone         | TelefoneInputFormatter()        | (99) 9999-9999                               |
+| Validade cartão  | ValidadeCartaoInputFormatter()  | 12/24 ou 12/2024                             |
+| Temperatura      | TemperaturaInputFormatter()     | 27,1                                         |
+
+**(*)** Não utilizar `FilteringTextInputFormatter.digitsOnly`. Estes formatters são alfanuméricos.
 
 ### Modelos
 

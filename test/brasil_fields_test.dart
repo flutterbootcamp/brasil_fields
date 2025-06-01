@@ -1,10 +1,50 @@
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:brasil_fields/src/formatters/compound_formatters/compound_formatter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'boilerplate.dart';
-import 'boilerplate_alphanumeric.dart';
+Widget boilerplateAlphaNumerico(
+    TextInputFormatter inputFormatter, TextEditingController textController) {
+  return MaterialApp(
+    home: MediaQuery(
+      data: const MediaQueryData(size: Size(320, 480)),
+      child: Directionality(
+        textDirection: TextDirection.ltr,
+        child: Material(
+          child: TextField(
+            controller: textController,
+            inputFormatters: [
+              FilteringTextInputFormatter.allow(RegExp('[0-9a-zA-Z]')),
+              inputFormatter,
+            ],
+          ),
+        ),
+      ),
+    ),
+  );
+}
+
+Widget boilerplate(
+    TextInputFormatter inputFormatter, TextEditingController textController) {
+  return MaterialApp(
+    home: MediaQuery(
+      data: const MediaQueryData(size: Size(320, 480)),
+      child: Directionality(
+        textDirection: TextDirection.ltr,
+        child: Material(
+          child: TextField(
+            controller: textController,
+            inputFormatters: [
+              FilteringTextInputFormatter.digitsOnly,
+              inputFormatter,
+            ],
+          ),
+        ),
+      ),
+    ),
+  );
+}
 
 void main() {
   testWidgets('CpfInputFormatter', (WidgetTester tester) async {
@@ -25,7 +65,7 @@ void main() {
 
   testWidgets('CnpjAlfanumericoInputFormatter', (WidgetTester tester) async {
     final textController = TextEditingController();
-    await tester.pumpWidget(boilerplateAlphaNumeric(
+    await tester.pumpWidget(boilerplateAlphaNumerico(
         CnpjAlfanumericoInputFormatter(), textController));
 
     await tester.enterText(find.byType(TextField), 'A2B4C6D8E0F099');
@@ -223,12 +263,12 @@ void main() {
 
     // testa toUpperCase
     await tester.pumpWidget(
-        boilerplateAlphaNumeric(PlacaVeiculoInputFormatter(), textController));
+        boilerplateAlphaNumerico(PlacaVeiculoInputFormatter(), textController));
     await tester.enterText(find.byType(TextField), 'abc');
     expect(textController.text, 'ABC');
 
     await tester.pumpWidget(
-        boilerplateAlphaNumeric(PlacaVeiculoInputFormatter(), textController));
+        boilerplateAlphaNumerico(PlacaVeiculoInputFormatter(), textController));
     await tester.enterText(find.byType(TextField), 'abc-1234');
     expect(textController.text, 'ABC-1234');
   });
@@ -302,7 +342,8 @@ void main() {
     // '123.456.789-00'      // CPF
     // '12.345.678/900A-99'  // CPNJ
 
-    await tester.pumpWidget(boilerplateAlphaNumeric(formatter, textController));
+    await tester
+        .pumpWidget(boilerplateAlphaNumerico(formatter, textController));
     await tester.enterText(find.byType(TextField), '12345678900');
     expect(textController.text, '123.456.789-00');
     await tester.enterText(find.byType(TextField), '12345678900A');
