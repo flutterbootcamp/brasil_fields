@@ -19,12 +19,14 @@ void main() {
 
     test(
       'limite 14 digitos alfanuméricos',
-      () => expect(evaluate('', 'ABBBBBBBBBBBB99'), ''),
+      () => expect(evaluate('', 'ABBBBBBBBBBBB99'), 'AB.BBB.BBB/BBBB-99'),
     );
 
     test('backspace alfanumérico', () {
       expect(
-          evaluate('AA.BBB.CCC/DDDD-99', 'AABBBCCCDDDD9'), 'AA.BBB.CCC/DDDD-9');
+        evaluate('AA.BBB.CCC/DDDD-99', 'AABBBCCCDDDD9'),
+        'AA.BBB.CCC/DDDD-9',
+      );
       expect(evaluate('AA.BBB.CCC/DDDD-9', 'AABBBCCCDDDD'), 'AA.BBB.CCC/DDDD');
       expect(evaluate('AA.BBB.CCC/DDDD', 'AABBBCCCDDD'), 'AA.BBB.CCC/DDD');
       expect(evaluate('AA.BBB.CCC/DDD', 'AABBBCCCDD'), 'AA.BBB.CCC/DD');

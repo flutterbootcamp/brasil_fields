@@ -1,57 +1,86 @@
-import 'package:brasil_fields/src/interfaces/compoundable_formatter.dart';
 import 'package:flutter/services.dart';
+import 'package:brasil_fields/src/interfaces/compoundable_formatter.dart';
 
-/// Formata o valor do campo com a mascara de CNPJ `XX.XXX.XXX/XXXX-XX`
-///
-/// Deve ser usado num TextInput que recebe letras e números:
-/// ```dart
-/// TextField(
-///  inputFormatters: [
-///    FilteringTextInputFormatter.allow(RegExp('[0-9a-zA-Z]')),
-///    CnpjAlfanumericoInputFormatter(),
-///  ],
-/// ),
-/// ```
 class CnpjAlfanumericoInputFormatter extends TextInputFormatter
     implements CompoundableFormatter {
-  // Define o tamanho máximo do campo.
+  /// Um [TextInputFormatter] personalizado para entrada de CNPJ com 14 caracteres,
+  /// onde os 12 primeiros aceitam letras maiúsculas e números (alfanuméricos),
+  /// e os 2 últimos aceitam apenas números.
+  ///
+  /// O valor digitado é automaticamente convertido para maiúsculas e formatado com a máscara:
+  /// `XX.XXX.XXX/XXXX-XX`, respeitando a posição dos separadores.
+  ///
+  /// Exemplo de entrada válida: `AB12CDE3F45678`
+  /// Resultado formatado: `AB.12C.DE3/F456-78`
+  ///
+  /// Caracteres inválidos são ignorados durante a digitação.
+  /// A posição do cursor é preservada com base na interação do usuário.
+  const CnpjAlfanumericoInputFormatter();
+
   @override
   int get maxLength => 14;
 
+  static final _alphanumericRegex = RegExp(r'[A-Z0-9]');
+  static final _digitRegex = RegExp(r'\d');
+
   @override
   TextEditingValue formatEditUpdate(
-      TextEditingValue oldValue, TextEditingValue newValue) {
-    final newValueLength = newValue.text.length;
+    TextEditingValue oldValue,
+    TextEditingValue newValue,
+  ) {
+    final rawText = newValue.text.toUpperCase();
 
-    if (newValueLength > maxLength) return oldValue;
+    // Filtra o texto: primeiras 12 posições aceitam letras e números, últimas 2 só números
+    final filtered = StringBuffer();
+    int rawCursorPosition = 0;
 
-    var selectionIndex = newValue.selection.end;
-    var substrIndex = 0;
-    final newText = StringBuffer();
+    for (int i = 0, cursor = 0; i < rawText.length && cursor < maxLength; i++) {
+      final char = rawText[i];
+      if (cursor < 12) {
+        if (_isAlphanumeric(char)) {
+          filtered.write(char);
+          cursor++;
+          if (i < newValue.selection.baseOffset) rawCursorPosition++;
+        }
+      } else {
+        if (_isDigit(char)) {
+          filtered.write(char);
+          cursor++;
+          if (i < newValue.selection.baseOffset) rawCursorPosition++;
+        }
+      }
+    }
 
-    if (newValueLength >= 3) {
-      newText.write('${newValue.text.substring(0, substrIndex = 2)}.');
-      if (newValue.selection.end >= 2) selectionIndex++;
-    }
-    if (newValueLength >= 6) {
-      newText.write('${newValue.text.substring(2, substrIndex = 5)}.');
-      if (newValue.selection.end >= 5) selectionIndex++;
-    }
-    if (newValueLength >= 9) {
-      newText.write('${newValue.text.substring(5, substrIndex = 8)}/');
-      if (newValue.selection.end >= 8) selectionIndex++;
-    }
-    if (newValueLength >= 13) {
-      newText.write('${newValue.text.substring(8, substrIndex = 12)}-');
-      if (newValue.selection.end >= 12) selectionIndex++;
-    }
-    if (newValueLength >= substrIndex) {
-      newText.write(newValue.text.substring(substrIndex));
-    }
+    final cleanText = filtered.toString();
+    final formatted = _applyMask(cleanText);
+
+    // Calcula nova posição do cursor com base nos caracteres e a máscara
+    int newCursorPosition = rawCursorPosition;
+    if (newCursorPosition >= 2) newCursorPosition++;
+    if (newCursorPosition >= 5) newCursorPosition++;
+    if (newCursorPosition >= 8) newCursorPosition++;
+    if (newCursorPosition >= 12) newCursorPosition++;
 
     return TextEditingValue(
-      text: newText.toString().toUpperCase(),
-      selection: TextSelection.collapsed(offset: selectionIndex),
+      text: formatted,
+      selection: TextSelection.collapsed(
+        offset: newCursorPosition.clamp(0, formatted.length),
+      ),
     );
   }
+
+  String _applyMask(String input) {
+    final buffer = StringBuffer();
+    for (int i = 0; i < input.length; i++) {
+      if (i == 2 || i == 5) buffer.write('.');
+      if (i == 8) buffer.write('/');
+      if (i == 12) buffer.write('-');
+      buffer.write(input[i]);
+    }
+    return buffer.toString();
+  }
+
+  bool _isAlphanumeric(String char) => _alphanumericRegex.hasMatch(char);
+
+  bool _isDigit(String char) => _digitRegex.hasMatch(char);
 }

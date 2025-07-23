@@ -52,7 +52,7 @@ class MyApp extends StatelessWidget {
                       label: 'CNPJ',
                       formatter: CnpjInputFormatter(),
                     ),
-                    AlphanumericTextField(
+                    const AlphanumericTextField(
                       label: 'Novo CNPJ',
                       formatter: CnpjAlfanumericoInputFormatter(),
                     ),
