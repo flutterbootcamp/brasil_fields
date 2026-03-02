@@ -115,8 +115,8 @@ class UtilBrasilFields {
   /// [isAlphanumeric] por padrão é `[false]`
   static bool isCNPJValido(String? cnpj, {bool isAlphanumeric = false}) =>
       isAlphanumeric
-      ? CnpjAlfanumericoValidator.isValid(cnpj)
-      : CNPJValidator.isValid(cnpj);
+          ? CnpjAlfanumericoValidator.isValid(cnpj)
+          : CNPJValidator.isValid(cnpj);
 
   ///Faz a validação do NUP retornando `[true]` ou `[false]`
   static bool isNUPValido(String? nup) => NUPValidator.isValid(nup);
@@ -143,9 +143,10 @@ class UtilBrasilFields {
   static String gerarCNPJ({
     bool useFormat = false,
     bool isAlphanumeric = false,
-  }) => isAlphanumeric
-      ? CnpjAlfanumericoValidator.generate(useFormat: useFormat)
-      : CNPJValidator.generate(useFormat: useFormat);
+  }) =>
+      isAlphanumeric
+          ? CnpjAlfanumericoValidator.generate(useFormat: useFormat)
+          : CNPJValidator.generate(useFormat: useFormat);
 
   /// Retorna o CPF utilizando a máscara: `XXX.YYY.ZZZ-NN`
   static String obterCpf(String cpf) {
