@@ -1,8 +1,8 @@
 import 'package:flutter/services.dart';
 
-/// Formata o valor do campo com a máscara de hora `HH:mm`
+/// Formata o valor do campo com a máscara de hora `HH:mm`.
 ///
-/// Nao aceita [hora > 24] e [minuto > 59]
+/// Não aceita [hora > 24] e [minuto > 59].
 class HoraInputFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(

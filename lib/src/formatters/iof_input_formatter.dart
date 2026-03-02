@@ -1,6 +1,6 @@
 import 'package:flutter/services.dart';
 
-/// Formata o valor do campo com a máscara `1,234567`
+/// Formata o valor do campo com a máscara `1,234567`.
 class IOFInputFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(

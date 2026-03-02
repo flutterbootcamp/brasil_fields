@@ -1,6 +1,6 @@
 import 'package:flutter/services.dart';
 
-/// Formata o valor do campo com a mascara kg,g (ex: `103,8`)
+/// Formata o valor do campo com a máscara kg,g (ex: `103,8`).
 class PesoInputFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(

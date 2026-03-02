@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'adiciona_separador.dart';
 
 /// Formata o valor do campo com a máscara `999.999.999.999`.
-
 class RealInputFormatter extends TextInputFormatter {
   RealInputFormatter({this.moeda = false});
 

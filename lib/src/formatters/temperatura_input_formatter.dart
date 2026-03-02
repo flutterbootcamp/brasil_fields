@@ -1,6 +1,6 @@
 import 'package:flutter/services.dart';
 
-/// Formata o valor do campo com a mascara °C (ex: `10,8`).
+/// Formata o valor do campo com a máscara °C (ex: `10,8`).
 class TemperaturaInputFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(

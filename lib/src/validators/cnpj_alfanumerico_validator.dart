@@ -24,8 +24,8 @@ class CnpjAlfanumericoValidator {
 
   static const stipRegex = r'[^A-Z\d]';
 
-  /// Compute the Verifier Digit (or 'Dígito Verificador (DV)' in PT-BR).
-  /// You can learn more about the algorithm on [wikipedia (pt-br)](https://pt.wikipedia.org/wiki/D%C3%ADgito_verificador)
+  // calcula o Dígito Verificador (DV)
+  // mais informações em [wikipedia (pt-br)](https://pt.wikipedia.org/wiki/D%C3%ADgito_verificador)
   static int _verifierDigit(String cnpj) {
     var index = 2;
 
@@ -67,17 +67,17 @@ class CnpjAlfanumericoValidator {
       cnpj = strip(cnpj);
     }
 
-    // cnpj must be defined
+    // cnpj deve ser informado
     if (cnpj == null || cnpj.isEmpty) {
       return false;
     }
 
-    // cnpj must have 14 chars
+    // cnpj deve ter 14 caracteres
     if (cnpj.length != 14) {
       return false;
     }
 
-    // cnpj can't be blacklisted
+    // cnpj não pode estar na lista de bloqueio
     if (blockList.contains(cnpj)) {
       return false;
     }

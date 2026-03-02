@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 ///
 ///  `maxLength = 4` MM/AA (default)
 ///
-/// `maxLength = 6` MM/AAAAA.
+/// `maxLength = 6` MM/AAAA.
 class ValidadeCartaoInputFormatter extends TextInputFormatter {
   final int maxLength;
 

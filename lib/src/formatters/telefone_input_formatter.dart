@@ -7,7 +7,7 @@ class TelefoneInputFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
-    // Verifica o tamanho máximo do campo.
+    // verifica o tamanho máximo do campo
     if (newValue.text.length > 11) return oldValue;
 
     final newValueLength = newValue.text.length;

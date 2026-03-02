@@ -1,7 +1,7 @@
 import 'package:brasil_fields/src/interfaces/compoundable_formatter.dart';
 import 'package:flutter/services.dart';
 
-/// Formata o valor do campo com a mascara de CPF: `XXX.XXX.XXX-XX`
+/// Formata o valor do campo com a máscara de CPF: `XXX.XXX.XXX-XX`.
 class CpfInputFormatter extends TextInputFormatter
     implements CompoundableFormatter {
   // Define o tamanho máximo do campo.

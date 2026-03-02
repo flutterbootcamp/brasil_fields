@@ -73,10 +73,10 @@ class UtilData {
       if (dataInt != null) {
         return dataInt;
       } else {
-        throw Exception('Nao foi possível obter o mes da data $data');
+        throw Exception('Não foi possível obter o mes da data $data');
       }
     } else {
-      throw Exception('Nao foi possível obter o mes da data $data');
+      throw Exception('Não foi possível obter o mes da data $data');
     }
   }
 
@@ -93,10 +93,10 @@ class UtilData {
       if (dataInt != null) {
         return dataInt;
       } else {
-        throw Exception('Nao foi possível obter o dia da data $data');
+        throw Exception('Não foi possível obter o dia da data $data');
       }
     } else {
-      throw Exception('Nao foi possível obter o dia da data $data');
+      throw Exception('Não foi possível obter o dia da data $data');
     }
   }
 

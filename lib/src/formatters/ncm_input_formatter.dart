@@ -1,6 +1,6 @@
 import 'package:flutter/services.dart';
 
-/// Formata o valor do campo com a máscara de NCM: `XXXX.XX.XX`
+/// Formata o valor do campo com a máscara de NCM: `XXXX.XX.XX`.
 class NCMInputFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(

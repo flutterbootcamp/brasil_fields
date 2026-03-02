@@ -2,16 +2,15 @@ import 'package:flutter/services.dart';
 
 /// Formata o valor do campo com a máscara de veículos `XXX-XXXX`.
 ///
-///Não se deve utilizar o `FilteringTextInputFormatter.digitsOnly` com
-///este formatter.
+/// Não se deve utilizar o `FilteringTextInputFormatter.digitsOnly` com
+/// este formatter.
 class PlacaVeiculoInputFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
     TextEditingValue oldValue,
     TextEditingValue newValue,
   ) {
-    // verifica o tamanho máximo do campo
-    // Verifica o tamanho máximo do campo (7 caracteres alfanuméricos + 1 traço).
+    // verifica o tamanho máximo do campo (7 caracteres alfanuméricos + 1 traço)
     if (newValue.text.replaceAll('-', '').length > 7) return oldValue;
 
     var selectionIndex = newValue.selection.end;

@@ -93,6 +93,7 @@ class UtilBrasilFields {
     }
   }
 
+  /// Retorna o DDD do telefone informado.
   static String obterDDD(String telefone) {
     if (telefone.length != 14 && telefone.length != 15) {
       throw ArgumentError.value(
@@ -105,7 +106,7 @@ class UtilBrasilFields {
     return telefone.substring(1, 3);
   }
 
-  ///Faz a validação do CPF retornando `[true]` ou `[false]`
+  /// Faz a validação do CPF retornando `[true]` ou `[false]`.
   static bool isCPFValido(String? cpf) => CPFValidator.isValid(cpf);
 
   /// Faz a validação do CNPJ retornando `[true]` ou `[false]`
@@ -118,7 +119,7 @@ class UtilBrasilFields {
           ? CnpjAlfanumericoValidator.isValid(cnpj)
           : CNPJValidator.isValid(cnpj);
 
-  ///Faz a validação do NUP retornando `[true]` ou `[false]`
+  /// Faz a validação do NUP retornando `[true]` ou `[false]`.
   static bool isNUPValido(String? nup) => NUPValidator.isValid(nup);
 
   /// Gera um CPF aleatório

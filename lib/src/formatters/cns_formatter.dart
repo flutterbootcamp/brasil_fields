@@ -5,7 +5,7 @@ class CNSInputFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
-    // verifica o tamanho máximo do campo.
+    // verifica o tamanho máximo do campo
     if (newValue.text.length > 15) return oldValue;
 
     var posicaoCursor = newValue.selection.end;

@@ -228,14 +228,14 @@ void main() {
   });
 
   test('Obter CPF', () {
-    ///Gerado por https://www.4devs.com.br/gerador_de_cpf
+    // gerado por https://www.4devs.com.br/gerador_de_cpf
     const cpfSemMascara = '48620265083';
     const cpfComMascara = '486.202.650-83';
     expect(UtilBrasilFields.obterCpf(cpfSemMascara), cpfComMascara);
   });
 
   test('Obter CNPJ', () {
-    ///Gerado por https://www.4devs.com.br/gerador_de_cnpj
+    // gerado por https://www.4devs.com.br/gerador_de_cnpj
     const cpnjSemMascara = '77343168000124';
     const cpnjComMascara = '77.343.168/0001-24';
     expect(UtilBrasilFields.obterCnpj(cpnjSemMascara), cpnjComMascara);

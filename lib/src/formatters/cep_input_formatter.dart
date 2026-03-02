@@ -1,6 +1,6 @@
 import 'package:flutter/services.dart';
 
-/// Formata o valor do campo com a mascara de CEP `XX.XXX-XXX`
+/// Formata o valor do campo com a máscara de CEP `XX.XXX-XXX`.
 ///
 /// `ponto` indica se o formato do CEP deve utilizar `.` ou não.
 class CepInputFormatter extends TextInputFormatter {

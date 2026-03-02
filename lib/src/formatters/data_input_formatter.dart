@@ -1,6 +1,6 @@
 import 'package:flutter/services.dart';
 
-/// Formata o valor do campo com a mascara de data `01/01/1900`.
+/// Formata o valor do campo com a máscara de data `01/01/1900`.
 class DataInputFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(

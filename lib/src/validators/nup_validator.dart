@@ -25,8 +25,8 @@ class NUPValidator {
     return nup.replaceAll(regex, '');
   }
 
-  // Compute the Check Digit (or 'Dígito Verificador (DV)' in PT-BR).
-  // You can learn more about the algorithm on [CNJ (pt-br)](https://atos.cnj.jus.br/files/compilado23285720221017634de539229ab.pdf)
+  // calcula o Dígito Verificador (DV)
+  // mais informações em [CNJ (pt-br)](https://atos.cnj.jus.br/files/compilado23285720221017634de539229ab.pdf)
   static String _checkDigit(String nup) {
     final sequential = nup.substring(0, 7);
     final year = nup.substring(9, 13);

@@ -1,6 +1,6 @@
 import 'package:flutter/services.dart';
 
-/// Formata o valor do campo com a mascara de Certidão de Nascimento: `XXXXXX XX XX XXXX X XXXXX XXX XXXXXXX XX`
+/// Formata o valor do campo com a máscara de Certidão de Nascimento: `XXXXXX XX XX XXXX X XXXXX XXX XXXXXXX XX`.
 class CertNascimentoInputFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
