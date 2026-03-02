@@ -1,5 +1,5 @@
-//Credits: CPF/CNPJ Validators
-//https://github.com/leonardocaldas/flutter-cpf-cnpj-validator
+// Credits: CPF/CNPJ Validators
+// https://github.com/leonardocaldas/flutter-cpf-cnpj-validator
 
 import 'dart:math';
 
@@ -56,10 +56,10 @@ class CnpjAlfanumericoValidator {
   }
 
   static String strip(String? cnpj) {
-    final regex = RegExp(stipRegex);
+    final regExp = RegExp(stipRegex);
     cnpj = cnpj ?? '';
 
-    return cnpj.replaceAll(regex, '');
+    return cnpj.replaceAll(regExp, '');
   }
 
   static bool isValid(String? cnpj, {bool stripBeforeValidation = true}) {

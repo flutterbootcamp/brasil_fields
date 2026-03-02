@@ -26,7 +26,7 @@ class AlturaInputFormatter extends TextInputFormatter {
     }
 
     return TextEditingValue(
-      text: valorFinal.toString(),
+      text: valorFinal,
       selection: TextSelection.collapsed(offset: valorFinal.length),
     );
   }

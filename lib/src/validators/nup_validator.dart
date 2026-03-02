@@ -19,10 +19,10 @@ class NUPValidator {
   }
 
   static String strip(String? nup) {
-    final regex = RegExp(stripRegex);
+    final regExp = RegExp(stripRegex);
     nup = nup ?? '';
 
-    return nup.replaceAll(regex, '');
+    return nup.replaceAll(regExp, '');
   }
 
   // calcula o Dígito Verificador (DV)

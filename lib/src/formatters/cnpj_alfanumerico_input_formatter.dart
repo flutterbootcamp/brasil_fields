@@ -25,33 +25,33 @@ class CnpjAlfanumericoInputFormatter extends TextInputFormatter
 
     if (newValueLength > maxLength) return oldValue;
 
-    var selectionIndex = newValue.selection.end;
+    var posicaoCursor = newValue.selection.end;
     var substrIndex = 0;
-    final newText = StringBuffer();
+    final valorFinal = StringBuffer();
 
     if (newValueLength >= 3) {
-      newText.write('${newValue.text.substring(0, substrIndex = 2)}.');
-      if (newValue.selection.end >= 2) selectionIndex++;
+      valorFinal.write('${newValue.text.substring(0, substrIndex = 2)}.');
+      if (newValue.selection.end >= 2) posicaoCursor++;
     }
     if (newValueLength >= 6) {
-      newText.write('${newValue.text.substring(2, substrIndex = 5)}.');
-      if (newValue.selection.end >= 5) selectionIndex++;
+      valorFinal.write('${newValue.text.substring(2, substrIndex = 5)}.');
+      if (newValue.selection.end >= 5) posicaoCursor++;
     }
     if (newValueLength >= 9) {
-      newText.write('${newValue.text.substring(5, substrIndex = 8)}/');
-      if (newValue.selection.end >= 8) selectionIndex++;
+      valorFinal.write('${newValue.text.substring(5, substrIndex = 8)}/');
+      if (newValue.selection.end >= 8) posicaoCursor++;
     }
     if (newValueLength >= 13) {
-      newText.write('${newValue.text.substring(8, substrIndex = 12)}-');
-      if (newValue.selection.end >= 12) selectionIndex++;
+      valorFinal.write('${newValue.text.substring(8, substrIndex = 12)}-');
+      if (newValue.selection.end >= 12) posicaoCursor++;
     }
     if (newValueLength >= substrIndex) {
-      newText.write(newValue.text.substring(substrIndex));
+      valorFinal.write(newValue.text.substring(substrIndex));
     }
 
     return TextEditingValue(
-      text: newText.toString().toUpperCase(),
-      selection: TextSelection.collapsed(offset: selectionIndex),
+      text: valorFinal.toString().toUpperCase(),
+      selection: TextSelection.collapsed(offset: posicaoCursor),
     );
   }
 }

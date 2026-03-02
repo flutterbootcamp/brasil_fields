@@ -1,5 +1,5 @@
-//Credits: CPF/CNPJ Validators
-//https://github.com/leonardocaldas/flutter-cpf-cnpj-validator
+// Credits: CPF/CNPJ Validators
+// https://github.com/leonardocaldas/flutter-cpf-cnpj-validator
 
 import 'dart:math';
 

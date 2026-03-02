@@ -18,7 +18,7 @@ class CentavosInputFormatter extends TextInputFormatter {
       TextEditingValue oldValue, TextEditingValue newValue) {
     if (newValue.text.isEmpty || newValue.text.length > 12) return oldValue;
 
-    final newText = StringBuffer();
+    final valorFinal = StringBuffer();
     var centavos = "";
     var textoFinal = newValue.text;
     var reais = int.parse(newValue.text);
@@ -46,11 +46,11 @@ class CentavosInputFormatter extends TextInputFormatter {
       if (moeda) {
         textoFinal = 'R\$ $textoFinal';
       }
-      newText.write(textoFinal);
+      valorFinal.write(textoFinal);
 
       return TextEditingValue(
-        text: newText.toString(),
-        selection: TextSelection.collapsed(offset: newText.length),
+        text: valorFinal.toString(),
+        selection: TextSelection.collapsed(offset: valorFinal.length),
       );
     }
 
@@ -86,11 +86,11 @@ class CentavosInputFormatter extends TextInputFormatter {
     if (moeda) {
       textoFinal = 'R\$ $textoFinal';
     }
-    newText.write(textoFinal);
+    valorFinal.write(textoFinal);
 
     return TextEditingValue(
-      text: newText.toString(),
-      selection: TextSelection.collapsed(offset: newText.length),
+      text: valorFinal.toString(),
+      selection: TextSelection.collapsed(offset: valorFinal.length),
     );
   }
 }

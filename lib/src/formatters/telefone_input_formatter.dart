@@ -12,7 +12,7 @@ class TelefoneInputFormatter extends TextInputFormatter {
 
     final newValueLength = newValue.text.length;
     if (newValueLength == 11) {
-      if (newValue.text.toString()[2] != '9') {
+      if (newValue.text[2] != '9') {
         return oldValue;
       }
     }
