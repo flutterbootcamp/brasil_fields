@@ -25,7 +25,7 @@ void main() {
     expect(CnpjAlfanumericoValidator.isValid('14.890.N2J/709Y-00'), false);
     expect(CnpjAlfanumericoValidator.isValid('HW487OK5W20A00'), false);
 
-    var blackListed = <String>[
+    final blackListed = <String>[
       '00000000000000',
       '11111111111111',
       '22222222222222',
@@ -45,8 +45,8 @@ void main() {
 
   test('Test CNPJ generator', () {
     for (var i = 0; i < 10; i++) {
-      var raw = CnpjAlfanumericoValidator.generate();
-      var formatted = CnpjAlfanumericoValidator.generate(useFormat: true);
+      final raw = CnpjAlfanumericoValidator.generate();
+      final formatted = CnpjAlfanumericoValidator.generate(useFormat: true);
 
       expect(raw != formatted, true);
       expect(CnpjAlfanumericoValidator.isValid(raw), true);

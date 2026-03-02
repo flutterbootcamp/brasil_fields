@@ -1,36 +1,46 @@
 import '../formatters/adiciona_separador.dart';
-import '../validators/cnpj_alfanumerico_validator.dart';
-import '../validators/nup_validator.dart';
 import '../validators/validators.dart';
 
 class UtilBrasilFields {
   /// Remover caracteres especiais (ex: `/`, `-`, `.`)
   static String removeCaracteres(String valor) {
-    assert(valor.isNotEmpty);
+    if (valor.isEmpty) {
+      throw ArgumentError.value(valor, 'valor', 'não pode estar vazio');
+    }
     return valor.replaceAll(RegExp('[^0-9a-zA-Z]+'), '');
   }
 
   /// Remover o símbolo `R$`
   static String removerSimboloMoeda(String valor) {
-    assert(valor.isNotEmpty);
+    if (valor.isEmpty) {
+      throw ArgumentError.value(valor, 'valor', 'não pode estar vazio');
+    }
     return valor.replaceAll('R\$ ', '');
   }
 
   /// Converter o valor de uma String com `R$`
   static double converterMoedaParaDouble(String valor) {
-    assert(valor.isNotEmpty);
+    if (valor.isEmpty) {
+      throw ArgumentError.value(valor, 'valor', 'não pode estar vazio');
+    }
     final value = double.tryParse(
-        valor.replaceAll('R\$ ', '').replaceAll('.', '').replaceAll(',', '.'));
+      valor.replaceAll('R\$ ', '').replaceAll('.', '').replaceAll(',', '.'),
+    );
 
     return value ?? 0;
   }
 
-  /// Retorna o CNPJ informado, utilizando a máscara: `XX.YYY-ZZZ`
+  /// Retorna o CEP informado, utilizando a máscara: `XX.XXX-XXX`
   ///
   /// Para remover o `.`, informe `ponto=false`.
   static String obterCep(String cep, {bool ponto = true}) {
-    assert(
-        cep.length == 8, 'CEP com tamanho inválido. Deve conter 8 caracteres');
+    if (cep.length != 8) {
+      throw ArgumentError.value(
+        cep,
+        'cep',
+        'CEP com tamanho inválido. Deve conter 8 caracteres',
+      );
+    }
 
     return ponto
         ? '${cep.substring(0, 2)}.${cep.substring(2, 5)}-${cep.substring(5, 8)}'
@@ -42,22 +52,40 @@ class UtilBrasilFields {
   /// Ajusta-se automaticamente para celular e fixo.
   ///
   /// Para retornar apenas os números, informe `mascara=false`.
-  static String obterTelefone(String telefone,
-      {bool ddd = true, bool mascara = true}) {
-    assert((telefone.length <= 15),
-        'Telefone com tamanho inválido. Deve conter 10 ou 11 caracteres');
+  static String obterTelefone(
+    String telefone, {
+    bool ddd = true,
+    bool mascara = true,
+  }) {
+    if (telefone.length > 15) {
+      throw ArgumentError.value(
+        telefone,
+        'telefone',
+        'Telefone com tamanho inválido. Deve conter 10 ou 11 caracteres',
+      );
+    }
     if (!mascara) return UtilBrasilFields.removeCaracteres(telefone);
 
     if (ddd) {
-      assert((telefone.length == 10 || telefone.length == 11),
-          'Telefone com tamanho inválido. Deve conter 10 ou 11 caracteres');
+      if (telefone.length != 10 && telefone.length != 11) {
+        throw ArgumentError.value(
+          telefone,
+          'telefone',
+          'Telefone com tamanho inválido. Deve conter 10 ou 11 caracteres',
+        );
+      }
 
       return telefone.length == 10
           ? '(${telefone.substring(0, 2)}) ${telefone.substring(2, 6)}-${telefone.substring(6, 10)}'
           : '(${telefone.substring(0, 2)}) ${telefone.substring(2, 7)}-${telefone.substring(7, 11)}';
     } else {
-      assert((telefone.length == 8 || telefone.length == 9),
-          'Telefone com tamanho inválido. Deve conter 8 ou 9 caracteres');
+      if (telefone.length != 8 && telefone.length != 9) {
+        throw ArgumentError.value(
+          telefone,
+          'telefone',
+          'Telefone com tamanho inválido. Deve conter 8 ou 9 caracteres',
+        );
+      }
 
       return (telefone.length == 8)
           ? '${telefone.substring(0, 4)}-${telefone.substring(4, 8)}'
@@ -66,8 +94,13 @@ class UtilBrasilFields {
   }
 
   static String obterDDD(String telefone) {
-    assert((telefone.length == 14 || telefone.length == 15),
-        'Telefone com tamanho inválido. Deve conter 14 ou 15 caracteres');
+    if (telefone.length != 14 && telefone.length != 15) {
+      throw ArgumentError.value(
+        telefone,
+        'telefone',
+        'Telefone com tamanho inválido. Deve conter 14 ou 15 caracteres',
+      );
+    }
 
     return telefone.substring(1, 3);
   }
@@ -82,8 +115,8 @@ class UtilBrasilFields {
   /// [isAlphanumeric] por padrão é `[false]`
   static bool isCNPJValido(String? cnpj, {bool isAlphanumeric = false}) =>
       isAlphanumeric
-          ? CnpjAlfanumericoValidator.isValid(cnpj)
-          : CNPJValidator.isValid(cnpj);
+      ? CnpjAlfanumericoValidator.isValid(cnpj)
+      : CNPJValidator.isValid(cnpj);
 
   ///Faz a validação do NUP retornando `[true]` ou `[false]`
   static bool isNUPValido(String? nup) => NUPValidator.isValid(nup);
@@ -110,20 +143,23 @@ class UtilBrasilFields {
   static String gerarCNPJ({
     bool useFormat = false,
     bool isAlphanumeric = false,
-  }) =>
-      isAlphanumeric
-          ? CnpjAlfanumericoValidator.generate(useFormat: useFormat)
-          : CNPJValidator.generate(useFormat: useFormat);
+  }) => isAlphanumeric
+      ? CnpjAlfanumericoValidator.generate(useFormat: useFormat)
+      : CNPJValidator.generate(useFormat: useFormat);
 
   /// Retorna o CPF utilizando a máscara: `XXX.YYY.ZZZ-NN`
   static String obterCpf(String cpf) {
-    assert(isCPFValido(cpf), 'CPF inválido!');
+    if (!isCPFValido(cpf)) {
+      throw ArgumentError.value(cpf, 'cpf', 'CPF inválido!');
+    }
     return CPFValidator.format(cpf);
   }
 
   /// Retorna o CNPJ informado, utilizando a máscara: `XX.YYY.ZZZ/NNNN-SS`
   static String obterCnpj(String cnpj) {
-    assert(isCNPJValido(cnpj, isAlphanumeric: true), 'CNPJ inválido!');
+    if (!isCNPJValido(cnpj, isAlphanumeric: true)) {
+      throw ArgumentError.value(cnpj, 'cnpj', 'CNPJ inválido!');
+    }
     return CnpjAlfanumericoValidator.format(cnpj);
   }
 
@@ -135,7 +171,9 @@ class UtilBrasilFields {
   ///
   /// `false`: inscrição terá o formato `XXYYYZZZ`
   static String obterCnpjInscricao(String cnpj, {bool useFormat = false}) {
-    assert(isCNPJValido(cnpj, isAlphanumeric: true), 'CNPJ inválido!');
+    if (!isCNPJValido(cnpj, isAlphanumeric: true)) {
+      throw ArgumentError.value(cnpj, 'cnpj', 'CNPJ inválido!');
+    }
     return useFormat
         ? CnpjAlfanumericoValidator.format(cnpj).substring(0, 10)
         : CnpjAlfanumericoValidator.strip(cnpj).substring(0, 8);
@@ -146,7 +184,9 @@ class UtilBrasilFields {
   /// A ordem do CNPJ são os 4 dígitos após a barra. Essa parte representa se o
   /// estabelecimento é matriz ou filial (0001 = matriz, 0002 = filial).
   static String obterCnpjOrdem(String cnpj) {
-    assert(isCNPJValido(cnpj, isAlphanumeric: true), 'CNPJ inválido!');
+    if (!isCNPJValido(cnpj, isAlphanumeric: true)) {
+      throw ArgumentError.value(cnpj, 'cnpj', 'CNPJ inválido!');
+    }
     return CnpjAlfanumericoValidator.strip(cnpj).substring(8, 12);
   }
 
@@ -154,13 +194,17 @@ class UtilBrasilFields {
   ///
   /// Os dígitos verificadores são os dois últimos números do CNPJ.
   static String obterCnpjDiv(String cnpj) {
-    assert(isCNPJValido(cnpj, isAlphanumeric: true), 'CNPJ inválido!');
+    if (!isCNPJValido(cnpj, isAlphanumeric: true)) {
+      throw ArgumentError.value(cnpj, 'cnpj', 'CNPJ inválido!');
+    }
     return CnpjAlfanumericoValidator.strip(cnpj).substring(12);
   }
 
   /// Retorna o NUP informado, utilizando a máscara: `NNNNNNN-DD.AAAA.J.TR.OOOO`
   static String obterNUP(String nup) {
-    assert(isNUPValido(nup), 'Número de Processo inválido!');
+    if (!isNUPValido(nup)) {
+      throw ArgumentError.value(nup, 'nup', 'Número de Processo inválido!');
+    }
     return NUPValidator.format(nup);
   }
 
@@ -173,8 +217,8 @@ class UtilBrasilFields {
       value = value * (-1);
     }
 
-    String fixed = value.toStringAsFixed(decimal);
-    List<String> separatedValues = fixed.split(".");
+    final String fixed = value.toStringAsFixed(decimal);
+    final List<String> separatedValues = fixed.split(".");
 
     separatedValues[0] = adicionarSeparador(separatedValues[0]);
     String formatted = separatedValues.join(",");
@@ -192,18 +236,13 @@ class UtilBrasilFields {
 
   /// Retorna o KM informado, utilizando a máscara: `XXX.XXX`
   static String obterKM(int km) {
-    assert(
-        km <= 999999, 'KM informado inválido. Valor máximo permitido é 999999');
-    final kmString = km.toString();
-    switch (kmString.length) {
-      case 4:
-        return "${kmString[0]}.${kmString[1]}${kmString[2]}${kmString[3]}";
-      case 5:
-        return "${kmString[0]}${kmString[1]}.${kmString[2]}${kmString[3]}${kmString[4]}";
-      case 6:
-        return "${kmString[0]}${kmString[1]}${kmString[2]}.${kmString[3]}${kmString[4]}${kmString[5]}";
-      default:
-        return km.toString();
+    if (km > 999999) {
+      throw ArgumentError.value(
+        km,
+        'km',
+        'KM informado inválido. Valor máximo permitido é 999999',
+      );
     }
+    return adicionarSeparador(km.toString());
   }
 }

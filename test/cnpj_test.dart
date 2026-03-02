@@ -20,7 +20,7 @@ void main() {
     expect(CNPJValidator.isValid('17942159000127'), false);
     expect(CNPJValidator.isValid('017942159000128'), false);
 
-    var blackListed = <String>[
+    final blackListed = <String>[
       '00000000000000',
       '11111111111111',
       '22222222222222',
@@ -40,8 +40,8 @@ void main() {
 
   test('Test CNPJ generator', () {
     for (var i = 0; i < 10; i++) {
-      var raw = CNPJValidator.generate();
-      var formatted = CNPJValidator.generate(useFormat: true);
+      final raw = CNPJValidator.generate();
+      final formatted = CNPJValidator.generate(useFormat: true);
 
       expect(raw != formatted, true);
       expect(CNPJValidator.isValid(raw), true);

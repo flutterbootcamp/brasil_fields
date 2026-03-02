@@ -7,9 +7,11 @@ import 'package:flutter/services.dart';
 class PlacaVeiculoInputFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
-      TextEditingValue oldValue, TextEditingValue newValue) {
+    TextEditingValue oldValue,
+    TextEditingValue newValue,
+  ) {
     // verifica o tamanho máximo do campo
-    // TODO remover replace
+    // Verifica o tamanho máximo do campo (7 caracteres alfanuméricos + 1 traço).
     if (newValue.text.replaceAll('-', '').length > 7) return oldValue;
 
     var selectionIndex = newValue.selection.end;
@@ -21,7 +23,8 @@ class PlacaVeiculoInputFormatter extends TextInputFormatter {
         newText.write(newValue.text.substring(0, substrIndex = 3));
       } else {
         newText.write(
-            '${newValue.text.substring(0, substrIndex = 3)}-${newValue.text.substring(3, substrIndex = newValue.text.length)}');
+          '${newValue.text.substring(0, substrIndex = 3)}-${newValue.text.substring(3, substrIndex = newValue.text.length)}',
+        );
         selectionIndex++;
       }
     }

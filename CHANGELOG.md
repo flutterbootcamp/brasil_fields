@@ -99,7 +99,7 @@
 - Expõe `validators.dart`
 - Pode-se utilizar a validação de CPF e CNPJ diretamente, utilizando as classes: `CPFValidator` e `CNPJValidator`.
 
-## 1.1.4
+## 1.1.3
 - Corrige exemplo `DropdownButton`
 
 ## 1.1.2

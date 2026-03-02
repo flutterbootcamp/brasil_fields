@@ -14,7 +14,7 @@ class CnpjAlfanumericoValidator {
     '66666666666666',
     '77777777777777',
     '88888888888888',
-    '99999999999999'
+    '99999999999999',
   ];
 
   /// All algarisms and uppercase letters: ['0', '1', '2', ..., 'X', 'Y', 'Z']
@@ -45,22 +45,24 @@ class CnpjAlfanumericoValidator {
   }
 
   static String format(String cnpj) {
-    var regExp = RegExp(
+    final regExp = RegExp(
       r'^([A-Z\d]{2})([A-Z\d]{3})([A-Z\d]{3})([A-Z\d]{4})(\d{2})$',
     );
 
     return strip(cnpj).replaceAllMapped(
-        regExp, (Match m) => '${m[1]}.${m[2]}.${m[3]}/${m[4]}-${m[5]}');
+      regExp,
+      (Match m) => '${m[1]}.${m[2]}.${m[3]}/${m[4]}-${m[5]}',
+    );
   }
 
   static String strip(String? cnpj) {
-    var regex = RegExp(stipRegex);
+    final regex = RegExp(stipRegex);
     cnpj = cnpj ?? '';
 
     return cnpj.replaceAll(regex, '');
   }
 
-  static bool isValid(String? cnpj, {stripBeforeValidation = true}) {
+  static bool isValid(String? cnpj, {bool stripBeforeValidation = true}) {
     if (stripBeforeValidation) {
       cnpj = strip(cnpj);
     }

@@ -3,7 +3,7 @@
 /// `listaMeses` lista com todos os meses.
 /// `mapaMeses` mapa com todos os meses.
 class Meses {
-  static List<String> listaMeses = [
+  static const List<String> listaMeses = [
     'Janeiro',
     'Fevereiro',
     'Março',
@@ -30,6 +30,6 @@ class Meses {
     'Setembro': 9,
     'Outubro': 10,
     'Novembro': 11,
-    'Dezembro': 12
+    'Dezembro': 12,
   };
 }

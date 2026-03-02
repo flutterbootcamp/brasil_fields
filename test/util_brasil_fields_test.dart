@@ -49,95 +49,95 @@ void main() {
       expect(UtilBrasilFields.converterMoedaParaDouble(centavos), 11150.99);
     });
     test('Obter centavos de um double', () {
-      double valor = 1590.9;
-      String valorConvertido = valor.obterCentavos;
+      const double valor = 1590.9;
+      final String valorConvertido = valor.obterCentavos;
       expect(valorConvertido, 'R\$ 159090');
     });
     test('Obter centavos de um double sem o símbolo de real', () {
-      double valor = 1590.9;
-      String valorConvertido = valor.obterCentavosSemSimbolo;
+      const double valor = 1590.9;
+      final String valorConvertido = valor.obterCentavosSemSimbolo;
       expect(valorConvertido, '159090');
     });
     test(
         'Obter centavos de um double sem o símbolo de real onde o valor é menor que 1',
         () {
-      double valor = 0.1;
-      String valorConvertido = valor.obterCentavosSemSimbolo;
+      const double valor = 0.1;
+      final String valorConvertido = valor.obterCentavosSemSimbolo;
       expect(valorConvertido, '10');
     });
     test(
         'Obter centavos de um double sem o símbolo de real onde o valor é negativos',
         () {
-      double valor = -10.5;
-      String valorConvertido = valor.obterCentavosSemSimbolo;
+      const double valor = -10.5;
+      final String valorConvertido = valor.obterCentavosSemSimbolo;
       expect(valorConvertido, '-1050');
     });
     test(
         'Obter centavos de um double com o símbolo de real onde o valor é negativos',
         () {
-      double valor = -10.5;
-      String valorConvertido = valor.obterCentavos;
+      const double valor = -10.5;
+      final String valorConvertido = valor.obterCentavos;
       expect(valorConvertido, '-R\$ 1050');
     });
     test('Obter real de um double', () {
-      double valor = 1590.9;
-      String valorConvertido = valor.obterReal();
+      const double valor = 1590.9;
+      final String valorConvertido = valor.obterReal();
       expect(valorConvertido, 'R\$${String.fromCharCode(160)}1.590,90');
     });
     test('Obter real de um double onde o valor é menor que 100', () {
-      double valor = 60.0;
-      String valorConvertido = valor.obterReal();
+      const double valor = 60.0;
+      final String valorConvertido = valor.obterReal();
       expect(valorConvertido, 'R\$${String.fromCharCode(160)}60,00');
     });
     test('Obter real sem símbolo de um double onde o valor é menor que 100',
         () {
-      double valor = 60.0;
-      String valorConvertido = valor.obterRealSemSimbolo();
+      const double valor = 60.0;
+      final String valorConvertido = valor.obterRealSemSimbolo();
       expect(valorConvertido, '60,00');
     });
     test(
         'Obter real com tres casas decimais sem símbolo, proveniente de um double',
         () {
-      double valor = 2563.55;
-      String valorConvertido = valor.obterRealSemSimbolo(3);
+      const double valor = 2563.55;
+      final String valorConvertido = valor.obterRealSemSimbolo(3);
       expect(valorConvertido, '2.563,550');
     });
     test('Obter real com tres casas decimais de um double', () {
-      double valor = 560.9;
-      String valorConvertido = valor.obterReal(3);
+      const double valor = 560.9;
+      final String valorConvertido = valor.obterReal(3);
       expect(valorConvertido, 'R\$${String.fromCharCode(160)}560,900');
     });
     test('Obter real com tres casas decimais e valor negativo de um double',
         () {
-      double valor = -560.9;
-      String valorConvertido = valor.obterReal(3);
+      const double valor = -560.9;
+      final String valorConvertido = valor.obterReal(3);
       expect(valorConvertido, '-R\$${String.fromCharCode(160)}560,900');
     });
     test('Obter real com duas casas decimais de um inteiro', () {
-      int valor = 350000;
-      String valorConvertido = valor.obterReal(2);
+      const int valor = 350000;
+      final String valorConvertido = valor.obterReal(2);
       expect(valorConvertido, 'R\$${String.fromCharCode(160)}350.000,00');
     });
     test('Obter real com tres casas decimais de um inteiro', () {
-      int valor = 560;
-      String valorConvertido = valor.obterReal(3);
+      const int valor = 560;
+      final String valorConvertido = valor.obterReal(3);
       expect(valorConvertido, 'R\$${String.fromCharCode(160)}560,000');
     });
     test(
         'Obter centavos com tres casas decimais e sem símbolo de real de um inteiro',
         () {
-      int valor = 560;
-      String valorConvertido = valor.obterCentavosSemSimbolo;
+      const int valor = 560;
+      final String valorConvertido = valor.obterCentavosSemSimbolo;
       expect(valorConvertido, '56000');
     });
     test('Obter centavos de um inteiro negativo sem símbolo de real', () {
-      int valor = -105;
-      String valorConvertido = valor.obterCentavosSemSimbolo;
+      const int valor = -105;
+      final String valorConvertido = valor.obterCentavosSemSimbolo;
       expect(valorConvertido, '-10500');
     });
     test('Obter real de um inteiro negativo sem símbolo de real', () {
-      int valor = -10900;
-      String valorConvertido = valor.obterRealSemSimbolo(3);
+      const int valor = -10900;
+      final String valorConvertido = valor.obterRealSemSimbolo(3);
       expect(valorConvertido, '-10.900,000');
     });
     test('Obter DDD', () {
@@ -176,34 +176,34 @@ void main() {
 
   group('Obter data no formato', () {
     test('DD/MM/AAAA', () {
-      var dataInformada = DateTime(2020, 12, 31);
-      var dataToUtc = UtilData.obterDataDDMMAAAA(dataInformada);
+      final dataInformada = DateTime(2020, 12, 31);
+      final dataToUtc = UtilData.obterDataDDMMAAAA(dataInformada);
       expect(dataToUtc, '31/12/2020');
     });
 
     test('MM/AAAA', () {
-      var dataInformada = DateTime(2020, 12, 25);
-      var dataToUtc = UtilData.obterDataMMAAAA(dataInformada);
+      final dataInformada = DateTime(2020, 12, 25);
+      final dataToUtc = UtilData.obterDataMMAAAA(dataInformada);
       expect(dataToUtc, '12/2020');
     });
 
     test('DD/MM', () {
-      var dataInformada = DateTime(2020, 12, 25);
-      var dataToUtc = UtilData.obterDataDDMM(dataInformada);
+      final dataInformada = DateTime(2020, 12, 25);
+      final dataToUtc = UtilData.obterDataDDMM(dataInformada);
       expect(dataToUtc, '25/12');
     });
   });
 
   group('Obter hora no formato', () {
     test('HH:mm:ss', () {
-      var dataInformada = DateTime(2020, 12, 31, 12, 33, 01);
-      var dataToUtc = UtilData.obterHoraHHMMSS(dataInformada);
+      final dataInformada = DateTime(2020, 12, 31, 12, 33, 01);
+      final dataToUtc = UtilData.obterHoraHHMMSS(dataInformada);
       expect(dataToUtc, '12:33:01');
     });
 
     test('HH:mm', () {
-      var dataInformada = DateTime(2020, 12, 31, 12, 33, 01);
-      var dataToUtc = UtilData.obterHoraHHMM(dataInformada);
+      final dataInformada = DateTime(2020, 12, 31, 12, 33, 01);
+      final dataToUtc = UtilData.obterHoraHHMM(dataInformada);
       expect(dataToUtc, '12:33');
     });
   });
@@ -211,18 +211,18 @@ void main() {
   group('Obter DateTime', () {
     test('31/12/2022', () {
       const data = '31/12/2022';
-      var dateTime = UtilData.obterDateTime(data);
+      final dateTime = UtilData.obterDateTime(data);
       expect(dateTime, DateTime(2022, 12, 31));
     });
     test('31/12/2022 23:41:06', () {
       const data = '31/12/2022 23:41';
-      var dateTime = UtilData.obterDateTimeHora(data);
+      final dateTime = UtilData.obterDateTimeHora(data);
       expect(dateTime, DateTime(2022, 12, 31, 23, 41, 00));
     });
 
     test('31/12/2022 23:41:06', () {
       const data = '23:41';
-      var dateTime = UtilData.obterDateTimeHoraMinuto(data);
+      final dateTime = UtilData.obterDateTimeHoraMinuto(data);
       expect(dateTime, DateTime(1970, 01, 01, 23, 41, 00));
     });
   });
@@ -438,7 +438,7 @@ void main() {
     expect(UtilBrasilFields.obterKM(999999), '999.999');
     expect(() {
       UtilBrasilFields.obterKM(9999999);
-    }, throwsAssertionError);
+    }, throwsArgumentError);
   });
 
   group('Gerar CNPJ', () {

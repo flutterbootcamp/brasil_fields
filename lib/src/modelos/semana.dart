@@ -16,7 +16,7 @@ class Semana {
     'Sexta-Feira',
   ];
 
-  static Map<String, int> mapaDiasUteis = const {
+  static const Map<String, int> mapaDiasUteis = {
     'Segunda-Feira': 1,
     'Terça-Feira': 2,
     'Quarta-Feira': 3,
@@ -24,7 +24,7 @@ class Semana {
     'Sexta-Feira': 5,
   };
 
-  static List<String> listaDiasUteisAbvr = [
+  static const List<String> listaDiasUteisAbvr = [
     'Segunda',
     'Terça',
     'Quarta',
@@ -32,7 +32,7 @@ class Semana {
     'Sexta',
   ];
 
-  static Map<String, int> mapaDiasUteisAbvr = const {
+  static const Map<String, int> mapaDiasUteisAbvr = {
     'Segunda': 1,
     'Terça': 2,
     'Quarta': 3,
@@ -46,7 +46,7 @@ class Semana {
     'Quinta-Feira',
     'Sexta-Feira',
     'Sábado',
-    'Domingo'
+    'Domingo',
   ];
 
   static const List<String> listaDiasSemanaAbvr = [
@@ -56,10 +56,10 @@ class Semana {
     'Quinta',
     'Sexta',
     'Sábado',
-    'Domingo'
+    'Domingo',
   ];
 
-  static Map<String, int> mapaDiasSemanaOrdenada = const {
+  static const Map<String, int> mapaDiasSemanaOrdenada = {
     'Domingo': 1,
     'Segunda-Feira': 2,
     'Terça-Feira': 3,
@@ -69,7 +69,7 @@ class Semana {
     'Sábado': 7,
   };
 
-  static List<String> listaDiasSemanaOrdenada = [
+  static const List<String> listaDiasSemanaOrdenada = [
     'Domingo',
     'Segunda',
     'Terça',
@@ -79,7 +79,7 @@ class Semana {
     'Sábado',
   ];
 
-  static Map<String, int> mapaDiasSemanaOrdenadaAbvr = const {
+  static const Map<String, int> mapaDiasSemanaOrdenadaAbvr = {
     'Domingo': 1,
     'Segunda': 2,
     'Terça': 3,

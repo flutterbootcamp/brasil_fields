@@ -23,7 +23,7 @@ class CentavosInputFormatter extends TextInputFormatter {
     var textoFinal = newValue.text;
     var reais = int.parse(newValue.text);
 
-    var textValue = newValue.text.padLeft(
+    final textValue = newValue.text.padLeft(
         newValue.text.length == 1 ? casasDecimais + 1 : casasDecimais, "");
     if (textValue.length >= casasDecimais) {
       centavos = textValue.substring(

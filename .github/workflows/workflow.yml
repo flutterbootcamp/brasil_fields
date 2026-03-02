@@ -8,11 +8,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - uses: subosito/flutter-action@v2.8.0
+      - uses: subosito/flutter-action@v2
       - run: flutter pub get
       
       - name: format
-        run: dart format
+        run: dart format --set-exit-if-changed .
 
       - name: analyze
         run: flutter analyze
@@ -21,7 +21,7 @@ jobs:
         run: flutter test --coverage
 
       - name: codecov
-        uses: codecov/codecov-action@v3.1.1
+        uses: codecov/codecov-action@v5
         
       - uses: bluefireteam/flutter-gh-pages@v9
         with:

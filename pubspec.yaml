@@ -5,6 +5,13 @@ homepage: https://github.com/flutterbootcamp/brasil_fields
 repository: https://github.com/flutterbootcamp/brasil_fields
 issue_tracker: https://github.com/flutterbootcamp/brasil_fields/issues
 
+topics:
+  - formatting
+  - validation
+  - input-formatter
+  - brazil
+  - localization
+
 environment:
   sdk: '>=3.0.0 <4.0.0'
 

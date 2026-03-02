@@ -1,7 +1,7 @@
 class NUPValidator {
   static const stripRegex = r'[^\d]';
 
-  static bool isValid(String? nup, {stripBeforeValidation = true}) {
+  static bool isValid(String? nup, {bool stripBeforeValidation = true}) {
     if (stripBeforeValidation) {
       nup = strip(nup);
     }
@@ -19,7 +19,7 @@ class NUPValidator {
   }
 
   static String strip(String? nup) {
-    var regex = RegExp(stripRegex);
+    final regex = RegExp(stripRegex);
     nup = nup ?? '';
 
     return nup.replaceAll(regex, '');
@@ -43,9 +43,11 @@ class NUPValidator {
   }
 
   static String format(String nup) {
-    var regExp = RegExp(r'^(\d{7})(\d{2})(\d{4})(\d{1})(\d{2})(\d{4})$');
+    final regExp = RegExp(r'^(\d{7})(\d{2})(\d{4})(\d{1})(\d{2})(\d{4})$');
 
     return strip(nup).replaceAllMapped(
-        regExp, (Match m) => '${m[1]}-${m[2]}.${m[3]}.${m[4]}.${m[5]}.${m[6]}');
+      regExp,
+      (Match m) => '${m[1]}-${m[2]}.${m[3]}.${m[4]}.${m[5]}.${m[6]}',
+    );
   }
 }

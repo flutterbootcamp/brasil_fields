@@ -17,7 +17,7 @@ void main() {
         false);
     expect(CPFValidator.isValid('03.3461.67100-2'), false);
 
-    var blockList = <String>[
+    final blockList = <String>[
       '00000000000',
       '11111111111',
       '22222222222',
@@ -38,8 +38,8 @@ void main() {
 
   test('Test CPF generator', () {
     for (var i = 0; i < 10; i++) {
-      var raw = CPFValidator.generate();
-      var formatted = CPFValidator.generate(useFormat: true);
+      final raw = CPFValidator.generate();
+      final formatted = CPFValidator.generate(useFormat: true);
 
       expect(raw != formatted, true);
       expect(CPFValidator.isValid(raw), true);

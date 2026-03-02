@@ -48,7 +48,7 @@ TextFormField(
 | CNS              | CNSInputFormatter()             | 111 2222 3333 4444                           |
 | Data             | DataInputFormatter()            | 01/01/1900                                   |
 | Hora             | HoraInputFormatter()            | 23:59                                        |
-| IOF              | HoraInputFormatter()            | 1,234567                                     |
+| IOF              | IOFInputFormatter()             | 1,234567                                     |
 | KM               | KmInputFormatter()              | 999.999                                      |
 | Cert. nascimento | CertNascimentoInputFormatter()  | 000000 11 22 3333 4 55555 666 7777777 88     |
 | NCM              | NCMInputFormatter()             | 1234.56.78                                   |
@@ -76,6 +76,8 @@ Semana.listaDiasUteisAbvr
 Semana.mapaDiasUteisAbvr
 Semana.listaDiasSemana
 Semana.listaDiasSemanaOrdenada
+Semana.mapaDiasSemanaOrdenada
+Semana.mapaDiasSemanaOrdenadaAbvr
 ```
 
 ### UtilData
