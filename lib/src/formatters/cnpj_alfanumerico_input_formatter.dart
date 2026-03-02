@@ -1,4 +1,4 @@
-import 'package:brasil_fields/src/interfaces/compoundable_formatter.dart';
+import '../interfaces/compoundable_formatter.dart';
 import 'package:flutter/services.dart';
 
 /// Formata o valor do campo com a máscara de CNPJ `XX.XXX.XXX/XXXX-XX`.
