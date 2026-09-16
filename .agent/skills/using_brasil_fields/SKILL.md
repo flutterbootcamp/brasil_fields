@@ -51,7 +51,7 @@ The `UtilBrasilFields` class provides static methods to generate, format, and va
 Use these methods before submitting forms or saving data:
 - `UtilBrasilFields.isCPFValido(String cpf)`: Returns `bool`.
 - `UtilBrasilFields.isCNPJValido(String cnpj)`: Returns `bool`.
-- `UtilBrasilFields.isPISValido(String pis)`: Returns `bool` (PIS/PASEP/NIT/NIS).
+- `UtilBrasilFields.isPisPasepValido(String pis)`: Returns `bool` (PIS/PASEP/NIT/NIS).
 
 ### Formatting Raw Strings
 If you receive raw data from an API and need to display it formatted:

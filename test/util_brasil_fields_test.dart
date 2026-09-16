@@ -311,13 +311,13 @@ void main() {
     expect(UtilBrasilFields.obterNUP(nupSemMascara), nupComMascara);
   });
 
-  test('Obter PIS', () {
+  test('Obter PIS/PASEP', () {
     const pisSemMascara = '12012345672';
     const pisComMascara = '120.12345.67-2';
-    expect(UtilBrasilFields.obterPIS(pisSemMascara), pisComMascara);
-    expect(UtilBrasilFields.obterPIS(pisComMascara), pisComMascara);
+    expect(UtilBrasilFields.obterPisPasep(pisSemMascara), pisComMascara);
+    expect(UtilBrasilFields.obterPisPasep(pisComMascara), pisComMascara);
     expect(() {
-      UtilBrasilFields.obterPIS('12012345673');
+      UtilBrasilFields.obterPisPasep('12012345673');
     }, throwsArgumentError);
   });
 
@@ -451,17 +451,17 @@ void main() {
     }, throwsArgumentError);
   });
 
-  group('Gerar PIS', () {
+  group('Gerar PIS/PASEP', () {
     test('formatado', () {
-      final pis = UtilBrasilFields.gerarPIS(useFormat: true);
+      final pis = UtilBrasilFields.gerarPisPasep(useFormat: true);
       expect(pis, matches(RegExp(r'\d{3}\.\d{5}\.\d{2}-\d{1}')));
-      expect(UtilBrasilFields.isPISValido(pis), true);
+      expect(UtilBrasilFields.isPisPasepValido(pis), true);
     });
 
     test('não formatado', () {
-      final pis = UtilBrasilFields.gerarPIS(useFormat: false);
+      final pis = UtilBrasilFields.gerarPisPasep(useFormat: false);
       expect(pis, matches(RegExp(r'\d{11}')));
-      expect(UtilBrasilFields.isPISValido(pis), true);
+      expect(UtilBrasilFields.isPisPasepValido(pis), true);
     });
   });
 

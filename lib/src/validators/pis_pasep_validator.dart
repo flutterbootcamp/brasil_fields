@@ -24,8 +24,9 @@ class PisPasepValidator {
   /// Pesos utilizados no cálculo do dígito verificador.
   static const List<int> _weights = [3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
 
-  // calcula o Dígito Verificador (DV)
-  // mais informações em [Caixa (pt-br)](https://www.caixa.gov.br/beneficios-trabalhador/pis/Paginas/default.aspx)
+  // calcula o Dígito Verificador (DV): pesos 3, 2, 9, 8, 7, 6, 5, 4, 3, 2
+  // sobre os 10 primeiros dígitos, com módulo 11
+  // mais informações sobre o PIS/PASEP em [gov.br (pt-br)](https://www.gov.br/trabalho-e-emprego/pt-br/servicos/trabalhador/abono-salarial)
   static int _verifierDigit(String pis) {
     var soma = 0;
 

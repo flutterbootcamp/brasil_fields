@@ -104,14 +104,14 @@ Métodos que facilitam manipular valores:
 - `UtilBrasilFields.gerarCPF(false)` (XXXXXXXXXXX)
 - `UtilBrasilFields.gerarCNPJ()` (XX.YYY.ZZZ/NNNN-SS)
 - `UtilBrasilFields.gerarCNPJ(false)` (XXYYYZZZNNNNSS)
-- `UtilBrasilFields.gerarPIS()` (XXXXXXXXXXX)
-- `UtilBrasilFields.gerarPIS(useFormat: true)` (XXX.XXXXX.XX-X)
+- `UtilBrasilFields.gerarPisPasep()` (XXXXXXXXXXX)
+- `UtilBrasilFields.gerarPisPasep(useFormat: true)` (XXX.XXXXX.XX-X)
 - `UtilBrasilFields.obterCpf('11122233344')` (111.222.333-44)
 - `UtilBrasilFields.obterCnpj('11222333444455')` (11.222.333/4444-55)
 - `UtilBrasilFields.obterCep('11222333')` (11.222-333)
 - `UtilBrasilFields.obterCep('11222333', ponto: false)` (11222-333)
 - `UtilBrasilFields.obterNUP('06010642120226000000')` (0601064-21.2022.6.00.0000)
-- `UtilBrasilFields.obterPIS('12012345672')` (120.12345.67-2)
+- `UtilBrasilFields.obterPisPasep('12012345672')` (120.12345.67-2)
 - `UtilBrasilFields.obterTelefone('00999998877')` ((00) 99999-8877)
 - `UtilBrasilFields.obterTelefone('(00) 99999-8877', mascara: false)` (00999998877)
 - `UtilBrasilFields.obterTelefone('999998877', ddd: false)` (99999-8877)
@@ -128,7 +128,7 @@ Métodos que facilitam manipular valores:
 - `UtilBrasilFields.isCPFValido` (retorna `true` se o CPF for válido, caso contrário, retorna `false`)
 - `UtilBrasilFields.isCNPJValido` (retorna `true` se o CNPJ for válido, caso contrário, retorna `false`)
 - `UtilBrasilFields.isNUPValido` (retorna `true` se o NUP for válido, caso contrário, retorna `false`)
-- `UtilBrasilFields.isPISValido` (retorna `true` se o PIS/PASEP (NIT/NIS) for válido, caso contrário, retorna `false`)
+- `UtilBrasilFields.isPisPasepValido` (retorna `true` se o PIS/PASEP (NIT/NIS) for válido, caso contrário, retorna `false`)
 
 Para inicializar um `TextEditingController` com o texto já formatado, basta escolher o método com o formato desejado e setar no atributo `text`:
 

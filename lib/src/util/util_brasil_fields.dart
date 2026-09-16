@@ -123,7 +123,7 @@ class UtilBrasilFields {
   static bool isNUPValido(String? nup) => NUPValidator.isValid(nup);
 
   /// Faz a validação do PIS/PASEP (NIT/NIS) retornando `[true]` ou `[false]`.
-  static bool isPISValido(String? pis) => PisPasepValidator.isValid(pis);
+  static bool isPisPasepValido(String? pis) => PisPasepValidator.isValid(pis);
 
   /// Gera um CPF aleatório
   ///
@@ -159,7 +159,7 @@ class UtilBrasilFields {
   /// `true`: PIS/PASEP gerado terá o formato `XXX.XXXXX.XX-X`
   ///
   /// `false`: PIS/PASEP gerado terá o formato `XXXXXXXXXXX`
-  static String gerarPIS({bool useFormat = false}) =>
+  static String gerarPisPasep({bool useFormat = false}) =>
       PisPasepValidator.generate(useFormat: useFormat);
 
   /// Retorna o CPF utilizando a máscara: `XXX.YYY.ZZZ-NN`
@@ -216,8 +216,8 @@ class UtilBrasilFields {
   }
 
   /// Retorna o PIS/PASEP informado, utilizando a máscara: `XXX.XXXXX.XX-X`
-  static String obterPIS(String pis) {
-    if (!isPISValido(pis)) {
+  static String obterPisPasep(String pis) {
+    if (!isPisPasepValido(pis)) {
       throw ArgumentError.value(pis, 'pis', 'PIS/PASEP inválido!');
     }
     return PisPasepValidator.format(pis);
