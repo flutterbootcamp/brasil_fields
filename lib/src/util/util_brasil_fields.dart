@@ -122,6 +122,9 @@ class UtilBrasilFields {
   /// Faz a validação do NUP retornando `[true]` ou `[false]`.
   static bool isNUPValido(String? nup) => NUPValidator.isValid(nup);
 
+  /// Faz a validação do PIS/PASEP (NIT/NIS) retornando `[true]` ou `[false]`.
+  static bool isPISValido(String? pis) => PisPasepValidator.isValid(pis);
+
   /// Gera um CPF aleatório
   ///
   /// Formatado ou não formatado, baseado no parâmetro `useFormat`:
@@ -148,6 +151,16 @@ class UtilBrasilFields {
       isAlphanumeric
           ? CnpjAlfanumericoValidator.generate(useFormat: useFormat)
           : CNPJValidator.generate(useFormat: useFormat);
+
+  /// Gera um PIS/PASEP (NIT/NIS) aleatório
+  ///
+  /// Formatado ou não formatado, baseado no parâmetro `useFormat`:
+  ///
+  /// `true`: PIS/PASEP gerado terá o formato `XXX.XXXXX.XX-X`
+  ///
+  /// `false`: PIS/PASEP gerado terá o formato `XXXXXXXXXXX`
+  static String gerarPIS({bool useFormat = false}) =>
+      PisPasepValidator.generate(useFormat: useFormat);
 
   /// Retorna o CPF utilizando a máscara: `XXX.YYY.ZZZ-NN`
   static String obterCpf(String cpf) {
@@ -200,6 +213,14 @@ class UtilBrasilFields {
       throw ArgumentError.value(cnpj, 'cnpj', 'CNPJ inválido!');
     }
     return CnpjAlfanumericoValidator.strip(cnpj).substring(12);
+  }
+
+  /// Retorna o PIS/PASEP informado, utilizando a máscara: `XXX.XXXXX.XX-X`
+  static String obterPIS(String pis) {
+    if (!isPISValido(pis)) {
+      throw ArgumentError.value(pis, 'pis', 'PIS/PASEP inválido!');
+    }
+    return PisPasepValidator.format(pis);
   }
 
   /// Retorna o NUP informado, utilizando a máscara: `NNNNNNN-DD.AAAA.J.TR.OOOO`

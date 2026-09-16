@@ -19,6 +19,7 @@ export 'src/formatters/km_input_formatter.dart';
 export 'src/formatters/ncm_input_formatter.dart';
 export 'src/formatters/nup_input_formatter.dart';
 export 'src/formatters/peso_input_formatter.dart';
+export 'src/formatters/pis_pasep_input_formatter.dart';
 export 'src/formatters/placa_veiculo_formatter.dart';
 export 'src/formatters/real_input_formatter.dart';
 export 'src/formatters/telefone_input_formatter.dart';

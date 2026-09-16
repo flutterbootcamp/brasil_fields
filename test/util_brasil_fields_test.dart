@@ -311,6 +311,16 @@ void main() {
     expect(UtilBrasilFields.obterNUP(nupSemMascara), nupComMascara);
   });
 
+  test('Obter PIS', () {
+    const pisSemMascara = '12012345672';
+    const pisComMascara = '120.12345.67-2';
+    expect(UtilBrasilFields.obterPIS(pisSemMascara), pisComMascara);
+    expect(UtilBrasilFields.obterPIS(pisComMascara), pisComMascara);
+    expect(() {
+      UtilBrasilFields.obterPIS('12012345673');
+    }, throwsArgumentError);
+  });
+
   group('Obter Real', () {
     test('com moeda (R\$)', () {
       const real = 85437107.04;
@@ -439,6 +449,20 @@ void main() {
     expect(() {
       UtilBrasilFields.obterKM(9999999);
     }, throwsArgumentError);
+  });
+
+  group('Gerar PIS', () {
+    test('formatado', () {
+      final pis = UtilBrasilFields.gerarPIS(useFormat: true);
+      expect(pis, matches(RegExp(r'\d{3}\.\d{5}\.\d{2}-\d{1}')));
+      expect(UtilBrasilFields.isPISValido(pis), true);
+    });
+
+    test('não formatado', () {
+      final pis = UtilBrasilFields.gerarPIS(useFormat: false);
+      expect(pis, matches(RegExp(r'\d{11}')));
+      expect(UtilBrasilFields.isPISValido(pis), true);
+    });
   });
 
   group('Gerar CNPJ', () {

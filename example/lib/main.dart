@@ -141,6 +141,10 @@ class MyApp extends StatelessWidget {
                       label: 'CNS',
                       formatter: CNSInputFormatter(),
                     ),
+                    DigitsOnlyTextField(
+                      label: 'PIS/PASEP',
+                      formatter: PisPasepInputFormatter(),
+                    ),
                   ],
                 ),
                 const Text('Em breve'),
