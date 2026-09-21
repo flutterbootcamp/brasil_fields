@@ -12,10 +12,20 @@
       "program": "./test/"
     },
     {
-      "name": "example app",
+      "name": "Example • Development (Chrome)",
       "type": "dart",
       "request": "launch",
-      "program": "example/lib/main.dart"
+      "program": "example/lib/main.dart",
+      "deviceId": "chrome",
+      "flutterMode": "debug"
+    },
+    {
+      "name": "Example • Profile (Chrome)",
+      "type": "dart",
+      "request": "launch",
+      "program": "example/lib/main.dart",
+      "deviceId": "chrome",
+      "flutterMode": "profile"
     }
   ]
 }

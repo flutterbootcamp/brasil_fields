@@ -1,12 +1,11 @@
 {
-    "name": "example",
-    "short_name": "example",
+    "name": "Brasil Fields — Playground",
+    "short_name": "Brasil Fields",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
-    "orientation": "portrait-primary",
+    "background_color": "#F4FBF7",
+    "theme_color": "#006C4C",
+    "description": "Demonstração interativa dos formatadores e utilitários do pacote Brasil Fields.",
     "prefer_related_applications": false,
     "icons": [
         {

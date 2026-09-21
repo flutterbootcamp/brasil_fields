@@ -1,18 +1,42 @@
-# example
+# Brasil Fields — exemplo interativo
 
-A new Flutter project.
+Este aplicativo demonstra os formatadores, utilitários de data e coleções de
+dados brasileiros disponibilizados pelo pacote `brasil_fields`.
 
-## Getting Started
+## Executar localmente
 
-This project is a starting point for a Flutter application.
+O arquivo `web/index.html` não é uma página independente. Não o abra com uma
+URL `file://`: ele depende dos arquivos gerados pelo Flutter e de um servidor
+HTTP.
 
-A few resources to get you started if this is your first Flutter project:
+Na raiz deste diretório, instale as dependências uma vez:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+```sh
+flutter pub get
+```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Desenvolvimento
 
-flutter analyze --suggestions
+```sh
+flutter run -d chrome --debug
+```
+
+### Profile
+
+```sh
+flutter run -d chrome --profile
+```
+
+No VS Code/Codex, as mesmas opções aparecem separadamente como
+`Example • Development (Chrome)` e `Example • Profile (Chrome)`.
+
+### Produção no GitHub Pages
+
+Para gerar a versão publicada:
+
+```sh
+flutter build web --release --base-href /brasil_fields/
+```
+
+Os testes de interface ficam em `test/` e podem ser executados com
+`flutter test`.
