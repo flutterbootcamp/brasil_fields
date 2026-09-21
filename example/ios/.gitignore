@@ -27,6 +27,10 @@ Flutter/flutter_export_environment.sh
 ServiceDefinitions.json
 Runner/GeneratedPluginRegistrant.*
 
+# This repository intentionally versions the generated environment used by
+# its example project.
+!Flutter/flutter_export_environment.sh
+
 # Exceptions to above rules.
 !default.mode1v3
 !default.mode2v3

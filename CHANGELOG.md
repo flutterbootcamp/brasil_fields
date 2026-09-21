@@ -3,6 +3,7 @@
 - Corrige conversões monetárias, limpeza do `CentavosInputFormatter` e validação de entradas malformadas.
 - Corrige o domínio aleatório dos geradores de CPF e CNPJ e fortalece o comportamento de edição dos formatters.
 - Amplia os testes de API pública, validadores, geradores e interações de cursor, seleção e composição.
+- Alinha o `.gitignore` aos arquivos versionados usados na publicação do pacote.
 
 ## 1.19.0
 - Revamp interno de variáveis e melhorias de clareza nos formatters e validators.
