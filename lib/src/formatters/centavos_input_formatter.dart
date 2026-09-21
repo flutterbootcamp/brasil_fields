@@ -16,7 +16,9 @@ class CentavosInputFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
-    if (newValue.text.isEmpty || newValue.text.length > 12) return oldValue;
+    if (!newValue.composing.isCollapsed) return newValue;
+    if (newValue.text.isEmpty) return newValue;
+    if (newValue.text.length > 12) return oldValue;
 
     final valorFinal = StringBuffer();
     var centavos = "";

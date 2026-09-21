@@ -1,12 +1,17 @@
 import 'package:intl/intl.dart';
 
 extension BrasilFieldsDouble on double {
-  /// Converte um valor double para centavos com o símbolo de real brasileiro
-  String get obterCentavos =>
-      '${this < 0 ? '-' : ''}R\$ ${(abs() * 100).toInt().toString()}';
-
-  /// Converte um valor double para centavos sem o símbolo de real brasileiro
+  /// Converte um valor double para centavos com o símbolo de real brasileiro.
   ///
+  /// Valores com frações de centavo são arredondados para o centavo mais
+  /// próximo.
+  String get obterCentavos =>
+      '${this < 0 ? '-' : ''}R\$ ${(abs() * 100).round()}';
+
+  /// Converte um valor double para centavos sem o símbolo de real brasileiro.
+  ///
+  /// Valores com frações de centavo são arredondados para o centavo mais
+  /// próximo.
   String get obterCentavosSemSimbolo => obterCentavos.replaceAll('R\$ ', '');
 
   /// Converte um valor double para real com o símbolo de real brasileiro

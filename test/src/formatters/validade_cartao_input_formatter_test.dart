@@ -1,55 +1,93 @@
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import 'formatter_test_harness.dart';
+
 void main() {
-  evaluate(String oldValue, String newValue, [int maxLength = 6]) {
-    return ValidadeCartaoInputFormatter(maxLength: maxLength)
-        .formatEditUpdate(
-          TextEditingValue(text: oldValue),
-          TextEditingValue(text: newValue),
-        )
-        .text;
-  }
+  TextEditingValue evaluate(
+    TextEditingValue oldValue,
+    TextEditingValue newValue, [
+    int maxLength = 6,
+  ]) =>
+      applyFormatterChain(
+        numericFormatterChain(
+            ValidadeCartaoInputFormatter(maxLength: maxLength)),
+        oldValue,
+        newValue,
+      );
 
   group('ValidadeCartaoInputFormatter', () {
-    test('padrao', () => expect(evaluate('', '0928'), '09/28'));
-    test('padrao [maxLength: 6]',
-        () => expect(evaluate('', '092028', 6), '09/2028'));
+    test(
+        'padrao',
+        () => expect(
+            evaluate(textEditingValue(''), textEditingValue('0928')).text,
+            '09/28'));
+    test(
+        'padrao [maxLength: 6]',
+        () => expect(
+            evaluate(textEditingValue(''), textEditingValue('092028'), 6).text,
+            '09/2028'));
 
     test('maxLength invalido', () {
-      expect(() => evaluate('', '', 7), throwsAssertionError);
+      expect(
+        () => evaluate(textEditingValue(''), textEditingValue(''), 7),
+        throwsAssertionError,
+      );
     });
 
     test('backspace', () {
-      expect(evaluate('', '092'), '09/2');
-      expect(evaluate('', '09'), '09');
-      expect(evaluate('', '0'), '0');
-      expect(evaluate('', ''), '');
+      var state = textEditingValue('09/28');
+      for (final entry
+          in {'092': '09/2', '09': '09', '0': '0', '': ''}.entries) {
+        state = evaluate(state, textEditingValue(entry.key));
+        expect(state.text, entry.value);
+      }
     });
 
     test('backspace [maxLength: 6]', () {
-      expect(evaluate('', '09202', 6), '09/202');
-      expect(evaluate('', '0920', 6), '09/20');
-      expect(evaluate('', '092', 6), '09/2');
-      expect(evaluate('', '09', 6), '09');
-      expect(evaluate('', '0', 6), '0');
-      expect(evaluate('', '', 6), '');
+      var state = textEditingValue('09/2028');
+      for (final entry in {
+        '09202': '09/202',
+        '0920': '09/20',
+        '092': '09/2',
+        '09': '09',
+        '0': '0',
+        '': ''
+      }.entries) {
+        state = evaluate(state, textEditingValue(entry.key), 6);
+        expect(state.text, entry.value);
+      }
     });
 
     test('digitacao', () {
-      expect(evaluate('', '0'), '0');
-      expect(evaluate('', '09'), '09');
-      expect(evaluate('', '092'), '09/2');
-      expect(evaluate('', '0929'), '09/29');
+      var state = textEditingValue('');
+      for (final entry
+          in {'0': '0', '09': '09', '092': '09/2', '0929': '09/29'}.entries) {
+        state = evaluate(state, textEditingValue(entry.key));
+        expect(state.text, entry.value);
+      }
     });
 
     test('digitacao [maxLength: 6]', () {
-      expect(evaluate('', '0', 6), '0');
-      expect(evaluate('', '09', 6), '09');
-      expect(evaluate('', '092', 6), '09/2');
-      expect(evaluate('', '0920', 6), '09/20');
-      expect(evaluate('', '09202', 6), '09/202');
-      expect(evaluate('', '092029', 6), '09/2029');
+      var state = textEditingValue('');
+      for (final entry in {
+        '0': '0',
+        '09': '09',
+        '092': '09/2',
+        '0920': '09/20',
+        '09202': '09/202',
+        '092029': '09/2029'
+      }.entries) {
+        state = evaluate(state, textEditingValue(entry.key), 6);
+        expect(state.text, entry.value);
+      }
+    });
+    test('composicao ativa permanece inalterada', () {
+      final formatters = numericFormatterChain(ValidadeCartaoInputFormatter());
+      final value =
+          textEditingValue('092', composing: const TextRange(start: 0, end: 3));
+      expectActiveComposingIsUnchanged(
+          formatters, textEditingValue('09'), value);
     });
   });
 }

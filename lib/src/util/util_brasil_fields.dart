@@ -1,7 +1,11 @@
+import 'dart:math';
+
 import '../formatters/adiciona_separador.dart';
 import '../validators/validators.dart';
 
 class UtilBrasilFields {
+  static final RegExp _simboloMoeda = RegExp(r'R\$[ \u00A0]?');
+
   /// Remover caracteres especiais (ex: `/`, `-`, `.`)
   static String removeCaracteres(String valor) {
     if (valor.isEmpty) {
@@ -15,7 +19,7 @@ class UtilBrasilFields {
     if (valor.isEmpty) {
       throw ArgumentError.value(valor, 'valor', 'não pode estar vazio');
     }
-    return valor.replaceAll('R\$ ', '');
+    return valor.replaceAll(_simboloMoeda, '');
   }
 
   /// Converter o valor de uma String com `R$`
@@ -24,7 +28,10 @@ class UtilBrasilFields {
       throw ArgumentError.value(valor, 'valor', 'não pode estar vazio');
     }
     final value = double.tryParse(
-      valor.replaceAll('R\$ ', '').replaceAll('.', '').replaceAll(',', '.'),
+      valor
+          .replaceAll(_simboloMoeda, '')
+          .replaceAll('.', '')
+          .replaceAll(',', '.'),
     );
 
     return value ?? 0;
@@ -132,8 +139,8 @@ class UtilBrasilFields {
   /// `true`: CPF gerado terá o formato `XXX.XXX.XXX-XX`
   ///
   /// `false`: CPF gerado terá o formato `XXXXXXXXXXX`
-  static String gerarCPF({bool useFormat = false}) =>
-      CPFValidator.generate(useFormat: useFormat);
+  static String gerarCPF({bool useFormat = false, Random? random}) =>
+      CPFValidator.generate(useFormat: useFormat, random: random);
 
   /// Gera um CNPJ aleatório
   ///
@@ -147,10 +154,14 @@ class UtilBrasilFields {
   static String gerarCNPJ({
     bool useFormat = false,
     bool isAlphanumeric = false,
+    Random? random,
   }) =>
       isAlphanumeric
-          ? CnpjAlfanumericoValidator.generate(useFormat: useFormat)
-          : CNPJValidator.generate(useFormat: useFormat);
+          ? CnpjAlfanumericoValidator.generate(
+              useFormat: useFormat,
+              random: random,
+            )
+          : CNPJValidator.generate(useFormat: useFormat, random: random);
 
   /// Gera um PIS/PASEP (NIT/NIS) aleatório
   ///
@@ -159,8 +170,8 @@ class UtilBrasilFields {
   /// `true`: PIS/PASEP gerado terá o formato `XXX.XXXXX.XX-X`
   ///
   /// `false`: PIS/PASEP gerado terá o formato `XXXXXXXXXXX`
-  static String gerarPisPasep({bool useFormat = false}) =>
-      PisPasepValidator.generate(useFormat: useFormat);
+  static String gerarPisPasep({bool useFormat = false, Random? random}) =>
+      PisPasepValidator.generate(useFormat: useFormat, random: random);
 
   /// Retorna o CPF utilizando a máscara: `XXX.YYY.ZZZ-NN`
   static String obterCpf(String cpf) {

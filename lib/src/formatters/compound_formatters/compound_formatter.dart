@@ -15,6 +15,8 @@ class CompoundFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
+    if (!newValue.composing.isCollapsed) return newValue;
+
     final delegatedFormatter = _formatters.firstWhere((formatter) {
       final newValueLength = newValue.text.length;
       final maxLength = formatter.maxLength;

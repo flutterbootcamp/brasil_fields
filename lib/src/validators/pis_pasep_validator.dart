@@ -20,6 +20,7 @@ class PisPasepValidator {
   ];
 
   static const stripRegex = r'[^\d]';
+  static const int _maxGenerationAttempts = 100;
 
   /// Pesos utilizados no cálculo do dígito verificador.
   static const List<int> _weights = [3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
@@ -72,8 +73,7 @@ class PisPasepValidator {
       return false;
     }
 
-    // PIS/PASEP deve conter apenas dígitos
-    if (strip(pis).length != 11) {
+    if (!RegExp(r'^\d{11}$').hasMatch(pis)) {
       return false;
     }
 
@@ -86,18 +86,25 @@ class PisPasepValidator {
   }
 
   /// Gera um PIS/PASEP aleatório válido.
-  static String generate({bool useFormat = false}) {
-    final random = Random();
-    var numbers = '';
+  static String generate({bool useFormat = false, Random? random}) {
+    final generator = random ?? Random();
 
-    do {
-      numbers = '';
+    for (var attempt = 0; attempt < _maxGenerationAttempts; attempt++) {
+      var numbers = '';
+
       for (var i = 0; i < 10; i += 1) {
-        numbers += random.nextInt(10).toString();
+        numbers += generator.nextInt(10).toString();
       }
       numbers += _verifierDigit(numbers).toString();
-    } while (blockList.contains(numbers));
 
-    return useFormat ? format(numbers) : numbers;
+      if (!blockList.contains(numbers)) {
+        return useFormat ? format(numbers) : numbers;
+      }
+    }
+
+    throw StateError(
+      'Não foi possível gerar um PIS/PASEP fora da lista de bloqueio após '
+      '$_maxGenerationAttempts tentativas.',
+    );
   }
 }

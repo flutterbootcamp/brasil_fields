@@ -8,7 +8,11 @@ class PisPasepInputFormatter extends TextInputFormatter {
 
   @override
   TextEditingValue formatEditUpdate(
-      TextEditingValue oldValue, TextEditingValue newValue) {
+    TextEditingValue oldValue,
+    TextEditingValue newValue,
+  ) {
+    if (!newValue.composing.isCollapsed) return newValue;
+
     // verifica o tamanho máximo do campo
     if (newValue.text.length > maxLength) return oldValue;
 

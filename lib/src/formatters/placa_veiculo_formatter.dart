@@ -10,6 +10,8 @@ class PlacaVeiculoInputFormatter extends TextInputFormatter {
     TextEditingValue oldValue,
     TextEditingValue newValue,
   ) {
+    if (!newValue.composing.isCollapsed) return newValue;
+
     // verifica o tamanho máximo do campo (7 caracteres alfanuméricos + 1 traço)
     if (newValue.text.replaceAll('-', '').length > 7) return oldValue;
 

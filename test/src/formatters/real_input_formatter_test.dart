@@ -1,85 +1,101 @@
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import 'formatter_test_harness.dart';
+
 void main() {
-  evaluate(String oldValue, String newValue, [bool moeda = false]) {
-    return RealInputFormatter(moeda: moeda)
-        .formatEditUpdate(
-          TextEditingValue(text: oldValue),
-          TextEditingValue(text: newValue),
-        )
-        .text;
-  }
+  TextEditingValue evaluate(
+    TextEditingValue oldValue,
+    TextEditingValue newValue, [
+    bool moeda = false,
+  ]) =>
+      applyFormatterChain(
+        numericFormatterChain(RealInputFormatter(moeda: moeda)),
+        oldValue,
+        newValue,
+      );
 
   group('RealInputFormatter', () {
-    test('padrao',
-        () => expect(evaluate('', '111222333444'), '111.222.333.444'));
+    test(
+        'padrao',
+        () => expect(
+            evaluate(textEditingValue(''), textEditingValue('111222333444'))
+                .text,
+            '111.222.333.444'));
     test(
       'padrao [moeda: true]',
-      () => expect(evaluate('', '111222333444', true), 'R\$ 111.222.333.444'),
+      () => expect(
+          evaluate(textEditingValue(''), textEditingValue('111222333444'), true)
+              .text,
+          'R\$ 111.222.333.444'),
     );
-    test('limite 12 digitos', () => expect(evaluate('', '9111222333444'), ''));
+    test('limite 12 digitos', () {
+      final oldValue = textEditingValue('111.222.333.444');
+      expect(
+          evaluate(oldValue, textEditingValue('111.222.333.4445')), oldValue);
+    });
     test(
       'limite 12 digitos [moeda: true]',
-      () => expect(evaluate('', '9111222333444', true), ''),
+      () {
+        final oldValue = textEditingValue('R\$ 111.222.333.444');
+        expect(
+            evaluate(oldValue, textEditingValue('R\$ 111.222.333.4445'), true),
+            oldValue);
+      },
     );
 
     test('backspace', () {
-      expect(evaluate('', '12345678900'), '12.345.678.900');
-      expect(evaluate('', '1234567890'), '1.234.567.890');
-      expect(evaluate('', '123456789'), '123.456.789');
-      expect(evaluate('', '12345678'), '12.345.678');
-      expect(evaluate('', '1234567'), '1.234.567');
-      expect(evaluate('', '123456'), '123.456');
-      expect(evaluate('', '12345'), '12.345');
-      expect(evaluate('', '1234'), '1.234');
-      expect(evaluate('', '123'), '123');
-      expect(evaluate('', '12'), '12');
-      expect(evaluate('', '1'), '1');
-      expect(evaluate('', ''), '');
+      var state = textEditingValue('111.222.333.444');
+      for (final entry in _realCases.entries) {
+        state = evaluate(state, textEditingValue(entry.key));
+        expect(state.text, entry.value);
+      }
     });
 
     test('backspace [moeda: true]', () {
-      expect(evaluate('', '12345678900', true), 'R\$ 12.345.678.900');
-      expect(evaluate('', '1234567890', true), 'R\$ 1.234.567.890');
-      expect(evaluate('', '123456789', true), 'R\$ 123.456.789');
-      expect(evaluate('', '12345678', true), 'R\$ 12.345.678');
-      expect(evaluate('', '1234567', true), 'R\$ 1.234.567');
-      expect(evaluate('', '123456', true), 'R\$ 123.456');
-      expect(evaluate('', '12345', true), 'R\$ 12.345');
-      expect(evaluate('', '1234', true), 'R\$ 1.234');
-      expect(evaluate('', '123', true), 'R\$ 123');
-      expect(evaluate('', '12', true), 'R\$ 12');
-      expect(evaluate('', '1', true), 'R\$ 1');
-      expect(evaluate('', '', true), '');
+      var state = textEditingValue('R\$ 111.222.333.444');
+      for (final entry in _realCases.entries) {
+        state = evaluate(state, textEditingValue(entry.key), true);
+        expect(state.text, entry.value.isEmpty ? '' : 'R\$ ${entry.value}');
+      }
     });
 
     test('digitacao', () {
-      expect(evaluate('', '1'), '1');
-      expect(evaluate('', '12'), '12');
-      expect(evaluate('', '123'), '123');
-      expect(evaluate('', '1234'), '1.234');
-      expect(evaluate('', '12345'), '12.345');
-      expect(evaluate('', '123456'), '123.456');
-      expect(evaluate('', '1234567'), '1.234.567');
-      expect(evaluate('', '12345678'), '12.345.678');
-      expect(evaluate('', '123456789'), '123.456.789');
-      expect(evaluate('', '1234567890'), '1.234.567.890');
-      expect(evaluate('', '12345678900'), '12.345.678.900');
+      var state = textEditingValue('');
+      for (final entry in _realCases.entries.toList().reversed.skip(1)) {
+        state = evaluate(state, textEditingValue(entry.key));
+        expect(state.text, entry.value);
+      }
     });
 
     test('digitacao [moeda: true]', () {
-      expect(evaluate('', '1', true), 'R\$ 1');
-      expect(evaluate('', '12', true), 'R\$ 12');
-      expect(evaluate('', '123', true), 'R\$ 123');
-      expect(evaluate('', '1234', true), 'R\$ 1.234');
-      expect(evaluate('', '12345', true), 'R\$ 12.345');
-      expect(evaluate('', '123456', true), 'R\$ 123.456');
-      expect(evaluate('', '1234567', true), 'R\$ 1.234.567');
-      expect(evaluate('', '12345678', true), 'R\$ 12.345.678');
-      expect(evaluate('', '123456789', true), 'R\$ 123.456.789');
-      expect(evaluate('', '1234567890', true), 'R\$ 1.234.567.890');
-      expect(evaluate('', '12345678900', true), 'R\$ 12.345.678.900');
+      var state = textEditingValue('');
+      for (final entry in _realCases.entries.toList().reversed.skip(1)) {
+        state = evaluate(state, textEditingValue(entry.key), true);
+        expect(state.text, 'R\$ ${entry.value}');
+      }
+    });
+    test('composicao ativa permanece inalterada', () {
+      final formatters = numericFormatterChain(RealInputFormatter());
+      final value = textEditingValue('1234',
+          composing: const TextRange(start: 0, end: 4));
+      expectActiveComposingIsUnchanged(
+          formatters, textEditingValue('123'), value);
     });
   });
 }
+
+const _realCases = {
+  '12345678900': '12.345.678.900',
+  '1234567890': '1.234.567.890',
+  '123456789': '123.456.789',
+  '12345678': '12.345.678',
+  '1234567': '1.234.567',
+  '123456': '123.456',
+  '12345': '12.345',
+  '1234': '1.234',
+  '123': '123',
+  '12': '12',
+  '1': '1',
+  '': '',
+};

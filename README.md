@@ -30,7 +30,16 @@ TextFormField(
 
 #### EXCEÇÃO: CNPJ 2026 E Placa de veículos
 
-`CnpjAlfanumericoInputFormatter` e `PlacaVeiculoInputFormatter` são formatters alfanuméricos, sendo assim, o `FilteringTextInputFormatter.digitsOnly` não deve ser informado.
+`CnpjAlfanumericoInputFormatter` e `PlacaVeiculoInputFormatter` são formatters alfanuméricos, sendo assim, o `FilteringTextInputFormatter.digitsOnly` não deve ser informado. Para CNPJ alfanumérico, utilize a cadeia completa:
+
+```dart
+TextFormField(
+  inputFormatters: [
+    FilteringTextInputFormatter.allow(RegExp('[0-9a-zA-Z]')),
+    CnpjAlfanumericoInputFormatter(),
+  ],
+);
+```
 
 ### Formatters
 
@@ -100,11 +109,14 @@ Métodos que facilitam obter o valor de um objeto `DateTime` em formato `String`
 
 Métodos que facilitam manipular valores:
 
-- `UtilBrasilFields.gerarCPF()` (XXX.XXX.XXX-XX)
-- `UtilBrasilFields.gerarCPF(false)` (XXXXXXXXXXX)
-- `UtilBrasilFields.gerarCNPJ()` (XX.YYY.ZZZ/NNNN-SS)
-- `UtilBrasilFields.gerarCNPJ(false)` (XXYYYZZZNNNNSS)
+- `UtilBrasilFields.gerarCPF()` (XXXXXXXXXXX)
+- `UtilBrasilFields.gerarCPF(useFormat: false)` (XXXXXXXXXXX)
+- `UtilBrasilFields.gerarCPF(useFormat: true)` (XXX.XXX.XXX-XX)
+- `UtilBrasilFields.gerarCNPJ()` (XXYYYZZZNNNNSS)
+- `UtilBrasilFields.gerarCNPJ(useFormat: false)` (XXYYYZZZNNNNSS)
+- `UtilBrasilFields.gerarCNPJ(useFormat: true)` (XX.YYY.ZZZ/NNNN-SS)
 - `UtilBrasilFields.gerarPisPasep()` (XXXXXXXXXXX)
+- `UtilBrasilFields.gerarPisPasep(useFormat: false)` (XXXXXXXXXXX)
 - `UtilBrasilFields.gerarPisPasep(useFormat: true)` (XXX.XXXXX.XX-X)
 - `UtilBrasilFields.obterCpf('11122233344')` (111.222.333-44)
 - `UtilBrasilFields.obterCnpj('11222333444455')` (11.222.333/4444-55)
