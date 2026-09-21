@@ -63,6 +63,7 @@ TextFormField(
 | NCM              | NCMInputFormatter()             | 1234.56.78                                   |
 | NUP              | NUPInputFormatter()             | 1234567-89.0123.4.56.7890                    |
 | Peso             | PesoInputFormatter()            | 111,1                                        |
+| PIS/PASEP (NIS/NIT) | PisPasepInputFormatter()     | 120.12345.67-2                               |
 | Placa            | PlacaVeiculoInputFormatter()    | AAA-1234 (*)                                 |
 | Real             | RealInputFormatter()            | 20.550                                       |
 | Telefone         | TelefoneInputFormatter()        | (99) 9999-9999                               |
@@ -114,11 +115,15 @@ Métodos que facilitam manipular valores:
 - `UtilBrasilFields.gerarCNPJ()` (XXYYYZZZNNNNSS)
 - `UtilBrasilFields.gerarCNPJ(useFormat: false)` (XXYYYZZZNNNNSS)
 - `UtilBrasilFields.gerarCNPJ(useFormat: true)` (XX.YYY.ZZZ/NNNN-SS)
+- `UtilBrasilFields.gerarPisPasep()` (XXXXXXXXXXX)
+- `UtilBrasilFields.gerarPisPasep(useFormat: false)` (XXXXXXXXXXX)
+- `UtilBrasilFields.gerarPisPasep(useFormat: true)` (XXX.XXXXX.XX-X)
 - `UtilBrasilFields.obterCpf('11122233344')` (111.222.333-44)
 - `UtilBrasilFields.obterCnpj('11222333444455')` (11.222.333/4444-55)
 - `UtilBrasilFields.obterCep('11222333')` (11.222-333)
 - `UtilBrasilFields.obterCep('11222333', ponto: false)` (11222-333)
 - `UtilBrasilFields.obterNUP('06010642120226000000')` (0601064-21.2022.6.00.0000)
+- `UtilBrasilFields.obterPisPasep('12012345672')` (120.12345.67-2)
 - `UtilBrasilFields.obterTelefone('00999998877')` ((00) 99999-8877)
 - `UtilBrasilFields.obterTelefone('(00) 99999-8877', mascara: false)` (00999998877)
 - `UtilBrasilFields.obterTelefone('999998877', ddd: false)` (99999-8877)
@@ -135,6 +140,7 @@ Métodos que facilitam manipular valores:
 - `UtilBrasilFields.isCPFValido` (retorna `true` se o CPF for válido, caso contrário, retorna `false`)
 - `UtilBrasilFields.isCNPJValido` (retorna `true` se o CNPJ for válido, caso contrário, retorna `false`)
 - `UtilBrasilFields.isNUPValido` (retorna `true` se o NUP for válido, caso contrário, retorna `false`)
+- `UtilBrasilFields.isPisPasepValido` (retorna `true` se o PIS/PASEP (NIT/NIS) for válido, caso contrário, retorna `false`)
 
 Para inicializar um `TextEditingController` com o texto já formatado, basta escolher o método com o formato desejado e setar no atributo `text`:
 

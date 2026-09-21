@@ -4,10 +4,10 @@ on: [push, pull_request]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: subosito/flutter-action@v2
       - run: flutter pub get
       
@@ -20,10 +20,15 @@ jobs:
       - name: test
         run: flutter test --coverage
 
+      - name: test example
+        working-directory: example
+        run: flutter test
+
       - name: codecov
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@v7
         
-      - uses: bluefireteam/flutter-gh-pages@v9
+      - if: github.event_name == 'push'
+        uses: bluefireteam/flutter-gh-pages@v9
         with:
           workingDir: example
           baseHref: /brasil_fields/

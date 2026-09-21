@@ -19,6 +19,7 @@ void main() {
       isTrue,
     );
     expect(NUPValidator.isValid('0601064-21.2022.6.00.0000'), isTrue);
+    expect(PisPasepValidator.isValid('120.12345.67-2'), isTrue);
   });
 
   test('public entrypoint exposes model catalogs', () {

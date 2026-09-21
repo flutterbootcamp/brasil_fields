@@ -4,21 +4,10 @@
 .packages
 .pub/
 .idea/
-.vscode/
 .fvm/
-
-# IDE files
-*.iml
-.metadata
-
-# Jekyll
-_config.yml
 
 build/
 ios/.generated/
 ios/Flutter/Generated.xcconfig
 ios/Runner/GeneratedPluginRegistrant.*
 doc/api/dart*
-
-pubspec.lock
-example/ios/Flutter/flutter_export_environment.sh

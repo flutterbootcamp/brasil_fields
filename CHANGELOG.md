@@ -1,3 +1,18 @@
+## 1.20.0
+- Adiciona formatter, validator e utilitários para PIS/PASEP (NIS/NIT), por [Adrianogba](https://github.com/Adrianogba).
+- Corrige conversões monetárias, limpeza do `CentavosInputFormatter` e validação de entradas malformadas.
+- Corrige o domínio aleatório dos geradores de CPF e CNPJ e fortalece o comportamento de edição dos formatters.
+- Amplia os testes de API pública, validadores, geradores e interações de cursor, seleção e composição.
+- Alinha o `.gitignore` aos arquivos versionados usados na publicação do pacote.
+
+## 1.19.0
+- Revamp interno de variáveis e melhorias de clareza nos formatters e validators.
+- Melhoria na documentação e comentários em português.
+- Adiciona tópicos para busca no `pubspec.yaml`.
+- Adiciona `.pubignore` e limpeza de arquivos desnecessários no repositório.
+- Corrige o formato do CPF no README.
+- Adiciona agent skills para facilitar contribuições e uso do pacote.
+
 ## 1.18.0
 - Novo formatter: `CnpjAlfanumericoInputFormatter()`, por [victorers1](https://github.com/victorers1).
 

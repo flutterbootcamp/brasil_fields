@@ -164,12 +164,14 @@ void main() {
       final String valorConvertido = valor.obterReal();
       expect(valorConvertido, 'R\$${String.fromCharCode(160)}60,00');
     });
-    test('Obter real sem símbolo de um double onde o valor é menor que 100',
-        () {
-      const double valor = 60.0;
-      final String valorConvertido = valor.obterRealSemSimbolo();
-      expect(valorConvertido, '60,00');
-    });
+    test(
+      'Obter real sem símbolo de um double onde o valor é menor que 100',
+      () {
+        const double valor = 60.0;
+        final String valorConvertido = valor.obterRealSemSimbolo();
+        expect(valorConvertido, '60,00');
+      },
+    );
     test(
         'Obter real com tres casas decimais sem símbolo, proveniente de um double',
         () {
@@ -182,12 +184,14 @@ void main() {
       final String valorConvertido = valor.obterReal(3);
       expect(valorConvertido, 'R\$${String.fromCharCode(160)}560,900');
     });
-    test('Obter real com tres casas decimais e valor negativo de um double',
-        () {
-      const double valor = -560.9;
-      final String valorConvertido = valor.obterReal(3);
-      expect(valorConvertido, '-R\$${String.fromCharCode(160)}560,900');
-    });
+    test(
+      'Obter real com tres casas decimais e valor negativo de um double',
+      () {
+        const double valor = -560.9;
+        final String valorConvertido = valor.obterReal(3);
+        expect(valorConvertido, '-R\$${String.fromCharCode(160)}560,900');
+      },
+    );
     test('Obter real com duas casas decimais de um inteiro', () {
       const int valor = 350000;
       final String valorConvertido = valor.obterReal(2);
@@ -425,6 +429,16 @@ void main() {
     expect(UtilBrasilFields.obterNUP(nupSemMascara), nupComMascara);
   });
 
+  test('Obter PIS/PASEP', () {
+    const pisSemMascara = '12012345672';
+    const pisComMascara = '120.12345.67-2';
+    expect(UtilBrasilFields.obterPisPasep(pisSemMascara), pisComMascara);
+    expect(UtilBrasilFields.obterPisPasep(pisComMascara), pisComMascara);
+    expect(() {
+      UtilBrasilFields.obterPisPasep('12012345673');
+    }, throwsArgumentError);
+  });
+
   group('Validadores públicos', () {
     test('CPF cobre valores válidos, inválidos e nulos', () {
       expect(UtilBrasilFields.isCPFValido('334.616.710-02'), isTrue);
@@ -460,6 +474,12 @@ void main() {
       );
       expect(UtilBrasilFields.isNUPValido(null), isFalse);
     });
+
+    test('PIS/PASEP cobre valores válidos, inválidos e nulos', () {
+      expect(UtilBrasilFields.isPisPasepValido('120.12345.67-2'), isTrue);
+      expect(UtilBrasilFields.isPisPasepValido('120.12345.67-3'), isFalse);
+      expect(UtilBrasilFields.isPisPasepValido(null), isFalse);
+    });
   });
 
   group('Obter Real', () {
@@ -480,15 +500,19 @@ void main() {
       const real = 85437107.04;
       const realFormatado = '85.437.107';
 
-      expect(UtilBrasilFields.obterReal(real, moeda: false, decimal: 0),
-          realFormatado);
+      expect(
+        UtilBrasilFields.obterReal(real, moeda: false, decimal: 0),
+        realFormatado,
+      );
     });
     test('decimal: 1', () {
       const real = 85437107.04;
       const realFormatado = '85.437.107,0';
 
-      expect(UtilBrasilFields.obterReal(real, moeda: false, decimal: 1),
-          realFormatado);
+      expect(
+        UtilBrasilFields.obterReal(real, moeda: false, decimal: 1),
+        realFormatado,
+      );
     });
   });
 
@@ -510,15 +534,19 @@ void main() {
       const real = -287.04;
       const realFormatado = '-287';
 
-      expect(UtilBrasilFields.obterReal(real, moeda: false, decimal: 0),
-          realFormatado);
+      expect(
+        UtilBrasilFields.obterReal(real, moeda: false, decimal: 0),
+        realFormatado,
+      );
     });
     test('negativo decimal: 1', () {
       const real = -287.04;
       const realFormatado = '-287,0';
 
-      expect(UtilBrasilFields.obterReal(real, moeda: false, decimal: 1),
-          realFormatado);
+      expect(
+        UtilBrasilFields.obterReal(real, moeda: false, decimal: 1),
+        realFormatado,
+      );
     });
   });
 
@@ -537,27 +565,36 @@ void main() {
     group('com DDD', () {
       test('com mascara', () {
         expect(
-            UtilBrasilFields.obterTelefone('00999998877'), '(00) 99999-8877');
+          UtilBrasilFields.obterTelefone('00999998877'),
+          '(00) 99999-8877',
+        );
       });
 
       test('sem mascara', () {
         expect(
-            UtilBrasilFields.obterTelefone('(00) 99999-8877', mascara: false),
-            '00999998877');
+          UtilBrasilFields.obterTelefone('(00) 99999-8877', mascara: false),
+          '00999998877',
+        );
       });
     });
 
     group('sem DDD', () {
       test('com mascara', () {
-        expect(UtilBrasilFields.obterTelefone('999998877', ddd: false),
-            '99999-8877');
+        expect(
+          UtilBrasilFields.obterTelefone('999998877', ddd: false),
+          '99999-8877',
+        );
       });
 
       test('sem mascara', () {
         expect(
-            UtilBrasilFields.obterTelefone('99999-8877',
-                ddd: false, mascara: false),
-            '999998877');
+          UtilBrasilFields.obterTelefone(
+            '99999-8877',
+            ddd: false,
+            mascara: false,
+          ),
+          '999998877',
+        );
       });
     });
   });
@@ -576,8 +613,10 @@ void main() {
     });
 
     test('sem cifrão e 4 casas decimais', () {
-      expect(UtilBrasilFields.obterReal(50000, moeda: false, decimal: 4),
-          '50.000,0000');
+      expect(
+        UtilBrasilFields.obterReal(50000, moeda: false, decimal: 4),
+        '50.000,0000',
+      );
     });
   });
 
@@ -609,6 +648,23 @@ void main() {
       expect(explicitRaw, expectedRaw);
       expect(formatted, CPFValidator.format(expectedRaw));
       expect(formatted, matches(RegExp(r'^\d{3}\.\d{3}\.\d{3}-\d{2}$')));
+    });
+
+    test('PIS/PASEP usa parâmetros nomeados e defaults crus', () {
+      final defaultPis = UtilBrasilFields.gerarPisPasep();
+      final explicitRaw = UtilBrasilFields.gerarPisPasep(
+        useFormat: false,
+        random: RecordingRandom(<int>[9, 0, 1, 2, 3, 4, 5, 6, 7, 8]),
+      );
+      final formatted = UtilBrasilFields.gerarPisPasep(
+        useFormat: true,
+        random: RecordingRandom(<int>[9, 0, 1, 2, 3, 4, 5, 6, 7, 8]),
+      );
+
+      expect(defaultPis, matches(RegExp(r'^\d{11}$')));
+      expect(explicitRaw, '90123456784');
+      expect(formatted, '901.23456.78-4');
+      expect(UtilBrasilFields.isPisPasepValido(explicitRaw), isTrue);
     });
 
     test('exemplos de CNPJ usam parâmetros nomeados e defaults crus', () {

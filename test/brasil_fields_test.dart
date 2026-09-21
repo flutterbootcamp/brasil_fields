@@ -485,6 +485,15 @@ void main() {
     expect(textController.text, '1234567-89.0123.4.56.7890');
   });
 
+  testWidgets('PisPasepInputFormatter', (WidgetTester tester) async {
+    final textController = TextEditingController();
+
+    await tester
+        .pumpWidget(boilerplate(PisPasepInputFormatter(), textController));
+    await tester.enterText(find.byType(TextField), '12012345672');
+    expect(textController.text, '120.12345.67-2');
+  });
+
   testWidgets('CESTInputFormatter', (WidgetTester tester) async {
     final textController = TextEditingController();
 
