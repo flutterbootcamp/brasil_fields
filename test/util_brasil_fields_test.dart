@@ -1,7 +1,7 @@
-import 'package:brasil_fields/src/util/extensores.dart';
-import 'package:brasil_fields/src/util/util_brasil_fields.dart';
-import 'package:brasil_fields/src/util/util_data.dart';
+import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter_test/flutter_test.dart';
+
+import 'helpers/deterministic_random.dart';
 
 void main() {
   group('Remove caracteres', () {
@@ -47,6 +47,81 @@ void main() {
     test('Converter moeda (R\$) em double', () {
       const centavos = 'R\$ 11.150,99';
       expect(UtilBrasilFields.converterMoedaParaDouble(centavos), 11150.99);
+    });
+    test('Converter moeda aceita espaços comum e não separável', () {
+      expect(UtilBrasilFields.converterMoedaParaDouble(r'R$ 1.590,90'), 1590.9);
+      expect(
+        UtilBrasilFields.converterMoedaParaDouble('R\$\u00a01.590,90'),
+        1590.9,
+      );
+      expect(
+        UtilBrasilFields.converterMoedaParaDouble('-R\$\u00a01.590,90'),
+        -1590.9,
+      );
+      expect(UtilBrasilFields.removerSimboloMoeda(r'R$ 1.590,90'), '1.590,90');
+      expect(
+        UtilBrasilFields.removerSimboloMoeda('R\$\u00a01.590,90'),
+        '1.590,90',
+      );
+      expect(
+        UtilBrasilFields.removerSimboloMoeda('-R\$\u00a01.590,90'),
+        '-1.590,90',
+      );
+    });
+    test('Obter centavos arredonda valores monetários de duas casas', () {
+      const expected = <(double, String)>[
+        (0.29, '29'),
+        (0.57, '57'),
+        (1.13, '113'),
+        (-0.29, '-29'),
+        (-0.57, '-57'),
+        (-1.13, '-113'),
+        (0, '0'),
+        (1, '100'),
+      ];
+
+      for (final entry in expected) {
+        expect(
+          entry.$1.obterCentavosSemSimbolo,
+          entry.$2,
+          reason: entry.$1.toString(),
+        );
+        final symbol = entry.$1.isNegative ? '-R\$ ' : 'R\$ ';
+        expect(
+          entry.$1.obterCentavos,
+          '$symbol${entry.$2.replaceFirst('-', '')}',
+          reason: entry.$1.toString(),
+        );
+      }
+    });
+    test('Obter centavos arredonda frações para o centavo mais próximo', () {
+      expect((0.294).obterCentavosSemSimbolo, '29');
+      expect((0.296).obterCentavosSemSimbolo, '30');
+      expect((-0.294).obterCentavosSemSimbolo, '-29');
+      expect((-0.296).obterCentavosSemSimbolo, '-30');
+    });
+    test('Valores formatados fazem round trip na precisão exibida', () {
+      const values = <double>[0, 0.29, 60, 999.99, 1000, 1000.01, -1590.9];
+
+      for (final value in values) {
+        expect(
+          UtilBrasilFields.converterMoedaParaDouble(value.obterReal()),
+          closeTo(value, 0.0000001),
+          reason: 'extensão: $value',
+        );
+        expect(
+          UtilBrasilFields.converterMoedaParaDouble(
+            UtilBrasilFields.obterReal(value),
+          ),
+          closeTo(value, 0.0000001),
+          reason: 'utilitário: $value',
+        );
+      }
+
+      expect((999.99).obterReal(), 'R\$\u00a0999,99');
+      expect((1000.0).obterReal(), 'R\$\u00a01.000,00');
+      expect(UtilBrasilFields.obterReal(999.99), r'R$ 999,99');
+      expect(UtilBrasilFields.obterReal(1000), r'R$ 1.000,00');
     });
     test('Obter centavos de um double', () {
       const double valor = 1590.9;
@@ -194,6 +269,45 @@ void main() {
     });
   });
 
+  group('UtilData helpers', () {
+    test('remove caracteres de datas cruas e formatadas', () {
+      expect(UtilData.removeCaracteres('31122024'), '31122024');
+      expect(UtilData.removeCaracteres('31/12/2024'), '31122024');
+      expect(UtilData.removeCaracteres('data: 01-02-2023'), '01022023');
+      expect(UtilData.removeCaracteres('sem data'), isEmpty);
+    });
+
+    test('valida o formato pela quantidade de dígitos', () {
+      expect(UtilData.validarData('01012000'), isTrue);
+      expect(UtilData.validarData('31/12/2024'), isTrue);
+      expect(UtilData.validarData('99/99/9999'), isTrue);
+      expect(UtilData.validarData('1/12/2024'), isFalse);
+      expect(UtilData.validarData('31/12/24'), isFalse);
+      expect(UtilData.validarData(''), isFalse);
+    });
+
+    test('obtém dia e mês de várias datas', () {
+      const expectedParts = <String, (int, int)>{
+        '01/01/1900': (1, 1),
+        '29022024': (29, 2),
+        '31-12-2099': (31, 12),
+        '00/00/0000': (0, 0),
+      };
+
+      for (final entry in expectedParts.entries) {
+        expect(UtilData.obterDia(entry.key), entry.value.$1, reason: entry.key);
+        expect(UtilData.obterMes(entry.key), entry.value.$2, reason: entry.key);
+      }
+    });
+
+    test('dia e mês rejeitam comprimentos inválidos', () {
+      for (final value in <String>['', '010120', '001012024']) {
+        expect(() => UtilData.obterDia(value), throwsException, reason: value);
+        expect(() => UtilData.obterMes(value), throwsException, reason: value);
+      }
+    });
+  });
+
   group('Obter hora no formato', () {
     test('HH:mm:ss', () {
       final dataInformada = DateTime(2020, 12, 31, 12, 33, 01);
@@ -309,6 +423,43 @@ void main() {
     const nupSemMascara = '06010642120226000000';
     const nupComMascara = '0601064-21.2022.6.00.0000';
     expect(UtilBrasilFields.obterNUP(nupSemMascara), nupComMascara);
+  });
+
+  group('Validadores públicos', () {
+    test('CPF cobre valores válidos, inválidos e nulos', () {
+      expect(UtilBrasilFields.isCPFValido('334.616.710-02'), isTrue);
+      expect(UtilBrasilFields.isCPFValido('334.616.710-01'), isFalse);
+      expect(UtilBrasilFields.isCPFValido(null), isFalse);
+    });
+
+    test('CNPJ encaminha para o validador solicitado', () {
+      expect(UtilBrasilFields.isCNPJValido('12.175.094/0001-19'), isTrue);
+      expect(UtilBrasilFields.isCNPJValido('12.175.094/0001-18'), isFalse);
+      expect(UtilBrasilFields.isCNPJValido(null), isFalse);
+      expect(
+        UtilBrasilFields.isCNPJValido(
+          '14.890.N2J/709Y-05',
+          isAlphanumeric: true,
+        ),
+        isTrue,
+      );
+      expect(
+        UtilBrasilFields.isCNPJValido('14.890.N2J/709Y-05'),
+        isFalse,
+      );
+    });
+
+    test('NUP cobre valores válidos, inválidos e nulos', () {
+      expect(
+        UtilBrasilFields.isNUPValido('0601064-21.2022.6.00.0000'),
+        isTrue,
+      );
+      expect(
+        UtilBrasilFields.isNUPValido('0601064-22.2022.6.00.0000'),
+        isFalse,
+      );
+      expect(UtilBrasilFields.isNUPValido(null), isFalse);
+    });
   });
 
   group('Obter Real', () {
@@ -441,30 +592,95 @@ void main() {
     }, throwsArgumentError);
   });
 
-  group('Gerar CNPJ', () {
-    test('formatado', () {
-      final cnpj = UtilBrasilFields.gerarCNPJ(useFormat: true);
-      expect(cnpj, matches(RegExp(r'\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2}')));
+  group('Geradores públicos', () {
+    test('exemplos de CPF usam parâmetros nomeados e defaults crus', () {
+      final defaultCpf = UtilBrasilFields.gerarCPF();
+      final explicitRaw = UtilBrasilFields.gerarCPF(
+        useFormat: false,
+        random: RecordingRandom(<int>[9, 0, 1, 2, 3, 4, 5, 6, 7]),
+      );
+      final formatted = UtilBrasilFields.gerarCPF(
+        useFormat: true,
+        random: RecordingRandom(<int>[9, 0, 1, 2, 3, 4, 5, 6, 7]),
+      );
+      final expectedRaw = cpfWithIndependentCheckDigits('901234567');
+
+      expect(defaultCpf, matches(RegExp(r'^\d{11}$')));
+      expect(explicitRaw, expectedRaw);
+      expect(formatted, CPFValidator.format(expectedRaw));
+      expect(formatted, matches(RegExp(r'^\d{3}\.\d{3}\.\d{3}-\d{2}$')));
     });
 
-    test('não formatado', () {
-      final cnpj = UtilBrasilFields.gerarCNPJ(useFormat: false);
-      expect(cnpj, matches(RegExp(r'\d{14}')));
+    test('exemplos de CNPJ usam parâmetros nomeados e defaults crus', () {
+      final defaultCnpj = UtilBrasilFields.gerarCNPJ();
+      final explicitRaw = UtilBrasilFields.gerarCNPJ(
+        useFormat: false,
+        random: RecordingRandom(<int>[9, 0, 1, 2, 3, 4, 5, 6, 7, 8]),
+      );
+      final formatted = UtilBrasilFields.gerarCNPJ(
+        useFormat: true,
+        random: RecordingRandom(<int>[9, 0, 1, 2, 3, 4, 5, 6, 7, 8]),
+      );
+      final expectedRaw = cnpjWithIndependentCheckDigits('901234567890');
+
+      expect(defaultCnpj, matches(RegExp(r'^\d{14}$')));
+      expect(explicitRaw, expectedRaw);
+      expect(formatted, CNPJValidator.format(expectedRaw));
+      expect(
+        formatted,
+        matches(RegExp(r'^\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2}$')),
+      );
     });
 
-    test('formatado alfanumérico', () {
-      final cnpj = UtilBrasilFields.gerarCNPJ(
+    test('CNPJ alfanumérico usa a rota solicitada nos dois formatos', () {
+      final raw = UtilBrasilFields.gerarCNPJ(
+        isAlphanumeric: true,
+        random: RecordingRandom(<int>[
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+        ]),
+      );
+      final formatted = UtilBrasilFields.gerarCNPJ(
         useFormat: true,
         isAlphanumeric: true,
+        random: RecordingRandom(<int>[
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+        ]),
       );
-      expect(cnpj, matches(RegExp(r'\w{2}\.\w{3}\.\w{3}/\w{4}-\w{2}')));
-    });
+      final expectedRaw = cnpjWithIndependentCheckDigits('ABCDEFGHIJKL');
 
-    test('não formatado alfanumérico', () {
-      final cnpj = UtilBrasilFields.gerarCNPJ(
-        useFormat: false,
+      expect(raw, expectedRaw);
+      expect(raw, matches(RegExp(r'^[A-Z0-9]{12}[0-9]{2}$')));
+      expect(formatted, CnpjAlfanumericoValidator.format(expectedRaw));
+      expect(
+        formatted,
+        matches(
+          RegExp(
+            r'^[A-Z0-9]{2}\.[A-Z0-9]{3}\.[A-Z0-9]{3}/[A-Z0-9]{4}-[0-9]{2}$',
+          ),
+        ),
       );
-      expect(cnpj, matches(RegExp(r'\w{14}')));
     });
   });
 }

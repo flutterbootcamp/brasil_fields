@@ -11,6 +11,8 @@ class RealInputFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
+    if (!newValue.composing.isCollapsed) return newValue;
+
     // verifica o tamanho máximo do campo
     if (newValue.text.length > 12) return oldValue;
 

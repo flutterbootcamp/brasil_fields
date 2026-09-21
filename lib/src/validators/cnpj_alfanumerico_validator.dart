@@ -17,6 +17,8 @@ class CnpjAlfanumericoValidator {
     '99999999999999',
   ];
 
+  static const int _maxGenerationAttempts = 100;
+
   /// All algarisms and uppercase letters: ['0', '1', '2', ..., 'X', 'Y', 'Z']
   static final List<String> validDigits =
       List.generate(10, (index) => '$index') +
@@ -77,6 +79,10 @@ class CnpjAlfanumericoValidator {
       return false;
     }
 
+    if (!RegExp(r'^[A-Z0-9]{12}[0-9]{2}$').hasMatch(cnpj)) {
+      return false;
+    }
+
     // cnpj não pode estar na lista de bloqueio
     if (blockList.contains(cnpj)) {
       return false;
@@ -90,16 +96,27 @@ class CnpjAlfanumericoValidator {
         cnpj.substring(cnpj.length - 2);
   }
 
-  static String generate({bool useFormat = false}) {
-    var cnpj = '';
+  static String generate({bool useFormat = false, Random? random}) {
+    final generator = random ?? Random();
 
-    for (var i = 0; i < 12; i += 1) {
-      cnpj += validDigits[Random().nextInt(validDigits.length)];
+    for (var attempt = 0; attempt < _maxGenerationAttempts; attempt++) {
+      var cnpj = '';
+
+      for (var i = 0; i < 12; i += 1) {
+        cnpj += validDigits[generator.nextInt(validDigits.length)];
+      }
+
+      cnpj += _verifierDigit(cnpj).toString();
+      cnpj += _verifierDigit(cnpj).toString();
+
+      if (!blockList.contains(cnpj)) {
+        return useFormat ? format(cnpj) : cnpj;
+      }
     }
 
-    cnpj += _verifierDigit(cnpj).toString();
-    cnpj += _verifierDigit(cnpj).toString();
-
-    return (useFormat ? format(cnpj) : cnpj);
+    throw StateError(
+      'Não foi possível gerar um CNPJ alfanumérico fora da lista de bloqueio '
+      'após $_maxGenerationAttempts tentativas.',
+    );
   }
 }

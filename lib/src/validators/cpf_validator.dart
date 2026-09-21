@@ -19,6 +19,7 @@ class CPFValidator {
   ];
 
   static const stipRegex = r'[^\d]';
+  static const int _maxGenerationAttempts = 100;
 
   // calcula o Dígito Verificador (DV)
   // mais informações em [wikipedia (pt-br)](https://pt.wikipedia.org/wiki/D%C3%ADgito_verificador)
@@ -69,6 +70,10 @@ class CPFValidator {
       return false;
     }
 
+    if (!RegExp(r'^\d{11}$').hasMatch(cpf)) {
+      return false;
+    }
+
     // CPF não pode estar na lista de bloqueio
     if (blockList.contains(cpf)) {
       return false;
@@ -82,16 +87,27 @@ class CPFValidator {
         cpf.substring(cpf.length - 2);
   }
 
-  static String generate({bool useFormat = false}) {
-    var numbers = '';
+  static String generate({bool useFormat = false, Random? random}) {
+    final generator = random ?? Random();
 
-    for (var i = 0; i < 9; i += 1) {
-      numbers += Random().nextInt(9).toString();
+    for (var attempt = 0; attempt < _maxGenerationAttempts; attempt++) {
+      var numbers = '';
+
+      for (var i = 0; i < 9; i += 1) {
+        numbers += generator.nextInt(10).toString();
+      }
+
+      numbers += _verifierDigit(numbers).toString();
+      numbers += _verifierDigit(numbers).toString();
+
+      if (!blockList.contains(numbers)) {
+        return useFormat ? format(numbers) : numbers;
+      }
     }
 
-    numbers += _verifierDigit(numbers).toString();
-    numbers += _verifierDigit(numbers).toString();
-
-    return (useFormat ? format(numbers) : numbers);
+    throw StateError(
+      'Não foi possível gerar um CPF fora da lista de bloqueio após '
+      '$_maxGenerationAttempts tentativas.',
+    );
   }
 }

@@ -14,6 +14,10 @@ class NUPValidator {
       return false;
     }
 
+    if (!RegExp(r'^\d{20}$').hasMatch(nup)) {
+      return false;
+    }
+
     final checkDigit = _checkDigit(nup);
     return nup.substring(7, 9) == checkDigit.toString();
   }

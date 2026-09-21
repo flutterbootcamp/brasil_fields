@@ -22,6 +22,40 @@ void main() {
     );
   });
 
+  test('NUP validator rejects malformed raw values of the exact length', () {
+    const malformed = <String>[
+      '0601064212022X000000',
+      '0601064A120226000000',
+      '0601064212022600000A',
+      '06010642120226000.00',
+    ];
+
+    for (final nup in malformed) {
+      expect(
+        NUPValidator.isValid(nup, stripBeforeValidation: false),
+        isFalse,
+        reason: nup,
+      );
+    }
+
+    expect(
+      NUPValidator.isValid(
+        '0601064-21.2022.6.00.0000',
+        stripBeforeValidation: false,
+      ),
+      isFalse,
+    );
+    expect(
+      NUPValidator.isValid(
+        '06010642120226000000',
+        stripBeforeValidation: false,
+      ),
+      isTrue,
+    );
+    expect(NUPValidator.isValid('0601064-21.2022.6.00.0000'), isTrue);
+    expect(NUPValidator.isValid('0601064-22.2022.6.00.0000'), isFalse);
+  });
+
   test('Test NUP formatter', () {
     expect(
       NUPValidator.format('06010642120226000000'),

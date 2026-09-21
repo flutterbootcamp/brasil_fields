@@ -15,6 +15,8 @@ class ValidadeCartaoInputFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
+    if (!newValue.composing.isCollapsed) return newValue;
+
     final newValueLength = newValue.text.length;
 
     if (newValueLength > maxLength) return oldValue;

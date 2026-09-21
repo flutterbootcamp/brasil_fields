@@ -1,29 +1,44 @@
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import 'formatter_test_harness.dart';
+
 void main() {
-  evaluate(String oldValue, String newValue) {
-    return TemperaturaInputFormatter()
-        .formatEditUpdate(
-          TextEditingValue(text: oldValue),
-          TextEditingValue(text: newValue),
-        )
-        .text;
-  }
+  final formatters = numericFormatterChain(TemperaturaInputFormatter());
+  TextEditingValue evaluate(
+          TextEditingValue oldValue, TextEditingValue newValue) =>
+      applyFormatterChain(formatters, oldValue, newValue);
 
   group('description', () {
-    test('padrao', () => expect(evaluate('', '246'), '24,6'));
-    test('limite 3 digitos', () => expect(evaluate('', '9246'), ''));
+    test(
+        'padrao',
+        () => expect(
+            evaluate(textEditingValue(''), textEditingValue('246')).text,
+            '24,6'));
+    test('limite 3 digitos', () {
+      final oldValue = textEditingValue('24,6');
+      expect(evaluate(oldValue, textEditingValue('24,67')), oldValue);
+    });
     test('backspace', () {
-      expect(evaluate('', '24'), '2,4');
-      expect(evaluate('', '2'), '2');
-      expect(evaluate('', ''), '');
+      var state = textEditingValue('24,6');
+      for (final entry in {'24': '2,4', '2': '2', '': ''}.entries) {
+        state = evaluate(state, textEditingValue(entry.key));
+        expect(state.text, entry.value);
+      }
     });
 
     test('digitacao', () {
-      expect(evaluate('', '2'), '2');
-      expect(evaluate('', '24'), '2,4');
-      expect(evaluate('', '246'), '24,6');
+      var state = textEditingValue('');
+      for (final entry in {'2': '2', '24': '2,4', '246': '24,6'}.entries) {
+        state = evaluate(state, textEditingValue(entry.key));
+        expect(state.text, entry.value);
+      }
+    });
+    test('composicao ativa permanece inalterada', () {
+      final value =
+          textEditingValue('24', composing: const TextRange(start: 0, end: 2));
+      expectActiveComposingIsUnchanged(
+          formatters, textEditingValue('2'), value);
     });
   });
 }
