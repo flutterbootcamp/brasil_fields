@@ -1,52 +1,49 @@
 import 'package:intl/intl.dart';
 
 extension BrasilFieldsDouble on double {
-  /// Converte um valor double para centavos com o símbolo de real brasileiro.
+  /// Converte o valor em reais para centavos com o prefixo `R$ `.
   ///
-  /// Valores com frações de centavo são arredondados para o centavo mais
-  /// próximo.
+  /// Arredonda frações para o centavo mais próximo.
   String get obterCentavos =>
       '${this < 0 ? '-' : ''}R\$ ${(abs() * 100).round()}';
 
-  /// Converte um valor double para centavos sem o símbolo de real brasileiro.
+  /// Converte o valor em reais para centavos sem o prefixo `R$ `.
   ///
-  /// Valores com frações de centavo são arredondados para o centavo mais
-  /// próximo.
+  /// Arredonda frações para o centavo mais próximo.
   String get obterCentavosSemSimbolo => obterCentavos.replaceAll('R\$ ', '');
 
-  /// Converte um valor double para real com o símbolo de real brasileiro
+  /// Formata o valor em reais com o símbolo `R$`.
   ///
-  /// [fracaoDigitos] define a quantidade de casas após a vírgula
+  /// [fracaoDigitos] define o número de casas decimais.
   String obterReal([int fracaoDigitos = 2]) => NumberFormat.currency(
           locale: 'pt_BR', decimalDigits: fracaoDigitos, symbol: 'R\$')
       .format(this);
 
-  /// Converte um valor double para real com o símbolo de real brasileiro
+  /// Formata o valor em reais sem o símbolo `R$`.
   ///
-  /// [fracaoDigitos] define a quantidade de casas após a vírgula
+  /// [fracaoDigitos] define o número de casas decimais.
   String obterRealSemSimbolo([int fracaoDigitos = 2]) =>
       obterReal(fracaoDigitos).replaceAll('R\$ ', '');
 }
 
 extension BrasilFieldsInt on int {
-  /// Converte um valor inteiro para centavos com o símbolo de real brasileiro
+  /// Converte o valor inteiro em reais para centavos com o prefixo `R$ `.
   String get obterCentavos =>
       '${this < 0 ? '-' : ''}R\$ ${(abs() * 100).toInt().toString()}';
 
-  /// Converte um valor inteiro para centavos sem o símbolo de real brasileiro
-  ///
+  /// Converte o valor inteiro em reais para centavos sem o prefixo `R$ `.
   String get obterCentavosSemSimbolo => obterCentavos.replaceAll('R\$ ', '');
 
-  /// Converte um valor inteiro para real
+  /// Formata o valor inteiro em reais com o símbolo `R$`.
   ///
-  /// [fracaoDigitos] define a quantidade de casas após a vírgula
+  /// [fracaoDigitos] define o número de casas decimais.
   String obterReal([int fracaoDigitos = 2]) => NumberFormat.currency(
           locale: 'pt_BR', decimalDigits: fracaoDigitos, symbol: 'R\$')
       .format(this);
 
-  /// Converte um valor inteiro para real com o símbolo de real brasileiro
+  /// Formata o valor inteiro em reais sem o símbolo `R$`.
   ///
-  /// [fracaoDigitos] define a quantidade de casas após a vírgula
+  /// [fracaoDigitos] define o número de casas decimais.
   String obterRealSemSimbolo([int fracaoDigitos = 2]) =>
       obterReal(fracaoDigitos).replaceAll('R\$ ', '');
 }

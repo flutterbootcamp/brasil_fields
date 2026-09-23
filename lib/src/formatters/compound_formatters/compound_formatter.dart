@@ -1,11 +1,11 @@
 import '../../interfaces/compoundable_formatter.dart';
 import 'package:flutter/services.dart';
 
-/// Combina dois ou mais instâncias de [Formatter] de forma que
-/// seja possível interpolar de um para outro.
+/// Usa o primeiro formatador cujo limite comporte a entrada.
+///
+/// Se nenhum comportar a entrada, usa o primeiro da lista.
 class CompoundFormatter extends TextInputFormatter {
-  /// Guarda uma lista de [CompoundableFormatter] que são encadeados
-  /// na mesma ordem em que estão posicionados na lista.
+  /// Formatadores consultados na ordem em que foram informados.
   final List<CompoundableFormatter> _formatters;
 
   CompoundFormatter(this._formatters)

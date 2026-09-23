@@ -1,13 +1,12 @@
 import 'package:flutter/services.dart';
 
-/// Formata o valor do campo com a máscara `000 1111 2222 3333`.
+/// Formata o valor do campo com a máscara de CNS `XXX XXXX XXXX XXXX`.
 class CNSInputFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
     if (!newValue.composing.isCollapsed) return newValue;
 
-    // verifica o tamanho máximo do campo
     if (newValue.text.length > 15) return oldValue;
 
     var posicaoCursor = newValue.selection.end;

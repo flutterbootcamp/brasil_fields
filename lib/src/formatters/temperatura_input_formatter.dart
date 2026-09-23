@@ -1,13 +1,13 @@
 import 'package:flutter/services.dart';
 
-/// Formata o valor do campo com a máscara °C (ex: `10,8`).
+/// Formata uma temperatura em graus Celsius com uma casa decimal
+/// (por exemplo, `10,8`).
 class TemperaturaInputFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
     if (!newValue.composing.isCollapsed) return newValue;
 
-    // verifica o tamanho máximo do campo
     if (newValue.text.length > 3) return oldValue;
 
     var posicaoCursor = newValue.selection.end;

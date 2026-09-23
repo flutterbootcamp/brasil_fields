@@ -1,13 +1,12 @@
 import 'package:flutter/services.dart';
 
-/// Formata o valor do campo com a máscara de NCM: `XXXX.XX.XX`.
+/// Formata o valor do campo com a máscara de NCM `XXXX.XX.XX`.
 class NCMInputFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
     if (!newValue.composing.isCollapsed) return newValue;
 
-    // verifica o tamanho máximo do campo
     if (newValue.text.length > 8) return oldValue;
 
     var posicaoCursor = newValue.selection.end;

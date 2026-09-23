@@ -1,13 +1,12 @@
 import 'package:flutter/services.dart';
 
-/// Formata o valor do campo com a máscara de `000.000`.
+/// Formata uma quilometragem com separador de milhares (por exemplo, `123.456`).
 class KmInputFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
     if (!newValue.composing.isCollapsed) return newValue;
 
-    // verifica o tamanho máximo do campo
     if (newValue.text.length > 6) return oldValue;
 
     var posicaoCursor = newValue.selection.end;

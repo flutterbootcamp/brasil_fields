@@ -2,7 +2,7 @@ import 'package:flutter/services.dart';
 
 /// Formata o valor do campo com a máscara de CEP `XX.XXX-XXX`.
 ///
-/// `ponto` indica se o formato do CEP deve utilizar `.` ou não.
+/// Quando [ponto] é `false`, usa a máscara `XXXXX-XXX`.
 class CepInputFormatter extends TextInputFormatter {
   final bool ponto;
 
@@ -13,7 +13,6 @@ class CepInputFormatter extends TextInputFormatter {
       TextEditingValue oldValue, TextEditingValue newValue) {
     if (!newValue.composing.isCollapsed) return newValue;
 
-    // verifica o tamanho máximo do campo
     if (newValue.text.length > 8) return oldValue;
 
     final valorFinal = StringBuffer();

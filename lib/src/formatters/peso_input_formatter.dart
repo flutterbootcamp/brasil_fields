@@ -1,13 +1,12 @@
 import 'package:flutter/services.dart';
 
-/// Formata o valor do campo com a máscara kg,g (ex: `103,8`).
+/// Formata um peso em quilogramas com uma casa decimal (por exemplo, `103,8`).
 class PesoInputFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
     if (!newValue.composing.isCollapsed) return newValue;
 
-    // verifica o tamanho máximo do campo
     if (newValue.text.length > 4) return oldValue;
 
     var posicaoCursor = newValue.selection.end;

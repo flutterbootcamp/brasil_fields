@@ -10,24 +10,24 @@ void main() {
     expect(PisPasepValidator.isValid('120.65432.10-3'), true);
     expect(PisPasepValidator.isValid('12345678900'), true);
 
-    // dígito verificador incorreto
+    // Dígito verificador incorreto.
     expect(PisPasepValidator.isValid('12012345673'), false);
     expect(PisPasepValidator.isValid('120.12345.67-3'), false);
 
-    // tamanho inválido
+    // Tamanho inválido.
     expect(PisPasepValidator.isValid('1201234567'), false);
     expect(PisPasepValidator.isValid('120123456722'), false);
 
-    // valores vazios ou nulos
+    // Valores vazios ou nulos.
     expect(PisPasepValidator.isValid(null), false);
     expect(PisPasepValidator.isValid(''), false);
 
-    // dígitos repetidos
+    // Dígitos repetidos.
     expect(PisPasepValidator.isValid('00000000000'), false);
     expect(PisPasepValidator.isValid('11111111111'), false);
     expect(PisPasepValidator.isValid('99999999999'), false);
 
-    // sem remover a máscara antes de validar
+    // Validação sem remover a máscara.
     expect(
       PisPasepValidator.isValid('120.12345.67-2', stripBeforeValidation: false),
       false,

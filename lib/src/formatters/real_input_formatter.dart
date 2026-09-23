@@ -2,7 +2,9 @@ import 'package:flutter/services.dart';
 
 import 'adiciona_separador.dart';
 
-/// Formata o valor do campo com a máscara `999.999.999.999`.
+/// Formata um valor inteiro com separadores de milhares.
+///
+/// Quando [moeda] é `true`, adiciona o prefixo `R$ `.
 class RealInputFormatter extends TextInputFormatter {
   RealInputFormatter({this.moeda = false});
 
@@ -13,7 +15,6 @@ class RealInputFormatter extends TextInputFormatter {
       TextEditingValue oldValue, TextEditingValue newValue) {
     if (!newValue.composing.isCollapsed) return newValue;
 
-    // verifica o tamanho máximo do campo
     if (newValue.text.length > 12) return oldValue;
 
     if (newValue.text.isEmpty) return newValue;

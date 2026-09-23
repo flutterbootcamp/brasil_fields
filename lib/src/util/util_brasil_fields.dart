@@ -6,7 +6,7 @@ import '../validators/validators.dart';
 class UtilBrasilFields {
   static final RegExp _simboloMoeda = RegExp(r'R\$[ \u00A0]?');
 
-  /// Remover caracteres especiais (ex: `/`, `-`, `.`)
+  /// Remove caracteres que não sejam letras ASCII ou dígitos.
   static String removeCaracteres(String valor) {
     if (valor.isEmpty) {
       throw ArgumentError.value(valor, 'valor', 'não pode estar vazio');
@@ -14,7 +14,7 @@ class UtilBrasilFields {
     return valor.replaceAll(RegExp('[^0-9a-zA-Z]+'), '');
   }
 
-  /// Remover o símbolo `R$`
+  /// Remove o símbolo `R$` e o espaço opcional após ele.
   static String removerSimboloMoeda(String valor) {
     if (valor.isEmpty) {
       throw ArgumentError.value(valor, 'valor', 'não pode estar vazio');
@@ -22,7 +22,9 @@ class UtilBrasilFields {
     return valor.replaceAll(_simboloMoeda, '');
   }
 
-  /// Converter o valor de uma String com `R$`
+  /// Converte um valor monetário brasileiro em [double].
+  ///
+  /// Aceita o símbolo `R$` e retorna `0` se o valor não puder ser convertido.
   static double converterMoedaParaDouble(String valor) {
     if (valor.isEmpty) {
       throw ArgumentError.value(valor, 'valor', 'não pode estar vazio');
@@ -37,9 +39,9 @@ class UtilBrasilFields {
     return value ?? 0;
   }
 
-  /// Retorna o CEP informado, utilizando a máscara: `XX.XXX-XXX`
+  /// Formata um CEP de oito caracteres como `XX.XXX-XXX`.
   ///
-  /// Para remover o `.`, informe `ponto=false`.
+  /// Com [ponto] igual a `false`, retorna `XXXXX-XXX`.
   static String obterCep(String cep, {bool ponto = true}) {
     if (cep.length != 8) {
       throw ArgumentError.value(
@@ -54,11 +56,12 @@ class UtilBrasilFields {
         : '${cep.substring(0, 2)}${cep.substring(2, 5)}-${cep.substring(5, 8)}';
   }
 
-  /// Retorna o telefone informado, utilizando a máscara: `(00) 11111-2222`
+  /// Formata um telefone fixo ou celular, com ou sem DDD.
   ///
-  /// Ajusta-se automaticamente para celular e fixo.
-  ///
-  /// Para retornar apenas os números, informe `mascara=false`.
+  /// Com [mascara] igual a `true`, aceita 10 ou 11 caracteres quando [ddd]
+  /// é `true`, ou 8 ou 9 caracteres quando [ddd] é `false`.
+  /// Com [mascara] igual a `false`, mantém apenas letras ASCII e dígitos;
+  /// nesse caso, [ddd] é ignorado e a entrada aceita até 15 caracteres.
   static String obterTelefone(
     String telefone, {
     bool ddd = true,
@@ -100,7 +103,8 @@ class UtilBrasilFields {
     }
   }
 
-  /// Retorna o DDD do telefone informado.
+  /// Extrai o DDD de um telefone no formato `(XX) XXXX-XXXX` ou
+  /// `(XX) XXXXX-XXXX`.
   static String obterDDD(String telefone) {
     if (telefone.length != 14 && telefone.length != 15) {
       throw ArgumentError.value(
@@ -113,44 +117,35 @@ class UtilBrasilFields {
     return telefone.substring(1, 3);
   }
 
-  /// Faz a validação do CPF retornando `[true]` ou `[false]`.
+  /// Retorna `true` se o CPF for válido.
   static bool isCPFValido(String? cpf) => CPFValidator.isValid(cpf);
 
-  /// Faz a validação do CNPJ retornando `[true]` ou `[false]`
+  /// Retorna `true` se o CNPJ for válido.
   ///
-  /// Considera o novo padrão alfanumérico baseado no parâmetro [isAlphanumeric]
-  ///
-  /// [isAlphanumeric] por padrão é `[false]`
+  /// Com [isAlphanumeric] igual a `true`, valida o padrão alfanumérico.
   static bool isCNPJValido(String? cnpj, {bool isAlphanumeric = false}) =>
       isAlphanumeric
           ? CnpjAlfanumericoValidator.isValid(cnpj)
           : CNPJValidator.isValid(cnpj);
 
-  /// Faz a validação do NUP retornando `[true]` ou `[false]`.
+  /// Retorna `true` se o NUP for válido.
   static bool isNUPValido(String? nup) => NUPValidator.isValid(nup);
 
-  /// Faz a validação do PIS/PASEP (NIT/NIS) retornando `[true]` ou `[false]`.
+  /// Retorna `true` se o PIS/PASEP (NIT/NIS) for válido.
   static bool isPisPasepValido(String? pis) => PisPasepValidator.isValid(pis);
 
-  /// Gera um CPF aleatório
+  /// Gera um CPF válido aleatório.
   ///
-  /// Formatado ou não formatado, baseado no parâmetro `useFormat`:
-  ///
-  /// `true`: CPF gerado terá o formato `XXX.XXX.XXX-XX`
-  ///
-  /// `false`: CPF gerado terá o formato `XXXXXXXXXXX`
+  /// Com [useFormat] igual a `true`, retorna `XXX.XXX.XXX-XX`;
+  /// caso contrário, retorna apenas os 11 dígitos.
   static String gerarCPF({bool useFormat = false, Random? random}) =>
       CPFValidator.generate(useFormat: useFormat, random: random);
 
-  /// Gera um CNPJ aleatório
+  /// Gera um CNPJ válido aleatório.
   ///
-  /// Formatado ou não formatado, baseado no parâmetro [useFormat]:
-  /// - `true`: CNPJ gerado terá o formato `XX.YYY.ZZZ/NNNN-SS`
-  /// - `false`: CNPJ gerado terá o formato `XXYYYZZZNNNNSS`
-  ///
-  /// Considera novo formato alfanumérico, baseado no parâmetro [isAlphanumeric]:
-  /// - `true`: CNPJ gerado terá letras e números
-  /// - `false`: CNPJ gerado terá somente números
+  /// Com [useFormat] igual a `true`, retorna `XX.XXX.XXX/XXXX-XX`;
+  /// caso contrário, retorna os 14 caracteres sem pontuação.
+  /// Com [isAlphanumeric] igual a `true`, usa o padrão alfanumérico.
   static String gerarCNPJ({
     bool useFormat = false,
     bool isAlphanumeric = false,
@@ -163,17 +158,14 @@ class UtilBrasilFields {
             )
           : CNPJValidator.generate(useFormat: useFormat, random: random);
 
-  /// Gera um PIS/PASEP (NIT/NIS) aleatório
+  /// Gera um PIS/PASEP (NIT/NIS) válido aleatório.
   ///
-  /// Formatado ou não formatado, baseado no parâmetro `useFormat`:
-  ///
-  /// `true`: PIS/PASEP gerado terá o formato `XXX.XXXXX.XX-X`
-  ///
-  /// `false`: PIS/PASEP gerado terá o formato `XXXXXXXXXXX`
+  /// Com [useFormat] igual a `true`, retorna `XXX.XXXXX.XX-X`;
+  /// caso contrário, retorna apenas os 11 dígitos.
   static String gerarPisPasep({bool useFormat = false, Random? random}) =>
       PisPasepValidator.generate(useFormat: useFormat, random: random);
 
-  /// Retorna o CPF utilizando a máscara: `XXX.YYY.ZZZ-NN`
+  /// Formata um CPF válido como `XXX.XXX.XXX-XX`.
   static String obterCpf(String cpf) {
     if (!isCPFValido(cpf)) {
       throw ArgumentError.value(cpf, 'cpf', 'CPF inválido!');
@@ -181,7 +173,8 @@ class UtilBrasilFields {
     return CPFValidator.format(cpf);
   }
 
-  /// Retorna o CNPJ informado, utilizando a máscara: `XX.YYY.ZZZ/NNNN-SS`
+  /// Formata um CNPJ válido, inclusive alfanumérico, como
+  /// `XX.XXX.XXX/XXXX-XX`.
   static String obterCnpj(String cnpj) {
     if (!isCNPJValido(cnpj, isAlphanumeric: true)) {
       throw ArgumentError.value(cnpj, 'cnpj', 'CNPJ inválido!');
@@ -189,13 +182,10 @@ class UtilBrasilFields {
     return CnpjAlfanumericoValidator.format(cnpj);
   }
 
-  /// Retorna os dígitos da inscrição do [cnpj] informado.
+  /// Retorna os oito primeiros caracteres da inscrição do [cnpj] válido.
   ///
-  /// Formatado ou não formatado, baseado no parâmetro `useFormat`:
-  ///
-  /// `true`: inscrição terá o formato `XX.YYY.ZZZ`
-  ///
-  /// `false`: inscrição terá o formato `XXYYYZZZ`
+  /// Com [useFormat] igual a `true`, retorna `XX.XXX.XXX`;
+  /// caso contrário, retorna os caracteres sem pontuação.
   static String obterCnpjInscricao(String cnpj, {bool useFormat = false}) {
     if (!isCNPJValido(cnpj, isAlphanumeric: true)) {
       throw ArgumentError.value(cnpj, 'cnpj', 'CNPJ inválido!');
@@ -205,10 +195,10 @@ class UtilBrasilFields {
         : CnpjAlfanumericoValidator.strip(cnpj).substring(0, 8);
   }
 
-  /// Retorna os dígitos da ordem do [cnpj] informado.
+  /// Retorna os quatro caracteres da ordem do [cnpj] válido.
   ///
-  /// A ordem do CNPJ são os 4 dígitos após a barra. Essa parte representa se o
-  /// estabelecimento é matriz ou filial (0001 = matriz, 0002 = filial).
+  /// A ordem aparece após a barra no CNPJ formatado e identifica o
+  /// estabelecimento (por exemplo, `0001` para a matriz).
   static String obterCnpjOrdem(String cnpj) {
     if (!isCNPJValido(cnpj, isAlphanumeric: true)) {
       throw ArgumentError.value(cnpj, 'cnpj', 'CNPJ inválido!');
@@ -216,9 +206,7 @@ class UtilBrasilFields {
     return CnpjAlfanumericoValidator.strip(cnpj).substring(8, 12);
   }
 
-  /// Retorna os dígitos verificadores do [cnpj] informado.
-  ///
-  /// Os dígitos verificadores são os dois últimos números do CNPJ.
+  /// Retorna os dois dígitos verificadores do [cnpj] válido.
   static String obterCnpjDiv(String cnpj) {
     if (!isCNPJValido(cnpj, isAlphanumeric: true)) {
       throw ArgumentError.value(cnpj, 'cnpj', 'CNPJ inválido!');
@@ -226,7 +214,7 @@ class UtilBrasilFields {
     return CnpjAlfanumericoValidator.strip(cnpj).substring(12);
   }
 
-  /// Retorna o PIS/PASEP informado, utilizando a máscara: `XXX.XXXXX.XX-X`
+  /// Formata um PIS/PASEP válido como `XXX.XXXXX.XX-X`.
   static String obterPisPasep(String pis) {
     if (!isPisPasepValido(pis)) {
       throw ArgumentError.value(pis, 'pis', 'PIS/PASEP inválido!');
@@ -234,7 +222,7 @@ class UtilBrasilFields {
     return PisPasepValidator.format(pis);
   }
 
-  /// Retorna o NUP informado, utilizando a máscara: `NNNNNNN-DD.AAAA.J.TR.OOOO`
+  /// Formata um NUP válido como `NNNNNNN-DD.AAAA.J.TR.OOOO`.
   static String obterNUP(String nup) {
     if (!isNUPValido(nup)) {
       throw ArgumentError.value(nup, 'nup', 'Número de Processo inválido!');
@@ -242,7 +230,9 @@ class UtilBrasilFields {
     return NUPValidator.format(nup);
   }
 
-  /// Retorna o número real informado, utilizando a máscara: `R$ 50.000,00` ou `50.000,00`
+  /// Formata [value] com separadores brasileiros e [decimal] casas decimais.
+  ///
+  /// Inclui `R$ ` quando [moeda] é `true`.
   static String obterReal(double value, {bool moeda = true, int decimal = 2}) {
     bool isNegative = false;
 
@@ -268,7 +258,7 @@ class UtilBrasilFields {
     }
   }
 
-  /// Retorna o KM informado, utilizando a máscara: `XXX.XXX`
+  /// Formata [km] com separador de milhares; aceita valores até `999999`.
   static String obterKM(int km) {
     if (km > 999999) {
       throw ArgumentError.value(

@@ -1,9 +1,9 @@
 import 'package:flutter/services.dart';
 
-/// Formata o valor do campo com a máscara de PIS/PASEP/NIT/NIS:
+/// Formata o valor do campo com a máscara de PIS/PASEP/NIT/NIS
 /// `XXX.XXXXX.XX-X`.
 class PisPasepInputFormatter extends TextInputFormatter {
-  /// Quantidade máxima de dígitos aceita pelo formatter.
+  /// Número máximo de caracteres aceitos pelo formatador.
   int get maxLength => 11;
 
   @override

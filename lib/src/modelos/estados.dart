@@ -1,8 +1,6 @@
-/// Possui a lista com todos os estados do Brasil.
-///
-/// `listaEstados` lista com todos os estados.
-/// `listaEstadosSigla` lista com a sigla de todos os estados.
+/// Reúne os nomes e as siglas das 27 unidades federativas do Brasil.
 class Estados {
+  /// Nomes das unidades federativas.
   static const List<String> listaEstados = [
     'Acre',
     'Alagoas',
@@ -33,6 +31,7 @@ class Estados {
     'Tocantins',
   ];
 
+  /// Siglas das unidades federativas, na mesma ordem de [listaEstados].
   static const List<String> listaEstadosSigla = [
     'AC',
     'AL',

@@ -1,14 +1,15 @@
 import 'package:flutter/services.dart';
 
-/// Formata o valor do campo com a máscara de NUP (Numeração Única de Processos): `XXXXXXX-XX.XXXX.X.XX.XXXX`.
-/// Referência: [Documentação CNJ](https://www.cnj.jus.br/programas-e-acoes/numeracao-unica/).
+/// Formata o valor do campo com a máscara de NUP
+/// `XXXXXXX-XX.XXXX.X.XX.XXXX`.
+///
+/// Consulte a [documentação do CNJ](https://www.cnj.jus.br/programas-e-acoes/numeracao-unica/).
 class NUPInputFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
     if (!newValue.composing.isCollapsed) return newValue;
 
-    // verifica o tamanho máximo do campo
     if (newValue.text.length > 20) return oldValue;
 
     var posicaoCursor = newValue.selection.end;

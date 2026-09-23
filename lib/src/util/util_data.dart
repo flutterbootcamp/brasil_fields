@@ -1,7 +1,7 @@
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 
-/// Classe para manipular datas.
+/// Utilitários para formatar e extrair partes de datas.
 class UtilData {
   static bool _initialized = false;
 
@@ -12,12 +12,14 @@ class UtilData {
     }
   }
 
-  /// Validar se uma data está no formato brasileiro `DDMMAAAA`.
+  /// Retorna `true` se [data] contiver exatamente oito dígitos.
+  ///
+  /// Ignora os demais caracteres; não verifica se a data existe.
   static bool validarData(String data) {
     return removeCaracteres(data).length == 8;
   }
 
-  /// Remove caracteres não numéricos da string informada.
+  /// Retorna apenas os dígitos de [data].
   static String removeCaracteres(String data) {
     final novaData = StringBuffer();
 
@@ -31,37 +33,39 @@ class UtilData {
     return novaData.toString();
   }
 
-  /// Retorna a data informada no formato `DD/MM/AAAA`
+  /// Formata [dateTime] como `DD/MM/AAAA`.
   static String obterDataDDMMAAAA(DateTime dateTime) {
     _ensureInitialized();
     return DateFormat.yMd('pt_BR').format(dateTime);
   }
 
-  /// Retorna a data informada no formato `MM/AAAA`
+  /// Formata [dateTime] como `MM/AAAA`.
   static String obterDataMMAAAA(DateTime dateTime) {
     _ensureInitialized();
     return DateFormat.yM('pt_BR').format(dateTime);
   }
 
-  /// Retorna a data informada no formato `DD/MM`
+  /// Formata [dateTime] como `DD/MM`.
   static String obterDataDDMM(DateTime dateTime) {
     _ensureInitialized();
     return DateFormat.Md('pt_BR').format(dateTime);
   }
 
-  /// Retorna a hora informada no formato `hh:mm:ss`
+  /// Formata [dateTime] como `HH:mm:ss` no horário de 24 horas.
   static String obterHoraHHMMSS(DateTime dateTime) {
     _ensureInitialized();
     return DateFormat.Hms('pt_BR').format(dateTime);
   }
 
-  /// Retorna a hora informada no formato `hh:mm`
+  /// Formata [dateTime] como `HH:mm` no horário de 24 horas.
   static String obterHoraHHMM(DateTime dateTime) {
     _ensureInitialized();
     return DateFormat.Hm('pt_BR').format(dateTime);
   }
 
-  /// Retorna o mes de uma data. Informar data no formato `DDMMAAAA`
+  /// Extrai o mês de [data] no formato `DDMMAAAA`.
+  ///
+  /// Ignora a pontuação e não verifica se o mês existe.
   static int? obterMes(String data) {
     final dataLimpa = removeCaracteres(data);
 
@@ -80,7 +84,9 @@ class UtilData {
     }
   }
 
-  /// Retorna o dia de uma data. Informar data no formato `DDMMAAAA`
+  /// Extrai o dia de [data] no formato `DDMMAAAA`.
+  ///
+  /// Ignora a pontuação e não verifica se o dia existe.
   static int? obterDia(String data) {
     final dataLimpa = removeCaracteres(data);
     if (validarData(dataLimpa)) {
@@ -100,25 +106,19 @@ class UtilData {
     }
   }
 
-  /// Retorna um objeto [DateTime] de acordo com a data informada.
-  ///
-  /// Informar a string `data` no formato `DD/MM/AAAA`
+  /// Interpreta [data] no formato `DD/MM/AAAA` como [DateTime].
   static DateTime obterDateTime(String data) {
     _ensureInitialized();
     return DateFormat.yMd("pt_BR").parse(data);
   }
 
-  /// Retorna um objeto [DateTime] de acordo com a data informada.
-  ///
-  /// Informar a string `data` no formato `DD/MM/AAAA HH:MM`
+  /// Interpreta [data] no formato `DD/MM/AAAA HH:mm` como [DateTime].
   static DateTime obterDateTimeHora(String data) {
     _ensureInitialized();
     return DateFormat.yMd("pt_BR").add_jm().parse(data);
   }
 
-  /// Retorna um objeto [DateTime] de acordo com a data informada.
-  ///
-  /// Informar a string `data` no formato `HH:MM`
+  /// Interpreta [data] no formato `HH:mm` como [DateTime].
   static DateTime obterDateTimeHoraMinuto(String data) {
     _ensureInitialized();
     return DateFormat.jm("pt_BR").parse(data);

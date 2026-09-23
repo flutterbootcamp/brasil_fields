@@ -356,7 +356,6 @@ void main() {
   testWidgets('PlacaVeiculoInputFormatter', (WidgetTester tester) async {
     final textController = TextEditingController();
 
-    // testa toUpperCase
     await tester.pumpWidget(
         boilerplateAlphaNumerico(PlacaVeiculoInputFormatter(), textController));
     await tester.enterText(find.byType(TextField), 'abc');
@@ -395,10 +394,6 @@ void main() {
       CnpjInputFormatter(),
     ]);
 
-    // Esperamos os resultados no seguinte formato:
-    // '123.456.789-00'      // CPF
-    // '12.345.678/9000-99'  // CPNJ
-
     await tester.pumpWidget(boilerplate(formatter, textController));
     await tester.enterText(find.byType(TextField), '12345678900');
     expect(textController.text, '123.456.789-00');
@@ -414,10 +409,6 @@ void main() {
     final textController = TextEditingController();
     final formatter = CpfOuCnpjFormatter();
 
-    // Esperamos os resultados no seguinte formato:
-    // '123.456.789-00'      // CPF
-    // '12.345.678/9000-99'  // CPNJ
-
     await tester.pumpWidget(boilerplate(formatter, textController));
     await tester.enterText(find.byType(TextField), '12345678900');
     expect(textController.text, '123.456.789-00');
@@ -432,10 +423,6 @@ void main() {
   testWidgets('CpfOuCnpjAlfanumericoFormatter', (WidgetTester tester) async {
     final textController = TextEditingController();
     final formatter = CpfOuCnpjAlfanumericoFormatter();
-
-    // Esperamos os resultados no seguinte formato:
-    // '123.456.789-00'      // CPF
-    // '12.345.678/900A-99'  // CPNJ
 
     await tester
         .pumpWidget(boilerplateAlphaNumerico(formatter, textController));

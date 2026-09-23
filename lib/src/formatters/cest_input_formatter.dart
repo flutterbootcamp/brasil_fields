@@ -1,13 +1,12 @@
 import 'package:flutter/services.dart';
 
-/// Formata o valor do campo com a máscara CEST `XX.XXX.XX`.
+/// Formata o valor do campo com a máscara de CEST `XX.XXX.XX`.
 class CESTInputFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
     if (!newValue.composing.isCollapsed) return newValue;
 
-    // verifica o tamanho máximo do campo
     if (newValue.text.length > 7) return oldValue;
 
     var posicaoCursor = newValue.selection.end;

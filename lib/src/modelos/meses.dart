@@ -1,8 +1,6 @@
-/// Possui a lista com todos os meses do ano.
-///
-/// `listaMeses` lista com todos os meses.
-/// `mapaMeses` mapa com todos os meses.
+/// Reúne os nomes e os números dos meses do ano.
 class Meses {
+  /// Nomes dos meses, de janeiro a dezembro.
   static const List<String> listaMeses = [
     'Janeiro',
     'Fevereiro',
@@ -18,6 +16,7 @@ class Meses {
     'Dezembro',
   ];
 
+  /// Associa cada nome ao número do mês, de 1 a 12.
   static Map<String, int> mapaMeses = const {
     'Janeiro': 1,
     'Fevereiro': 2,

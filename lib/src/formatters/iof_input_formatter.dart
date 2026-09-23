@@ -1,6 +1,6 @@
 import 'package:flutter/services.dart';
 
-/// Formata o valor do campo com a máscara `1,234567`.
+/// Formata um valor de IOF com até seis casas decimais (por exemplo, `1,234567`).
 class IOFInputFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
@@ -9,7 +9,6 @@ class IOFInputFormatter extends TextInputFormatter {
 
     final newValueLength = newValue.text.length;
 
-    // verifica o tamanho máximo do campo
     if (newValueLength > 7) return oldValue;
 
     if (newValueLength == 0) return newValue;

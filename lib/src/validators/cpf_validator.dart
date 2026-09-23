@@ -1,8 +1,9 @@
-// Credits: CPF/CNPJ Validators
+// Créditos: CPF/CNPJ Validators
 // https://github.com/leonardocaldas/flutter-cpf-cnpj-validator
 
 import 'dart:math';
 
+/// Valida, formata e gera números de CPF.
 class CPFValidator {
   static const List<String> blockList = [
     '00000000000',
@@ -21,8 +22,9 @@ class CPFValidator {
   static const stipRegex = r'[^\d]';
   static const int _maxGenerationAttempts = 100;
 
-  // calcula o Dígito Verificador (DV)
-  // mais informações em [wikipedia (pt-br)](https://pt.wikipedia.org/wiki/D%C3%ADgito_verificador)
+  // Calcula o dígito verificador pelo módulo 11.
+  // Sobre dígitos verificadores:
+  // https://pt.wikipedia.org/wiki/D%C3%ADgito_verificador
   static int _verifierDigit(String cpf) {
     final numbers =
         cpf.split('').map((number) => int.parse(number, radix: 10)).toList();
@@ -40,6 +42,7 @@ class CPFValidator {
     return (mod < 2 ? 0 : 11 - mod);
   }
 
+  /// Formata o CPF com a máscara `XXX.XXX.XXX-XX`.
   static String format(String cpf) {
     final regExp = RegExp(r'^(\d{3})(\d{3})(\d{3})(\d{2})$');
 
@@ -48,6 +51,7 @@ class CPFValidator {
     ).replaceAllMapped(regExp, (Match m) => '${m[1]}.${m[2]}.${m[3]}-${m[4]}');
   }
 
+  /// Remove caracteres não numéricos do CPF.
   static String strip(String? cpf) {
     final regExp = RegExp(stipRegex);
     cpf = cpf ?? '';
@@ -55,17 +59,19 @@ class CPFValidator {
     return cpf.replaceAll(regExp, '');
   }
 
+  /// Retorna `true` se [cpf] tem formato e dígitos verificadores válidos.
+  ///
+  /// Remove caracteres não numéricos antes da validação quando
+  /// [stripBeforeValidation] é `true`.
   static bool isValid(String? cpf, {bool stripBeforeValidation = true}) {
     if (stripBeforeValidation) {
       cpf = strip(cpf);
     }
 
-    // CPF deve ser informado
     if (cpf == null || cpf.isEmpty) {
       return false;
     }
 
-    // CPF deve ter 11 caracteres
     if (cpf.length != 11) {
       return false;
     }
@@ -74,7 +80,6 @@ class CPFValidator {
       return false;
     }
 
-    // CPF não pode estar na lista de bloqueio
     if (blockList.contains(cpf)) {
       return false;
     }
@@ -87,6 +92,7 @@ class CPFValidator {
         cpf.substring(cpf.length - 2);
   }
 
+  /// Gera um CPF válido, formatado quando [useFormat] é `true`.
   static String generate({bool useFormat = false, Random? random}) {
     final generator = random ?? Random();
 

@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 
 /// Formata o valor do campo com a máscara de CNPJ `XX.XXX.XXX/XXXX-XX`.
 ///
-/// Deve ser usado num TextInput que recebe letras e números:
+/// Use em um `TextField` que aceite letras e números:
 /// ```dart
 /// TextField(
 ///  inputFormatters: [
@@ -14,7 +14,6 @@ import 'package:flutter/services.dart';
 /// ```
 class CnpjAlfanumericoInputFormatter extends TextInputFormatter
     implements CompoundableFormatter {
-  // Define o tamanho máximo do campo.
   @override
   int get maxLength => 14;
 

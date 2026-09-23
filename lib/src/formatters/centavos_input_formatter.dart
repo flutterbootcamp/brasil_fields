@@ -2,9 +2,10 @@ import 'package:flutter/services.dart';
 
 import 'adiciona_separador.dart';
 
-/// Formata o valor do campo com a máscara `9.999.999.999,00`.
+/// Formata o valor do campo como um número decimal no padrão brasileiro.
 ///
-/// `casasDecimais` indica a quantidade de casas usadas.
+/// [casasDecimais] aceita `2` ou `3`. Quando [moeda] é `true`, adiciona o
+/// prefixo `R$ `.
 class CentavosInputFormatter extends TextInputFormatter {
   CentavosInputFormatter({this.moeda = false, this.casasDecimais = 2})
       : assert(casasDecimais == 2 || casasDecimais == 3,
@@ -32,17 +33,17 @@ class CentavosInputFormatter extends TextInputFormatter {
           textValue.length - casasDecimais, textValue.length);
       textoFinal = textValue.substring(0, textValue.length - casasDecimais);
     }
-    // apaga o campo quando os valores forem zero (inteiro e decimais).
+    // Mantém o campo vazio enquanto todos os dígitos são zero.
     if (reais == 0 && int.tryParse(centavos) == 0) {
       return TextEditingValue.empty;
     }
 
-    // apaga o campo quando novo valor for 0 e o valor anterior tambem era 0.
+    // Permite apagar o último zero de um valor já formatado.
     if (reais == 0 && (oldValue.text == '0,' || oldValue.text == 'R\$ 0,')) {
       return TextEditingValue.empty;
     }
 
-    // retorna apenas o valor decimal, após o 0
+    // Acrescenta a parte inteira zero quando ainda só há casas decimais.
     if (textValue.length == casasDecimais) {
       textoFinal = "0,$centavos";
       if (moeda) {
@@ -56,7 +57,7 @@ class CentavosInputFormatter extends TextInputFormatter {
       );
     }
 
-    // formata o número com 0, + centavos
+    // Distribui os primeiros dígitos entre as partes inteira e decimal.
     if (reais > 0 && reais <= 9) {
       if (casasDecimais == 3) {
         centavos = "00$reais";
@@ -76,8 +77,6 @@ class CentavosInputFormatter extends TextInputFormatter {
     } else if (textoFinal.isNotEmpty) {
       reais = int.parse(textoFinal);
     }
-
-    // adiciona
 
     if (reais > 999) {
       textoFinal = "${adicionarSeparador(reais.toString())},$centavos";

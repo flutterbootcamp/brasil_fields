@@ -1,6 +1,11 @@
+/// Valida e formata números processuais no padrão definido pelo CNJ.
 class NUPValidator {
   static const stripRegex = r'[^\d]';
 
+  /// Retorna `true` se [nup] tem formato e dígitos verificadores válidos.
+  ///
+  /// Remove caracteres não numéricos antes da validação quando
+  /// [stripBeforeValidation] é `true`.
   static bool isValid(String? nup, {bool stripBeforeValidation = true}) {
     if (stripBeforeValidation) {
       nup = strip(nup);
@@ -22,6 +27,7 @@ class NUPValidator {
     return nup.substring(7, 9) == checkDigit.toString();
   }
 
+  /// Remove caracteres não numéricos do número processual.
   static String strip(String? nup) {
     final regExp = RegExp(stripRegex);
     nup = nup ?? '';
@@ -29,8 +35,8 @@ class NUPValidator {
     return nup.replaceAll(regExp, '');
   }
 
-  // calcula o Dígito Verificador (DV)
-  // mais informações em [CNJ (pt-br)](https://atos.cnj.jus.br/files/compilado23285720221017634de539229ab.pdf)
+  // Calcula os dígitos verificadores pelo módulo 97, conforme a norma do CNJ:
+  // https://atos.cnj.jus.br/files/compilado23285720221017634de539229ab.pdf
   static String _checkDigit(String nup) {
     final sequential = nup.substring(0, 7);
     final year = nup.substring(9, 13);
@@ -46,6 +52,7 @@ class NUPValidator {
     return checkDigit.toString().padLeft(2, '0');
   }
 
+  /// Formata o NUP com a máscara `NNNNNNN-DD.AAAA.J.TR.OOOO`.
   static String format(String nup) {
     final regExp = RegExp(r'^(\d{7})(\d{2})(\d{4})(\d{1})(\d{2})(\d{4})$');
 

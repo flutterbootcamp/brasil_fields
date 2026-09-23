@@ -1,15 +1,15 @@
 import 'package:flutter/services.dart';
 
-/// Formata o valor do campo com a máscara `(99) 99999-9999`.
+/// Formata o valor do campo como telefone fixo ou celular.
 ///
-/// _Nono dígito automático_.
+/// Usa a máscara `(XX) XXXX-XXXX` para 10 dígitos e `(XX) 9XXXX-XXXX` para
+/// 11 dígitos. Nesse caso, exige `9` como o primeiro dígito do número.
 class TelefoneInputFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
     if (!newValue.composing.isCollapsed) return newValue;
 
-    // verifica o tamanho máximo do campo
     if (newValue.text.length > 11) return oldValue;
 
     final newValueLength = newValue.text.length;

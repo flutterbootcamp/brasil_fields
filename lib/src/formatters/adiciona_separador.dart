@@ -1,3 +1,4 @@
+/// Insere pontos como separadores de milhar em [texto].
 String adicionarSeparador(String texto) {
   var valorFinal = "";
   var pointCount = 0;

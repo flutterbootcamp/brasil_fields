@@ -1,13 +1,12 @@
 import 'package:flutter/services.dart';
 
-/// Formata o valor do campo com a máscara de data `01/01/1900`.
+/// Formata o valor do campo com a máscara de data `DD/MM/AAAA`.
 class DataInputFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
     if (!newValue.composing.isCollapsed) return newValue;
 
-    // verifica o tamanho máximo do campo
     if (newValue.text.length > 8) return oldValue;
 
     var posicaoCursor = newValue.selection.end;

@@ -1,8 +1,9 @@
-// Credits: CPF/CNPJ Validators
+// Créditos: CPF/CNPJ Validators
 // https://github.com/leonardocaldas/flutter-cpf-cnpj-validator
 
 import 'dart:math';
 
+/// Valida, formata e gera números de CNPJ.
 class CNPJValidator {
   static const List<String> blockList = [
     '00000000000000',
@@ -20,8 +21,9 @@ class CNPJValidator {
   static const stipRegex = r'[^\d]';
   static const int _maxGenerationAttempts = 100;
 
-  // calcula o Dígito Verificador (DV)
-  // mais informações em [wikipedia (pt-br)](https://pt.wikipedia.org/wiki/D%C3%ADgito_verificador)
+  // Calcula o dígito verificador pelo módulo 11.
+  // Sobre dígitos verificadores:
+  // https://pt.wikipedia.org/wiki/D%C3%ADgito_verificador
   static int _verifierDigit(String cnpj) {
     var index = 2;
 
@@ -39,6 +41,7 @@ class CNPJValidator {
     return (mod < 2 ? 0 : 11 - mod);
   }
 
+  /// Formata o CNPJ com a máscara `XX.XXX.XXX/XXXX-XX`.
   static String format(String cnpj) {
     final regExp = RegExp(r'^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$');
 
@@ -48,6 +51,7 @@ class CNPJValidator {
     );
   }
 
+  /// Remove caracteres não numéricos do CNPJ.
   static String strip(String? cnpj) {
     final regExp = RegExp(stipRegex);
     cnpj = cnpj ?? '';
@@ -55,17 +59,19 @@ class CNPJValidator {
     return cnpj.replaceAll(regExp, '');
   }
 
+  /// Retorna `true` se [cnpj] tem formato e dígitos verificadores válidos.
+  ///
+  /// Remove caracteres não numéricos antes da validação quando
+  /// [stripBeforeValidation] é `true`.
   static bool isValid(String? cnpj, {bool stripBeforeValidation = true}) {
     if (stripBeforeValidation) {
       cnpj = strip(cnpj);
     }
 
-    // cnpj deve ser informado
     if (cnpj == null || cnpj.isEmpty) {
       return false;
     }
 
-    // cnpj deve ter 14 caracteres
     if (cnpj.length != 14) {
       return false;
     }
@@ -74,7 +80,6 @@ class CNPJValidator {
       return false;
     }
 
-    // cnpj não pode estar na lista de bloqueio
     if (blockList.contains(cnpj)) {
       return false;
     }
@@ -87,6 +92,7 @@ class CNPJValidator {
         cnpj.substring(cnpj.length - 2);
   }
 
+  /// Gera um CNPJ válido, formatado quando [useFormat] é `true`.
   static String generate({bool useFormat = false, Random? random}) {
     final generator = random ?? Random();
 

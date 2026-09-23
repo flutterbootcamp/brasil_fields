@@ -1,7 +1,6 @@
-/// Possui a lista com todas as regiões do Brasil.
-///
-/// `listaRegioes` lista com todas as regiões.
+/// Reúne os nomes das cinco regiões do Brasil.
 class Regioes {
+  /// Nomes das regiões em ordem alfabética.
   static const List<String> listaRegioes = [
     'Centro-Oeste',
     'Nordeste',

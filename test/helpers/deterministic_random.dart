@@ -1,7 +1,7 @@
 import 'dart:math';
 
-/// A deterministic [Random] that records the exclusive bounds requested by
-/// production code.
+/// Implementação determinística de [Random] que registra os limites superiores
+/// exclusivos solicitados pelo código testado.
 class RecordingRandom implements Random {
   RecordingRandom(this._values);
 
