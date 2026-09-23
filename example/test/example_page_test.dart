@@ -55,9 +55,10 @@ void main() {
 
     await tester.enterText(
       find.byKey(const Key('formatter-search')),
-      'mobilidade',
+      'novidades recentes',
     );
     await tester.pumpAndSettle();
+    expect(find.text('Novidades recentes'), findsOneWidget);
     await tester.drag(
       find.byKey(const PageStorageKey('formatters-page')),
       const Offset(0, -500),
