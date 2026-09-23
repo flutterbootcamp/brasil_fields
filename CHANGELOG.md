@@ -1,3 +1,8 @@
+## 1.20.1
+- Redesenha a página interativa de exemplos e amplia seus testes.
+- Corrige exemplos e descrições no README.
+- Padroniza comentários da biblioteca e instruções para agentes, sem alterar a API pública.
+
 ## 1.20.0
 - Adiciona formatter, validator e utilitários para PIS/PASEP (NIS/NIT), por [Adrianogba](https://github.com/Adrianogba).
 - Corrige conversões monetárias, limpeza do `CentavosInputFormatter` e validação de entradas malformadas.
