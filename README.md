@@ -68,11 +68,24 @@ final cnpjField = TextFormField(
 | PIS/PASEP (NIS/NIT) | PisPasepInputFormatter()     | 120.12345.67-2                               |
 | Placa            | PlacaVeiculoInputFormatter()    | AAA-1234                                     |
 | Real             | RealInputFormatter()            | 20.550                                       |
-| Telefone         | TelefoneInputFormatter()        | (99) 9999-9999                               |
+| Telefone fixo    | TelefoneFixoInputFormatter()    | (99) 9999-9999                               |
+| Celular          | CelularInputFormatter()         | (99) 99999-9999                              |
+| Telefone ou celular | TelefoneOuCelularInputFormatter() | Máscara conforme a quantidade de dígitos |
 | Validade cartão  | ValidadeCartaoInputFormatter()  | 12/24 ou 12/2024                             |
 | Temperatura      | TemperaturaInputFormatter()     | 27,1                                         |
 
-Os formatadores aplicam máscaras; não validam os documentos. Para verificar CPF, CNPJ, NUP ou PIS/PASEP, use os validadores em `UtilBrasilFields`.
+Os formatadores aplicam máscaras; não substituem validadores. Para verificar CPF, CNPJ, NUP ou PIS/PASEP, use os validadores em `UtilBrasilFields`.
+
+Para telefones, escolha `TelefoneFixoInputFormatter()` quando o campo aceitar somente números fixos e `CelularInputFormatter()` quando aceitar somente celulares. `TelefoneOuCelularInputFormatter()` escolhe a máscara conforme o tamanho da entrada. `TelefoneInputFormatter()` continua disponível com o comportamento automático legado e exige que celulares comecem por `9` após o DDD.
+
+```dart
+final celularField = TextFormField(
+  inputFormatters: [
+    FilteringTextInputFormatter.digitsOnly,
+    CelularInputFormatter(),
+  ],
+);
+```
 
 ### Modelos
 
