@@ -906,6 +906,13 @@ class _FormatterDemo {
     }
     if (value is RealInputFormatter) return 'RealInputFormatter';
     if (value is TelefoneInputFormatter) return 'TelefoneInputFormatter';
+    if (value is TelefoneFixoInputFormatter) {
+      return 'TelefoneFixoInputFormatter';
+    }
+    if (value is CelularInputFormatter) return 'CelularInputFormatter';
+    if (value is TelefoneOuCelularInputFormatter) {
+      return 'TelefoneOuCelularInputFormatter';
+    }
     if (value is TemperaturaInputFormatter) {
       return 'TemperaturaInputFormatter';
     }
@@ -951,8 +958,17 @@ List<_FormatterDemo> _createFormatterDemos() => [
           '0601064-21.2022.6.00.0000', NUPInputFormatter()),
       _demo('cns', 'Documentos e identificadores', 'CNS', '000 1111 2222 3333',
           CNSInputFormatter()),
-      _demo('telefone', 'Contato, tempo e mobilidade', 'Telefone',
-          '(11) 98765-4321', TelefoneInputFormatter()),
+      _demo('telefone-fixo', 'Contato, tempo e mobilidade', 'Telefone fixo',
+          '(11) 3456-7890', TelefoneFixoInputFormatter()),
+      _demo('celular', 'Contato, tempo e mobilidade', 'Celular',
+          '(11) 98765-4321', CelularInputFormatter()),
+      _demo(
+        'telefone-ou-celular',
+        'Contato, tempo e mobilidade',
+        'Telefone ou celular',
+        'Aceita 10 ou 11 dígitos',
+        TelefoneOuCelularInputFormatter(),
+      ),
       _demo('data', 'Contato, tempo e mobilidade', 'Data', '21/09/2026',
           DataInputFormatter()),
       _demo('hora', 'Contato, tempo e mobilidade', 'Hora', '14:35',

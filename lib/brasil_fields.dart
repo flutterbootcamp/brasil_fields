@@ -2,6 +2,7 @@ library;
 
 export 'src/formatters/altura_input_formatter.dart';
 export 'src/formatters/cartao_bancario_input_formatter.dart';
+export 'src/formatters/celular_input_formatter.dart';
 export 'src/formatters/centavos_input_formatter.dart';
 export 'src/formatters/cep_input_formatter.dart';
 export 'src/formatters/cert_nascimento_input_formatter.dart';
@@ -23,6 +24,8 @@ export 'src/formatters/pis_pasep_input_formatter.dart';
 export 'src/formatters/placa_veiculo_formatter.dart';
 export 'src/formatters/real_input_formatter.dart';
 export 'src/formatters/telefone_input_formatter.dart';
+export 'src/formatters/telefone_fixo_input_formatter.dart';
+export 'src/formatters/telefone_ou_celular_input_formatter.dart';
 export 'src/formatters/temperatura_input_formatter.dart';
 export 'src/formatters/validade_cartao_input_formatter.dart';
 export 'src/modelos/estados.dart';

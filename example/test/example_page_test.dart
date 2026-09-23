@@ -48,6 +48,46 @@ void main() {
     expect(editable.controller.text, '12.345-678');
   });
 
+  testWidgets('shows and formats fixed, mobile and automatic phones',
+      (tester) async {
+    await tester.pumpWidget(const BrasilFieldsApp());
+    await tester.pumpAndSettle();
+
+    await tester.enterText(
+      find.byKey(const Key('formatter-search')),
+      'mobilidade',
+    );
+    await tester.pumpAndSettle();
+    await tester.drag(
+      find.byKey(const PageStorageKey('formatters-page')),
+      const Offset(0, -500),
+    );
+    await tester.pumpAndSettle();
+
+    final fixed = find.byKey(const Key('formatter-telefone-fixo'));
+    final mobile = find.byKey(const Key('formatter-celular'));
+    final automatic = find.byKey(const Key('formatter-telefone-ou-celular'));
+    expect(fixed, findsOneWidget);
+    expect(mobile, findsOneWidget);
+    expect(automatic, findsOneWidget);
+
+    await tester.enterText(fixed, '1134567890');
+    await tester.enterText(mobile, '11987654321');
+    await tester.enterText(automatic, '11987654321');
+    await tester.pump();
+
+    String textIn(Finder field) => tester
+        .widget<EditableText>(
+          find.descendant(of: field, matching: find.byType(EditableText)),
+        )
+        .controller
+        .text;
+
+    expect(textIn(fixed), '(11) 3456-7890');
+    expect(textIn(mobile), '(11) 98765-4321');
+    expect(textIn(automatic), '(11) 98765-4321');
+  });
+
   testWidgets('search filters formatters and alphanumeric input is formatted',
       (tester) async {
     await tester.pumpWidget(const BrasilFieldsApp());
