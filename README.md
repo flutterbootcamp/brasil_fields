@@ -10,30 +10,31 @@ O jeito mais fácil de utilizar padrões e formatos brasileiros em seu projeto.
 
 ## Apresentação
 
-Este package facilita o desenvolvimento de projetos que utilizam campos com os padrões e formatos brasileiros.
+O pacote oferece formatadores de campos, validadores e utilitários para dados brasileiros.
 
 ### Como utilizar
 
-Incluir o formatter no parâmetro `inputFormatters`. 
-
->É necessário adicionar o `FilteringTextInputFormatter.digitsOnly` para garantir que o campo aceite apenas valores numéricos.
+Adicione o formatador a `inputFormatters`. Para campos numéricos, filtre a entrada antes de aplicar a máscara:
 
 ```dart
-TextFormField(
+import 'package:brasil_fields/brasil_fields.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+final cepField = TextFormField(
   inputFormatters: [
-    // obrigatório
     FilteringTextInputFormatter.digitsOnly,
     CepInputFormatter(),
   ],
 );
 ```
 
-#### EXCEÇÃO: CNPJ 2026 E Placa de veículos
+#### Campos alfanuméricos
 
-`CnpjAlfanumericoInputFormatter` e `PlacaVeiculoInputFormatter` são formatters alfanuméricos, sendo assim, o `FilteringTextInputFormatter.digitsOnly` não deve ser informado. Para CNPJ alfanumérico, utilize a cadeia completa:
+`CnpjAlfanumericoInputFormatter`, `CpfOuCnpjAlfanumericoFormatter` e `PlacaVeiculoInputFormatter` aceitam letras. Use um filtro alfanumérico no lugar de `digitsOnly` quando quiser restringir a entrada a letras e números:
 
 ```dart
-TextFormField(
+final cnpjField = TextFormField(
   inputFormatters: [
     FilteringTextInputFormatter.allow(RegExp('[0-9a-zA-Z]')),
     CnpjAlfanumericoInputFormatter(),
@@ -41,18 +42,19 @@ TextFormField(
 );
 ```
 
-### Formatters
+### Formatadores
 
-| Padrão           | Formatter                       | Formato                                      |
+| Padrão           | Formatador                      | Formato                                      |
 |:-----------------|:--------------------------------|:---------------------------------------------|
 | Altura           | AlturaInputFormatter()          | 2,22                                         |
-| Cartão           | CartaoBancarioInputFormatter()  | 0000 1111 2222 3333 4444                     |
-| Centavos         | CentavosInputFormatter()        | 7,194                                        |
+| Cartão           | CartaoBancarioInputFormatter()  | 1111 2222 3333 4444                          |
+| Centavos         | CentavosInputFormatter()        | 71,94                                        |
 | CEP              | CepInputFormatter()             | 99.999-999                                   |
-| CPF              | CpfInputFormatter()             | 999.999.99-99                                |
+| CPF              | CpfInputFormatter()             | 999.999.999-99                               |
 | CNPJ             | CnpjInputFormatter()            | 99.999.999/9999-99                           |
-| CNPJ (2026)      | CnpjAlfanumericoInputFormatter()| 99.999.999/9999-99 ou A1.B2C.3D4/E5F6-99 (*) |
-| CPF /  CNPJ      | CpfOuCnpjFormatter()            | Se adapta conforme os números são inseridos  |
+| CNPJ alfanumérico | CnpjAlfanumericoInputFormatter() | 99.999.999/9999-99 ou A1.B2C.3D4/E5F6-99 |
+| CPF ou CNPJ      | CpfOuCnpjFormatter()            | Máscara numérica conforme o tamanho          |
+| CPF ou CNPJ alfanumérico | CpfOuCnpjAlfanumericoFormatter() | Máscara conforme o tamanho         |
 | CEST             | CESTInputFormatter()            | 12.345.67                                    |
 | CNS              | CNSInputFormatter()             | 111 2222 3333 4444                           |
 | Data             | DataInputFormatter()            | 01/01/1900                                   |
@@ -64,17 +66,19 @@ TextFormField(
 | NUP              | NUPInputFormatter()             | 1234567-89.0123.4.56.7890                    |
 | Peso             | PesoInputFormatter()            | 111,1                                        |
 | PIS/PASEP (NIS/NIT) | PisPasepInputFormatter()     | 120.12345.67-2                               |
-| Placa            | PlacaVeiculoInputFormatter()    | AAA-1234 (*)                                 |
+| Placa            | PlacaVeiculoInputFormatter()    | AAA-1234                                     |
 | Real             | RealInputFormatter()            | 20.550                                       |
 | Telefone         | TelefoneInputFormatter()        | (99) 9999-9999                               |
 | Validade cartão  | ValidadeCartaoInputFormatter()  | 12/24 ou 12/2024                             |
 | Temperatura      | TemperaturaInputFormatter()     | 27,1                                         |
 
-**(*)** Não utilizar `FilteringTextInputFormatter.digitsOnly`. Estes formatters são alfanuméricos.
+Os formatadores aplicam máscaras; não validam os documentos. Para verificar CPF, CNPJ, NUP ou PIS/PASEP, use os validadores em `UtilBrasilFields`.
 
 ### Modelos
 
-```dart
+Listas e mapas de estados, meses, regiões e dias da semana:
+
+```text
 Estados.listaEstados
 Estados.listaEstadosSigla
 Meses.listaMeses
@@ -85,6 +89,7 @@ Semana.mapaDiasUteis
 Semana.listaDiasUteisAbvr
 Semana.mapaDiasUteisAbvr
 Semana.listaDiasSemana
+Semana.listaDiasSemanaAbvr
 Semana.listaDiasSemanaOrdenada
 Semana.mapaDiasSemanaOrdenada
 Semana.mapaDiasSemanaOrdenadaAbvr
@@ -92,34 +97,35 @@ Semana.mapaDiasSemanaOrdenadaAbvr
 
 ### UtilData
 
-Métodos que facilitam obter o valor de um objeto `DateTime` em formato `String` (e no padrão brasileiro).
+Formata objetos `DateTime` e interpreta strings de data e hora no padrão brasileiro:
 
 - `UtilData.obterDataDDMMAAAA` (DD/MM/AAAA)
 - `UtilData.obterDataMMAAAA` (MM/AAAA)
 - `UtilData.obterDataDDMM` (DD/MM)
-- `UtilData.obterHoraHHMMSS` (hh:mm:ss)
-- `UtilData.obterHoraHHMM` (hh:mm)
-- `UtilData.obterMes`
-- `UtilData.obterDia`
-- `UtilData.obterDateTime`
-- `UtilData.obterDateTimeHora`
-- `UtilData.obterDateTimeHoraMinuto`
+- `UtilData.obterHoraHHMMSS` (HH:mm:ss)
+- `UtilData.obterHoraHHMM` (HH:mm)
+- `UtilData.obterMes` e `UtilData.obterDia` extraem mês e dia de `DDMMAAAA` ou `DD/MM/AAAA`.
+- `UtilData.obterDateTime` interpreta `DD/MM/AAAA`.
+- `UtilData.obterDateTimeHora` interpreta `DD/MM/AAAA HH:mm`.
+- `UtilData.obterDateTimeHoraMinuto` interpreta `HH:mm`.
+
+`UtilData.validarData` verifica se a entrada contém oito dígitos; não verifica se a data existe no calendário. `UtilData.removeCaracteres` mantém apenas os dígitos de uma string.
 
 ### UtilBrasilFields
 
-Métodos que facilitam manipular valores:
+Gera, formata e valida identificadores e valores brasileiros:
 
 - `UtilBrasilFields.gerarCPF()` (XXXXXXXXXXX)
-- `UtilBrasilFields.gerarCPF(useFormat: false)` (XXXXXXXXXXX)
 - `UtilBrasilFields.gerarCPF(useFormat: true)` (XXX.XXX.XXX-XX)
-- `UtilBrasilFields.gerarCNPJ()` (XXYYYZZZNNNNSS)
-- `UtilBrasilFields.gerarCNPJ(useFormat: false)` (XXYYYZZZNNNNSS)
-- `UtilBrasilFields.gerarCNPJ(useFormat: true)` (XX.YYY.ZZZ/NNNN-SS)
+- `UtilBrasilFields.gerarCNPJ()` (XXXXXXXXXXXXXX)
+- `UtilBrasilFields.gerarCNPJ(useFormat: true)` (XX.XXX.XXX/XXXX-XX)
+- `UtilBrasilFields.gerarCNPJ(isAlphanumeric: true, useFormat: true)` (CNPJ alfanumérico formatado)
 - `UtilBrasilFields.gerarPisPasep()` (XXXXXXXXXXX)
-- `UtilBrasilFields.gerarPisPasep(useFormat: false)` (XXXXXXXXXXX)
 - `UtilBrasilFields.gerarPisPasep(useFormat: true)` (XXX.XXXXX.XX-X)
-- `UtilBrasilFields.obterCpf('11122233344')` (111.222.333-44)
-- `UtilBrasilFields.obterCnpj('11222333444455')` (11.222.333/4444-55)
+- `UtilBrasilFields.obterCpf('48620265083')` (486.202.650-83)
+- `UtilBrasilFields.obterCnpj('77343168000124')` (77.343.168/0001-24)
+- `UtilBrasilFields.obterCnpj('E2X05ZR982XN04')` (E2.X05.ZR9/82XN-04)
+- `UtilBrasilFields.obterCnpjInscricao`, `obterCnpjOrdem` e `obterCnpjDiv` extraem as partes de um CNPJ válido.
 - `UtilBrasilFields.obterCep('11222333')` (11.222-333)
 - `UtilBrasilFields.obterCep('11222333', ponto: false)` (11222-333)
 - `UtilBrasilFields.obterNUP('06010642120226000000')` (0601064-21.2022.6.00.0000)
@@ -128,30 +134,28 @@ Métodos que facilitam manipular valores:
 - `UtilBrasilFields.obterTelefone('(00) 99999-8877', mascara: false)` (00999998877)
 - `UtilBrasilFields.obterTelefone('999998877', ddd: false)` (99999-8877)
 - `UtilBrasilFields.obterTelefone('99999-8877', ddd: false, mascara: false)` (999998877)
-- `UtilBrasilFields.obterReal` (R$ 50.000,00 ou 50.000,00)
 - `UtilBrasilFields.obterReal(85437107.04)` (R$ 85.437.107,04)
 - `UtilBrasilFields.obterReal(85437107.04, moeda: false)` (85.437.107,04)
 - `UtilBrasilFields.obterReal(85437107.04, moeda: false, decimal: 0)` (85.437.107)
-- `UtilBrasilFields.obterDDD('00999998877')` (00)
+- `UtilBrasilFields.obterDDD('(00) 99999-8877')` (00)
 - `UtilBrasilFields.obterKM(999999)` (999.999)
-- `UtilBrasilFields.removeCaracteres` (remove caracteres especiais)
-- `UtilBrasilFields.removerSimboloMoeda` (remove o R$)
-- `UtilBrasilFields.converterMoedaParaDouble` (remove o R$ e retorna um double)
-- `UtilBrasilFields.isCPFValido` (retorna `true` se o CPF for válido, caso contrário, retorna `false`)
-- `UtilBrasilFields.isCNPJValido` (retorna `true` se o CNPJ for válido, caso contrário, retorna `false`)
-- `UtilBrasilFields.isNUPValido` (retorna `true` se o NUP for válido, caso contrário, retorna `false`)
-- `UtilBrasilFields.isPisPasepValido` (retorna `true` se o PIS/PASEP (NIT/NIS) for válido, caso contrário, retorna `false`)
+- `UtilBrasilFields.removeCaracteres` mantém apenas letras ASCII e dígitos.
+- `UtilBrasilFields.removerSimboloMoeda` remove `R$` e o espaço seguinte, se houver.
+- `UtilBrasilFields.converterMoedaParaDouble` converte um valor monetário brasileiro em `double`; retorna `0` se a entrada não vazia não puder ser convertida.
+- `UtilBrasilFields.isCPFValido`, `isCNPJValido`, `isNUPValido` e `isPisPasepValido` retornam `bool`. Para CNPJ alfanumérico, passe `isAlphanumeric: true` a `isCNPJValido`.
 
-Para inicializar um `TextEditingController` com o texto já formatado, basta escolher o método com o formato desejado e setar no atributo `text`:
-
+Os métodos `obterCpf`, `obterCnpj`, `obterNUP` e `obterPisPasep` exigem identificadores válidos e lançam `ArgumentError` para valores inválidos.
 
 ### TextEditingController
+
+Inicialize `text` com o valor formatado:
+
 ```dart
 final dataController = TextEditingController(
   text: UtilData.obterDataDDMMAAAA(DateTime(2024, 12, 31)),
 );
 final cnpjController = TextEditingController(
-  text: UtilBrasilFields.obterCnpj('11222333444455'),
+  text: UtilBrasilFields.obterCnpj('77343168000124'),
 );
 ```
 
