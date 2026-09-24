@@ -1,3 +1,12 @@
+## 1.21.1
+- Corrige a lista de arquivos incluídos na publicação do pacote, excluindo relatórios internos e artefatos gerados.
+- Exclui arquivos de build gerados da análise estática.
+
+## 1.21.0
+- Adiciona `TelefoneFixoInputFormatter`, `CelularInputFormatter` e `TelefoneOuCelularInputFormatter`, com máscaras específicas para telefones fixos e celulares.
+- Mantém `TelefoneInputFormatter` disponível com seu comportamento automático legado.
+- Atualiza o README e a página de exemplos interativos com os novos formatadores.
+
 ## 1.20.1
 - Redesenha a página interativa de exemplos e amplia seus testes.
 - Corrige exemplos e descrições no README.
