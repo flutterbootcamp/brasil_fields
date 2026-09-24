@@ -2,6 +2,9 @@ name: publish
 
 on: [push, pull_request]
 
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-24.04
@@ -26,9 +29,29 @@ jobs:
 
       - name: codecov
         uses: codecov/codecov-action@v7
-        
-      - if: github.event_name == 'push'
-        uses: bluefireteam/flutter-gh-pages@v9
+
+      - name: build example for GitHub Pages
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        working-directory: example
+        run: flutter build web --release --base-href /brasil_fields/
+
+      - name: upload GitHub Pages artifact
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        uses: actions/upload-pages-artifact@v5
         with:
-          workingDir: example
-          baseHref: /brasil_fields/
+          path: example/build/web
+
+  deploy:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    needs: build
+    runs-on: ubuntu-24.04
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
