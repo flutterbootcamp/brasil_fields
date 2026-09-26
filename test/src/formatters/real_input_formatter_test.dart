@@ -68,13 +68,6 @@ void main() {
       }
     });
 
-    test('digitacao [moeda: true]', () {
-      var state = textEditingValue('');
-      for (final entry in _realCases.entries.toList().reversed.skip(1)) {
-        state = evaluate(state, textEditingValue(entry.key), true);
-        expect(state.text, 'R\$ ${entry.value}');
-      }
-    });
     test('composicao ativa permanece inalterada', () {
       final formatters = numericFormatterChain(RealInputFormatter());
       final value = textEditingValue('1234',

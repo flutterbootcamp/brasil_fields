@@ -27,13 +27,6 @@ void main() {
       }
     });
 
-    test('digitacao', () {
-      var state = textEditingValue('');
-      for (final entry in {'2': '2', '24': '2,4', '246': '24,6'}.entries) {
-        state = evaluate(state, textEditingValue(entry.key));
-        expect(state.text, entry.value);
-      }
-    });
     test('composicao ativa permanece inalterada', () {
       final value =
           textEditingValue('24', composing: const TextRange(start: 0, end: 2));

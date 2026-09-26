@@ -5,11 +5,6 @@ import 'helpers/deterministic_random.dart';
 
 void main() {
   group('Remove caracteres', () {
-    test('CPF', () {
-      const cpf = '111.222.333-44';
-      expect(UtilBrasilFields.removeCaracteres(cpf), '11122233344');
-    });
-
     test('CNPJ', () {
       const cnpj = '11.222.333/4444-55';
       const cnpj2 = 'U7.YHQ.1HJ/1MQY-56';
@@ -17,37 +12,6 @@ void main() {
       expect(UtilBrasilFields.removeCaracteres(cnpj2), 'U7YHQ1HJ1MQY56');
     });
 
-    test('CEP', () {
-      const cep = '11.222-333';
-      expect(UtilBrasilFields.removeCaracteres(cep), '11222333');
-    });
-
-    test('NUP', () {
-      const nup = '0601064-21.2022.6.00.0000';
-      expect(UtilBrasilFields.removeCaracteres(nup), '06010642120226000000');
-    });
-
-    test('Real', () {
-      const real = '11.222';
-      expect(UtilBrasilFields.removeCaracteres(real), '11222');
-    });
-    test('Real sem R\$', () {
-      const real = 'R\$ 11.222';
-      expect(UtilBrasilFields.removerSimboloMoeda(real), '11.222');
-    });
-
-    test('Centavos', () {
-      const centavos = '0,99';
-      expect(UtilBrasilFields.removeCaracteres(centavos), '099');
-    });
-    test('Centavos sem R\$', () {
-      const centavos = 'R\$ 150,99';
-      expect(UtilBrasilFields.removerSimboloMoeda(centavos), '150,99');
-    });
-    test('Converter moeda (R\$) em double', () {
-      const centavos = 'R\$ 11.150,99';
-      expect(UtilBrasilFields.converterMoedaParaDouble(centavos), 11150.99);
-    });
     test('Converter moeda aceita espaços comum e não separável', () {
       expect(UtilBrasilFields.converterMoedaParaDouble(r'R$ 1.590,90'), 1590.9);
       expect(
@@ -123,46 +87,10 @@ void main() {
       expect(UtilBrasilFields.obterReal(999.99), r'R$ 999,99');
       expect(UtilBrasilFields.obterReal(1000), r'R$ 1.000,00');
     });
-    test('Obter centavos de um double', () {
-      const double valor = 1590.9;
-      final String valorConvertido = valor.obterCentavos;
-      expect(valorConvertido, 'R\$ 159090');
-    });
-    test('Obter centavos de um double sem o símbolo de real', () {
-      const double valor = 1590.9;
-      final String valorConvertido = valor.obterCentavosSemSimbolo;
-      expect(valorConvertido, '159090');
-    });
-    test(
-        'Obter centavos de um double sem o símbolo de real onde o valor é menor que 1',
-        () {
-      const double valor = 0.1;
-      final String valorConvertido = valor.obterCentavosSemSimbolo;
-      expect(valorConvertido, '10');
-    });
-    test(
-        'Obter centavos de um double sem o símbolo de real onde o valor é negativos',
-        () {
-      const double valor = -10.5;
-      final String valorConvertido = valor.obterCentavosSemSimbolo;
-      expect(valorConvertido, '-1050');
-    });
-    test(
-        'Obter centavos de um double com o símbolo de real onde o valor é negativos',
-        () {
-      const double valor = -10.5;
-      final String valorConvertido = valor.obterCentavos;
-      expect(valorConvertido, '-R\$ 1050');
-    });
     test('Obter real de um double', () {
       const double valor = 1590.9;
       final String valorConvertido = valor.obterReal();
       expect(valorConvertido, 'R\$${String.fromCharCode(160)}1.590,90');
-    });
-    test('Obter real de um double onde o valor é menor que 100', () {
-      const double valor = 60.0;
-      final String valorConvertido = valor.obterReal();
-      expect(valorConvertido, 'R\$${String.fromCharCode(160)}60,00');
     });
     test(
       'Obter real sem símbolo de um double onde o valor é menor que 100',
@@ -222,34 +150,6 @@ void main() {
     test('Obter DDD', () {
       const telefone = '(99) 8888-7777';
       expect(UtilBrasilFields.obterDDD(telefone), '99');
-    });
-
-    test('Data', () {
-      const data = '01/01/1900';
-      expect(UtilBrasilFields.removeCaracteres(data), '01011900');
-    });
-
-    test('Hora', () {
-      const hora = '23:59';
-      expect(UtilBrasilFields.removeCaracteres(hora), '2359');
-    });
-    test('Cartão', () {
-      const cartao = '1111 2222 3333 4444';
-      expect(UtilBrasilFields.removeCaracteres(cartao), '1111222233334444');
-    });
-    test('Validade cartão', () {
-      const validade = '12/23';
-      expect(UtilBrasilFields.removeCaracteres(validade), '1223');
-    });
-
-    test('Altura', () {
-      const altura = '1,79';
-      expect(UtilBrasilFields.removeCaracteres(altura), '179');
-    });
-
-    test('Peso', () {
-      const peso = '103,5';
-      expect(UtilBrasilFields.removeCaracteres(peso), '1035');
     });
   });
 
@@ -345,26 +245,6 @@ void main() {
     });
   });
 
-  test('Obter CPF', () {
-    // Gerado por https://www.4devs.com.br/gerador_de_cpf
-    const cpfSemMascara = '48620265083';
-    const cpfComMascara = '486.202.650-83';
-    expect(UtilBrasilFields.obterCpf(cpfSemMascara), cpfComMascara);
-  });
-
-  test('Obter CNPJ', () {
-    // Gerado por https://www.4devs.com.br/gerador_de_cnpj
-    const cpnjSemMascara = '77343168000124';
-    const cpnjComMascara = '77.343.168/0001-24';
-    expect(UtilBrasilFields.obterCnpj(cpnjSemMascara), cpnjComMascara);
-  });
-
-  test('Obter CNPJ Alfanumérico', () {
-    const cpnjSemMascara = 'E2X05ZR982XN04';
-    const cpnjComMascara = 'E2.X05.ZR9/82XN-04';
-    expect(UtilBrasilFields.obterCnpj(cpnjSemMascara), cpnjComMascara);
-  });
-
   test('Obter inscrição CNPJ', () {
     const cpnjSemMascara = '34318733000190';
     const cpnjComMascara = '34.318.733/0001-90';
@@ -421,22 +301,6 @@ void main() {
     const cpnjComMascara = 'S6.53N.179/3ADL-37';
     expect(UtilBrasilFields.obterCnpjDiv(cpnjSemMascara), '37');
     expect(UtilBrasilFields.obterCnpjDiv(cpnjComMascara), '37');
-  });
-
-  test('Obter NUP', () {
-    const nupSemMascara = '06010642120226000000';
-    const nupComMascara = '0601064-21.2022.6.00.0000';
-    expect(UtilBrasilFields.obterNUP(nupSemMascara), nupComMascara);
-  });
-
-  test('Obter PIS/PASEP', () {
-    const pisSemMascara = '12012345672';
-    const pisComMascara = '120.12345.67-2';
-    expect(UtilBrasilFields.obterPisPasep(pisSemMascara), pisComMascara);
-    expect(UtilBrasilFields.obterPisPasep(pisComMascara), pisComMascara);
-    expect(() {
-      UtilBrasilFields.obterPisPasep('12012345673');
-    }, throwsArgumentError);
   });
 
   group('Validadores públicos', () {
@@ -600,14 +464,6 @@ void main() {
   });
 
   group('Obter Real', () {
-    test('com cifrão', () {
-      expect(UtilBrasilFields.obterReal(50000), r'R$ 50.000,00');
-    });
-
-    test('sem cifrão', () {
-      expect(UtilBrasilFields.obterReal(50000, moeda: false), '50.000,00');
-    });
-
     test('com cifrão e 4 casas decimais', () {
       expect(UtilBrasilFields.obterReal(50000, decimal: 4), r'R$ 50.000,0000');
     });

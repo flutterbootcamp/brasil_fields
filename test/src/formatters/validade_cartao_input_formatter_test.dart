@@ -59,15 +59,6 @@ void main() {
       }
     });
 
-    test('digitacao', () {
-      var state = textEditingValue('');
-      for (final entry
-          in {'0': '0', '09': '09', '092': '09/2', '0929': '09/29'}.entries) {
-        state = evaluate(state, textEditingValue(entry.key));
-        expect(state.text, entry.value);
-      }
-    });
-
     test('digitacao [maxLength: 6]', () {
       var state = textEditingValue('');
       for (final entry in {

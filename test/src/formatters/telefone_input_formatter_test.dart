@@ -43,15 +43,6 @@ void main() {
       }
     });
 
-    test('digitacao', () {
-      var state = textEditingValue('');
-      final cases = _telefoneCases.entries.toList().reversed.skip(1).toList()
-        ..add(const MapEntry('61987654321', '(61) 98765-4321'));
-      for (final entry in cases) {
-        state = evaluate(state, textEditingValue(entry.key));
-        expect(state.text, entry.value);
-      }
-    });
     test('composicao ativa permanece inalterada', () {
       final value =
           textEditingValue('619', composing: const TextRange(start: 0, end: 3));

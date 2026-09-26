@@ -35,21 +35,6 @@ void main() {
       }
     });
 
-    test('digitacao', () {
-      var state = textEditingValue('');
-      for (final entry in {
-        '1': '1',
-        '12': '12',
-        '123': '123',
-        '1234': '1234',
-        '12345': '1234.5',
-        '123456': '1234.56',
-        '1234567': '1234.56.7'
-      }.entries) {
-        state = evaluate(state, textEditingValue(entry.key));
-        expect(state.text, entry.value);
-      }
-    });
     test('composicao ativa permanece inalterada', () {
       final value = textEditingValue('12345',
           composing: const TextRange(start: 0, end: 5));

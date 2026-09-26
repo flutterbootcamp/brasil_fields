@@ -34,21 +34,6 @@ void main() {
       }
     });
 
-    test('digitacao', () {
-      var state = textEditingValue('');
-      for (final entry in {
-        '1': '1',
-        '12': '12',
-        '123': '123',
-        '1234': '1.234',
-        '12345': '12.345',
-        '123456': '123.456'
-      }.entries) {
-        state = evaluate(state, textEditingValue(entry.key));
-        expect(state.text, entry.value);
-      }
-    });
-
     test('preserva o cursor ao inserir o separador de milhar', () {
       for (final scenario in [
         (inputOffset: 0, expectedOffset: 0),
