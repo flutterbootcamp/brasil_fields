@@ -122,7 +122,7 @@ Formata objetos `DateTime` e interpreta strings de data e hora no padrão brasil
 - `UtilData.obterDateTimeHora` interpreta `DD/MM/AAAA HH:mm`.
 - `UtilData.obterDateTimeHoraMinuto` interpreta `HH:mm`.
 
-`UtilData.validarData` verifica se a entrada contém oito dígitos; não verifica se a data existe no calendário. `UtilData.removeCaracteres` mantém apenas os dígitos de uma string.
+`UtilData.validarData` aceita oito dígitos em `DDMMAAAA` (com ou sem separadores) e verifica se a data existe no calendário, incluindo anos bissextos. `UtilData.removeCaracteres` mantém apenas os dígitos de uma string.
 
 ### UtilBrasilFields
 

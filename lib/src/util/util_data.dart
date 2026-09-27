@@ -12,11 +12,22 @@ class UtilData {
     }
   }
 
-  /// Retorna `true` se [data] contiver exatamente oito dígitos.
+  /// Retorna `true` se [data] representar uma data válida em `DDMMAAAA`.
   ///
-  /// Ignora os demais caracteres; não verifica se a data existe.
+  /// Ignora caracteres não numéricos e aceita anos de 0001 a 9999.
   static bool validarData(String data) {
-    return removeCaracteres(data).length == 8;
+    final digitos = removeCaracteres(data);
+    if (digitos.length != 8) return false;
+
+    final dia = int.parse(digitos.substring(0, 2));
+    final mes = int.parse(digitos.substring(2, 4));
+    final ano = int.parse(digitos.substring(4, 8));
+    if (ano == 0 || mes == 0 || dia == 0) return false;
+
+    final dataCalculada = DateTime.utc(ano, mes, dia);
+    return dataCalculada.year == ano &&
+        dataCalculada.month == mes &&
+        dataCalculada.day == dia;
   }
 
   /// Retorna apenas os dígitos de [data].
@@ -69,7 +80,7 @@ class UtilData {
   static int? obterMes(String data) {
     final dataLimpa = removeCaracteres(data);
 
-    if (validarData(dataLimpa)) {
+    if (dataLimpa.length == 8) {
       final novaData = StringBuffer();
       novaData.write(dataLimpa[2]);
       novaData.write(dataLimpa[3]);
@@ -89,7 +100,7 @@ class UtilData {
   /// Ignora a pontuação e não verifica se o dia existe.
   static int? obterDia(String data) {
     final dataLimpa = removeCaracteres(data);
-    if (validarData(dataLimpa)) {
+    if (dataLimpa.length == 8) {
       final novaData = StringBuffer();
       novaData.write(dataLimpa[0]);
       novaData.write(dataLimpa[1]);

@@ -181,10 +181,21 @@ void main() {
       expect(UtilData.removeCaracteres('sem data'), isEmpty);
     });
 
-    test('valida o formato pela quantidade de dígitos', () {
+    test('valida datas reais com oito dígitos', () {
       expect(UtilData.validarData('01012000'), isTrue);
       expect(UtilData.validarData('31/12/2024'), isTrue);
-      expect(UtilData.validarData('99/99/9999'), isTrue);
+      expect(UtilData.validarData('31-12-2024'), isTrue);
+      expect(UtilData.validarData('29/02/2024'), isTrue);
+      expect(UtilData.validarData('29/02/2000'), isTrue);
+      expect(UtilData.validarData('01/01/0001'), isTrue);
+      expect(UtilData.validarData('99/99/9999'), isFalse);
+      expect(UtilData.validarData('31/02/2026'), isFalse);
+      expect(UtilData.validarData('29/02/2025'), isFalse);
+      expect(UtilData.validarData('29/02/1900'), isFalse);
+      expect(UtilData.validarData('31/04/2024'), isFalse);
+      expect(UtilData.validarData('00/01/2024'), isFalse);
+      expect(UtilData.validarData('01/00/2024'), isFalse);
+      expect(UtilData.validarData('01/01/0000'), isFalse);
       expect(UtilData.validarData('1/12/2024'), isFalse);
       expect(UtilData.validarData('31/12/24'), isFalse);
       expect(UtilData.validarData(''), isFalse);
