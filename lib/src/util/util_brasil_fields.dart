@@ -117,6 +117,9 @@ class UtilBrasilFields {
     return telefone.substring(1, 3);
   }
 
+  /// Retorna `true` se o número de registro da CNH for válido.
+  static bool isCNHValido(String? cnh) => CNHValidator.isValid(cnh);
+
   /// Retorna `true` se o CPF for válido.
   static bool isCPFValido(String? cpf) => CPFValidator.isValid(cpf);
 
@@ -133,6 +136,10 @@ class UtilBrasilFields {
 
   /// Retorna `true` se o PIS/PASEP (NIT/NIS) for válido.
   static bool isPisPasepValido(String? pis) => PisPasepValidator.isValid(pis);
+
+  /// Gera um número de registro de CNH válido aleatório, com 11 dígitos.
+  static String gerarCNH({Random? random}) =>
+      CNHValidator.generate(random: random);
 
   /// Gera um CPF válido aleatório.
   ///

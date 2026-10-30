@@ -12,6 +12,7 @@ void main() {
   });
 
   test('public entrypoint exposes every validator', () {
+    expect(CNHValidator.isValid('18718682003'), isTrue);
     expect(CPFValidator.isValid('334.616.710-02'), isTrue);
     expect(CNPJValidator.isValid('12.175.094/0001-19'), isTrue);
     expect(

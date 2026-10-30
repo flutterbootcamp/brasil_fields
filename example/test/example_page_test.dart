@@ -148,6 +148,40 @@ void main() {
     expect(editable.controller.text, '120.12345.67-2');
   });
 
+  testWidgets('shows and limits the CNH formatter', (tester) async {
+    await tester.pumpWidget(const BrasilFieldsApp());
+    await tester.pumpAndSettle();
+
+    await tester.enterText(
+      find.byKey(const Key('formatter-search')),
+      'CNH',
+    );
+    await tester.pumpAndSettle();
+    await tester.drag(
+      find.byKey(const PageStorageKey('formatters-page')),
+      const Offset(0, -500),
+    );
+    await tester.pumpAndSettle();
+
+    final field = find.byKey(const Key('formatter-cnh'));
+    expect(field, findsOneWidget);
+    expect(find.text('CNHInputFormatter'), findsOneWidget);
+
+    await tester.enterText(field, '18718682003');
+    await tester.pump();
+
+    final editable = tester.widget<EditableText>(
+      find.descendant(of: field, matching: find.byType(EditableText)),
+    );
+    expect(editable.controller.text, '18718682003');
+
+    // O décimo segundo dígito é recusado e o valor anterior é mantido.
+    await tester.enterText(field, '187186820033');
+    await tester.pump();
+
+    expect(editable.controller.text, '18718682003');
+  });
+
   testWidgets('narrow layout renders without overflow', (tester) async {
     tester.view.physicalSize = const Size(320, 568);
     tester.view.devicePixelRatio = 1;

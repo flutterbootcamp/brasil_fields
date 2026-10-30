@@ -56,6 +56,7 @@ final cnpjField = TextFormField(
 | CPF ou CNPJ      | CpfOuCnpjFormatter()            | Máscara numérica conforme o tamanho          |
 | CPF ou CNPJ alfanumérico | CpfOuCnpjAlfanumericoFormatter() | Máscara conforme o tamanho         |
 | CEST             | CESTInputFormatter()            | 12.345.67                                    |
+| CNH              | CNHInputFormatter()             | 12345678901 (11 dígitos, sem máscara)        |
 | CNS              | CNSInputFormatter()             | 111 2222 3333 4444                           |
 | Data             | DataInputFormatter()            | 01/01/1900                                   |
 | Hora             | HoraInputFormatter()            | 23:59                                        |
@@ -128,6 +129,7 @@ Formata objetos `DateTime` e interpreta strings de data e hora no padrão brasil
 
 Gera, formata e valida identificadores e valores brasileiros:
 
+- `UtilBrasilFields.gerarCNH()` (XXXXXXXXXXX)
 - `UtilBrasilFields.gerarCPF()` (XXXXXXXXXXX)
 - `UtilBrasilFields.gerarCPF(useFormat: true)` (XXX.XXX.XXX-XX)
 - `UtilBrasilFields.gerarCNPJ()` (XXXXXXXXXXXXXX)
@@ -155,7 +157,7 @@ Gera, formata e valida identificadores e valores brasileiros:
 - `UtilBrasilFields.removeCaracteres` mantém apenas letras ASCII e dígitos.
 - `UtilBrasilFields.removerSimboloMoeda` remove `R$` e o espaço seguinte, se houver.
 - `UtilBrasilFields.converterMoedaParaDouble` converte um valor monetário brasileiro em `double`; retorna `0` se a entrada não vazia não puder ser convertida.
-- `UtilBrasilFields.isCPFValido`, `isCNPJValido`, `isNUPValido` e `isPisPasepValido` retornam `bool`. Para CNPJ alfanumérico, passe `isAlphanumeric: true` a `isCNPJValido`.
+- `UtilBrasilFields.isCNHValido`, `isCPFValido`, `isCNPJValido`, `isNUPValido` e `isPisPasepValido` retornam `bool`. Para CNPJ alfanumérico, passe `isAlphanumeric: true` a `isCNPJValido`.
 
 Os métodos `obterCpf`, `obterCnpj`, `obterNUP` e `obterPisPasep` exigem identificadores válidos e lançam `ArgumentError` para valores inválidos.
 

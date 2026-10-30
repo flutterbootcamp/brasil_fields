@@ -1,3 +1,4 @@
+export 'cnh_validator.dart';
 export 'cnpj_alfanumerico_validator.dart';
 export 'cnpj_validator.dart';
 export 'cpf_validator.dart';
