@@ -887,6 +887,7 @@ class _FormatterDemo {
       return 'CnpjAlfanumericoInputFormatter';
     }
     if (value is CnpjInputFormatter) return 'CnpjInputFormatter';
+    if (value is CNHInputFormatter) return 'CNHInputFormatter';
     if (value is CNSInputFormatter) return 'CNSInputFormatter';
     if (value is CpfOuCnpjAlfanumericoFormatter) {
       return 'CpfOuCnpjAlfanumericoFormatter';
@@ -956,6 +957,8 @@ List<_FormatterDemo> _createFormatterDemos() => [
           CertNascimentoInputFormatter()),
       _demo('nup', 'Documentos e identificadores', 'NUP',
           '0601064-21.2022.6.00.0000', NUPInputFormatter()),
+      _demo('cnh', 'Documentos e identificadores', 'CNH', '18718682003',
+          CNHInputFormatter()),
       _demo('cns', 'Documentos e identificadores', 'CNS', '000 1111 2222 3333',
           CNSInputFormatter()),
       _demo('telefone-fixo', 'Novidades recentes', 'Telefone fixo',

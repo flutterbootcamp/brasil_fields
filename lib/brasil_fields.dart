@@ -7,6 +7,7 @@ export 'src/formatters/centavos_input_formatter.dart';
 export 'src/formatters/cep_input_formatter.dart';
 export 'src/formatters/cert_nascimento_input_formatter.dart';
 export 'src/formatters/cest_input_formatter.dart';
+export 'src/formatters/cnh_input_formatter.dart';
 export 'src/formatters/cnpj_input_formatter.dart';
 export 'src/formatters/cnpj_alfanumerico_input_formatter.dart';
 export 'src/formatters/cns_formatter.dart';

@@ -315,6 +315,12 @@ void main() {
   });
 
   group('Validadores públicos', () {
+    test('CNH cobre valores válidos, inválidos e nulos', () {
+      expect(UtilBrasilFields.isCNHValido('18718682003'), isTrue);
+      expect(UtilBrasilFields.isCNHValido('18718682004'), isFalse);
+      expect(UtilBrasilFields.isCNHValido(null), isFalse);
+    });
+
     test('CPF cobre valores válidos, inválidos e nulos', () {
       expect(UtilBrasilFields.isCPFValido('334.616.710-02'), isTrue);
       expect(UtilBrasilFields.isCPFValido('334.616.710-01'), isFalse);
@@ -499,6 +505,18 @@ void main() {
   });
 
   group('Geradores públicos', () {
+    test('CNH aceita Random injetado e retorna apenas dígitos', () {
+      final defaultCnh = UtilBrasilFields.gerarCNH();
+      final generated = UtilBrasilFields.gerarCNH(
+        random: RecordingRandom(<int>[9, 0, 1, 2, 3, 4, 5, 6, 7]),
+      );
+
+      expect(defaultCnh, matches(RegExp(r'^\d{11}$')));
+      expect(generated, cnhWithIndependentCheckDigits('901234567'));
+      expect(generated, '90123456707');
+      expect(UtilBrasilFields.isCNHValido(generated), isTrue);
+    });
+
     test('exemplos de CPF usam parâmetros nomeados e defaults crus', () {
       final defaultCpf = UtilBrasilFields.gerarCPF();
       final explicitRaw = UtilBrasilFields.gerarCPF(
