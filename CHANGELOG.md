@@ -1,3 +1,7 @@
+## 1.22.0
+- Adiciona formatter, validator e utilitários para números de registro de CNH, por [Adrianogba](https://github.com/Adrianogba).
+- Altera `UtilData.validarData` para verificar se a data existe no calendário, incluindo anos bissextos e anos de 0001 a 9999.
+
 ## 1.21.1
 - Corrige a lista de arquivos incluídos na publicação do pacote, excluindo relatórios internos e artefatos gerados.
 - Exclui arquivos de build gerados da análise estática.
