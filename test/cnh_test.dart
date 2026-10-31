@@ -142,6 +142,16 @@ void main() {
     expect(random.requestedMaxValues, hasLength(18));
   });
 
+  test('CNH generator throws after exhausting all attempts', () {
+    // Sempre retorna 0 → base 000000000 → blockList em toda tentativa.
+    final alwaysZero = RecordingRandom.constant(0);
+
+    expect(
+      () => CNHValidator.generate(random: alwaysZero),
+      throwsStateError,
+    );
+  });
+
   test('CNH generator agrees with an independent check-digit calculation', () {
     final random = Random(7);
 
